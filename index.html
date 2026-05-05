@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradeGOAT — Built by a Contractor, for Contractors</title>
+  <meta name="description" content="TradeGOAT is the all-in-one business tool built by a real contractor. Bring your existing proposals, terms, and warranty — we adapt to your stuff. Proposals, bids, and payments without the spreadsheet circus." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f1f3d;
+      --navy-mid: #1a2f54;
+      --gold: #f5a623;
+      --gold-light: #ffc94d;
+      --white: #ffffff;
+      --off-white: #f8f9fc;
+      --text-muted: #8a93a6;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BACKGROUND TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(245,166,35,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 100% 80%, rgba(26,47,84,0.8) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── HERO FULL-BLEED (action picture, top of page) ── */
+    .hero-fullbleed {
+      width: 100%;
+      padding: 32px 24px 0;
+      margin-bottom: 32px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-fullbleed img {
+      width: 100%;
+      max-width: 1100px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 24px;
+      box-shadow:
+        0 40px 110px rgba(0, 0, 0, 0.65),
+        0 0 0 1px rgba(245, 166, 35, 0.3);
+    }
+
+    @media (max-width: 540px) {
+      .hero-fullbleed {
+        padding: 20px 16px 0;
+        margin-bottom: 24px;
+      }
+      .hero-fullbleed img {
+        border-radius: 18px;
+      }
+    }
+
+    /* ── HEADER (logo, centered, before the pitch) ── */
+    header {
+      padding: 8px 0 22px;
+      text-align: center;
+    }
+
+    .logo-wrap {
+      display: inline-block;
+      background: var(--white);
+      padding: 10px 18px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(245, 166, 35, 0.4);
+      box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.4),
+        0 0 0 3px rgba(15, 31, 61, 0.5),
+        0 0 40px rgba(245, 166, 35, 0.1);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .logo-wrap:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 14px 36px rgba(0, 0, 0, 0.5),
+        0 0 0 3px rgba(15, 31, 61, 0.5),
+        0 0 60px rgba(245, 166, 35, 0.18);
+    }
+
+    .logo-wrap img {
+      width: clamp(130px, 14vw, 170px);
+      height: auto;
+      display: block;
+    }
+
+    @media (max-width: 540px) {
+      .logo-wrap {
+        padding: 8px 14px 10px;
+        border-radius: 12px;
+      }
+      .logo-wrap img {
+        width: clamp(110px, 30vw, 140px);
+      }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 20px 0 48px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245,166,35,0.12);
+      border: 1px solid rgba(245,166,35,0.3);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .badge::before {
+      content: '●';
+      font-size: 8px;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: var(--gold);
+    }
+
+    .subtitle {
+      font-size: 18px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.65);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    /* ── FORM ── */
+    .waitlist-form {
+      display: flex;
+      gap: 10px;
+      max-width: 480px;
+      margin: 0 auto 16px;
+    }
+
+    .waitlist-form input[type="email"] {
+      flex: 1;
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.07);
+      color: var(--white);
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .waitlist-form input[type="email"]::placeholder {
+      color: rgba(255,255,255,0.35);
+    }
+
+    .waitlist-form input[type="email"]:focus {
+      border-color: var(--gold);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .waitlist-form button {
+      padding: 14px 22px;
+      border-radius: 10px;
+      border: none;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .waitlist-form button:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .waitlist-form button:active {
+      transform: translateY(0);
+    }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ── SUCCESS STATE ── */
+    .success-msg {
+      display: none;
+      background: rgba(245,166,35,0.1);
+      border: 1px solid rgba(245,166,35,0.3);
+      border-radius: 10px;
+      padding: 16px 20px;
+      color: var(--gold);
+      font-size: 15px;
+      font-weight: 600;
+      max-width: 480px;
+      margin: 0 auto 16px;
+      text-align: center;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+
+    @media (max-width: 540px) {
+      .features { grid-template-columns: 1fr; }
+      .waitlist-form { flex-direction: column; }
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 18px;
+      text-align: center;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(245,166,35,0.25);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .feature-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--white);
+    }
+
+    .feature-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-it-works {
+      margin: 8px 0 64px;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: center;
+      max-width: 540px;
+      margin: 0 auto 36px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 540px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+
+    .step {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 20px;
+      position: relative;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .step:hover {
+      border-color: rgba(245, 166, 35, 0.3);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .step-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    /* ── ERROR STATE (form) ── */
+    .error-msg {
+      display: none;
+      background: rgba(220, 60, 60, 0.1);
+      border: 1px solid rgba(220, 60, 60, 0.4);
+      border-radius: 10px;
+      padding: 14px 18px;
+      color: #ff8888;
+      font-size: 14px;
+      max-width: 480px;
+      margin: 0 auto 16px;
+      text-align: center;
+    }
+
+    /* ── ORIGIN STORY ── */
+    .origin {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 56px;
+      position: relative;
+    }
+
+    .origin::before {
+      content: '"';
+      position: absolute;
+      top: 12px;
+      left: 24px;
+      font-size: 60px;
+      color: var(--gold);
+      opacity: 0.3;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .origin p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      padding-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .origin-sig {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sig-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .sig-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .sig-title {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px 0 48px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--gold);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── ACTION IMAGE: full-bleed at the top, the visual hook ── -->
+  <div class="hero-fullbleed">
+    <img src="goat-hero.jpg" alt="Tired of forcing your proposal into their box?" />
+  </div>
+
+  <div class="container">
+
+    <header>
+      <div class="logo-wrap">
+        <img src="logo.jpg" alt="TradeGOAT" />
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="badge">Coming Soon — Join the Waitlist</div>
+
+      <h1>Run your trade business<br/><span>like the GOAT you are.</span></h1>
+
+      <p class="subtitle">
+        Professional proposals, bids, and payment tracking — built by a contractor who got tired of running a business inside a spreadsheet.
+      </p>
+
+      <form class="waitlist-form" id="waitlistForm">
+        <input type="email" id="emailInput" name="email" placeholder="your@email.com" required />
+        <input type="hidden" name="_subject" value="New TradeGOAT waitlist signup" />
+        <button type="submit" id="submitBtn">Get Early Access</button>
+      </form>
+      <div class="success-msg" id="successMsg">
+        ✓ You're on the list. We'll be in touch when we launch.
+      </div>
+      <div class="error-msg" id="errorMsg">
+        Something went wrong. Try again, or email us at hello@thetradegoat.com.
+      </div>
+      <p class="form-note">No spam. No BS. Just an early heads-up when we launch.</p>
+    </section>
+
+    <hr class="divider" />
+
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <div class="feature-title">Your Proposals, Not Theirs</div>
+        <div class="feature-desc">Drop in your existing Word docs, PDFs, or photos. We pull your scope language, your terms, your warranty — turn it all into client-ready proposals in seconds. Your voice, your stuff. Not someone else's template.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <div class="feature-title">Know Your Numbers</div>
+        <div class="feature-desc">Built-in overhead calculator, margin slider, real cost-per-day math. Two-way sync with QuickBooks, one-click export to Excel. Your numbers stay where you already keep them — and the math finally lines up.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Close and Get Paid</div>
+        <div class="feature-desc">Send invoices, take card or ACH payments right inside the tool, track every milestone. Stripe routes the money straight to your bank. Stop chasing payments that are already owed to you.</div>
+      </div>
+    </div>
+
+    <!-- ── HOW IT WORKS — the BYO story ── -->
+    <section class="how-it-works">
+      <h2 class="section-title">How it works</h2>
+      <p class="section-sub">No rebuilding your business inside someone else's app. No starting over. Bring what you already have and we map it.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">Drop your stuff in</div>
+          <div class="step-desc">Word docs, PDFs, Excel files, photos of a printed contract, screenshots from your old tool — anything. The messier the better. We handle it.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">We map it</div>
+          <div class="step-desc">AI reads your file. Pulls out your scope language, terms and conditions, warranty clauses, payment schedule, customer fields. Shows you the result. You confirm or fix.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">Send. Sign. Get paid.</div>
+          <div class="step-desc">Generate proposals in your exact format. Customer signs online. Milestones track themselves. Invoices route to QuickBooks. Money lands in your bank.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="origin">
+      <p>
+        I have been in the elevator business for over 20 years, and running my own companies for the last seven. And for those seven years, the answer was always the same: spreadsheets, Word docs, and chasing payments that were already owed to me. That's not a business. That's a second job.
+      </p>
+      <p>
+        TradeGOAT is what I wish existed when I started. Built by a contractor. For contractors.
+      </p>
+      <div class="origin-sig">
+        <div class="sig-avatar">TE</div>
+        <div>
+          <div class="sig-name">Travis Evans</div>
+          <div class="sig-title">Founder · Evans Elevator Company · 20+ years in the trades</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p style="margin-bottom:8px;">
+        <a href="mailto:hello@thetradegoat.com">hello@thetradegoat.com</a>
+      </p>
+      <p>© 2026 TradeGOAT · thetradegoat.com</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // ============================================================
+    // WAITLIST FORM — wired to Formspree.
+    //
+    // TO GO LIVE (5-minute setup):
+    //   1. Sign up at https://formspree.io with hello@thetradegoat.com
+    //      (free plan: 50 submissions/month — plenty for waitlist start)
+    //   2. Create a new form. Formspree gives you an endpoint URL like:
+    //      https://formspree.io/f/abcd1234
+    //   3. Paste that URL into FORMSPREE_ENDPOINT below, replacing the
+    //      placeholder. Save the file. The form is live.
+    //
+    // While the placeholder is in place, submissions show an error
+    // message instead of pretending to work — no signups vanish silently.
+    // ============================================================
+    const FORMSPREE_ENDPOINT = 'PASTE_YOUR_FORMSPREE_URL_HERE';
+
+    const form = document.getElementById('waitlistForm');
+    const successMsg = document.getElementById('successMsg');
+    const errorMsg = document.getElementById('errorMsg');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+      errorMsg.style.display = 'none';
+
+      // Guard: refuse to fake-succeed if endpoint isn't configured.
+      if (FORMSPREE_ENDPOINT === 'PASTE_YOUR_FORMSPREE_URL_HERE' || !FORMSPREE_ENDPOINT.startsWith('https://')) {
+        errorMsg.textContent = 'Waitlist is not live yet — please email hello@thetradegoat.com directly.';
+        errorMsg.style.display = 'block';
+        console.warn('⚠️  FORMSPREE_ENDPOINT not configured. Email NOT captured:', email);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, _subject: 'New TradeGOAT waitlist signup' })
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          throw new Error('Formspree returned ' + res.status);
+        }
+      } catch (err) {
+        console.error('Waitlist submission failed:', err);
+        errorMsg.textContent = 'Something went wrong. Try again, or email us at hello@thetradegoat.com.';
+        errorMsg.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get Early Access';
+      }
+    });
+  </script>
+</body>
+</html>
+                                                                                                             
