@@ -677,6 +677,31 @@
         setTimeout(enforceMobileGeometry, 250);
       });
 
+      // &debug=1 — on-screen diagnostics readout (for real-device
+      // debugging when screenshots can't be shared).
+      if (params.get('debug') === '1') {
+        var dbg = document.createElement('div');
+        dbg.style.cssText = 'position:fixed;top:8px;left:8px;right:8px;z-index:2147483647;background:#c62828;color:#fff;font:700 13px/1.5 monospace;padding:10px 12px;border-radius:10px;white-space:pre-wrap;pointer-events:none;';
+        document.body.appendChild(dbg);
+        setInterval(function () {
+          try {
+            var s2 = document.querySelector('section.ch.live');
+            var b2 = document.querySelector('.tvctrl');
+            var sr = s2.getBoundingClientRect();
+            var br = b2.getBoundingClientRect();
+            var overlap = sr.bottom > br.top + 1;
+            dbg.style.background = overlap ? '#c62828' : '#2e7d32';
+            dbg.textContent =
+              'v10 · vw ' + window.innerWidth + 'x' + window.innerHeight +
+              '\nmedia880: ' + matchMedia('(max-width:880px)').matches +
+              '\nslide bottom(css): ' + (s2.style.bottom || '(none)') +
+              ' rectBottom: ' + Math.round(sr.bottom) +
+              '\nbar top: ' + Math.round(br.top) + ' h: ' + Math.round(br.height) +
+              '\nverdict: ' + (overlap ? 'OVERLAP' : 'CLEAN');
+          } catch (e) { dbg.textContent = 'dbg err: ' + e.message; }
+        }, 800);
+      }
+
       var idx = 0, HOLD = 12000, timer = null;
       function restartBar() {
         if (!AUTO) return;
