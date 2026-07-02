@@ -216,27 +216,8 @@
     body.tv h2 { font-size: clamp(26px, 3.2vw, 46px); }
     body.tv .blurb { font-size: clamp(15px, 1.5vw, 22px); }
     body.tv ul.points li { font-size: clamp(13px, 1.2vw, 18px); }
-    @media (max-width: 880px) {
-      /* PHONES: floating chrome over a scrolling slide overlaps content
-         (Travis's screenshot, 2026-07-02). So: no floating pieces at all —
-         one SOLID docked bottom bar; the slide pads itself to clear it and
-         scrolls cleanly behind it. */
-      body.tv section.ch {
-        grid-template-columns: 1fr;
-        padding: 28px 6vw calc(96px + env(safe-area-inset-bottom));
-      }
-      body.tv .shot { max-width: 100%; }
-      body.tv .tvcta, body.tv .tvbrand, body.tv .tvdots, body.tv .tvexit { display: none; }
-      body.tv .tvctrl {
-        left: 0; right: 0; bottom: 0; gap: 10px;
-        padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
-        background: rgba(10,23,48,0.97); border-top: 1px solid rgba(255,255,255,0.12);
-        justify-content: space-between; align-items: center;
-      }
-      body.tv .tvctrl button { font-size: 16px; padding: 13px 0; flex: 1; }
-      body.tv .tvctrl button.next { flex: 1.6; }
-      body.tv.auto .tvctrl { display: none; }
-    }
+    /* (mobile tv-mode rules live at the END of this stylesheet — they must
+       come AFTER the desktop chrome rules or the cascade cancels them.) */
     body.tv section.ch.live { opacity: 1; pointer-events: auto; }
     body.tv section.ch.live .rv { opacity: 1; transform: none; }
     body.tv h2 { font-size: clamp(30px, 4vw, 58px); }
@@ -279,6 +260,30 @@
     .tvexit a { color: var(--text-muted); font-size: 14px; text-decoration: none; font-weight: 700; }
     .tvexit a:hover { color: var(--gold); }
     body.tv.auto .tvctrl, body.tv.auto .tvexit { display: none; }
+
+    /* ═══ MOBILE TV-MODE — MUST BE LAST (cascade order beats the desktop
+       chrome rules above; when this sat earlier in the file those rules
+       cancelled every mobile fix — Travis's screenshots, 2026-07-02). ═══ */
+    @media (max-width: 880px) {
+      body.tv section.ch {
+        grid-template-columns: 1fr;
+        padding: 28px 6vw calc(96px + env(safe-area-inset-bottom));
+      }
+      body.tv .shot { max-width: 100%; }
+      /* NO floating chrome on phones — period. */
+      body.tv .tvcta, body.tv .tvbrand, body.tv .tvdots, body.tv .tvexit { display: none; }
+      /* One SOLID docked bottom bar; content scrolls behind it cleanly. */
+      body.tv .tvctrl {
+        left: 0; right: 0; top: auto; bottom: 0; gap: 10px;
+        padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+        background: rgba(10,23,48,0.97); border-top: 1px solid rgba(255,255,255,0.12);
+        justify-content: space-between; align-items: center;
+      }
+      body.tv .tvctrl button { font-size: 16px; padding: 13px 0; flex: 1; }
+      body.tv .tvctrl button.next { flex: 1.6; }
+      body.tv .tvcount { display: inline; }
+      body.tv.auto .tvctrl { display: none; }
+    }
   </style>
 </head>
 <body>
