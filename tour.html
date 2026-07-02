@@ -91,7 +91,12 @@
       padding: 84px 0; border-top: 1px solid var(--border); scroll-margin-top: 24px;
     }
     section.ch:nth-of-type(even) .shot { order: 2; }
-    @media (max-width: 880px) { section.ch { grid-template-columns: 1fr; gap: 30px; padding: 60px 0; } section.ch:nth-of-type(even) .shot { order: 0; } }
+    @media (max-width: 880px) {
+      /* Phones: NO grid at all — plain block stacking cannot overlap
+         (Travis's "white box on top of the text", 2026-07-02). */
+      section.ch { display: block; padding: 60px 0; }
+      section.ch .shot { margin-bottom: 28px; }
+    }
     .num {
       display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px;
       background: linear-gradient(160deg, rgba(245,166,35,0.18), rgba(245,166,35,0.05));
@@ -266,14 +271,14 @@
        cancelled every mobile fix — Travis's screenshots, 2026-07-02). ═══ */
     @media (max-width: 880px) {
       body.tv section.ch {
-        grid-template-columns: 1fr;
-        /* The scroll area ENDS above the bar (inset, not padding) — iOS
-           composites scrollable fixed panels over fixed siblings, letting
-           text paint through the bar (Travis's screenshots). With the
-           container insetted, overlap is geometrically impossible. */
+        /* NO grid on phones — block stacking cannot overlap (the "white
+           box on top of the text" bug). Scroll area still ENDS above the
+           bar (inset, not padding) for the iOS compositing quirk. */
+        display: block;
         inset: 0 0 calc(74px + env(safe-area-inset-bottom)) 0;
         padding: 28px 6vw 40px;
       }
+      body.tv section.ch .shot { margin-bottom: 26px; }
       body.tv .shot { max-width: 100%; }
       /* NO floating chrome on phones — period. */
       body.tv .tvcta, body.tv .tvbrand, body.tv .tvdots, body.tv .tvexit { display: none; }
@@ -301,7 +306,7 @@
   <div class="tvui tvcta">thetradegoat.com · invite-only early access</div>
   <div class="tvui tvdots" id="tvdots"></div>
   <div class="tvui tvprog"><i id="tvbar"></i></div>
-  <div class="tvui tvctrl"><button type="button" id="tvprev">← Back</button><span id="tvcount" class="tvcount"></span><button type="button" id="tvnext" class="next">Next →</button><span class="tvver" style="position:absolute;right:4px;top:2px;font-size:9px;color:rgba(255,255,255,0.35);font-weight:700;">v10</span></div>
+  <div class="tvui tvctrl"><button type="button" id="tvprev">← Back</button><span id="tvcount" class="tvcount"></span><button type="button" id="tvnext" class="next">Next →</button><span class="tvver" style="position:absolute;right:4px;top:2px;font-size:9px;color:rgba(255,255,255,0.35);font-weight:700;">v11</span></div>
   <div class="tvui tvexit"><a href="tour.html">✕ Exit to the full tour</a></div>
 
   <nav class="bar">
@@ -669,6 +674,11 @@
           s.style.top = '0'; s.style.left = '0'; s.style.right = '0';
           s.style.bottom = barH + 'px';
           s.style.overflowY = 'auto';
+          // Kill the grid on phones: block stacking cannot overlap (the
+          // "white box on top of the text" bug).
+          s.style.display = 'block';
+          var shot = s.querySelector('.shot');
+          if (shot) { shot.style.marginBottom = '26px'; shot.style.maxWidth = '100%'; }
         });
       }
       enforceMobileGeometry();
@@ -689,15 +699,22 @@
             var b2 = document.querySelector('.tvctrl');
             var sr = s2.getBoundingClientRect();
             var br = b2.getBoundingClientRect();
-            var overlap = sr.bottom > br.top + 1;
-            dbg.style.background = overlap ? '#c62828' : '#2e7d32';
+            var shotR = s2.querySelector('.shot').getBoundingClientRect();
+            var textR = s2.querySelector('.shot').nextElementSibling.getBoundingClientRect();
+            var barOverlap = sr.bottom > br.top + 1;
+            // The "white box on top of the text" check: do the mockup and
+            // the text block occupy the same vertical space?
+            var boxOverText =
+              Math.min(shotR.bottom, textR.bottom) - Math.max(shotR.top, textR.top) > 2;
+            var bad = barOverlap || boxOverText;
+            dbg.style.background = bad ? '#c62828' : '#2e7d32';
             dbg.textContent =
-              'v10 · vw ' + window.innerWidth + 'x' + window.innerHeight +
-              '\nmedia880: ' + matchMedia('(max-width:880px)').matches +
-              '\nslide bottom(css): ' + (s2.style.bottom || '(none)') +
-              ' rectBottom: ' + Math.round(sr.bottom) +
-              '\nbar top: ' + Math.round(br.top) + ' h: ' + Math.round(br.height) +
-              '\nverdict: ' + (overlap ? 'OVERLAP' : 'CLEAN');
+              'v11 · vw ' + window.innerWidth + 'x' + window.innerHeight +
+              '\ndisplay: ' + getComputedStyle(s2).display +
+              '\nbox: ' + Math.round(shotR.top) + '→' + Math.round(shotR.bottom) +
+              '  text: ' + Math.round(textR.top) + '→' + Math.round(textR.bottom) +
+              '\nboxOverText: ' + boxOverText + ' · barOverlap: ' + barOverlap +
+              '\nverdict: ' + (bad ? 'OVERLAP' : 'CLEAN');
           } catch (e) { dbg.textContent = 'dbg err: ' + e.message; }
         }, 800);
       }
