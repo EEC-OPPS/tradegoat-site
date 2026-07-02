@@ -267,22 +267,31 @@
     @media (max-width: 880px) {
       body.tv section.ch {
         grid-template-columns: 1fr;
-        padding: 28px 6vw calc(96px + env(safe-area-inset-bottom));
+        /* The scroll area ENDS above the bar (inset, not padding) — iOS
+           composites scrollable fixed panels over fixed siblings, letting
+           text paint through the bar (Travis's screenshots). With the
+           container insetted, overlap is geometrically impossible. */
+        inset: 0 0 calc(74px + env(safe-area-inset-bottom)) 0;
+        padding: 28px 6vw 40px;
       }
       body.tv .shot { max-width: 100%; }
       /* NO floating chrome on phones — period. */
       body.tv .tvcta, body.tv .tvbrand, body.tv .tvdots, body.tv .tvexit { display: none; }
-      /* One SOLID docked bottom bar; content scrolls behind it cleanly. */
+      /* One SOLID docked bottom bar, own compositing layer. */
       body.tv .tvctrl {
-        left: 0; right: 0; top: auto; bottom: 0; gap: 10px;
+        left: 0; right: 0; top: auto; bottom: 0; gap: 10px; height: auto;
         padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
-        background: rgba(10,23,48,0.97); border-top: 1px solid rgba(255,255,255,0.12);
+        background: #0b1830; border-top: 1px solid rgba(255,255,255,0.12);
         justify-content: space-between; align-items: center;
+        z-index: 999; transform: translateZ(0);
       }
       body.tv .tvctrl button { font-size: 16px; padding: 13px 0; flex: 1; }
       body.tv .tvctrl button.next { flex: 1.6; }
       body.tv .tvcount { display: inline; }
       body.tv.auto .tvctrl { display: none; }
+      /* fill the sliver between scroll area and bar with page navy */
+      body.tv::after { content: ''; position: fixed; left: 0; right: 0; bottom: 0;
+        height: calc(74px + env(safe-area-inset-bottom)); background: var(--navy); z-index: 4; }
     }
   </style>
 </head>
