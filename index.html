@@ -467,6 +467,7 @@
 </head>
 <body>
 
+  <a href="tour.html" style="position:fixed;top:16px;right:122px;z-index:10;display:inline-flex;align-items:center;gap:6px;background:rgba(15,31,61,0.75);backdrop-filter:blur(8px);color:var(--gold);font-weight:700;font-size:14px;text-decoration:none;padding:9px 16px;border-radius:9px;border:1px solid rgba(245,166,35,0.5);">&#9654; See it in action</a>
   <a href="https://tradegoat.vercel.app/sign-in" style="position:fixed;top:16px;right:16px;z-index:10;display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--navy);font-weight:700;font-size:14px;text-decoration:none;padding:9px 16px;border-radius:9px;box-shadow:0 6px 18px rgba(0,0,0,0.35);">Log In &rarr;</a>
 
   <!-- ── ACTION IMAGE: full-bleed at the top, the visual hook ── -->
@@ -483,26 +484,30 @@
     </header>
 
     <section class="hero">
-      <div class="badge">Coming Soon — Join the Waitlist</div>
+      <div class="badge">Live in Early Access — Invite Only</div>
 
       <h1>Run your trade business<br/><span>like the GOAT you are.</span></h1>
 
       <p class="subtitle">
-        Professional proposals, bids, and payment tracking — built by a contractor who got tired of running a business inside a spreadsheet.
+        Professional proposals, bids, and payment tracking — built by a contractor who got tired of running a business inside a spreadsheet. We're onboarding early companies one at a time.
       </p>
 
-      <form class="waitlist-form" id="waitlistForm">
+      <p style="text-align:center;margin:0 0 26px;">
+        <a href="tour.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy);font-weight:800;font-size:16px;text-decoration:none;padding:13px 26px;border-radius:11px;box-shadow:0 10px 26px rgba(245,166,35,0.28);">&#9654;&nbsp; See it in action — take the tour</a>
+      </p>
+
+      <form class="waitlist-form" id="waitlistForm" name="waitlist">
         <input type="email" id="emailInput" name="email" placeholder="your@email.com" required />
         <input type="hidden" name="_subject" value="New TradeGOAT waitlist signup" />
-        <button type="submit" id="submitBtn">Get Early Access</button>
+        <button type="submit" id="submitBtn">Get in line for an invite</button>
       </form>
       <div class="success-msg" id="successMsg">
-        ✓ You're on the list. We'll be in touch when we launch.
+        ✓ You're in line. Invites go out as we onboard each new company.
       </div>
       <div class="error-msg" id="errorMsg">
         Something went wrong. Try again, or email us at hello@thetradegoat.com.
       </div>
-      <p class="form-note">No spam. No BS. Just an early heads-up when we launch.</p>
+      <p class="form-note">Access is invite-only during early access. No spam — just your invite when it's ready.</p>
     </section>
 
     <hr class="divider" />

@@ -3,377 +3,607 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TradeGOAT — The Tour. See what it does.</title>
-  <meta name="description" content="A walk through TradeGOAT: bring your own proposals and service tickets, bid with honest margins, sign on glass in the field, and let the office run itself. Built by a contractor." />
+  <title>TradeGOAT — The Tour · See exactly what it does</title>
+  <meta name="description" content="An interactive walkthrough of TradeGOAT: bring your own proposals and service tickets, bid with honest margins, sign on glass in the field, and let the office run itself. Built by a 20-year contractor. Early access is invite-only." />
+  <meta property="og:title" content="TradeGOAT — The Tour" />
+  <meta property="og:description" content="Your trade. Your documents. Your tool. Walk through every screen of TradeGOAT." />
   <style>
+    /* ══════════════════════ DESIGN SYSTEM ══════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #0f1f3d; --navy-mid: #1a2f54; --gold: #f5a623; --gold-light: #ffc94d;
-      --white: #ffffff; --off-white: #f8f9fc; --text-muted: #8a93a6;
+      --navy: #0f1f3d; --navy-mid: #16294e; --navy-deep: #0a1730;
+      --gold: #f5a623; --gold-light: #ffc94d; --gold-deep: #d98b0f;
+      --white: #ffffff; --off-white: #f8f9fc; --ink: #1c2a45;
+      --text-muted: #8a93a6; --text-soft: #c6cddb;
       --border: rgba(255,255,255,0.08);
-      --amber: #C06A10; --green: #2e7d32; --violet: #7c5cbf; --red: #c62828;
+      --amber: #C06A10; --green: #2e7d32; --green-soft: #e5f2e6;
+      --violet: #7c5cbf; --red: #c62828; --blue: #2456a6;
+      --shadow-shot: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(245,166,35,0.22);
     }
+    html { scroll-behavior: smooth; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--navy); color: var(--white); min-height: 100vh; overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
     body::before {
       content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
       background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(245,166,35,0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 100% 80%, rgba(26,47,84,0.8) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(245,166,35,0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 0% 60%, rgba(36,86,166,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 100% 85%, rgba(26,47,84,0.9) 0%, transparent 60%);
     }
-    .wrap { position: relative; z-index: 1; max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+    .wrap { position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
     a.btn {
-      display: inline-flex; align-items: center; gap: 6px; background: var(--gold);
-      color: var(--navy); font-weight: 700; font-size: 14px; text-decoration: none;
-      padding: 10px 18px; border-radius: 9px; box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold));
+      color: var(--navy); font-weight: 800; font-size: 15px; text-decoration: none;
+      padding: 13px 24px; border-radius: 11px; letter-spacing: 0.01em;
+      box-shadow: 0 10px 26px rgba(245,166,35,0.28), 0 2px 6px rgba(0,0,0,0.35);
+      transition: transform .18s ease, box-shadow .18s ease;
     }
-    a.btn.ghost { background: transparent; color: var(--gold); border: 1px solid rgba(245,166,35,0.5); box-shadow: none; }
+    a.btn:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(245,166,35,0.36), 0 3px 8px rgba(0,0,0,0.4); }
+    a.btn.ghost { background: rgba(255,255,255,0.04); color: var(--gold); border: 1px solid rgba(245,166,35,0.45); box-shadow: none; }
+    a.btn.ghost:hover { background: rgba(245,166,35,0.08); }
+    .btn small { font-weight: 600; opacity: .75; }
 
-    header { text-align: center; padding: 40px 0 8px; }
-    header img.logo { height: 84px; background: var(--white); padding: 8px 14px; border-radius: 12px; border: 1px solid rgba(245,166,35,0.4); }
-    h1 { font-size: clamp(30px, 5vw, 52px); margin: 22px 0 10px; letter-spacing: -0.02em; }
-    h1 .gold { color: var(--gold); }
-    .sub { color: var(--text-muted); font-size: 18px; max-width: 640px; margin: 0 auto 22px; line-height: 1.55; }
-    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
-
-    /* ── feature sections ── */
-    section.feature {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
-      padding: 56px 0; border-top: 1px solid var(--border);
+    /* ── sticky chapter bar ── */
+    nav.bar {
+      position: sticky; top: 0; z-index: 40; backdrop-filter: blur(14px);
+      background: rgba(10,23,48,0.82); border-bottom: 1px solid var(--border);
     }
-    section.feature:nth-of-type(even) .shot { order: 2; }
-    @media (max-width: 820px) { section.feature { grid-template-columns: 1fr; gap: 24px; } section.feature:nth-of-type(even) .shot { order: 0; } }
-    .kicker { color: var(--gold); font-weight: 800; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; }
-    h2 { font-size: clamp(22px, 3vw, 32px); margin-bottom: 12px; letter-spacing: -0.01em; }
-    .blurb { color: #c6cddb; font-size: 16.5px; line-height: 1.65; margin-bottom: 14px; }
+    nav.bar .inner { max-width: 1120px; margin: 0 auto; padding: 10px 28px; display: flex; align-items: center; gap: 18px; }
+    nav.bar img { height: 40px; background: var(--white); border-radius: 8px; padding: 3px 7px; }
+    nav.bar .chapters { display: flex; gap: 4px; flex: 1; justify-content: center; flex-wrap: wrap; }
+    nav.bar .chapters a {
+      color: var(--text-muted); text-decoration: none; font-size: 12px; font-weight: 700;
+      padding: 6px 10px; border-radius: 99px; letter-spacing: .02em; transition: all .15s;
+    }
+    nav.bar .chapters a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    nav.bar .chapters a.on { color: var(--navy); background: var(--gold); }
+    nav.bar .actions { display: flex; gap: 10px; }
+    nav.bar .actions a { font-size: 13px; padding: 9px 15px; }
+    @media (max-width: 900px) { nav.bar .chapters { display: none; } }
+
+    /* ── hero ── */
+    .hero { text-align: center; padding: 76px 0 60px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(245,166,35,0.4); background: rgba(245,166,35,0.07);
+      padding: 8px 18px; border-radius: 99px; margin-bottom: 26px;
+    }
+    .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 12px var(--gold); animation: pulse 2.2s infinite; }
+    @keyframes pulse { 50% { opacity: .45; } }
+    h1 { font-size: clamp(34px, 5.4vw, 62px); line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 20px; }
+    h1 .gold { background: linear-gradient(120deg, var(--gold-light), var(--gold-deep)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero .sub { color: var(--text-soft); font-size: clamp(16px, 2vw, 20px); max-width: 700px; margin: 0 auto 34px; line-height: 1.65; }
+    .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .scrollcue { margin-top: 48px; color: var(--text-muted); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+    .scrollcue::after { content: '↓'; display: block; font-size: 20px; margin-top: 6px; animation: bob 1.8s infinite; }
+    @keyframes bob { 50% { transform: translateY(6px); } }
+
+    /* ── chapters ── */
+    section.ch {
+      display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center;
+      padding: 84px 0; border-top: 1px solid var(--border); scroll-margin-top: 76px;
+    }
+    section.ch:nth-of-type(even) .shot { order: 2; }
+    @media (max-width: 880px) { section.ch { grid-template-columns: 1fr; gap: 30px; padding: 60px 0; } section.ch:nth-of-type(even) .shot { order: 0; } }
+    .num {
+      display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(160deg, rgba(245,166,35,0.18), rgba(245,166,35,0.05));
+      border: 1px solid rgba(245,166,35,0.4); color: var(--gold); font-weight: 900; font-size: 18px;
+      margin-bottom: 16px;
+    }
+    .kicker { color: var(--gold); font-weight: 800; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+    h2 { font-size: clamp(24px, 3.2vw, 38px); margin-bottom: 16px; letter-spacing: -0.02em; line-height: 1.15; }
+    .blurb { color: var(--text-soft); font-size: 17px; line-height: 1.7; margin-bottom: 18px; }
+    .blurb em { color: var(--gold-light); font-style: normal; font-weight: 700; }
     ul.points { list-style: none; }
-    ul.points li { color: var(--text-muted); font-size: 15px; line-height: 1.6; padding-left: 22px; position: relative; margin-bottom: 7px; }
-    ul.points li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-weight: 800; }
+    ul.points li { color: var(--text-muted); font-size: 15.5px; line-height: 1.65; padding-left: 30px; position: relative; margin-bottom: 10px; }
+    ul.points li b { color: var(--text-soft); }
+    ul.points li::before {
+      content: ''; position: absolute; left: 0; top: 3px; width: 18px; height: 18px; border-radius: 50%;
+      background: rgba(245,166,35,0.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5a623' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/11px no-repeat;
+      border: 1px solid rgba(245,166,35,0.35);
+    }
 
-    /* ── stylized app screens (CSS-drawn, brand-accurate) ── */
+    /* scroll reveal */
+    .rv { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+    .rv.in { opacity: 1; transform: none; }
+    .shot.rv { transition-delay: .12s; }
+
+    /* ══════════════════ THE SCREENS (CSS-drawn, animated) ══════════════════ */
     .shot {
-      background: var(--off-white); border-radius: 14px; overflow: hidden;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(245,166,35,0.25);
-      color: #1c2a45; font-size: 12.5px;
+      background: var(--off-white); border-radius: 16px; overflow: hidden;
+      box-shadow: var(--shadow-shot); color: var(--ink); font-size: 13px; position: relative;
     }
-    .chrome { display: flex; gap: 6px; padding: 9px 12px; background: #e8ebf2; }
-    .chrome i { width: 9px; height: 9px; border-radius: 50%; background: #c9cfdb; }
-    .app { display: flex; min-height: 250px; }
-    .rail { width: 86px; background: #0F1F44; color: rgba(255,255,255,0.85); padding: 10px 8px; font-size: 10.5px; line-height: 2.1; flex-shrink: 0; }
-    .rail b { color: #ffc94d; display: block; margin-bottom: 4px; font-size: 10px; letter-spacing: 0.06em; }
-    .pane { flex: 1; padding: 14px; }
-    .ph2 { font-weight: 800; font-size: 14px; color: #0F1F44; margin-bottom: 8px; }
-    .card { background: #fff; border: 1px solid #e3e7ef; border-radius: 9px; padding: 9px 11px; margin-bottom: 8px; box-shadow: 0 1px 3px rgba(15,31,68,0.06); }
-    .card .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-    .pill { font-size: 9.5px; font-weight: 800; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 99px; color: #fff; }
+    .chrome { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #e8ebf2; }
+    .chrome i { width: 10px; height: 10px; border-radius: 50%; background: #cdd3df; }
+    .chrome span { margin-left: 10px; font-size: 11px; color: #8a93a6; background: #fff; border-radius: 6px; padding: 3px 12px; flex: 1; max-width: 300px; }
+    .app { display: flex; min-height: 300px; }
+    .rail { width: 96px; background: #0F1F44; color: rgba(255,255,255,0.78); padding: 12px 10px; font-size: 11px; line-height: 2.15; flex-shrink: 0; }
+    .rail b { color: var(--gold-light); display: block; margin-bottom: 5px; font-size: 10px; letter-spacing: 0.08em; }
+    .rail .sel { color: #fff; font-weight: 700; background: rgba(255,255,255,0.1); border-radius: 6px; padding: 0 6px; margin: 0 -6px; display: inline-block; }
+    .pane { flex: 1; padding: 16px; min-width: 0; }
+    .ph2 { font-weight: 800; font-size: 15px; color: #0F1F44; margin-bottom: 10px; }
+    .ph2 .mut { font-weight: 600; color: #99a3b8; font-size: 12px; }
+    .card { background: #fff; border: 1px solid #e3e7ef; border-radius: 10px; padding: 10px 13px; margin-bottom: 9px; box-shadow: 0 1px 3px rgba(15,31,68,0.06); }
+    .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .pill { font-size: 10px; font-weight: 800; letter-spacing: 0.05em; padding: 3px 9px; border-radius: 99px; color: #fff; white-space: nowrap; }
     .pill.sent { background: var(--amber); } .pill.hold { background: var(--violet); }
-    .pill.signed { background: var(--green); } .pill.billable { background: var(--green); }
+    .pill.review { background: #a3780a; } .pill.signed { background: var(--green); }
+    .pill.soft { background: var(--green-soft); color: var(--green); }
     .money { font-weight: 800; color: #0F1F44; font-variant-numeric: tabular-nums; }
-    .muted { color: #7b869c; font-size: 11px; }
-    .accent-l { border-left: 3px solid var(--amber); }
-    .accent-g { border-left: 3px solid var(--green); }
-    .bar { height: 8px; border-radius: 99px; background: #e3e7ef; overflow: hidden; margin-top: 5px; }
-    .bar i { display: block; height: 100%; background: var(--gold); }
-    .sig { border-bottom: 2px solid #0F1F44; height: 26px; margin-top: 6px; position: relative; }
-    .sig::after { content: ''; position: absolute; left: 8%; bottom: 3px; width: 70%; height: 16px;
-      border-bottom: 2px solid #2b4a8f; border-radius: 0 0 60% 40%; transform: rotate(-4deg); }
-    .fieldrow { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; }
-    .f { background: #fff; border: 1px solid #e3e7ef; border-radius: 7px; padding: 6px 9px; }
-    .f b { display: block; font-size: 9px; color: #99a3b8; text-transform: uppercase; letter-spacing: 0.06em; }
-    .chip { display: inline-block; border: 1px solid #cfd6e4; border-radius: 99px; padding: 3px 10px; margin: 2px 3px 0 0; font-size: 10.5px; color: #0F1F44; }
+    .muted { color: #7b869c; font-size: 11.5px; }
+    .accent-a { border-left: 4px solid var(--amber); } .accent-g { border-left: 4px solid var(--green); }
+    .accent-v { border-left: 4px solid var(--violet); } .accent-r { border-left: 4px solid var(--red); }
+    .bar { height: 9px; border-radius: 99px; background: #e3e7ef; overflow: hidden; margin-top: 6px; }
+    .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-deep)); border-radius: 99px; }
+    .fieldrow { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 12px; }
+    .f { background: #fff; border: 1px solid #e3e7ef; border-radius: 8px; padding: 7px 10px; }
+    .f b { display: block; font-size: 9.5px; color: #99a3b8; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1px; }
+    .chip { display: inline-block; border: 1px solid #cfd6e4; border-radius: 99px; padding: 4px 11px; margin: 2px 4px 2px 0; font-size: 11px; color: #0F1F44; font-weight: 600; }
     .chip.on { background: #0F1F44; color: #fff; border-color: #0F1F44; }
-    table.t { width: 100%; border-collapse: collapse; font-size: 11px; }
-    table.t th { text-align: left; color: #99a3b8; font-size: 9.5px; text-transform: uppercase; padding: 4px 6px; border-bottom: 1px solid #e3e7ef; }
-    table.t td { padding: 5px 6px; border-bottom: 1px solid #eef1f6; color: #1c2a45; }
+    .chip.green { background: var(--green); color: #fff; border-color: var(--green); }
+    table.t { width: 100%; border-collapse: collapse; font-size: 12px; }
+    table.t th { text-align: left; color: #99a3b8; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; padding: 5px 7px; border-bottom: 1px solid #e3e7ef; }
+    table.t td { padding: 6px 7px; border-bottom: 1px solid #eef1f6; }
+    .tag-note { position: absolute; right: 14px; bottom: 12px; background: #0F1F44; color: #ffc94d; font-size: 10.5px; font-weight: 700; padding: 5px 11px; border-radius: 99px; opacity: .92; }
 
-    footer { text-align: center; padding: 60px 0 40px; border-top: 1px solid var(--border); }
-    footer .sub { margin-bottom: 18px; }
+    /* ── per-chapter animations (loop only when .in) ── */
+    .in .a-fill i { animation: afill 3.4s ease-in-out infinite; }
+    @keyframes afill { 0% { width: 6%; } 55% { width: 88%; } 75%, 100% { width: 88%; } }
+    .in .a-chip { opacity: 0; animation: apop .5s ease forwards; }
+    .in .a-chip:nth-child(1) { animation-delay: .9s; } .in .a-chip:nth-child(2) { animation-delay: 1.25s; }
+    .in .a-chip:nth-child(3) { animation-delay: 1.6s; } .in .a-chip:nth-child(4) { animation-delay: 1.95s; }
+    .in .a-chip:nth-child(5) { animation-delay: 2.3s; }
+    @keyframes apop { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: none; } }
+    .in .a-margin i { animation: amargin 4s ease-in-out infinite; }
+    @keyframes amargin { 0%, 12% { width: 10%; } 48%, 82% { width: 25%; } 100% { width: 25%; } }
+    .in .a-stamp { opacity: 0; animation: astamp .5s ease forwards; animation-delay: 1.4s; }
+    @keyframes astamp { from { opacity: 0; transform: scale(1.5) rotate(-8deg); } to { opacity: 1; transform: none; } }
+    .in .a-cycle { animation: acycle 7.5s steps(1) infinite; }
+    @keyframes acycle { 0% { background: var(--amber); } 33% { background: var(--violet); } 66% { background: #a3780a; } 100% { background: var(--amber); } }
+    .in .a-cycle-t::after { content: 'SENT'; animation: acyclet 7.5s steps(1) infinite; }
+    @keyframes acyclet { 0% { content: 'SENT'; } 33% { content: 'ON HOLD'; } 66% { content: 'REVIEW'; } 100% { content: 'SENT'; } }
+    .in svg.a-sig path { stroke-dasharray: 320; stroke-dashoffset: 320; animation: asig 3.2s ease-in-out infinite; }
+    @keyframes asig { 0%, 12% { stroke-dashoffset: 320; } 60%, 88% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; } }
+    .in .a-photo { opacity: 0; animation: apop .45s ease forwards; }
+    .in .a-photo:nth-child(2) { animation-delay: 1.1s; } .in .a-photo:nth-child(3) { animation-delay: 1.7s; }
+    .in .a-slideout { animation: aslide 6s ease-in-out infinite; }
+    @keyframes aslide { 0%, 55% { opacity: 1; transform: none; } 75%, 92% { opacity: 0; transform: translateX(28px); } 100% { opacity: 1; transform: none; } }
+    .in .a-pulse { animation: apulse 1.8s infinite; }
+    @keyframes apulse { 50% { box-shadow: 0 0 0 6px rgba(198,40,40,0.12); } }
+    .in .a-flip::after { content: 'INVITED ✉'; background: var(--amber); animation: aflip 5.5s steps(1) infinite; padding: 3px 9px; border-radius: 99px; color: #fff; font-size: 10px; font-weight: 800; }
+    @keyframes aflip { 0% { content: 'INVITED ✉'; background: var(--amber); } 55% { content: 'ACTIVE ✓'; background: var(--green); } 100% { content: 'INVITED ✉'; background: var(--amber); } }
 
-    /* ── BOOTH / TV MODE ── */
+    /* ── stat strip ── */
+    .strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 40px 0 10px; }
+    @media (max-width: 720px) { .strip { grid-template-columns: 1fr; } }
+    .stat { text-align: center; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; padding: 26px 18px; }
+    .stat b { display: block; font-size: 34px; color: var(--gold); letter-spacing: -0.02em; margin-bottom: 6px; }
+    .stat span { color: var(--text-muted); font-size: 14px; line-height: 1.5; }
+
+    /* ── closing ── */
+    .close { text-align: center; padding: 90px 0 70px; border-top: 1px solid var(--border); }
+    .close h2 { font-size: clamp(28px, 4vw, 46px); margin-bottom: 14px; }
+    .close .sub { color: var(--text-soft); font-size: 18px; max-width: 620px; margin: 0 auto 30px; line-height: 1.65; }
+    .invite-note { margin-top: 22px; color: var(--text-muted); font-size: 14px; }
+    .invite-note b { color: var(--gold); }
+    footer.pagefoot { text-align: center; padding: 28px 0 44px; color: var(--text-muted); font-size: 13px; border-top: 1px solid var(--border); }
+    footer.pagefoot a { color: var(--text-muted); text-decoration: none; }
+    footer.pagefoot a:hover { color: var(--gold); }
+
+    /* ══════════════════ EXPLAINER / BOOTH MODE ══════════════════ */
     body.tv { overflow: hidden; }
-    body.tv header, body.tv footer, body.tv .cta-row, body.tv .tour-note { display: none; }
-    body.tv section.feature {
+    body.tv nav.bar, body.tv .hero, body.tv .strip, body.tv .close, body.tv footer.pagefoot { display: none; }
+    body.tv section.ch {
       position: fixed; inset: 0; z-index: 5; display: grid; align-content: center;
-      grid-template-columns: 1fr 1fr; gap: 5vw; padding: 6vh 6vw; background: var(--navy);
-      opacity: 0; pointer-events: none; transition: opacity 0.9s ease; border: 0;
+      grid-template-columns: 1.05fr 1fr; gap: 5vw; padding: 10vh 6vw 12vh; background: var(--navy);
+      opacity: 0; pointer-events: none; transition: opacity 1s ease; border: 0; margin: 0;
     }
-    body.tv section.feature.live { opacity: 1; pointer-events: auto; }
-    body.tv h2 { font-size: clamp(34px, 4.5vw, 64px); }
-    body.tv .blurb { font-size: clamp(18px, 1.9vw, 28px); }
-    body.tv ul.points li { font-size: clamp(15px, 1.5vw, 22px); }
-    body.tv .kicker { font-size: clamp(14px, 1.2vw, 18px); }
-    body.tv .shot { font-size: clamp(12px, 1.15vw, 17px); }
-    .tvdots { display: none; }
-    body.tv .tvdots { display: flex; gap: 10px; position: fixed; bottom: 4vh; left: 50%; transform: translateX(-50%); z-index: 9; }
-    .tvdots i { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.25); }
-    .tvdots i.on { background: var(--gold); }
-    .tvbrand { display: none; }
-    body.tv .tvbrand { display: flex; align-items: center; gap: 14px; position: fixed; top: 4vh; left: 6vw; z-index: 9; }
-    body.tv .tvbrand img { height: 56px; background: #fff; border-radius: 10px; padding: 5px 9px; }
-    body.tv .tvbrand span { font-size: 22px; font-weight: 800; }
-    body.tv .tvbrand span em { color: var(--gold); font-style: normal; }
+    body.tv section.ch.live { opacity: 1; pointer-events: auto; }
+    body.tv section.ch.live .rv { opacity: 1; transform: none; }
+    body.tv h2 { font-size: clamp(30px, 4vw, 58px); }
+    body.tv .blurb { font-size: clamp(17px, 1.8vw, 26px); }
+    body.tv ul.points li { font-size: clamp(14px, 1.4vw, 21px); }
+    body.tv .shot { font-size: clamp(12px, 1.1vw, 16px); }
+    .tvui { display: none; }
+    body.tv .tvui { display: block; }
+    .tvbrand { position: fixed; top: 4vh; left: 6vw; z-index: 9; display: flex; align-items: center; gap: 14px; }
+    .tvbrand img { height: 54px; background: #fff; border-radius: 10px; padding: 5px 9px; }
+    .tvbrand span { font-size: 21px; font-weight: 800; }
+    .tvbrand span em { color: var(--gold); font-style: normal; }
+    .tvprog { position: fixed; bottom: 0; left: 0; right: 0; height: 5px; z-index: 9; background: rgba(255,255,255,0.08); }
+    .tvprog i { display: block; height: 100%; width: 0; background: var(--gold); }
+    body.tv .tvprog i { animation: tvbar 12s linear infinite; }
+    @keyframes tvbar { from { width: 0; } to { width: 100%; } }
+    .tvdots { position: fixed; bottom: 3.4vh; left: 50%; transform: translateX(-50%); z-index: 9; display: flex; gap: 11px; }
+    .tvdots i { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.22); transition: background .3s; }
+    .tvdots i.on { background: var(--gold); box-shadow: 0 0 14px rgba(245,166,35,0.7); }
+    .tvcta { position: fixed; top: 4vh; right: 6vw; z-index: 9; color: var(--gold); font-weight: 800; font-size: 19px; letter-spacing: .02em; }
   </style>
 </head>
 <body>
-  <div class="tvbrand"><img src="logo.jpg" alt="TradeGOAT" /><span>Trade<em>GOAT</em> · thetradegoat.com</span></div>
-  <div class="tvdots" id="tvdots"></div>
+  <!-- booth-mode chrome -->
+  <div class="tvui tvbrand"><img src="logo.jpg" alt="TradeGOAT" /><span>Trade<em>GOAT</em></span></div>
+  <div class="tvui tvcta">thetradegoat.com · invite-only early access</div>
+  <div class="tvui tvdots" id="tvdots"></div>
+  <div class="tvui tvprog"><i id="tvbar"></i></div>
+
+  <nav class="bar">
+    <div class="inner">
+      <a href="/"><img src="logo.jpg" alt="TradeGOAT" /></a>
+      <div class="chapters" id="chapnav">
+        <a href="#ch1">Bring yours</a><a href="#ch2">Bid</a><a href="#ch3">Track</a><a href="#ch4">Win</a>
+        <a href="#ch5">Field</a><a href="#ch6">Office</a><a href="#ch7">Learn</a><a href="#ch8">Team</a>
+      </div>
+      <div class="actions">
+        <a class="btn ghost" href="tour.html?tv=1">▶ Play</a>
+        <a class="btn" href="/#waitlist">Get invited</a>
+      </div>
+    </div>
+  </nav>
 
   <div class="wrap">
-    <header>
-      <a href="/"><img class="logo" src="logo.jpg" alt="TradeGOAT" /></a>
+    <section class="hero">
+      <div class="eyebrow"><i></i> Early access · invite only</div>
       <h1>The tool adapts to <span class="gold">your</span> business.<br/>Not the other way around.</h1>
-      <p class="sub">A quick walk through what TradeGOAT actually does — the same screens an operator uses every day, explained in plain English. Built by a 20-year elevator contractor who was tired of software that made him start over.</p>
+      <p class="sub">This is TradeGOAT, screen by screen — the exact tool a 20-year elevator contractor built because every app he tried made him throw away his documents, his math, and his way of working. Nothing on this page is a mockup of a promise. It's all built.</p>
       <div class="cta-row">
-        <a class="btn" href="/#waitlist">Join the waitlist</a>
-        <a class="btn ghost" href="tour.html?tv=1">▶ Booth mode (for TVs)</a>
+        <a class="btn" href="tour.html?tv=1">▶ &nbsp;Play the explainer</a>
+        <a class="btn ghost" href="/#waitlist">Join the waitlist</a>
       </div>
-      <p class="tour-note muted" style="color:var(--text-muted);font-size:13px;">Scroll to walk the tour ↓</p>
-    </header>
+      <div class="scrollcue">or scroll the tour</div>
+    </section>
 
-    <!-- 1. BYO proposals -->
-    <section class="feature">
-      <div class="shot"><div class="chrome"><i></i><i></i><i></i></div>
-        <div class="app"><div class="rail"><b>MENU</b>Dashboard<br/>Proposals<br/>Jobs<br/>Maintenance<br/>Customers</div>
+    <!-- ═══ 1 · BRING YOUR OWN ═══ -->
+    <section class="ch" id="ch1">
+      <div class="shot rv">
+        <div class="chrome"><i></i><i></i><i></i><span>tradegoat · proposals · bring your own</span></div>
+        <div class="app"><div class="rail"><b>MENU</b>Dashboard<br/><span class="sel">Proposals</span><br/>Jobs<br/>Maintenance<br/>Customers<br/>Schedule</div>
           <div class="pane">
             <div class="ph2">Bring your own proposal</div>
-            <div class="card"><div class="row"><span>📄 Your-Company-Proposal.docx</span><span class="pill sent">READING…</span></div>
-              <div class="bar"><i style="width:72%"></i></div>
-              <div class="muted" style="margin-top:5px;">Learning your language, your terms, your warranty…</div></div>
-            <div class="card"><b style="font-size:11px;">Found in your document:</b><br/>
-              <span class="chip on">Customer name</span><span class="chip on">Project address</span><span class="chip on">Contract total</span><span class="chip">Scope of work</span><span class="chip">Payment terms</span></div>
-            <div class="muted">Your wording stays yours. The fill-in spots become automatic.</div>
-          </div></div></div>
-      <div>
-        <div class="kicker">Step 1 · Bring your own</div>
-        <h2>Upload the proposal you already use. It becomes your template.</h2>
-        <p class="blurb">No starting over. TradeGOAT reads your existing Word or PDF proposal — your language, your terms, your warranty — and turns it into a reusable template where the customer name, address, and pricing fill themselves in.</p>
+            <div class="card"><div class="row"><span><b>Your-Company-Proposal.docx</b></span><span class="pill sent">READING</span></div>
+              <div class="bar a-fill"><i style="width:6%"></i></div>
+              <div class="muted" style="margin-top:6px;">Learning your language, your terms, your warranty…</div></div>
+            <div class="card"><b style="font-size:12px;">Found in your document — tap to confirm:</b><br/>
+              <span class="chip on a-chip">Customer name</span><span class="chip on a-chip">Project address</span><span class="chip on a-chip">Contract total</span><span class="chip a-chip">Scope of work</span><span class="chip a-chip">Payment schedule</span></div>
+            <div class="card"><div class="row"><span class="muted">Everything NOT marked stays exactly as you wrote it.</span><span class="pill soft">YOUR WORDING ✓</span></div></div>
+          </div></div>
+        <div class="tag-note">Real feature — live today</div>
+      </div>
+      <div class="rv">
+        <div class="num">1</div>
+        <div class="kicker">Bring your own</div>
+        <h2>Your proposal walks in the door. It doesn't start over.</h2>
+        <p class="blurb">Every tool you've tried wanted you to rebuild your business inside <em>their</em> template. TradeGOAT reads the Word or PDF proposal you already use — your scope language, your terms and conditions, your warranty, your payment schedule — and turns it into a living template. The fill-in spots become automatic. The rest is <em>never touched</em>.</p>
         <ul class="points">
-          <li>Word in → editable Word out, ready to send</li>
-          <li>Your legal wording is never rewritten</li>
-          <li>One document becomes every future proposal</li>
+          <li><b>Word in → editable Word out</b>, in your format, ready to send</li>
+          <li><b>A red-pen review screen</b> shows your original words with every fill-in spot marked — you confirm or fix, nothing sneaks by</li>
+          <li><b>A safety gate:</b> a proposal physically cannot be sent with a blank fill-in spot</li>
+          <li>One document ingested once = every future proposal in seconds</li>
         </ul>
       </div>
     </section>
 
-    <!-- 2. Bid calculator -->
-    <section class="feature">
-      <div class="shot"><div class="chrome"><i></i><i></i><i></i></div>
-        <div class="app"><div class="rail"><b>BID</b>Labor<br/>Travel<br/>Parts<br/>Equipment<br/>Permits</div>
+    <!-- ═══ 2 · BID ═══ -->
+    <section class="ch" id="ch2">
+      <div class="shot rv">
+        <div class="chrome"><i></i><i></i><i></i><span>tradegoat · bid calculator</span></div>
+        <div class="app"><div class="rail"><b>BUCKETS</b>Labor<br/>Travel<br/>Parts<br/>Materials<br/>Equipment<br/>Permits</div>
           <div class="pane">
-            <div class="ph2">Price it honestly</div>
-            <table class="t"><tr><th>Cost bucket</th><th>True cost</th></tr>
-              <tr><td>Labor — 2 crew × 6 days</td><td class="money">$11,040</td></tr>
-              <tr><td>Materials + parts</td><td class="money">$18,750</td></tr>
-              <tr><td>Travel · hotels · permits</td><td class="money">$2,310</td></tr>
-              <tr><td>Overhead (6 job days)</td><td class="money">$1,890</td></tr></table>
-            <div class="card" style="margin-top:8px;"><div class="row"><span>Your margin</span><span class="money" style="color:var(--green);">25%</span></div>
-              <div class="bar"><i style="width:25%;background:var(--green);"></i></div></div>
-            <div class="row card"><span><b>Your price</b></span><span class="money" style="font-size:15px;">$45,320</span></div>
-          </div></div></div>
-      <div>
-        <div class="kicker">Step 2 · Bid it</div>
-        <h2>Real costs in. One honest margin. Your price out.</h2>
-        <p class="blurb">Enter what the job actually costs — crew, days, parts, travel, even your overhead — and set one profit margin. The price is computed the way the math really works, so the profit you see is profit you keep.</p>
+            <div class="ph2">Price it honestly <span class="mut">— true cost in, one margin, price out</span></div>
+            <table class="t">
+              <tr><th>Cost bucket</th><th style="text-align:right;">True cost</th></tr>
+              <tr><td>Labor — 2 crew × 6 days × $115/hr</td><td class="money" style="text-align:right;">$11,040</td></tr>
+              <tr><td>Materials + parts</td><td class="money" style="text-align:right;">$18,750</td></tr>
+              <tr><td>Travel · hotels · permits</td><td class="money" style="text-align:right;">$2,310</td></tr>
+              <tr><td style="color:var(--blue);font-weight:700;">Overhead — 6 job days × your daily rate</td><td class="money" style="text-align:right;color:var(--blue);">$1,890</td></tr>
+            </table>
+            <div class="card" style="margin-top:9px;"><div class="row"><span><b>Your profit margin</b></span><span class="money" style="color:var(--green);">25%</span></div>
+              <div class="bar a-margin"><i style="width:10%;background:linear-gradient(90deg,#43a047,#2e7d32);"></i></div></div>
+            <div class="card accent-g"><div class="row"><span style="font-weight:800;">Your price</span><span class="money" style="font-size:17px;" data-count="45320" data-prefix="$">$45,320</span></div>
+              <div class="muted">Profit shown = profit kept. Overhead is already inside the cost.</div></div>
+          </div></div>
+        <div class="tag-note">Margin-first engine — locked math</div>
+      </div>
+      <div class="rv">
+        <div class="num">2</div>
+        <div class="kicker">Bid it</div>
+        <h2>Real costs. One honest margin. No phantom profit.</h2>
+        <p class="blurb">Most estimating tools let you lie to yourself — margin on labor, markup on materials, overhead nowhere. TradeGOAT's engine is <em>margin-first</em>: every real cost goes in (crew, days, parts, travel, even your overhead per job day), you set one profit margin, and the price is computed the way the math actually works.</p>
         <ul class="points">
-          <li>Overhead is in the cost — no phantom profit</li>
-          <li>Per-service rates that follow your real pricing</li>
-          <li>Multiple options per proposal for the customer to choose</li>
+          <li><b>Overhead lives inside the cost</b> — the margin you see is money you actually keep</li>
+          <li><b>Per-service rates</b> — your modernization rate and your service-call rate are different numbers, and the tool knows it</li>
+          <li><b>Multiple options per proposal</b> — let the customer pick the scope, not haggle the price</li>
+          <li>Every bucket itemized: labor crews by name, equipment rentals by the day, permits by the line</li>
         </ul>
       </div>
     </section>
 
-    <!-- 3. Pipeline -->
-    <section class="feature">
-      <div class="shot"><div class="chrome"><i></i><i></i><i></i></div>
-        <div class="app"><div class="rail"><b>MENU</b>Dashboard<br/>Proposals<br/>Jobs</div>
+    <!-- ═══ 3 · TRACK ═══ -->
+    <section class="ch" id="ch3">
+      <div class="shot rv">
+        <div class="chrome"><i></i><i></i><i></i><span>tradegoat · dashboard</span></div>
+        <div class="app"><div class="rail"><b>MENU</b><span class="sel">Dashboard</span><br/>Proposals<br/>Jobs<br/>Invoices</div>
           <div class="pane">
-            <div class="ph2">Awaiting signature</div>
-            <div class="card accent-l"><div class="row"><span><b>2 New Hydraulic Elevators</b><br/><span class="muted">Riverside Property Group</span></span>
-              <span style="text-align:right;"><span class="money">$555,330</span><br/><span class="pill sent">SENT</span></span></div>
-              <div class="muted" style="margin-top:4px;">⏱ Awaiting signature · last activity 12d ago</div></div>
-            <div class="card" style="border-left:3px solid var(--violet);"><div class="row"><span><b>Lobby Modernization</b><br/><span class="muted">Summit Medical Plaza</span></span>
-              <span style="text-align:right;"><span class="money">$88,400</span><br/><span class="pill hold">ON HOLD</span></span></div></div>
+            <div class="ph2">Awaiting signature <span class="mut">— your whole pipeline, aging in real time</span></div>
+            <div class="card accent-a"><div class="row"><span><b>2 New Hydraulic Elevators</b><br/><span class="muted">Riverside Property Group</span></span>
+              <span style="text-align:right;"><span class="money">$555,330</span><br/><span class="pill sent a-cycle a-cycle-t" style="min-width:64px;display:inline-block;text-align:center;"></span></span></div>
+              <div class="muted" style="margin-top:5px;">Awaiting signature · last activity 12d ago · started 3mo ago</div></div>
+            <div class="card accent-v"><div class="row"><span><b>Lobby Modernization</b><br/><span class="muted">Summit Medical Plaza</span></span>
+              <span style="text-align:right;"><span class="money">$88,400</span><br/><span class="pill hold">ON HOLD</span></span></div>
+              <div class="muted" style="margin-top:5px;">Paused — customer's board votes in Q3. It'll keep its place.</div></div>
             <div class="card accent-g"><div class="row"><span><b>VRC Install — Warehouse B</b><br/><span class="muted">Crestline Logistics</span></span>
               <span style="text-align:right;"><span class="money">$214,170</span><br/><span class="pill signed">SIGNED → JOB</span></span></div></div>
-          </div></div></div>
-      <div>
-        <div class="kicker">Step 3 · Track it</div>
-        <h2>Every proposal, every stage, one glance.</h2>
-        <p class="blurb">Sent, under review, on hold for nine months, signed — your whole pipeline lives on the dashboard with the age of every deal. Some trades wait a long time for a yes; TradeGOAT never loses track while you wait.</p>
+          </div></div>
+        <div class="tag-note">Change any stage right from the card</div>
+      </div>
+      <div class="rv">
+        <div class="num">3</div>
+        <div class="kicker">Track it</div>
+        <h2>Deals that take nine months don't get lost in month two.</h2>
+        <p class="blurb">Commercial work waits — on boards, budgets, and building owners. Your dashboard holds every proposal at its real stage: <em>sent, under review, on hold, signed, lost</em> — with the age of every deal ticking in plain sight. Move a deal between stages right from its card.</p>
         <ul class="points">
-          <li>Move a deal's stage right from the dashboard</li>
-          <li>Signed proposals lock forever — changes become change orders</li>
-          <li>Win/loss history builds itself</li>
+          <li><b>On Hold is a first-class state</b> — parked deals keep their place for as long as it takes</li>
+          <li><b>Signed proposals lock forever</b> — the customer's contract can never quietly change; changes become change orders</li>
+          <li><b>Win/loss history</b> builds itself from every outcome</li>
+          <li>Owner's-eye money tiles: collected, billed, earned, pipeline — live</li>
         </ul>
       </div>
     </section>
 
-    <!-- 4. Sign → job -->
-    <section class="feature">
-      <div class="shot"><div class="chrome"><i></i><i></i><i></i></div>
-        <div class="app"><div class="rail"><b>JOB</b>Milestones<br/>Billing<br/>Scorecard</div>
+    <!-- ═══ 4 · WIN ═══ -->
+    <section class="ch" id="ch4">
+      <div class="shot rv">
+        <div class="chrome"><i></i><i></i><i></i><span>tradegoat · job</span></div>
+        <div class="app"><div class="rail"><b>JOB</b>Overview<br/><span class="sel">Billing</span><br/>Milestones<br/>Scorecard</div>
           <div class="pane">
             <div class="ph2">Signed → the job starts itself</div>
-            <table class="t"><tr><th>Billing milestone</th><th>Amount</th><th></th></tr>
-              <tr><td>50% — Contract signing</td><td class="money">$107,085</td><td><span class="pill billable">BILLED</span></td></tr>
-              <tr><td>25% — Pre-ship</td><td class="money">$53,542</td><td><span class="muted">upcoming</span></td></tr>
-              <tr><td>25% — Final acceptance</td><td class="money">$53,542</td><td><span class="muted">upcoming</span></td></tr></table>
-            <div class="muted" style="margin-top:8px;">Your company's own payment split — set once in Settings, applied to every new job.</div>
-          </div></div></div>
-      <div>
-        <div class="kicker">Step 4 · Win it</div>
-        <h2>The moment it's signed, the job is rolling.</h2>
-        <p class="blurb">Signing kicks off everything: the job appears, billing milestones are created from <em>your</em> payment split, trackers start. Waiting six months for the deposit check? Fine — the work and the paper trail don't wait with it.</p>
+            <table class="t">
+              <tr><th>Billing milestone</th><th style="text-align:right;">Amount</th><th></th></tr>
+              <tr><td>50% — Contract signing</td><td class="money" style="text-align:right;">$107,085</td><td style="text-align:right;"><span class="pill soft a-stamp">BILLED ✓</span></td></tr>
+              <tr><td>25% — Pre-ship</td><td class="money" style="text-align:right;">$53,542</td><td style="text-align:right;"><span class="muted">upcoming</span></td></tr>
+              <tr><td>25% — Final acceptance</td><td class="money" style="text-align:right;">$53,542</td><td style="text-align:right;"><span class="muted">upcoming</span></td></tr>
+            </table>
+            <div class="card" style="margin-top:10px;"><div class="row"><span class="muted">Payment split comes from <b style="color:var(--ink);">your</b> company settings — 50/25/25, 40/40/20, whatever your business runs on.</span></div></div>
+            <div class="card"><div class="row"><span><b>Deposit</b> <span class="muted">— record it whenever the check lands</span></span><span class="pill sent">6 MO LATER? FINE.</span></div></div>
+          </div></div>
+        <div class="tag-note">Signing kicks off billing + trackers</div>
+      </div>
+      <div class="rv">
+        <div class="num">4</div>
+        <div class="kicker">Win it</div>
+        <h2>The signature is the starting gun.</h2>
+        <p class="blurb">The moment a proposal is signed, the job exists: billing milestones are created from <em>your own payment split</em>, operational trackers start, and the dashboard's money picture updates. Waiting half a year for the deposit check? The paperwork doesn't wait with it.</p>
         <ul class="points">
-          <li>Your own payment schedule — 50/25/25 or whatever your business runs on</li>
-          <li>Deposit recorded whenever it lands, never a blocker</li>
-          <li>The dashboard shows collected vs billed vs pipeline, live</li>
+          <li><b>Your payment schedule, not ours</b> — each company defines its own milestone split in Settings</li>
+          <li><b>Deposit decoupled</b> — recorded when it actually arrives, never a blocker</li>
+          <li><b>Change orders append</b> — the original contract price is untouchable</li>
+          <li>Every milestone tracks billed → collected, feeding the owner's dashboard</li>
         </ul>
       </div>
     </section>
 
-    <!-- 5. Field ticket -->
-    <section class="feature">
-      <div class="shot"><div class="chrome"><i></i><i></i><i></i></div>
+    <!-- ═══ 5 · FIELD ═══ -->
+    <section class="ch" id="ch5">
+      <div class="shot rv">
+        <div class="chrome"><i></i><i></i><i></i><span>tradegoat · field ticket (your form)</span></div>
         <div class="app">
           <div class="pane">
-            <div class="ph2">Elevator Maintenance Log <span class="muted">— your form, digital</span></div>
+            <div class="ph2">Elevator Maintenance Log <span class="mut">— their actual paper form, reborn</span></div>
             <div class="fieldrow">
-              <div class="f"><b>Date</b>7/2/2026</div><div class="f"><b>Customer</b>Summit Medical Plaza</div>
-              <div class="f"><b>Employee</b>A. Rodriguez</div><div class="f"><b>Phone</b>(555) 210-8890</div>
+              <div class="f"><b>Date</b>7/2/2026 <span class="muted">(auto)</span></div>
+              <div class="f"><b>Customer</b>Summit Medical <span class="muted">(auto)</span></div>
+              <div class="f"><b>Employee</b>A. Rodriguez <span class="muted">(auto)</span></div>
+              <div class="f"><b>Phone</b>(555) 210-8890 <span class="muted">(auto)</span></div>
             </div>
-            <div style="margin:7px 0 3px;"><span class="chip on">Maintenance</span><span class="chip">Repair</span><span class="chip">Service call</span><span class="chip on" style="background:var(--green);border-color:var(--green);">Billable ✓</span></div>
+            <div style="margin:8px 0 4px;"><span class="chip on">Maintenance</span><span class="chip">Repair</span><span class="chip">Service call</span><span class="chip green">Billable ✓</span></div>
             <table class="t"><tr><th>Service performed</th><th>Start</th><th>End</th><th>Hrs</th></tr>
-              <tr><td>Monthly PM — car 2</td><td>8:00a</td><td>11:30a</td><td>3.5</td></tr></table>
-            <div class="fieldrow" style="margin-top:6px;">
-              <div class="f"><b>Employee signature</b><div class="sig"></div></div>
-              <div class="f"><b>Customer signature</b><div class="sig"></div></div>
+              <tr><td>Monthly PM — car 2</td><td>8:00a</td><td>4:00p</td><td><b>7.5</b> <span class="muted">(lunch out)</span></td></tr></table>
+            <div class="fieldrow" style="margin-top:7px;">
+              <div class="f"><b>Photos</b><span class="a-photo" style="display:inline-block;width:30px;height:24px;background:#cfd6e4;border-radius:4px;margin-right:4px;"></span><span class="a-photo" style="display:inline-block;width:30px;height:24px;background:#b7c2d6;border-radius:4px;margin-right:4px;"></span><span class="a-photo" style="display:inline-block;width:30px;height:24px;background:#9fb0cc;border-radius:4px;"></span></div>
+              <div class="f"><b>Customer signature</b>
+                <svg class="a-sig" viewBox="0 0 220 34" style="width:100%;height:30px;"><path d="M8 26 C 30 6, 44 30, 62 18 S 96 8, 112 22 S 150 30, 168 14 S 200 18, 212 22" fill="none" stroke="#2b4a8f" stroke-width="2.6" stroke-linecap="round"/></svg></div>
             </div>
-          </div></div></div>
-      <div>
-        <div class="kicker">Step 5 · Run it in the field</div>
+          </div></div>
+        <div class="tag-note">Upload YOUR ticket — even a photo of it</div>
+      </div>
+      <div class="rv">
+        <div class="num">5</div>
+        <div class="kicker">Run it in the field</div>
         <h2>Your paper service ticket — reborn on the tech's phone.</h2>
-        <p class="blurb">Upload the half-page ticket your techs fill out today (even a photo of it) and TradeGOAT rebuilds it as a digital form. Customer info fills itself, hours compute themselves (lunch deducted), photos attach, and the customer signs right on the glass.</p>
+        <p class="blurb">Every service company has that half-page ticket: one copy to the customer, one for the tech, one back to the office. Upload yours — Word, Excel, PDF, <em>or a photo of the paper form</em> — and TradeGOAT rebuilds it as the digital ticket your techs fill on site. Same fields. Same labels. Your form.</p>
         <ul class="points">
-          <li>Finalize & send — customer and office get the signed PDF instantly</li>
-          <li>Every ticket files itself to that unit's service history</li>
-          <li>Found a problem? Flag it — it feeds a repair proposal</li>
+          <li><b>The tech types almost nothing</b> — date, customer, address, phone fill themselves from the unit</li>
+          <li><b>Hours compute themselves</b> — start, end, optional lunch window deducted</li>
+          <li><b>Photos + signatures on glass</b> — customer signs on the phone, right there</li>
+          <li><b>Finalize & send</b> — customer and office get the signed PDF instantly, and the ticket files itself to that unit's history forever</li>
         </ul>
       </div>
     </section>
 
-    <!-- 6. Maintenance + office -->
-    <section class="feature">
-      <div class="shot"><div class="chrome"><i></i><i></i><i></i></div>
-        <div class="app"><div class="rail"><b>MENU</b>Maintenance<br/>Schedule<br/>Invoices</div>
+    <!-- ═══ 6 · OFFICE ═══ -->
+    <section class="ch" id="ch6">
+      <div class="shot rv">
+        <div class="chrome"><i></i><i></i><i></i><span>tradegoat · maintenance</span></div>
+        <div class="app"><div class="rail"><b>MENU</b>Dashboard<br/>Proposals<br/>Jobs<br/><span class="sel">Maintenance</span><br/>Schedule</div>
           <div class="pane">
             <div class="ph2">The office runs itself</div>
-            <div class="card accent-l"><div class="row"><span><b>Needs billing (2)</b></span><span class="pill sent">OFFICE</span></div>
-              <div class="muted" style="margin-top:4px;">Summit Medical · 3.5 hrs · 34 mi · parts $86 → <u>Mark billed</u></div></div>
-            <div class="card"><div class="row"><span><b>Due this month</b></span><span class="muted">14 of 16 visited</span></div>
-              <div class="bar"><i style="width:87%;background:var(--green);"></i></div></div>
-            <div class="card" style="border-left:3px solid var(--red);"><b>Missed-visit watch</b><br/>
-              <span class="muted">Crestline — Unit 3 · monthly PM overdue 6 days</span></div>
-          </div></div></div>
-      <div>
-        <div class="kicker">Step 6 · Never miss a beat</div>
-        <h2>Maintenance clocks, missed-visit watch, and a billing list that empties itself.</h2>
-        <p class="blurb">Every unit under contract carries a service clock. Finish a ticket and the clock resets; miss one and it's flagged before the customer notices. Billable work lands on the office's needs-billing list until the bill goes out — nothing slips.</p>
+            <div class="card accent-a a-slideout"><div class="row"><span><b>Needs billing</b><br/><span class="muted">Summit Medical · 7.5 hrs · 34 mi · parts $86</span></span>
+              <span class="pill soft">MARK BILLED ✓</span></div></div>
+            <div class="card"><div class="row"><span><b>Due this month</b></span><span class="muted">14 of 16 units visited</span></div>
+              <div class="bar"><i style="width:87%;background:linear-gradient(90deg,#43a047,#2e7d32);"></i></div></div>
+            <div class="card accent-r a-pulse"><div class="row"><span><b>Missed-visit watch</b><br/><span class="muted">Crestline — Unit 3 · monthly PM overdue 6 days</span></span>
+              <span class="pill" style="background:var(--red);">CATCH IT</span></div></div>
+            <div class="card"><div class="row"><span><b>Contract renewal</b> <span class="muted">— Riverside renews in 45 days</span></span><span class="pill sent">REACH OUT</span></div></div>
+          </div></div>
+        <div class="tag-note">Billable work can't slip through</div>
+      </div>
+      <div class="rv">
+        <div class="num">6</div>
+        <div class="kicker">Never miss a beat</div>
+        <h2>Service clocks, missed-visit watch, and a billing list that empties itself.</h2>
+        <p class="blurb">Every unit under contract carries a service clock — finish a ticket and it resets; miss one and it's flagged <em>before the customer notices</em>. Every ticket a tech marks billable lands on the office's needs-billing list, with the hours, miles, and parts already totaled, until the bill goes out.</p>
         <ul class="points">
-          <li>Contract renewals surface before they lapse</li>
-          <li>One-page service history per unit, printable for the customer</li>
-          <li>"Got it running, didn't take payment" never gets forgotten</li>
+          <li><b>"Got it running, didn't take payment"</b> — never forgotten again</li>
+          <li><b>Contract renewals surface early</b> — with the price-increase terms you set</li>
+          <li><b>Per-unit service history</b> — a clean, printable one-pager the customer can hold</li>
+          <li>Field techs see their day; the office sees everything</li>
         </ul>
       </div>
     </section>
 
-    <!-- 7. Scorecard -->
-    <section class="feature">
-      <div class="shot"><div class="chrome"><i></i><i></i><i></i></div>
-        <div class="app"><div class="rail"><b>JOB</b>Milestones<br/>Billing<br/><span style="color:#ffc94d;">Scorecard</span></div>
+    <!-- ═══ 7 · LEARN ═══ -->
+    <section class="ch" id="ch7">
+      <div class="shot rv">
+        <div class="chrome"><i></i><i></i><i></i><span>tradegoat · job scorecard</span></div>
+        <div class="app"><div class="rail"><b>JOB</b>Overview<br/>Billing<br/>Milestones<br/><span class="sel">Scorecard</span></div>
           <div class="pane">
-            <div class="ph2">Bid vs actual — live</div>
-            <table class="t"><tr><th>Category</th><th>Bid</th><th>Actual</th><th>±</th></tr>
-              <tr><td>Labor</td><td>$11,040</td><td>$12,400</td><td style="color:var(--red);font-weight:700;">–$1,360</td></tr>
-              <tr><td>Materials</td><td>$18,750</td><td>$17,980</td><td style="color:var(--green);font-weight:700;">+$770</td></tr>
-              <tr><td>Travel</td><td>$2,310</td><td>$2,310</td><td>$0</td></tr></table>
-            <div class="card" style="margin-top:8px;"><div class="row"><span>True margin</span><span class="money">22.9% <span class="muted">(target 25%)</span></span></div>
-              <div class="muted" style="margin-top:3px;">Reason tagged: <span class="chip on" style="font-size:9.5px;">Delay</span></div></div>
-          </div></div></div>
-      <div>
-        <div class="kicker">Step 7 · Learn from it</div>
-        <h2>Know what the job really made — while it's still running.</h2>
-        <p class="blurb">Every job carries a scorecard: what you bid next to what it actually cost, category by category, with your true margin updating live. Tag the reason when a number slips — under-bid, delay, scope — and bid the next one sharper.</p>
+            <div class="ph2">Bid vs actual <span class="mut">— live, while the job runs</span></div>
+            <table class="t">
+              <tr><th>Category</th><th style="text-align:right;">Bid</th><th style="text-align:right;">Actual</th><th style="text-align:right;">±</th></tr>
+              <tr><td>Labor</td><td style="text-align:right;">$11,040</td><td style="text-align:right;">$12,400</td><td style="text-align:right;color:var(--red);font-weight:800;">–$1,360</td></tr>
+              <tr><td>Materials</td><td style="text-align:right;">$18,750</td><td style="text-align:right;">$17,980</td><td style="text-align:right;color:var(--green);font-weight:800;">+$770</td></tr>
+              <tr><td>Travel + hotels</td><td style="text-align:right;">$2,310</td><td style="text-align:right;">$2,310</td><td style="text-align:right;">$0</td></tr>
+            </table>
+            <div class="card" style="margin-top:10px;"><div class="row"><span><b>True margin</b></span><span class="money">22.9% <span class="muted">(target 25%)</span></span></div>
+              <div class="bar"><i style="width:91%;background:linear-gradient(90deg,#f5a623,#d98b0f);"></i></div>
+              <div class="muted" style="margin-top:5px;">Why did it slip? Tagged: <span class="chip on" style="font-size:10px;">Delay</span> <span class="muted">— crane held 2 days</span></div></div>
+          </div></div>
+        <div class="tag-note">Owner sees dollars · crew sees progress</div>
+      </div>
+      <div class="rv">
+        <div class="num">7</div>
+        <div class="kicker">Learn from it</div>
+        <h2>Know what the job really made — before it's over.</h2>
+        <p class="blurb">Most contractors find out what a job made at tax time. Every TradeGOAT job carries a live scorecard: what you bid next to what it's actually costing, category by category, with your <em>true margin</em> recalculating as actuals come in. When a number slips, you tag why — under-bid, delay, scope.</p>
         <ul class="points">
-          <li>No more finding out at tax time</li>
-          <li>Owner sees dollars; the crew sees progress</li>
-          <li>Your bidding gets smarter with every job</li>
+          <li><b>Variance per bucket</b> — see exactly where the money moved</li>
+          <li><b>Reason tags build a pattern</b> — your next bid gets sharper than your last</li>
+          <li><b>Role-aware</b> — the owner sees the P&L; the crew sees the schedule, not the dollars</li>
         </ul>
       </div>
     </section>
 
-    <!-- 8. Team -->
-    <section class="feature">
-      <div class="shot"><div class="chrome"><i></i><i></i><i></i></div>
-        <div class="app"><div class="rail"><b>SETTINGS</b>Members<br/>Roles<br/>Billing</div>
+    <!-- ═══ 8 · TEAM ═══ -->
+    <section class="ch" id="ch8">
+      <div class="shot rv">
+        <div class="chrome"><i></i><i></i><i></i><span>tradegoat · settings · members</span></div>
+        <div class="app"><div class="rail"><b>SETTINGS</b>Profile<br/>Pricing<br/>Billing<br/><span class="sel">Members</span><br/>Roles</div>
           <div class="pane">
-            <div class="ph2">Your whole crew, one tool</div>
-            <div class="card"><div class="row"><span><b>Dee M.</b> <span class="muted">office</span></span><span class="pill signed">OWNER</span></div></div>
-            <div class="card"><div class="row"><span><b>A. Rodriguez</b> <span class="muted">field</span></span><span class="pill sent">INVITED ✉</span></div>
-              <div class="muted" style="margin-top:3px;">Gets an email → one click → they're in your account</div></div>
-            <div class="card"><div class="row"><span>Roles decide who sees the money</span><span class="muted">Owner · Admin · Supervisor · Viewer</span></div></div>
-          </div></div></div>
-      <div>
-        <div class="kicker">Step 8 · Bring the team</div>
+            <div class="ph2">Your whole crew, one account</div>
+            <div class="card"><div class="row"><span><b>Dee M.</b> <span class="muted">— runs the office</span></span><span class="pill signed">OWNER</span></div></div>
+            <div class="card"><div class="row"><span><b>A. Rodriguez</b> <span class="muted">— field tech</span></span><span class="a-flip"></span></div>
+              <div class="muted" style="margin-top:4px;">Invite lands by email → one click → they're inside your company's account</div></div>
+            <div class="card"><div class="row"><span class="muted">Roles decide who sees the money:</span><span style="font-size:11px;font-weight:700;color:#0F1F44;">Owner · Admin · Supervisor · Viewer</span></div></div>
+          </div></div>
+        <div class="tag-note">Field-first on the phone</div>
+      </div>
+      <div class="rv">
+        <div class="num">8</div>
+        <div class="kicker">Bring the team</div>
         <h2>Office bills. Field fills tickets. Owner sees everything.</h2>
-        <p class="blurb">Invite your people by email and they land inside your company's account with the right role — techs see their work without the company's money, the office runs billing, and the owner gets the whole picture.</p>
+        <p class="blurb">Invite your people by email and they land inside <em>your company's</em> account with the right role. Techs get a phone-first view of their work without the company's financials. The office runs billing and customers. The owner gets the whole picture, everywhere.</p>
         <ul class="points">
-          <li>Email invites with one-click join</li>
-          <li>Role-based screens — field-first on the phone</li>
-          <li>Multiple owners? Family business? Supported.</li>
+          <li><b>One-click email invites</b> — no IT department required</li>
+          <li><b>Role-based screens</b> — money stays with the people who should see it</li>
+          <li><b>Family businesses welcome</b> — multiple owners supported</li>
         </ul>
       </div>
     </section>
 
-    <footer>
-      <h2 style="margin-bottom:10px;">Your trade. Your documents. Your tool.</h2>
-      <p class="sub">TradeGOAT is in early access with real contractors right now.</p>
+    <!-- ═══ stats + closing ═══ -->
+    <div class="strip">
+      <div class="stat rv"><b>1 document</b><span>is all it takes — your proposal or your ticket becomes the system</span></div>
+      <div class="stat rv"><b>0 rebuilds</b><span>your language, your math, your forms — nothing starts over</span></div>
+      <div class="stat rv"><b>20+ years</b><span>of running a real trade business, built into every screen</span></div>
+    </div>
+
+    <section class="close">
+      <div class="eyebrow"><i></i> Early access · invite only</div>
+      <h2>Your trade. Your documents. <span style="color:var(--gold);">Your tool.</span></h2>
+      <p class="sub">TradeGOAT is live with real contractors right now. Access is invite-only while we onboard early companies one at a time — leave your email and you'll be in line for an invite.</p>
       <div class="cta-row">
-        <a class="btn" href="/#waitlist">Join the waitlist</a>
-        <a class="btn ghost" href="mailto:hello@thetradegoat.com">hello@thetradegoat.com</a>
+        <a class="btn" href="/#waitlist">Join the waitlist — get invited</a>
+        <a class="btn ghost" href="mailto:hello@thetradegoat.com">Talk to Travis</a>
       </div>
+      <p class="invite-note">Built by <b>Travis Evans</b> · Evans Elevator Company · 20+ years in the trades</p>
+    </section>
+
+    <footer class="pagefoot">
+      <p style="margin-bottom:8px;"><a href="mailto:hello@thetradegoat.com">hello@thetradegoat.com</a> · <a href="/">thetradegoat.com</a></p>
+      <p>© 2026 TradeGOAT</p>
     </footer>
   </div>
 
   <script>
-    // Booth / TV mode: ?tv=1 → full-screen slides, auto-advance, loop.
     (function () {
+      // ── scroll reveal ──
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); }
+        });
+      }, { threshold: 0.22 });
+      document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+
+      // ── chapter nav highlight ──
+      var links = document.querySelectorAll('#chapnav a');
+      var secs = Array.prototype.map.call(links, function (a) {
+        return document.querySelector(a.getAttribute('href'));
+      });
+      var io2 = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var i = secs.indexOf(e.target);
+          links.forEach(function (l, j) { l.classList.toggle('on', j === i); });
+        });
+      }, { threshold: 0.4 });
+      secs.forEach(function (s) { if (s) io2.observe(s); });
+
+      // ── EXPLAINER / BOOTH MODE (?tv=1) ──
       var params = new URLSearchParams(location.search);
       if (params.get('tv') !== '1') return;
       document.body.classList.add('tv');
-      var slides = Array.prototype.slice.call(document.querySelectorAll('section.feature'));
+      var slides = Array.prototype.slice.call(document.querySelectorAll('section.ch'));
       var dots = document.getElementById('tvdots');
-      slides.forEach(function (_, i) {
-        var d = document.createElement('i');
-        if (i === 0) d.className = 'on';
+      var bar = document.getElementById('tvbar');
+      slides.forEach(function (s, i) {
+        s.querySelectorAll('.rv').forEach(function (el) { el.classList.add('in'); });
+        var d = document.createElement('i'); if (i === 0) d.className = 'on';
         dots.appendChild(d);
       });
-      var idx = 0, HOLD = 9000, timer = null;
+      var idx = 0, HOLD = 12000, timer = null;
+      function restartBar() {
+        bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
+      }
       function show(n) {
         idx = (n + slides.length) % slides.length;
-        slides.forEach(function (s, i) { s.classList.toggle('live', i === idx); });
-        Array.prototype.forEach.call(dots.children, function (d, i) {
-          d.className = i === idx ? 'on' : '';
+        slides.forEach(function (s, i) {
+          s.classList.toggle('live', i === idx);
+          if (i === idx) {
+            // restart the slide's animations from zero each time it appears
+            s.querySelectorAll('.in').forEach(function (el) {
+              el.classList.remove('in'); void el.offsetWidth; el.classList.add('in');
+            });
+          }
         });
+        Array.prototype.forEach.call(dots.children, function (d, i) { d.className = i === idx ? 'on' : ''; });
+        restartBar();
       }
       function tick() { show(idx + 1); }
       show(0);
       timer = setInterval(tick, HOLD);
-      // A tap advances immediately (booth interaction) and resets the clock.
-      document.addEventListener('click', function () {
-        show(idx + 1); clearInterval(timer); timer = setInterval(tick, HOLD);
+      function advance() { show(idx + 1); clearInterval(timer); timer = setInterval(tick, HOLD); }
+      document.addEventListener('click', advance);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === ' ' || e.key === 'ArrowRight') { e.preventDefault(); advance(); }
+        if (e.key === 'ArrowLeft') { show(idx - 1); clearInterval(timer); timer = setInterval(tick, HOLD); }
+        if (e.key === 'Escape') { location.href = 'tour.html'; }
       });
     })();
   </script>
