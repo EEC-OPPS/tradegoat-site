@@ -217,16 +217,25 @@
     body.tv .blurb { font-size: clamp(15px, 1.5vw, 22px); }
     body.tv ul.points li { font-size: clamp(13px, 1.2vw, 18px); }
     @media (max-width: 880px) {
+      /* PHONES: floating chrome over a scrolling slide overlaps content
+         (Travis's screenshot, 2026-07-02). So: no floating pieces at all —
+         one SOLID docked bottom bar; the slide pads itself to clear it and
+         scrolls cleanly behind it. */
       body.tv section.ch {
         grid-template-columns: 1fr;
-        /* clear the fixed brand up top + buttons/dots down bottom */
-        padding: max(11vh, 96px) 6vw max(20vh, 170px);
+        padding: 28px 6vw calc(96px + env(safe-area-inset-bottom));
       }
       body.tv .shot { max-width: 100%; }
-      body.tv .tvcta { display: none; }             /* overlapped slide words on phones */
-      body.tv .tvbrand img { height: 40px; }
-      body.tv .tvbrand span { font-size: 16px; }
-      body.tv .tvctrl button { font-size: 15px; padding: 12px 20px; }
+      body.tv .tvcta, body.tv .tvbrand, body.tv .tvdots, body.tv .tvexit { display: none; }
+      body.tv .tvctrl {
+        left: 0; right: 0; bottom: 0; gap: 10px;
+        padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+        background: rgba(10,23,48,0.97); border-top: 1px solid rgba(255,255,255,0.12);
+        justify-content: space-between; align-items: center;
+      }
+      body.tv .tvctrl button { font-size: 16px; padding: 13px 0; flex: 1; }
+      body.tv .tvctrl button.next { flex: 1.6; }
+      body.tv.auto .tvctrl { display: none; }
     }
     body.tv section.ch.live { opacity: 1; pointer-events: auto; }
     body.tv section.ch.live .rv { opacity: 1; transform: none; }
@@ -263,6 +272,8 @@
     }
     .tvctrl button.next { background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--navy); border: 0; box-shadow: 0 10px 26px rgba(245,166,35,0.3); }
     .tvctrl button:hover { transform: translateY(-2px); }
+    .tvcount { display: none; color: var(--text-muted); font-weight: 800; font-size: 15px; white-space: nowrap; }
+    @media (max-width: 880px) { body.tv .tvcount { display: inline; } }
     .tvexit { position: fixed; bottom: 3vh; left: 4vw; z-index: 10; display: none; }
     body.tv .tvexit { display: block; }
     .tvexit a { color: var(--text-muted); font-size: 14px; text-decoration: none; font-weight: 700; }
@@ -276,7 +287,7 @@
   <div class="tvui tvcta">thetradegoat.com · invite-only early access</div>
   <div class="tvui tvdots" id="tvdots"></div>
   <div class="tvui tvprog"><i id="tvbar"></i></div>
-  <div class="tvui tvctrl"><button type="button" id="tvprev">← Back</button><button type="button" id="tvnext" class="next">Next →</button></div>
+  <div class="tvui tvctrl"><button type="button" id="tvprev">← Back</button><span id="tvcount" class="tvcount"></span><button type="button" id="tvnext" class="next">Next →</button></div>
   <div class="tvui tvexit"><a href="tour.html">✕ Exit to the full tour</a></div>
 
   <nav class="bar">
@@ -645,6 +656,8 @@
           }
         });
         Array.prototype.forEach.call(dots.children, function (d, i) { d.className = i === idx ? 'on' : ''; });
+        var count = document.getElementById('tvcount');
+        if (count) count.textContent = (idx + 1) + ' / ' + slides.length;
         restartBar();
       }
       function resetTimer() {
