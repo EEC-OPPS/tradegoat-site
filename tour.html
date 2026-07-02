@@ -234,9 +234,12 @@
     body.tv .blurb { font-size: clamp(17px, 1.8vw, 26px); }
     body.tv ul.points li { font-size: clamp(14px, 1.4vw, 21px); }
     body.tv .shot { font-size: clamp(12px, 1.1vw, 16px); }
+    /* Every Play-mode overlay is display:none at BASE and only turned on
+       under body.tv — earlier ordering let these leak onto the normal
+       page (the mobile overlap Travis hit). */
     .tvui { display: none; }
-    body.tv .tvui { display: block; }
-    .tvbrand { position: fixed; top: 4vh; left: 6vw; z-index: 9; display: flex; align-items: center; gap: 14px; }
+    .tvbrand { position: fixed; top: 4vh; left: 6vw; z-index: 9; display: none; align-items: center; gap: 14px; }
+    body.tv .tvbrand { display: flex; }
     .tvbrand img { height: 54px; background: #fff; border-radius: 10px; padding: 5px 9px; }
     .tvbrand span { font-size: 21px; font-weight: 800; }
     .tvbrand span em { color: var(--gold); font-style: normal; }
@@ -245,12 +248,14 @@
     body.tv.auto .tvprog { display: block; }
     body.tv.auto .tvprog i { animation: tvbar 12s linear infinite; }
     @keyframes tvbar { from { width: 0; } to { width: 100%; } }
-    .tvdots { position: fixed; bottom: 4vh; left: 50%; transform: translateX(-50%); z-index: 9; display: flex; gap: 11px; }
+    .tvdots { position: fixed; bottom: 4vh; left: 50%; transform: translateX(-50%); z-index: 9; display: none; gap: 11px; }
+    body.tv .tvdots { display: flex; }
     .tvdots i { width: 13px; height: 13px; border-radius: 50%; background: rgba(255,255,255,0.22); transition: background .3s; cursor: pointer; }
     .tvdots i.on { background: var(--gold); box-shadow: 0 0 14px rgba(245,166,35,0.7); }
     .tvcta { position: fixed; top: 4vh; right: 6vw; z-index: 9; color: var(--gold); font-weight: 800; font-size: 19px; letter-spacing: .02em; }
     /* manual controls (default in play mode; hidden when auto-looping on a TV) */
-    .tvctrl { position: fixed; bottom: 3vh; right: 4vw; z-index: 10; display: flex; gap: 12px; }
+    .tvctrl { position: fixed; bottom: 3vh; right: 4vw; z-index: 10; display: none; gap: 12px; }
+    body.tv .tvctrl { display: flex; }
     .tvctrl button {
       font: inherit; font-weight: 800; font-size: 17px; letter-spacing: .01em; cursor: pointer;
       border-radius: 12px; padding: 14px 26px; border: 1px solid rgba(245,166,35,0.5);
@@ -258,7 +263,8 @@
     }
     .tvctrl button.next { background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--navy); border: 0; box-shadow: 0 10px 26px rgba(245,166,35,0.3); }
     .tvctrl button:hover { transform: translateY(-2px); }
-    .tvexit { position: fixed; bottom: 3vh; left: 4vw; z-index: 10; }
+    .tvexit { position: fixed; bottom: 3vh; left: 4vw; z-index: 10; display: none; }
+    body.tv .tvexit { display: block; }
     .tvexit a { color: var(--text-muted); font-size: 14px; text-decoration: none; font-weight: 700; }
     .tvexit a:hover { color: var(--gold); }
     body.tv.auto .tvctrl, body.tv.auto .tvexit { display: none; }
