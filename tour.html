@@ -201,13 +201,22 @@
     body.tv { overflow: hidden; }
     body.tv nav.bar, body.tv .hero, body.tv .strip, body.tv .close, body.tv footer.pagefoot { display: none; }
     body.tv section.ch {
+      /* Start-aligned + scrollable: centered-overflow layouts clip the
+         top unreachably; this NEVER clips — long slides just scroll. */
       position: fixed; inset: 0; z-index: 5; display: grid;
-      align-content: safe center; align-items: center; overflow-y: auto;
-      grid-template-columns: 1.05fr 1fr; gap: 4vw; padding: 12vh 5vw 16vh; background: var(--navy);
+      align-content: start; align-items: center; overflow-y: auto;
+      grid-template-columns: 1.05fr 1fr; gap: 4vw;
+      padding: 13vh 5vw 17vh; background: var(--navy);
       opacity: 0; pointer-events: none; transition: opacity .8s ease; border: 0; margin: 0;
     }
-    body.tv .shot { max-width: 640px; }
-    @media (max-width: 880px) { body.tv section.ch { grid-template-columns: 1fr; padding: 10vh 6vw 18vh; } }
+    body.tv .shot { max-width: min(600px, 46vw); }
+    body.tv h2 { font-size: clamp(26px, 3.2vw, 46px); }
+    body.tv .blurb { font-size: clamp(15px, 1.5vw, 22px); }
+    body.tv ul.points li { font-size: clamp(13px, 1.2vw, 18px); }
+    @media (max-width: 880px) {
+      body.tv section.ch { grid-template-columns: 1fr; padding: 11vh 6vw 20vh; }
+      body.tv .shot { max-width: 100%; }
+    }
     body.tv section.ch.live { opacity: 1; pointer-events: auto; }
     body.tv section.ch.live .rv { opacity: 1; transform: none; }
     body.tv h2 { font-size: clamp(30px, 4vw, 58px); }
