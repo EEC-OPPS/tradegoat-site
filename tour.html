@@ -283,7 +283,7 @@
         padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
         background: #0b1830; border-top: 1px solid rgba(255,255,255,0.12);
         justify-content: space-between; align-items: center;
-        z-index: 999; transform: translateZ(0);
+        z-index: 999; transform: translateZ(0); position: fixed;
       }
       body.tv .tvctrl button { font-size: 16px; padding: 13px 0; flex: 1; }
       body.tv .tvctrl button.next { flex: 1.6; }
@@ -301,7 +301,7 @@
   <div class="tvui tvcta">thetradegoat.com · invite-only early access</div>
   <div class="tvui tvdots" id="tvdots"></div>
   <div class="tvui tvprog"><i id="tvbar"></i></div>
-  <div class="tvui tvctrl"><button type="button" id="tvprev">← Back</button><span id="tvcount" class="tvcount"></span><button type="button" id="tvnext" class="next">Next →</button></div>
+  <div class="tvui tvctrl"><button type="button" id="tvprev">← Back</button><span id="tvcount" class="tvcount"></span><button type="button" id="tvnext" class="next">Next →</button><span class="tvver" style="position:absolute;right:4px;top:2px;font-size:9px;color:rgba(255,255,255,0.35);font-weight:700;">v10</span></div>
   <div class="tvui tvexit"><a href="tour.html">✕ Exit to the full tour</a></div>
 
   <nav class="bar">
@@ -652,6 +652,31 @@
         d.addEventListener('click', function (e) { e.stopPropagation(); go(i); });
         dots.appendChild(d);
       });
+      // Belt AND suspenders for phones: enforce the geometry with INLINE
+      // styles measured at runtime — inline beats any CSS cascade or
+      // WebKit compositing quirk. The scroll area is hard-clamped to end
+      // at the bar's measured top edge.
+      var ctrlEl = document.querySelector('.tvctrl');
+      function enforceMobileGeometry() {
+        if (window.innerWidth > 880) return;
+        ctrlEl.style.position = 'fixed';
+        ctrlEl.style.left = '0'; ctrlEl.style.right = '0';
+        ctrlEl.style.top = 'auto'; ctrlEl.style.bottom = '0';
+        ctrlEl.style.background = '#0b1830';
+        ctrlEl.style.zIndex = '999';
+        var barH = Math.ceil(ctrlEl.getBoundingClientRect().height);
+        slides.forEach(function (s) {
+          s.style.top = '0'; s.style.left = '0'; s.style.right = '0';
+          s.style.bottom = barH + 'px';
+          s.style.overflowY = 'auto';
+        });
+      }
+      enforceMobileGeometry();
+      window.addEventListener('resize', enforceMobileGeometry);
+      window.addEventListener('orientationchange', function () {
+        setTimeout(enforceMobileGeometry, 250);
+      });
+
       var idx = 0, HOLD = 12000, timer = null;
       function restartBar() {
         if (!AUTO) return;
