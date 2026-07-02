@@ -201,10 +201,13 @@
     body.tv { overflow: hidden; }
     body.tv nav.bar, body.tv .hero, body.tv .strip, body.tv .close, body.tv footer.pagefoot { display: none; }
     body.tv section.ch {
-      position: fixed; inset: 0; z-index: 5; display: grid; align-content: center;
-      grid-template-columns: 1.05fr 1fr; gap: 5vw; padding: 10vh 6vw 12vh; background: var(--navy);
-      opacity: 0; pointer-events: none; transition: opacity 1s ease; border: 0; margin: 0;
+      position: fixed; inset: 0; z-index: 5; display: grid;
+      align-content: safe center; align-items: center; overflow-y: auto;
+      grid-template-columns: 1.05fr 1fr; gap: 4vw; padding: 12vh 5vw 16vh; background: var(--navy);
+      opacity: 0; pointer-events: none; transition: opacity .8s ease; border: 0; margin: 0;
     }
+    body.tv .shot { max-width: 640px; }
+    @media (max-width: 880px) { body.tv section.ch { grid-template-columns: 1fr; padding: 10vh 6vw 18vh; } }
     body.tv section.ch.live { opacity: 1; pointer-events: auto; }
     body.tv section.ch.live .rv { opacity: 1; transform: none; }
     body.tv h2 { font-size: clamp(30px, 4vw, 58px); }
@@ -217,14 +220,28 @@
     .tvbrand img { height: 54px; background: #fff; border-radius: 10px; padding: 5px 9px; }
     .tvbrand span { font-size: 21px; font-weight: 800; }
     .tvbrand span em { color: var(--gold); font-style: normal; }
-    .tvprog { position: fixed; bottom: 0; left: 0; right: 0; height: 5px; z-index: 9; background: rgba(255,255,255,0.08); }
+    .tvprog { position: fixed; bottom: 0; left: 0; right: 0; height: 5px; z-index: 9; background: rgba(255,255,255,0.08); display: none; }
     .tvprog i { display: block; height: 100%; width: 0; background: var(--gold); }
-    body.tv .tvprog i { animation: tvbar 12s linear infinite; }
+    body.tv.auto .tvprog { display: block; }
+    body.tv.auto .tvprog i { animation: tvbar 12s linear infinite; }
     @keyframes tvbar { from { width: 0; } to { width: 100%; } }
-    .tvdots { position: fixed; bottom: 3.4vh; left: 50%; transform: translateX(-50%); z-index: 9; display: flex; gap: 11px; }
-    .tvdots i { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.22); transition: background .3s; }
+    .tvdots { position: fixed; bottom: 4vh; left: 50%; transform: translateX(-50%); z-index: 9; display: flex; gap: 11px; }
+    .tvdots i { width: 13px; height: 13px; border-radius: 50%; background: rgba(255,255,255,0.22); transition: background .3s; cursor: pointer; }
     .tvdots i.on { background: var(--gold); box-shadow: 0 0 14px rgba(245,166,35,0.7); }
     .tvcta { position: fixed; top: 4vh; right: 6vw; z-index: 9; color: var(--gold); font-weight: 800; font-size: 19px; letter-spacing: .02em; }
+    /* manual controls (default in play mode; hidden when auto-looping on a TV) */
+    .tvctrl { position: fixed; bottom: 3vh; right: 4vw; z-index: 10; display: flex; gap: 12px; }
+    .tvctrl button {
+      font: inherit; font-weight: 800; font-size: 17px; letter-spacing: .01em; cursor: pointer;
+      border-radius: 12px; padding: 14px 26px; border: 1px solid rgba(245,166,35,0.5);
+      background: rgba(255,255,255,0.05); color: var(--gold); transition: all .15s;
+    }
+    .tvctrl button.next { background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--navy); border: 0; box-shadow: 0 10px 26px rgba(245,166,35,0.3); }
+    .tvctrl button:hover { transform: translateY(-2px); }
+    .tvexit { position: fixed; bottom: 3vh; left: 4vw; z-index: 10; }
+    .tvexit a { color: var(--text-muted); font-size: 14px; text-decoration: none; font-weight: 700; }
+    .tvexit a:hover { color: var(--gold); }
+    body.tv.auto .tvctrl, body.tv.auto .tvexit { display: none; }
   </style>
 </head>
 <body>
@@ -233,6 +250,8 @@
   <div class="tvui tvcta">thetradegoat.com · invite-only early access</div>
   <div class="tvui tvdots" id="tvdots"></div>
   <div class="tvui tvprog"><i id="tvbar"></i></div>
+  <div class="tvui tvctrl"><button type="button" id="tvprev">← Back</button><button type="button" id="tvnext" class="next">Next →</button></div>
+  <div class="tvui tvexit"><a href="tour.html">✕ Exit to the full tour</a></div>
 
   <nav class="bar">
     <div class="inner">
@@ -565,20 +584,26 @@
       }, { threshold: 0.4 });
       secs.forEach(function (s) { if (s) io2.observe(s); });
 
-      // ── EXPLAINER / BOOTH MODE (?tv=1) ──
+      // ── EXPLAINER / BOOTH MODE ──
+      // ?tv=1        → MANUAL slides: Next/Back buttons, dots, keyboard.
+      // ?tv=1&auto=1 → TV loop: auto-advance every 12s (for booth screens).
       var params = new URLSearchParams(location.search);
       if (params.get('tv') !== '1') return;
+      var AUTO = params.get('auto') === '1';
       document.body.classList.add('tv');
+      if (AUTO) document.body.classList.add('auto');
       var slides = Array.prototype.slice.call(document.querySelectorAll('section.ch'));
       var dots = document.getElementById('tvdots');
       var bar = document.getElementById('tvbar');
       slides.forEach(function (s, i) {
         s.querySelectorAll('.rv').forEach(function (el) { el.classList.add('in'); });
         var d = document.createElement('i'); if (i === 0) d.className = 'on';
+        d.addEventListener('click', function (e) { e.stopPropagation(); go(i); });
         dots.appendChild(d);
       });
       var idx = 0, HOLD = 12000, timer = null;
       function restartBar() {
+        if (!AUTO) return;
         bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
       }
       function show(n) {
@@ -586,6 +611,7 @@
         slides.forEach(function (s, i) {
           s.classList.toggle('live', i === idx);
           if (i === idx) {
+            s.scrollTop = 0;
             // restart the slide's animations from zero each time it appears
             s.querySelectorAll('.in').forEach(function (el) {
               el.classList.remove('in'); void el.offsetWidth; el.classList.add('in');
@@ -595,16 +621,21 @@
         Array.prototype.forEach.call(dots.children, function (d, i) { d.className = i === idx ? 'on' : ''; });
         restartBar();
       }
-      function tick() { show(idx + 1); }
-      show(0);
-      timer = setInterval(tick, HOLD);
-      function advance() { show(idx + 1); clearInterval(timer); timer = setInterval(tick, HOLD); }
-      document.addEventListener('click', advance);
+      function resetTimer() {
+        if (!AUTO) return;
+        clearInterval(timer); timer = setInterval(function () { show(idx + 1); }, HOLD);
+      }
+      function go(n) { show(n); resetTimer(); }
+      show(0); resetTimer();
+      document.getElementById('tvnext').addEventListener('click', function () { go(idx + 1); });
+      document.getElementById('tvprev').addEventListener('click', function () { go(idx - 1); });
       document.addEventListener('keydown', function (e) {
-        if (e.key === ' ' || e.key === 'ArrowRight') { e.preventDefault(); advance(); }
-        if (e.key === 'ArrowLeft') { show(idx - 1); clearInterval(timer); timer = setInterval(tick, HOLD); }
+        if (e.key === ' ' || e.key === 'ArrowRight') { e.preventDefault(); go(idx + 1); }
+        if (e.key === 'ArrowLeft') { go(idx - 1); }
         if (e.key === 'Escape') { location.href = 'tour.html'; }
       });
+      // On the auto-looping booth TV, a tap still advances (no buttons shown).
+      if (AUTO) document.addEventListener('click', function () { go(idx + 1); });
     })();
   </script>
 </body>
