@@ -43,7 +43,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .rail a.item:hover{background:var(--cream);opacity:1}
 .rail a.item.on{background:var(--navy);color:#fff;opacity:1}
 .rail .grp{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:10px 11px 3px}
-.main{flex:1;min-width:0;padding:22px clamp(12px,3vw,34px) 130px;max-width:1080px}
+.main{flex:1;min-width:0;padding:22px clamp(12px,3vw,34px) 240px;max-width:1080px}
 @media(max-width:760px){
   .frame{display:block}
   .rail{width:100%;flex-direction:row;overflow-x:auto;padding:8px;gap:6px;position:sticky;top:46px;z-index:50;max-height:none}
@@ -134,7 +134,7 @@ h1.pg{font-size:22px;letter-spacing:-.01em}
 .dd{position:relative}
 .dd>button{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;border:1px solid rgba(15,31,68,.18);border-radius:8px;padding:7px 11px;background:#fff;min-width:118px;justify-content:space-between}
 .dd>button::after{content:'';width:7px;height:7px;border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);transform:rotate(45deg) translateY(-1px)}
-.dd .menu{position:absolute;right:0;top:calc(100% + 5px);background:#fff;border:1px solid var(--soft);border-radius:10px;box-shadow:0 14px 34px rgba(15,31,68,.16);min-width:168px;padding:5px;z-index:30;display:none}
+.dd .menu{position:absolute;right:0;top:calc(100% + 5px);background:#fff;border:1px solid var(--soft);border-radius:10px;box-shadow:0 14px 34px rgba(15,31,68,.16);min-width:168px;padding:5px;z-index:90;display:none}
 .dd.open .menu{display:block}
 .dd .menu button{display:block;width:100%;text-align:left;font-size:12.5px;padding:8px 11px;border-radius:7px}
 .dd .menu button:hover{background:var(--cream)}
@@ -271,7 +271,10 @@ table.sc td:first-child{text-align:left;font-weight:600}
 .rolecard li .yes{color:var(--green);font-weight:700}
 
 /* guide + toasts */
-.guide{position:fixed;left:14px;bottom:14px;z-index:70;background:var(--navy);color:#fff;border-radius:13px;padding:12px 14px;max-width:290px;box-shadow:0 18px 44px rgba(15,31,68,.4);display:flex;flex-direction:column;gap:8px}
+.guide{position:fixed;left:14px;bottom:14px;z-index:70;background:var(--navy);color:#fff;border-radius:13px;padding:12px 14px;max-width:290px;box-shadow:0 18px 44px rgba(15,31,68,.4);display:flex;flex-direction:column;gap:8px;transition:transform .3s ease,opacity .3s ease}
+.guide.dodge{transform:translateY(130%);opacity:0;pointer-events:none}
+.gpill{position:fixed;left:14px;bottom:14px;z-index:70;width:42px;height:42px;border-radius:50%;background:linear-gradient(180deg,#FFC94D,#D97706);color:var(--navy);font-size:19px;display:none;place-items:center;box-shadow:0 10px 26px rgba(217,119,6,.4)}
+.gpill.show{display:grid}
 .guide .glb{font-size:9.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#FFC94D;display:flex;justify-content:space-between;align-items:center}
 .guide .glb button{opacity:.6;font-size:13px}
 .guide p{font-size:12.5px;line-height:1.45}
@@ -644,6 +647,7 @@ table.sc td:first-child{text-align:left;font-weight:600}
   <button class="gbtn" id="guideGo">Show me</button>
   <div class="steps" id="guideSteps"></div>
 </div>
+<button class="gpill" id="guidePill" title="Reopen the guide">?</button>
 <div class="toasts" id="toasts"></div>
 
 <script>
@@ -1014,7 +1018,7 @@ $("#wSend").onclick=()=>{
   S.tmpl.step=6; renderTmpl(); renderGuide();
   toast("Sent ✓","Complete document, zero blanks. The gate held.");
 };
-$("#wFillEmail").onclick=e=>{ e.stopPropagation(); S.tmpl.emailFilled=true; $$(".dd.open").forEach(o=>o.classList.remove("open")); renderTmpl(); };
+$("#wFillEmail").onclick=e=>{ e.stopPropagation(); S.tmpl.emailFilled=true; $$(".dd.open").forEach(o=>o.classList.remove("open")); syncDodge(); renderTmpl(); };
 $("#wAgain").onclick=()=>{ S.tmpl={step:0, chips:{"Customer name":true,"Project address":true,"Contract total":false,"Scope of work":false,"Payment schedule":false}, badFixed:false, gateHit:false, emailFilled:false}; renderTmpl(); };
 
 /* ═════════ TEAM ═════════ */
@@ -1047,6 +1051,7 @@ const GUIDE=[
 ];
 function renderGuide(){
   const g=$("#guide");
+  $("#guidePill").classList.toggle("show", S.guideHidden);
   if(S.guideHidden){ g.style.display="none"; return; } g.style.display="flex";
   while(S.guide<GUIDE.length-1 && GUIDE[S.guide].done()) S.guide++;
   const step=GUIDE[S.guide];
@@ -1087,12 +1092,13 @@ function j$bind(){
     renderJobs(); renderKpis(prevK); renderMoney(prevB); renderGuide();
   });
 }
+function syncDodge(){ $("#guide").classList.toggle("dodge", $$(".dd.open").length>0); }
 function p$bind(){
   $$(".dd").forEach(dd=>{ const btn=dd.querySelector(":scope>button");
-    btn.onclick=e=>{e.stopPropagation(); $$(".dd.open").forEach(o=>{if(o!==dd)o.classList.remove("open")}); dd.classList.toggle("open");};
+    btn.onclick=e=>{e.stopPropagation(); $$(".dd.open").forEach(o=>{if(o!==dd)o.classList.remove("open")}); dd.classList.toggle("open"); syncDodge();};
   });
   $$("[data-set]").forEach(b=>b.onclick=e=>{
-    e.stopPropagation(); $$(".dd.open").forEach(o=>o.classList.remove("open"));
+    e.stopPropagation(); $$(".dd.open").forEach(o=>o.classList.remove("open")); syncDodge();
     const [pid,to]=b.dataset.set.split(":"); const p=S.props.find(x=>x.id===pid); if(!p||p.status===to) return;
     if(to==="signed") return signProposal(p);
     if(to==="lost") return loseProposal(p);
@@ -1101,16 +1107,16 @@ function p$bind(){
     renderProps(); renderFunnel();
   });
   $$("#partDD [data-part]").forEach(b=>b.onclick=e=>{
-    e.stopPropagation(); $$(".dd.open").forEach(o=>o.classList.remove("open"));
+    e.stopPropagation(); $$(".dd.open").forEach(o=>o.classList.remove("open")); syncDodge();
     const [n,c]=b.dataset.part.split(":");
     S.ticket.parts.push({n:n, c:+c}); renderTicket();
     toast("Part added","From the parts catalog — price and billable status came with it.","info");
   });
   $$("#partsDD [data-parts]").forEach(b=>b.onclick=e=>{
-    e.stopPropagation(); $$(".dd.open").forEach(o=>o.classList.remove("open"));
+    e.stopPropagation(); $$(".dd.open").forEach(o=>o.classList.remove("open")); syncDodge();
     S.calc.parts=+b.dataset.parts; renderCalc();
   });
-  document.addEventListener("click",()=>$$(".dd.open").forEach(o=>o.classList.remove("open")),{once:false});
+  document.addEventListener("click",()=>{ $$(".dd.open").forEach(o=>o.classList.remove("open")); syncDodge(); },{once:false});
 }
 function signProposal(p){
   const cards=[$("#prop-"+p.id),$("#prop2-"+p.id)].filter(Boolean);
@@ -1164,6 +1170,7 @@ $("#resetBtn").onclick=()=>{ S=initial();
   $("#calcReview").style.display="none";
   renderAll(); toast("Demo reset","Clearwater is back to its opening state — drive it again.", "info"); };
 $("#guideHide").onclick=()=>{ S.guideHidden=true; renderGuide(); };
+$("#guidePill").onclick=()=>{ S.guideHidden=false; renderGuide(); };
 
 /* ═════════ BOOT ═════════ */
 function renderAll(){ renderKpis(); renderMoney(); renderJobs(); renderProps(); renderDrafts(); renderFunnel(); renderCalc(); renderWL(); renderScore(); renderMaint(); renderTicket(); renderCust(); renderTmpl(); renderTeam(); renderGuide(); }
