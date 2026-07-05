@@ -86,7 +86,9 @@ h1.pg{font-size:22px;letter-spacing:-.01em}
 .leave{transition:all .55s ease;opacity:0!important;transform:translateX(40px) scale(.97);max-height:0!important;margin:0!important;padding-top:0!important;padding-bottom:0!important;overflow:hidden;border-width:0!important}
 .enter{animation:enter .6s ease}
 @keyframes enter{from{opacity:0;transform:translateY(-10px) scale(.98)}to{opacity:1}}
-.pulse-target{animation:ptarget 1.2s ease 3}
+.pulse-target{animation:ptarget 1.2s ease 5}
+.guidemark{position:absolute;z-index:95;background:var(--navy);color:#FFC94D;font-size:11.5px;font-weight:800;padding:6px 12px;border-radius:99px;box-shadow:0 10px 26px rgba(15,31,68,.35);pointer-events:none;animation:markbob 1.1s ease infinite;white-space:nowrap}
+@keyframes markbob{50%{transform:translateY(-5px)}}
 @keyframes ptarget{0%,100%{box-shadow:0 0 0 0 rgba(217,119,6,0)}40%{box-shadow:0 0 0 5px rgba(217,119,6,.45)}}
 .seg{display:inline-flex;background:#fff;border:1px solid rgba(15,31,68,.15);border-radius:10px;padding:3px;gap:2px}
 .seg button{font-size:11.5px;font-weight:700;padding:6px 13px;border-radius:8px;color:var(--muted)}
@@ -297,6 +299,7 @@ table.sc td:first-child{text-align:left;font-weight:600}
   <span class="dot"></span>
   <div class="txt"><b>You're driving Clearwater Outdoor Services</b> — a demo landscaping company. Fictional data, real product behavior. Click anything. Break nothing.</div>
   <div class="acts">
+    <button class="btn ghost" id="guideBtn">? Guide</button>
     <button class="btn ghost" id="resetBtn">↺ Reset</button>
     <a class="btn gold" href="/#waitlist">Get invited</a>
   </div>
@@ -363,6 +366,7 @@ table.sc td:first-child{text-align:left;font-weight:600}
             <span style="display:flex;justify-content:space-between;align-items:center"><span class="cl"><b>Your profit margin</b><span>one number — no phantom markups</span></span>
               <span style="display:flex;gap:8px;align-items:center"><span class="mzone g" id="cZone">healthy</span><b class="money" id="cMarginLb" style="font-size:15px">33%</b></span></span>
             <input type="range" class="mslider" id="cMargin" min="12" max="45" value="33" />
+            <span id="cHighNote" style="display:none;font-size:11.5px;color:var(--amber);font-weight:600;line-height:1.5">⚠ Above your winning range — Clearwater has never signed a deal over a 36% margin. That ceiling isn’t our opinion; it’s this company’s own Won vs Lost history.</span>
           </div>
         </div>
         <div>
@@ -719,7 +723,15 @@ function countUp(el, from, to){
     el.textContent=fmt(from+(to-from)*e); if(k<1) requestAnimationFrame(tick); }
   requestAnimationFrame(tick);
 }
-function pulse(el){ if(!el) return; el.classList.remove("pulse-target"); void el.offsetWidth; el.classList.add("pulse-target"); el.scrollIntoView({behavior:"smooth",block:"center"}); }
+function pulse(el){ if(!el) return;
+  el.classList.remove("pulse-target"); void el.offsetWidth; el.classList.add("pulse-target");
+  el.scrollIntoView({behavior:"smooth",block:"center"});
+  const m=document.createElement("span"); m.className="guidemark"; m.textContent="☝ right here";
+  document.body.appendChild(m);
+  const place=()=>{ const r=el.getBoundingClientRect(); m.style.left=Math.max(8,r.left)+"px"; m.style.top=(r.top+window.scrollY-38)+"px"; m.style.position="absolute"; };
+  setTimeout(place,650); setTimeout(place,1200);
+  setTimeout(()=>m.remove(),5200);
+}
 
 /* ═════════ DASHBOARD ═════════ */
 function renderKpis(prev){
@@ -814,10 +826,12 @@ function renderCalc(){
   $("#cCrew").textContent=c.crew; $("#cDays").textContent=c.days;
   $("#cPartsBtn").textContent=(c.parts===600?"Light — $600":c.parts===1800?"Typical — $1,800":"Heavy — $5,200");
   $("#cMargin").value=c.margin; $("#cMarginLb").textContent=c.margin+"%";
-  const z=$("#cZone"), sl=$("#cMargin");
+  const z=$("#cZone"), sl=$("#cMargin"), hn=$("#cHighNote");
   if(c.margin<25){z.className="mzone r";z.textContent="danger floor";sl.style.accentColor="#C62828";}
   else if(c.margin<30){z.className="mzone w";z.textContent="thin";sl.style.accentColor="#C06A10";}
+  else if(c.margin>=38){z.className="mzone w";z.textContent="above your win range";sl.style.accentColor="#C06A10";}
   else {z.className="mzone g";z.textContent="healthy";sl.style.accentColor="#15803D";}
+  hn.style.display=c.margin>=38?"block":"none";
   $("#cLaborD").textContent=c.crew+" crew × "+c.days+"d";
   $("#cOhD").textContent=c.days+"d";
   $("#cLabor").textContent=fmt(n.labor); $("#cParts").textContent=fmt(c.parts);
@@ -953,13 +967,13 @@ $("#tFinal").onclick=()=>{
 const CUSTS=[
   {n:"Oakmont HOA", who:"Patricia Nolan", type:"com", icon:"\u{1F3D8}", contract:true, life:"$214,300",
    stats:[["$1,850/mo","On contract","o"],["$214,300","Lifetime billed",""],["$202,050","Collected","g"]],
-   rows:[["Contract covers","Monthly grounds + irrigation seasons \u2014 auto-renews, +3%/yr"],
+   rows:[["Contract covers","Monthly grounds + irrigation seasons — auto-renews, +3%/yr"],
          ["Properties","Common Area Turf \u00b7 Common Area Irrigation (12 zones)"],
          ["Open right now",'<span class="pill review">in review</span> Pool planting $12,800 &nbsp;\u00b7&nbsp; <span class="pill collected">active job</span> Entry renovation $24,500']]},
   {n:"Summit Ridge Office Park", who:"Greg Alvarez", type:"com", icon:"\u{1F3E2}", contract:true, life:"$168,900",
    stats:[["$1,200/mo","On contract","o"],["$168,900","Lifetime billed",""],["100%","Collected","g"]],
-   rows:[["Contract covers","Monthly grounds \u2014 Campus Front Turf (8,600 sq ft)"],
-         ["Open right now",'<span class="pill sent">sent</span> Monument sign refresh $4,750 \u2014 sign it on the Dashboard']]},
+   rows:[["Contract covers","Monthly grounds — Campus Front Turf (8,600 sq ft)"],
+         ["Open right now",'<span class="pill sent">sent</span> Monument sign refresh $4,750 — sign it on the Dashboard']]},
   {n:"Riverbend Church", who:"Pastor Jim Hale", type:"com", icon:"\u26EA", contract:true, life:"$96,200",
    stats:[["$750/mo","Apr\u2013Nov contract","o"],["$96,200","Lifetime billed",""],["$93,260","Collected","g"]],
    rows:[["Properties","Main Lawn & Beds (11,800 sq ft)"],
@@ -967,7 +981,7 @@ const CUSTS=[
   {n:"Tom & Ellen Brady", who:"Residential \u00b7 repeat customer", type:"res", icon:"\u{1F3E1}", contract:false, life:"$21,400",
    stats:[["$21,400","Lifetime billed",""],["100%","Collected","g"],["2","Referrals this spring","o"]],
    rows:[["Properties","Backyard + front beds, Larkspur Ln"],
-         ["History",'<span class="pill collected">completed</span> Patio & retaining wall \u2014 see the Scorecard &nbsp;\u00b7&nbsp; <span class="pill sent">sent</span> maple removal $2,350']]}
+         ["History",'<span class="pill collected">completed</span> Patio & retaining wall — see the Scorecard &nbsp;\u00b7&nbsp; <span class="pill sent">sent</span> maple removal $2,350']]}
 ];
 function renderCust(){
   $("#custArea").innerHTML=CUSTS.map((c,i)=>
@@ -1058,7 +1072,7 @@ function renderGuide(){
   $("#guideText").textContent=step.txt;
   const go=$("#guideGo");
   if(S.guide===GUIDE.length-1){ go.textContent="Get invited →"; go.onclick=()=>location.href="/#waitlist"; }
-  else { go.textContent="Show me"; go.onclick=()=>{ if(step.scene) showScene(step.scene); setTimeout(()=>pulse(step.target()),350); }; }
+  else { go.textContent="Show me"; go.onclick=()=>{ if(step.scene) showScene(step.scene); setTimeout(()=>pulse(step.target()),800); }; }
   $("#guideSteps").innerHTML=GUIDE.map((_,i)=>'<i class="'+(i<S.guide?"done":"")+'"></i>').join("");
 }
 
@@ -1171,6 +1185,10 @@ $("#resetBtn").onclick=()=>{ S=initial();
   renderAll(); toast("Demo reset","Clearwater is back to its opening state — drive it again.", "info"); };
 $("#guideHide").onclick=()=>{ S.guideHidden=true; renderGuide(); };
 $("#guidePill").onclick=()=>{ S.guideHidden=false; renderGuide(); };
+$("#guideBtn").onclick=()=>{
+  if(S.guideHidden){ S.guideHidden=false; renderGuide(); toast("Guide's back","The Try-this box will walk you from wherever you are.","info"); }
+  else { S.guide=0; S.guideHidden=false; renderGuide(); toast("Walkthrough restarted","Follow the Try-this box in the corner — step 1 of 11.","info"); }
+};
 
 /* ═════════ BOOT ═════════ */
 function renderAll(){ renderKpis(); renderMoney(); renderJobs(); renderProps(); renderDrafts(); renderFunnel(); renderCalc(); renderWL(); renderScore(); renderMaint(); renderTicket(); renderCust(); renderTmpl(); renderTeam(); renderGuide(); }
