@@ -361,7 +361,26 @@ table.sc td:first-child{text-align:left;font-weight:600}
           <div class="card" style="margin-top:10px;font-size:12px;color:var(--muted);line-height:1.55">
             <b style="color:var(--ink)">Overhead lives inside the cost</b> — the margin you see is money you actually keep. Most tools hide this; watch it move when you add a day.
           </div>
-          <button class="abtn gold" id="cSend" style="width:100%;margin-top:10px;padding:11px">Send it as a Proposal →</button>
+          <button class="abtn gold" id="cSend" style="width:100%;margin-top:10px;padding:11px">Review the Proposal →</button>
+        </div>
+      </div>
+      <div id="calcReview" style="display:none;margin-top:14px">
+        <div class="card">
+          <b style="font-size:13.5px">Review — your Proposal, in your own language</b>
+          <p style="font-size:12px;color:var(--muted);margin:3px 0 10px">This is Clearwater's own template. The calculator only filled the blanks — every other word is Dale's, untouched.</p>
+          <div class="docp">
+            <span class="mk fill">Bighorn Brewing Co</span> agrees to the landscape services described herein at
+            <span class="mk fill">316 Linden St, Fort Collins</span> for the contract total of
+            <span class="mk fill" id="rvTotal">$0</span>.
+            Scope of work: construct shade beds along the patio perimeter, install plantings per plan,
+            and run drip irrigation to all new beds. All plant material carries our two-season replacement
+            guarantee. Payment per the schedule: <span class="mk fill">50% on signing</span>, balance on completion.
+            Crew arrives with all equipment; site access per the attached policy.
+          </div>
+          <div class="wnav">
+            <button class="abtn" id="rvBack">← Back to the numbers</button>
+            <button class="abtn gold" id="cSendFinal" style="padding:10px 22px">Send to customer →</button>
+          </div>
         </div>
       </div>
     </section>
@@ -776,17 +795,17 @@ function renderCalc(){
   $("#cCrew").textContent=c.crew; $("#cDays").textContent=c.days;
   $("#cPartsBtn").textContent=(c.parts===600?"Light — $600":c.parts===1800?"Typical — $1,800":"Heavy — $5,200");
   $("#cMargin").value=c.margin; $("#cMarginLb").textContent=c.margin+"%";
-  const z=$("#cZone");
-  if(c.margin<25){z.className="mzone r";z.textContent="danger floor";}
-  else if(c.margin<30){z.className="mzone w";z.textContent="thin";}
-  else {z.className="mzone g";z.textContent="healthy";}
+  const z=$("#cZone"), sl=$("#cMargin");
+  if(c.margin<25){z.className="mzone r";z.textContent="danger floor";sl.style.accentColor="#C62828";}
+  else if(c.margin<30){z.className="mzone w";z.textContent="thin";sl.style.accentColor="#C06A10";}
+  else {z.className="mzone g";z.textContent="healthy";sl.style.accentColor="#15803D";}
   $("#cLaborD").textContent=c.crew+" crew × "+c.days+"d";
   $("#cOhD").textContent=c.days+"d";
   $("#cLabor").textContent=fmt(n.labor); $("#cParts").textContent=fmt(c.parts);
   $("#cOh").textContent=fmt(n.oh); $("#cCost").textContent=fmt(n.cost);
   $("#cPrice").textContent=fmt(n.price); $("#cProfit").textContent=fmt(n.profit);
   const btn=$("#cSend");
-  btn.disabled=S.calc.sent; btn.textContent=S.calc.sent?"✓ Sent — it's in your pipeline":"Send it as a Proposal →";
+  btn.disabled=S.calc.sent; btn.textContent=S.calc.sent?"✓ Sent — it's in your pipeline":"Review the Proposal →";
 }
 $$("[data-c]").forEach(b=>b.onclick=()=>{
   const [k,d]=b.dataset.c.split(":");
@@ -797,7 +816,17 @@ $("#cMargin").oninput=e=>{S.calc.margin=+e.target.value; renderCalc();};
 $("#cSend").onclick=()=>{
   if(S.calc.sent) return;
   const n=calcNumbers(), amt=Math.round(n.price/25)*25;
+  $("#rvTotal").textContent=fmt(amt);
+  $("#calcReview").style.display="block";
+  $("#calcReview").scrollIntoView({behavior:"smooth",block:"start"});
+  toast("Your document, your words","The calculator filled four blanks. Everything else reads exactly as Dale wrote it.","info");
+};
+$("#rvBack").onclick=()=>{ $("#calcReview").style.display="none"; };
+$("#cSendFinal").onclick=()=>{
+  if(S.calc.sent) return;
+  const n=calcNumbers(), amt=Math.round(n.price/25)*25;
   S.calc.sent=true;
+  $("#calcReview").style.display="none";
   S.props.unshift({id:"pCalc", name:"Shade beds & patio planting", cust:"Bighorn Brewing Co", amt:amt, status:"sent", days:0, fresh:true, econ:{margin:S.calc.margin, dys:S.calc.days}});
   const prevK={...S.kpi}; S.kpi.pipeline+=amt;
   toast("Proposal sent — "+fmt(amt),"Your price, your margin, on your template. It's on the Dashboard awaiting signature — go sign it.");
@@ -1099,6 +1128,7 @@ function m$bind(){
 $("#moneyToggle").onclick=()=>{ S.moneyShown=!S.moneyShown; renderMoney(); renderGuide(); };
 $("#resetBtn").onclick=()=>{ S=initial();
   $("#sigbox").classList.remove("signed"); $("#sigHint").style.display="";
+  $("#calcReview").style.display="none";
   renderAll(); toast("Demo reset","Clearwater is back to its opening state — drive it again.", "info"); };
 $("#guideHide").onclick=()=>{ S.guideHidden=true; renderGuide(); };
 
