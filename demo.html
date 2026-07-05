@@ -217,14 +217,29 @@ table.sc td:first-child{text-align:left;font-weight:600}
 .sigbox .hint{font-size:11px;color:var(--muted)}
 
 /* customers */
-.custcard{margin-bottom:10px;cursor:pointer}
-.custcard .ch{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.custcard{margin-bottom:12px;cursor:pointer;border-left:4px solid var(--primary);transition:box-shadow .15s}
+.custcard:hover{box-shadow:0 8px 22px rgba(15,31,68,.1)}
+.custcard.contract{border-left-color:var(--orange)}
+.custcard .ch{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.custcard .chl{display:flex;align-items:center;gap:11px}
+.cchip{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:17px;flex-shrink:0}
+.cchip.com{background:var(--orange-soft)} .cchip.res{background:#EBF0FA}
 .custcard .ch b{font-size:13.5px}
 .custcard .ch .cm{font-size:11.5px;color:var(--muted)}
-.custcard .body{display:none;border-top:1px solid var(--soft);margin-top:11px;padding-top:11px}
+.custcard .chr{display:flex;align-items:center;gap:12px}
+.custcard .life{text-align:right}
+.custcard .life .lv{font-size:15px;font-weight:700}
+.custcard .life .ll{font-size:9px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.custcard .body{display:none;border-top:1px solid var(--soft);margin-top:12px;padding-top:12px}
 .custcard.open .body{display:block;animation:fadein .25s ease}
-.crow2{display:flex;justify-content:space-between;font-size:12px;padding:5px 0}
-.crow2 span:first-child{color:var(--muted)}
+.cstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:11px}
+.cstat{background:var(--cream);border-radius:9px;padding:8px 11px;border-top:3px solid var(--navy)}
+.cstat.o{border-top-color:var(--orange)} .cstat.g{border-top-color:var(--green)}
+.cstat .sv{font-size:14.5px;font-weight:700}
+.cstat .sl{font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.crow2{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:6px 0;border-top:1px solid var(--soft);gap:10px}
+.crow2 span:first-child{color:var(--muted);flex-shrink:0}
+.crow2 .rv{text-align:right}
 
 /* templates walkthrough */
 .wt{max-width:640px}
@@ -932,15 +947,33 @@ $("#tFinal").onclick=()=>{
 
 /* ═════════ CUSTOMERS ═════════ */
 const CUSTS=[
-  {n:"Oakmont HOA", m:"Patricia Nolan · commercial · on contract", rows:[["Maintenance contract","$1,850/mo · monthly grounds + irrigation seasons"],["Properties","Common Area Turf · Common Area Irrigation (12 zones)"],["Lifetime money","$214,300 billed · $202,050 collected"],["Open right now","1 Proposal in review ($12,800) · 1 active job ($24,500)"]]},
-  {n:"Summit Ridge Office Park", m:"Greg Alvarez · commercial · on contract", rows:[["Maintenance contract","$1,200/mo · monthly grounds"],["Properties","Campus Front Turf (8,600 sq ft)"],["Lifetime money","$168,900 billed · all collected"],["Open right now","1 Proposal sent ($4,750) — sign it on the Dashboard"]]},
-  {n:"Riverbend Church", m:"Pastor Jim Hale · commercial · on contract", rows:[["Maintenance contract","$750/mo · Apr–Nov grounds"],["Properties","Main Lawn & Beds (11,800 sq ft)"],["Lifetime money","$96,200 billed · $93,260 collected"],["Open right now","Irrigation job mid-flight ($9,800) · Memorial garden on hold"]]},
-  {n:"Tom & Ellen Brady", m:"Residential · repeat customer", rows:[["Properties","Backyard + front beds, Larkspur Ln"],["Lifetime money","$21,400 billed · all collected"],["History","Patio & retaining wall (completed — see the Scorecard) · maple removal pending"],["Note","Referred two neighbors this spring"]]}
+  {n:"Oakmont HOA", who:"Patricia Nolan", type:"com", icon:"\u{1F3D8}", contract:true, life:"$214,300",
+   stats:[["$1,850/mo","On contract","o"],["$214,300","Lifetime billed",""],["$202,050","Collected","g"]],
+   rows:[["Contract covers","Monthly grounds + irrigation seasons \u2014 auto-renews, +3%/yr"],
+         ["Properties","Common Area Turf \u00b7 Common Area Irrigation (12 zones)"],
+         ["Open right now",'<span class="pill review">in review</span> Pool planting $12,800 &nbsp;\u00b7&nbsp; <span class="pill collected">active job</span> Entry renovation $24,500']]},
+  {n:"Summit Ridge Office Park", who:"Greg Alvarez", type:"com", icon:"\u{1F3E2}", contract:true, life:"$168,900",
+   stats:[["$1,200/mo","On contract","o"],["$168,900","Lifetime billed",""],["100%","Collected","g"]],
+   rows:[["Contract covers","Monthly grounds \u2014 Campus Front Turf (8,600 sq ft)"],
+         ["Open right now",'<span class="pill sent">sent</span> Monument sign refresh $4,750 \u2014 sign it on the Dashboard']]},
+  {n:"Riverbend Church", who:"Pastor Jim Hale", type:"com", icon:"\u26EA", contract:true, life:"$96,200",
+   stats:[["$750/mo","Apr\u2013Nov contract","o"],["$96,200","Lifetime billed",""],["$93,260","Collected","g"]],
+   rows:[["Properties","Main Lawn & Beds (11,800 sq ft)"],
+         ["Open right now",'<span class="pill billed">mid-flight</span> Irrigation install $9,800 &nbsp;\u00b7&nbsp; <span class="pill hold">on hold</span> Memorial garden ph. 2']]},
+  {n:"Tom & Ellen Brady", who:"Residential \u00b7 repeat customer", type:"res", icon:"\u{1F3E1}", contract:false, life:"$21,400",
+   stats:[["$21,400","Lifetime billed",""],["100%","Collected","g"],["2","Referrals this spring","o"]],
+   rows:[["Properties","Backyard + front beds, Larkspur Ln"],
+         ["History",'<span class="pill collected">completed</span> Patio & retaining wall \u2014 see the Scorecard &nbsp;\u00b7&nbsp; <span class="pill sent">sent</span> maple removal $2,350']]}
 ];
 function renderCust(){
   $("#custArea").innerHTML=CUSTS.map((c,i)=>
-    '<div class="card custcard" data-cust="'+i+'"><div class="ch"><span><b>'+c.n+'</b><br/><span class="cm">'+c.m+'</span></span><span class="abtn">Open ↓</span></div>'+
-    '<div class="body">'+c.rows.map(r=>'<div class="crow2"><span>'+r[0]+'</span><span style="text-align:right;max-width:60%">'+r[1]+'</span></div>').join("")+'</div></div>').join("");
+    '<div class="card custcard'+(c.contract?" contract":"")+'" data-cust="'+i+'">'+
+    '<div class="ch"><span class="chl"><span class="cchip '+c.type+'">'+c.icon+'</span>'+
+      '<span><b>'+c.n+'</b>'+(c.contract?' <span class="pill collected" style="margin-left:5px">on contract</span>':' <span class="pill unbilled" style="margin-left:5px">as-needed</span>')+
+      '<br/><span class="cm">'+c.who+'</span></span></span>'+
+    '<span class="chr"><span class="life"><span class="lv money">'+c.life+'</span><br/><span class="ll">lifetime billed</span></span><span class="abtn">Open \u2193</span></span></div>'+
+    '<div class="body"><div class="cstats">'+c.stats.map(s=>'<div class="cstat '+s[2]+'"><div class="sv money">'+s[0]+'</div><div class="sl">'+s[1]+'</div></div>').join("")+'</div>'+
+    c.rows.map(r=>'<div class="crow2"><span>'+r[0]+'</span><span class="rv">'+r[1]+'</span></div>').join("")+'</div></div>').join("");
   $$(".custcard").forEach(el=>el.onclick=()=>el.classList.toggle("open"));
 }
 
