@@ -119,7 +119,7 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
     </div>
     <div class="actions">
       <a class="quiet" href="https://tradegoat.vercel.app/sign-in">Log in</a>
-      <a class="btn" href="/#waitlist">Get invited</a>
+      <a class="btn" href="/#waitlist">Request early access</a>
     </div>
     <button class="burger" aria-label="Menu" onclick="this.closest('nav').classList.toggle('open')">☰</button>
     <div class="mpanel">
@@ -128,7 +128,7 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
       <a href="features.html">Everything it does</a>
       <a href="pricing.html">Pricing</a>
       <a href="https://tradegoat.vercel.app/sign-in">Log in</a>
-      <a class="cta" href="/#waitlist">Get invited</a>
+      <a class="cta" href="/#waitlist">Request early access</a>
     </div>
   </div>
 </nav>
@@ -211,6 +211,7 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
         <p>60–90 days, white-glove: we help load your documents, your customers, your equipment.
         You test the real tool on your real business, invited and unhurried.</p></div>
       <div class="mini"><span class="n">2</span><b>First 25 companies: half price, forever</b>
+        <p style="margin:6px 0 2px"><span id="spotsLeft" style="display:inline-block;background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.45);color:var(--gold-light);font-weight:800;font-size:12px;padding:4px 12px;border-radius:99px"></span></p>
         <p><span class="em">$75 / $125 / $225 a month by tier — for as long as you stay.</span>
         Founding badge, a real voice in the roadmap, and our permanent gratitude. The rate lives
         as long as your subscription does; cancel and return later, and standard pricing applies.</p></div>
@@ -271,8 +272,8 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
   </section>
 
   <div style="margin-top:26px;background:rgba(245,166,35,0.07);border:1px solid rgba(245,166,35,0.3);border-radius:14px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-    <span style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)">The path · step 3 of 4 — <span style="color:var(--gold)">See it → Drive it → Price it → Get in line</span></span>
-    <a class="btn" href="/#waitlist" style="font-size:13.5px;padding:10px 18px">Next: Get in line for an invite →</a>
+    <span style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)">The path · step 3 of 4 — <span style="color:var(--gold)">See it → Drive it → Price it → Request access</span></span>
+    <a class="btn" href="/#waitlist" style="font-size:13.5px;padding:10px 18px">Next: Request early access →</a>
   </div>
   <footer class="pagefoot">
     <p style="margin-bottom:8px;"><a href="mailto:hello@thetradegoat.com">hello@thetradegoat.com</a> · <a href="/">thetradegoat.com</a></p>
@@ -281,6 +282,10 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
 </div>
 <script>
 (function(){
+  // Founding-25 counter - update SPOTS_TAKEN as companies land (1 = UpLift).
+  var SPOTS_TAKEN = 1;
+  var el=document.getElementById('spotsLeft');
+  if(el) el.textContent=(25-SPOTS_TAKEN)+' of 25 founding spots left';
   var seg=document.getElementById('billSeg');
   seg.addEventListener('click',function(e){
     var b=e.target.closest('button'); if(!b) return;

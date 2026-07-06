@@ -498,7 +498,8 @@
         <a href="features.html">Everything it does</a>
         <a href="pricing.html">Pricing</a>
       </div>
-      <a href="https://tradegoat.vercel.app/sign-in" class="login">Log In &rarr;</a>
+      <a href="#waitlist" class="login" style="background:linear-gradient(180deg,#ffc94d,#f5a623)">Request early access</a>
+      <a href="https://tradegoat.vercel.app/sign-in" class="login" style="background:none;color:#c6cddb;font-weight:700">Log in</a>
       <button class="burger" aria-label="Menu" onclick="this.closest('nav').classList.toggle('open')">☰</button>
       <div class="mpanel">
         <a href="tour.html">Tour</a>
@@ -506,7 +507,7 @@
         <a href="features.html">Everything it does</a>
         <a href="pricing.html">Pricing</a>
         <a href="https://tradegoat.vercel.app/sign-in">Log in</a>
-        <a class="cta" href="/#waitlist">Get invited</a>
+        <a class="cta" href="/#waitlist">Request early access</a>
       </div>
     </div>
   </nav>
@@ -534,13 +535,20 @@
       </p>
 
       <p style="text-align:center;margin:0 0 26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-        <a href="demo.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy);font-weight:800;font-size:16px;text-decoration:none;padding:13px 26px;border-radius:11px;box-shadow:0 10px 26px rgba(245,166,35,0.28);">&#128663;&nbsp; Drive it yourself &#8212; live demo, no login</a>
-        <a href="tour.html" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);color:var(--gold);font-weight:800;font-size:15px;text-decoration:none;padding:13px 22px;border-radius:11px;border:1px solid rgba(245,166,35,0.5);">&#9654;&nbsp; Take the tour</a>
-        <a href="pricing.html" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);color:var(--gold);font-weight:800;font-size:15px;text-decoration:none;padding:13px 22px;border-radius:11px;border:1px solid rgba(245,166,35,0.5);">Pricing</a>
+        <a href="#waitlist" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy);font-weight:800;font-size:16px;text-decoration:none;padding:14px 28px;border-radius:11px;box-shadow:0 10px 26px rgba(245,166,35,0.28);">Request early access</a>
+        <a href="demo.html" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);color:var(--gold);font-weight:800;font-size:15px;text-decoration:none;padding:13px 22px;border-radius:11px;border:1px solid rgba(245,166,35,0.5);">&#128663;&nbsp; Drive the demo &rarr;</a>
       </p>
 
+      <span id="waitlist"></span>
       <form class="waitlist-form" id="waitlistForm" name="waitlist">
         <input type="email" id="emailInput" name="email" placeholder="your@email.com" required />
+        <select id="toolInput" name="proposal_tool" required style="font:inherit;font-size:15px;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.06);color:#fff;min-width:230px">
+          <option value="" disabled selected>What do you build proposals with today?</option>
+          <option value="spreadsheet">Spreadsheet / Excel</option>
+          <option value="word-pdf">Word / PDF</option>
+          <option value="other-software">Another software</option>
+          <option value="pen-paper">Pen &amp; paper</option>
+        </select>
         <input type="hidden" name="_subject" value="New TradeGOAT waitlist signup" />
         <button type="submit" id="submitBtn">Get in line for an invite</button>
       </form>
@@ -664,7 +672,7 @@
         const res = await fetch(FORMSPREE_ENDPOINT, {
           method: 'POST',
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, _subject: 'New TradeGOAT waitlist signup' })
+          body: JSON.stringify({ email: email, proposal_tool: (document.getElementById('toolInput')||{}).value || '', _subject: 'New TradeGOAT waitlist signup' })
         });
 
         if (res.ok) {
