@@ -365,8 +365,8 @@ table.sc td:first-child{text-align:left;font-weight:600}
           <div class="crow" style="flex-direction:column;align-items:stretch">
             <span style="display:flex;justify-content:space-between;align-items:center"><span class="cl"><b>Your profit margin</b><span>one number — no phantom markups</span></span>
               <span style="display:flex;gap:8px;align-items:center"><span class="mzone g" id="cZone">healthy</span><b class="money" id="cMarginLb" style="font-size:15px">33%</b></span></span>
-            <input type="range" class="mslider" id="cMargin" min="12" max="45" value="33" />
-            <span id="cHighNote" style="display:none;font-size:11.5px;color:var(--amber);font-weight:600;line-height:1.5">⚠ Above your winning range — Clearwater has never signed a deal over a 36% margin. That ceiling isn’t our opinion; it’s this company’s own Won vs Lost history.</span>
+            <input type="range" class="mslider" id="cMargin" min="1" max="99" value="33" />
+            
           </div>
         </div>
         <div>
@@ -826,12 +826,10 @@ function renderCalc(){
   $("#cCrew").textContent=c.crew; $("#cDays").textContent=c.days;
   $("#cPartsBtn").textContent=(c.parts===600?"Light — $600":c.parts===1800?"Typical — $1,800":"Heavy — $5,200");
   $("#cMargin").value=c.margin; $("#cMarginLb").textContent=c.margin+"%";
-  const z=$("#cZone"), sl=$("#cMargin"), hn=$("#cHighNote");
+  const z=$("#cZone"), sl=$("#cMargin");
   if(c.margin<25){z.className="mzone r";z.textContent="danger floor";sl.style.accentColor="#C62828";}
   else if(c.margin<30){z.className="mzone w";z.textContent="thin";sl.style.accentColor="#C06A10";}
-  else if(c.margin>=38){z.className="mzone w";z.textContent="above your win range";sl.style.accentColor="#C06A10";}
   else {z.className="mzone g";z.textContent="healthy";sl.style.accentColor="#15803D";}
-  hn.style.display=c.margin>=38?"block":"none";
   $("#cLaborD").textContent=c.crew+" crew × "+c.days+"d";
   $("#cOhD").textContent=c.days+"d";
   $("#cLabor").textContent=fmt(n.labor); $("#cParts").textContent=fmt(c.parts);
