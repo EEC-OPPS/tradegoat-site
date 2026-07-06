@@ -528,7 +528,8 @@
     <section class="hero">
       <div class="badge">Live in Early Access — Invite Only</div>
 
-      <h1>Run your trade business<br/><span>like the GOAT you are.</span></h1>
+      <h1>Your paperwork. Your prices.<br/><span>Your tool.</span></h1>
+      <p style="text-align:center;color:var(--gold);font-weight:700;font-size:15px;letter-spacing:.02em;margin:-6px 0 14px;">Run your trade business like the GOAT you are.</p>
 
       <p class="subtitle">
         Professional proposals, bids, and payment tracking — built by a contractor who got tired of running a business inside a spreadsheet. We're onboarding early companies one at a time.
@@ -553,7 +554,12 @@
         <button type="submit" id="submitBtn">Get in line for an invite</button>
       </form>
       <div class="success-msg" id="successMsg">
-        ✓ You're in line. Invites go out as we onboard each new company.
+        <div id="posLine" style="font-size:18px;font-weight:800;margin-bottom:6px"></div>
+        <div style="font-size:13.5px;opacity:.9;margin-bottom:10px">Invites go out as we onboard each wave. <b>Want to move up the line?</b> Every operator who joins with your link bumps you up:</div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <input id="shareLink" readonly style="font:inherit;font-size:13px;padding:10px 12px;border-radius:9px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.08);color:#fff;min-width:260px" />
+          <button type="button" id="copyLink" style="font:inherit;font-size:13px;font-weight:800;padding:10px 16px;border-radius:9px;border:none;cursor:pointer;background:linear-gradient(180deg,#ffc94d,#f5a623);color:#0f1f3d">Copy link</button>
+        </div>
       </div>
       <div class="error-msg" id="errorMsg">
         Something went wrong. Try again, or email us at hello@thetradegoat.com.
@@ -647,6 +653,15 @@
     // ============================================================
     const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwvyblwn';
 
+    try { const r = new URLSearchParams(location.search).get('ref'); if (r) localStorage.setItem('tg_ref', r); } catch (e) {}
+    document.addEventListener('click', function(e){
+      if (e.target && e.target.id === 'copyLink') {
+        const inp = document.getElementById('shareLink');
+        inp.select(); document.execCommand('copy');
+        e.target.textContent = 'Copied ✓';
+        setTimeout(function(){ e.target.textContent = 'Copy link'; }, 2000);
+      }
+    });
     const form = document.getElementById('waitlistForm');
     const successMsg = document.getElementById('successMsg');
     const errorMsg = document.getElementById('errorMsg');
@@ -668,18 +683,38 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
 
+      const tool = (document.getElementById('toolInput')||{}).value || '';
+      const ref = (function(){ try { return new URLSearchParams(location.search).get('ref') || localStorage.getItem('tg_ref') || ''; } catch(e){ return ''; } })();
       try {
-        const res = await fetch(FORMSPREE_ENDPOINT, {
+        // TradeGOAT's own waitlist engine — positions + referral line.
+        const res = await fetch('https://tradegoat.vercel.app/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, proposal_tool: tool, ref: ref })
+        });
+        const data = res.ok ? await res.json() : null;
+        if (data && data.ok) {
+          form.style.display = 'none';
+          document.getElementById('posLine').textContent =
+            (data.existing ? "You're already in line — spot #" : "✓ You're in line — spot #") + data.position + ' of ' + data.total;
+          document.getElementById('shareLink').value = 'https://thetradegoat.com/?ref=' + data.refCode;
+          successMsg.style.display = 'block';
+          return;
+        }
+        // Engine unreachable — fall back to Formspree so no signup is lost.
+        const fb = await fetch(FORMSPREE_ENDPOINT, {
           method: 'POST',
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, proposal_tool: (document.getElementById('toolInput')||{}).value || '', _subject: 'New TradeGOAT waitlist signup' })
+          body: JSON.stringify({ email: email, proposal_tool: tool, _subject: 'New TradeGOAT waitlist signup (fallback)' })
         });
-
-        if (res.ok) {
+        if (fb.ok) {
           form.style.display = 'none';
+          document.getElementById('posLine').textContent = "✓ You're in line.";
+          document.querySelector('#successMsg div[style*="opacity"]').style.display = 'none';
+          document.getElementById('shareLink').parentElement.style.display = 'none';
           successMsg.style.display = 'block';
         } else {
-          throw new Error('Formspree returned ' + res.status);
+          throw new Error('Both endpoints failed');
         }
       } catch (err) {
         console.error('Waitlist submission failed:', err);
