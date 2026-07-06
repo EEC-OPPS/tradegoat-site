@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TradeGOAT — Everything it does · The full feature set</title>
+<meta name="description" content="The complete TradeGOAT feature set: price with honest margins, generate proposals from your own documents, run field tickets signed on glass, never miss a maintenance visit, connect QuickBooks, and learn your own win/loss story. Every feature, every tier." />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f3d; --navy-mid:#16294e; --gold:#f5a623; --gold-light:#ffc94d; --gold-deep:#d98b0f;
+  --white:#fff; --text-muted:#8a93a6; --text-soft:#c6cddb; --border:rgba(255,255,255,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--navy);color:var(--white);-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(245,166,35,0.14) 0%,transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:0 24px}
+a.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,var(--gold-light),var(--gold));color:var(--navy);font-weight:800;font-size:15px;text-decoration:none;padding:13px 24px;border-radius:11px;box-shadow:0 10px 26px rgba(245,166,35,0.28)}
+a.btn.ghost{background:rgba(255,255,255,0.04);color:var(--gold);border:1px solid rgba(245,166,35,0.45);box-shadow:none}
+nav.bar{position:relative;z-index:40;background:rgba(10,23,48,0.82);border-bottom:1px solid var(--border)}
+nav.bar .inner{max-width:1020px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+nav.bar img{height:38px;background:#fff;border-radius:8px;padding:3px 7px}
+nav.bar .links{display:flex;gap:4px;flex:1;justify-content:center;flex-wrap:wrap}
+nav.bar .links a{color:var(--text-muted);text-decoration:none;font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:99px}
+nav.bar .links a:hover{color:#fff;background:rgba(255,255,255,0.06)}
+nav.bar .links a.on{color:var(--navy);background:var(--gold)}
+nav.bar .actions a{font-size:13px;padding:9px 15px}
+.hero{text-align:center;padding:56px 0 30px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(245,166,35,0.4);background:rgba(245,166,35,0.07);padding:8px 18px;border-radius:99px;margin-bottom:22px}
+h1{font-size:clamp(30px,5vw,48px);line-height:1.12;letter-spacing:-.02em;margin-bottom:14px}
+h1 .gold{background:linear-gradient(120deg,var(--gold-light),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{color:var(--text-soft);font-size:clamp(15px,2vw,17.5px);max-width:680px;margin:0 auto;line-height:1.65}
+section.stage{padding:34px 0;border-top:1px solid var(--border)}
+.stagehead{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.stagehead .n{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(245,166,35,0.14);border:1px solid rgba(245,166,35,0.4);color:var(--gold);font-weight:900;font-size:17px;flex-shrink:0}
+.stagehead h2{font-size:clamp(20px,2.8vw,27px)}
+.stagelead{color:var(--text-muted);font-size:14px;margin:0 0 18px 56px;max-width:700px;line-height:1.6}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:10px}
+.f{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.f b{display:block;font-size:14px;margin-bottom:4px}
+.f p{font-size:12.5px;color:var(--text-soft);line-height:1.6}
+.everystrip{margin:40px 0 8px;background:linear-gradient(120deg,rgba(245,166,35,0.12),rgba(245,166,35,0.04));border:1px solid rgba(245,166,35,0.3);border-radius:16px;padding:22px 26px;text-align:center;font-size:14.5px;color:var(--text-soft);line-height:1.7}
+.everystrip b{color:var(--gold-light)}
+.close{text-align:center;padding:52px 0 40px;border-top:1px solid var(--border);margin-top:26px}
+.close h2{font-size:clamp(22px,3vw,30px);margin-bottom:10px}
+.close p{color:var(--text-soft);font-size:15px;margin-bottom:24px}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+footer.pagefoot{text-align:center;color:var(--text-muted);font-size:12.5px;padding:26px 0 40px}
+footer.pagefoot a{color:var(--text-soft);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav class="bar">
+  <div class="inner">
+    <a href="/"><img src="logo.jpg" alt="TradeGOAT" /></a>
+    <div class="links">
+      <a href="tour.html">Tour</a>
+      <a href="demo.html">Drive the demo</a>
+      <a href="features.html" class="on">Everything it does</a>
+      <a href="pricing.html">Pricing</a>
+    </div>
+    <div class="actions">
+      <a class="btn ghost" href="https://tradegoat.vercel.app/sign-in">Log in</a>
+      <a class="btn" href="/#waitlist">Get invited</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">The full feature set · every feature in every tier</div>
+    <h1>Everything it does —<br/><span class="gold">the whole loop, one tool.</span></h1>
+    <p class="sub">TradeGOAT runs the six things every service company does: price the work, propose it,
+      win it, track the money, run the field, and learn from every job. Built trade-agnostic —
+      it speaks your trade's language, not ours.</p>
+  </section>
+
+  <section class="stage">
+    <div class="stagehead"><span class="n">1</span><h2>Price it — know your real cost</h2></div>
+    <p class="stagelead">The margin-first engine: true costs in, one honest margin, price out. No phantom profit.</p>
+    <div class="fgrid">
+      <div class="f"><b>Cost-up calculator</b><p>Crew, days, materials, travel, hotels, permits — every real cost builds the price, itemized line by line.</p></div>
+      <div class="f"><b>Overhead inside the cost</b><p>Your overhead per job day is folded into cost before margin — so the profit you see is profit you keep.</p></div>
+      <div class="f"><b>One honest margin with guardrails</b><p>You set your own warning and danger floors; the slider shows them in color while you price.</p></div>
+      <div class="f"><b>Per-service rates</b><p>Your big-job rate and your service-call rate are different numbers — whatever your trade calls them, each service keeps its own.</p></div>
+      <div class="f"><b>Multiple options per proposal</b><p>Let the customer pick the scope instead of haggling the price.</p></div>
+      <div class="f"><b>Exact price override + minimum job fee</b><p>Need to hit a number? Lock it, and the tool shows you the margin you're accepting.</p></div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="stagehead"><span class="n">2</span><h2>Propose it — your documents, alive</h2></div>
+    <p class="stagelead">The headline act: bring the proposal you already use, and it becomes the system.</p>
+    <div class="fgrid">
+      <div class="f"><b>Bring-your-own-document ingestion</b><p>Upload your Word or PDF proposal — the tool reads your scope language, terms, warranty, and payment schedule and turns them into a living template.</p></div>
+      <div class="f"><b>The red-pen review</b><p>Every detected fill-in spot shown against your original words — you confirm or fix. Everything you don't mark is never touched.</p></div>
+      <div class="f"><b>Real Word output</b><p>Finished Proposals render to actual documents in your format, with your logo — editable, printable, emailable.</p></div>
+      <div class="f"><b>The safety gate</b><p>A Proposal physically cannot be sent with a blank fill-in spot a customer would see.</p></div>
+      <div class="f"><b>Your numbering</b><p>Simple sequential or your own custom format — per proposal type if you want it.</p></div>
+      <div class="f"><b>Frozen on signing</b><p>Signed Proposals lock forever. Changes become change orders — the original price is untouchable.</p></div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="stagehead"><span class="n">3</span><h2>Win it — the pipeline that doesn't forget</h2></div>
+    <p class="stagelead">Deals that take nine months don't get lost in month two.</p>
+    <div class="fgrid">
+      <div class="f"><b>The status spine</b><p>Draft → sent → under review → on hold → signed → lost, changeable right from the dashboard card, with every deal's age ticking in plain sight.</p></div>
+      <div class="f"><b>On Hold is first-class</b><p>Parked deals keep their place for as long as the customer's board takes.</p></div>
+      <div class="f"><b>The signature is the starting gun</b><p>Signing creates the job instantly — billing milestones from your own payment split, trackers running, money picture updated.</p></div>
+      <div class="f"><b>Every outcome teaches</b><p>Won and lost Proposals freeze their economics automatically, feeding the win/loss analysis with zero data entry.</p></div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="stagehead"><span class="n">4</span><h2>Track the money — every dollar, honestly labeled</h2></div>
+    <p class="stagelead">In hand, owed, committed, and coming — never blurred together.</p>
+    <div class="fgrid">
+      <div class="f"><b>Plain-English invoice ledger</b><p>Ready to send · out awaiting payment · paid. Three buckets, no accounting degree required.</p></div>
+      <div class="f"><b>Billing milestones per job</b><p>Your payment split (50/25/25 or whatever you run) with amounts, invoice numbers, and collected status per draw.</p></div>
+      <div class="f"><b>QuickBooks connection</b><p>Push invoices, read payments back, and mirror the books' real billing history onto every job. After you connect, QuickBooks is the billing truth.</p></div>
+      <div class="f"><b>Retainage tracking</b><p>Bill gross, watch the holdback per draw — for any trade that lives with retainage.</p></div>
+      <div class="f"><b>The owner's money view</b><p>Bank balance from your books, lifetime billed and collected, receivables vs backlog — labeled precisely, revealed on tap, gated person by person.</p></div>
+      <div class="f"><b>Company Insights</b><p>Your QuickBooks P&amp;L rendered exactly as your bookkeeper sees it — income, spending, and net, year by year.</p></div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="stagehead"><span class="n">5</span><h2>Run it — the field and the office, one system</h2></div>
+    <p class="stagelead">Your paper ticket reborn on a phone; an office list that empties itself.</p>
+    <div class="fgrid">
+      <div class="f"><b>Your service ticket, digitized</b><p>Upload your own half-page ticket — Word, Excel, PDF, or a photo — and techs fill the same form on their phones.</p></div>
+      <div class="f"><b>Signed on glass</b><p>Photos, parts, hours, and the customer's signature captured on site; the finished PDF emails itself to the customer and the office.</p></div>
+      <div class="f"><b>Service clocks on everything</b><p>Every unit, property, machine, or site under contract carries a clock — finish a ticket and it resets.</p></div>
+      <div class="f"><b>The missed-visit watch</b><p>A maintenance window closing without a visit gets flagged before the customer notices. Ever.</p></div>
+      <div class="f"><b>Needs-billing list</b><p>Billable field work lands with hours, miles, and parts already totaled, and stays until the bill goes out. "Got it running, didn't take payment" — never again.</p></div>
+      <div class="f"><b>Scheduling &amp; crews</b><p>Company calendar, personal schedules, time-off requests, per-job crew assignment.</p></div>
+      <div class="f"><b>Customers, vendors &amp; equipment</b><p>One record per relationship — contacts, locations, equipment, contracts, history, lifetime money. Bulk-import all of it from spreadsheets or straight from QuickBooks with duplicate-proof matching.</p></div>
+      <div class="f"><b>It speaks your language</b><p>Units, properties, machines, roofs — you pick the word once and the whole tool uses it, everywhere.</p></div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="stagehead"><span class="n">6</span><h2>Learn from it — the tool that makes you a better businessman</h2></div>
+    <p class="stagelead">Most contractors find out what a job made at tax time. Not anymore.</p>
+    <div class="fgrid">
+      <div class="f"><b>Live job scorecard</b><p>Bid vs actual by cost bucket while the job runs — a slipping margin shows up when you can still steer it back into the green.</p></div>
+      <div class="f"><b>Won vs Lost</b><p>Your winning Proposals next to the ones that got away — margins, price per day, where you win by size and type. It builds itself from every outcome.</p></div>
+      <div class="f"><b>Qualification packet</b><p>Completed and in-progress work with amounts, dates, and types — the questions general contractors ask, printable in one click.</p></div>
+      <div class="f"><b>Business overview &amp; customer reports</b><p>Revenue by type, top customers, win rate, collected vs backlog — exportable, printable.</p></div>
+      <div class="f"><b>Governed AI learning</b><p>Every lesson the tool learns about your business is visible, reviewable, and yours to pause or delete. Nothing teaches itself behind your back.</p></div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <div class="stagehead"><span class="n">+</span><h2>Underneath it all</h2></div>
+    <div class="fgrid">
+      <div class="f"><b>Roles that respect the money</b><p>Owner, office, field — plus custom roles on 40+ granular permissions. Techs see their work, not your financials. Even books visibility is granted person by person.</p></div>
+      <div class="f"><b>One-click team invites</b><p>Invite by email; your people land inside your company with the right view. No IT department required.</p></div>
+      <div class="f"><b>Guided onboarding</b><p>A step-by-step setup that learns your trade, your rates, your services, your crew — re-enterable anytime.</p></div>
+      <div class="f"><b>An AI specialist on staff</b><p>The first add-on agent — a code &amp; licensing reference that answers with live primary sources, never guesses — is already working for pilot companies.</p></div>
+      <div class="f"><b>Safety nets everywhere</b><p>30-day recovery on deleted records, a full audit trail of every change, and honest math that never hides a number.</p></div>
+      <div class="f"><b>Phone-first where it matters</b><p>The field experience is built for the truck, not shrunk from a desktop.</p></div>
+    </div>
+  </section>
+
+  <div class="everystrip">
+    <b>Every feature on this page is in every tier.</b> Pricing gates how many people you bring —
+    never what the tool will do for you. That's a promise in writing on the
+    <a href="pricing.html" style="color:var(--gold-light)">pricing page</a>.
+  </div>
+
+  <section class="close">
+    <h2>Reading about it is the slow way.</h2>
+    <p>The live demo is open — drive a real company through all of this in ten minutes. No login.</p>
+    <div class="cta-row">
+      <a class="btn" href="demo.html">🚗 Drive the live demo</a>
+      <a class="btn ghost" href="tour.html">▶ Take the tour</a>
+      <a class="btn ghost" href="/#waitlist">Join the waitlist</a>
+    </div>
+  </section>
+
+  <footer class="pagefoot">
+    <p style="margin-bottom:8px;"><a href="mailto:hello@thetradegoat.com">hello@thetradegoat.com</a> · <a href="/">thetradegoat.com</a></p>
+    <p>© 2026 TradeGOAT</p>
+  </footer>
+</div>
+</body>
+</html>

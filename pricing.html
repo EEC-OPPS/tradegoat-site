@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TradeGOAT — Pricing · Simple, honest, flat per company</title>
+<meta name="description" content="TradeGOAT pricing: three flat tiers per company, never per seat. Every tier gets the full tool. Month-to-month, cancel anytime, your data is yours. Free white-glove pilots during early access." />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f3d; --navy-mid:#16294e; --navy-deep:#0a1730;
+  --gold:#f5a623; --gold-light:#ffc94d; --gold-deep:#d98b0f;
+  --white:#fff; --text-muted:#8a93a6; --text-soft:#c6cddb;
+  --border:rgba(255,255,255,0.08); --green:#4caf7d;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--navy);color:var(--white);-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(245,166,35,0.14) 0%,transparent 70%),
+  radial-gradient(ellipse 60% 40% at 0% 60%,rgba(36,86,166,0.10) 0%,transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:0 24px}
+a.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,var(--gold-light),var(--gold));color:var(--navy);font-weight:800;font-size:15px;text-decoration:none;padding:13px 24px;border-radius:11px;box-shadow:0 10px 26px rgba(245,166,35,0.28)}
+a.btn:hover{transform:translateY(-2px)}
+a.btn.ghost{background:rgba(255,255,255,0.04);color:var(--gold);border:1px solid rgba(245,166,35,0.45);box-shadow:none}
+
+nav.bar{position:relative;z-index:40;background:rgba(10,23,48,0.82);border-bottom:1px solid var(--border)}
+nav.bar .inner{max-width:1060px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+nav.bar img{height:38px;background:#fff;border-radius:8px;padding:3px 7px}
+nav.bar .links{display:flex;gap:4px;flex:1;justify-content:center;flex-wrap:wrap}
+nav.bar .links a{color:var(--text-muted);text-decoration:none;font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:99px}
+nav.bar .links a:hover{color:#fff;background:rgba(255,255,255,0.06)}
+nav.bar .links a.on{color:var(--navy);background:var(--gold)}
+nav.bar .actions a{font-size:13px;padding:9px 15px}
+
+.hero{text-align:center;padding:60px 0 34px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(245,166,35,0.4);background:rgba(245,166,35,0.07);padding:8px 18px;border-radius:99px;margin-bottom:22px}
+h1{font-size:clamp(32px,5vw,52px);line-height:1.1;letter-spacing:-.02em;margin-bottom:14px}
+h1 .gold{background:linear-gradient(120deg,var(--gold-light),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{color:var(--text-soft);font-size:clamp(15px,2vw,18px);max-width:640px;margin:0 auto;line-height:1.65}
+
+.notice{max-width:760px;margin:26px auto 0;background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.35);border-radius:14px;padding:16px 20px;font-size:14px;line-height:1.65;color:var(--text-soft);text-align:left}
+.notice b{color:var(--gold-light)}
+
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;padding:44px 0 8px}
+.tier{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column;gap:14px;position:relative}
+.tier.hot{border-color:rgba(245,166,35,0.55);background:rgba(245,166,35,0.05)}
+.tier .flag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(180deg,var(--gold-light),var(--gold));color:var(--navy);font-size:10.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:99px;white-space:nowrap}
+.tier h2{font-size:19px}
+.tier .price{font-size:40px;font-weight:800}
+.tier .price span{font-size:14px;font-weight:600;color:var(--text-muted)}
+.tier .annual{font-size:12px;color:var(--text-muted);margin-top:-8px}
+.tier .who{font-size:13px;color:var(--text-soft);line-height:1.55;min-height:42px}
+.tier ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--text-soft)}
+.tier ul li{padding-left:24px;position:relative;line-height:1.5}
+.tier ul li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:900}
+.tier ul li.road::before{content:'→';color:var(--text-muted)}
+.tier ul li.road{color:var(--text-muted)}
+.roadlabel{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+
+.fullstrip{margin:34px 0;background:linear-gradient(120deg,rgba(245,166,35,0.12),rgba(245,166,35,0.04));border:1px solid rgba(245,166,35,0.3);border-radius:18px;padding:26px 28px;text-align:center}
+.fullstrip h2{font-size:clamp(19px,2.6vw,26px);margin-bottom:8px}
+.fullstrip p{color:var(--text-soft);font-size:14.5px;max-width:720px;margin:0 auto;line-height:1.7}
+
+section.block{padding:34px 0;border-top:1px solid var(--border)}
+section.block h2{font-size:clamp(20px,2.8vw,28px);margin-bottom:6px}
+section.block .lead{color:var(--text-muted);font-size:14px;margin-bottom:20px}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.mini{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:14px;padding:20px}
+.mini .n{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:rgba(245,166,35,0.14);border:1px solid rgba(245,166,35,0.4);color:var(--gold);font-weight:900;margin-bottom:12px}
+.mini b{display:block;font-size:15px;margin-bottom:6px}
+.mini p{font-size:13px;color:var(--text-soft);line-height:1.65}
+.mini .em{color:var(--gold-light);font-weight:700}
+
+.faq{display:flex;flex-direction:column;gap:10px;max-width:800px}
+.faq details{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:15px 18px}
+.faq summary{font-size:14.5px;font-weight:700;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';float:right;color:var(--gold);font-weight:900;font-size:17px}
+.faq details[open] summary::after{content:'–'}
+.faq p{font-size:13.5px;color:var(--text-soft);line-height:1.7;margin-top:10px}
+
+.close{text-align:center;padding:56px 0 40px;border-top:1px solid var(--border);margin-top:20px}
+.close h2{font-size:clamp(22px,3vw,32px);margin-bottom:10px}
+.close p{color:var(--text-soft);font-size:15px;margin-bottom:24px}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+footer.pagefoot{text-align:center;color:var(--text-muted);font-size:12.5px;padding:26px 0 40px}
+footer.pagefoot a{color:var(--text-soft);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav class="bar">
+  <div class="inner">
+    <a href="/"><img src="logo.jpg" alt="TradeGOAT" /></a>
+    <div class="links">
+      <a href="tour.html">Tour</a>
+      <a href="demo.html">Drive the demo</a>
+      <a href="features.html">Everything it does</a>
+      <a href="pricing.html" class="on">Pricing</a>
+    </div>
+    <div class="actions">
+      <a class="btn ghost" href="https://tradegoat.vercel.app/sign-in">Log in</a>
+      <a class="btn" href="/#waitlist">Get invited</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Flat per company · never per seat</div>
+    <h1>Simple, honest pricing.<br/><span class="gold">Every tier gets the full tool.</span></h1>
+    <p class="sub">Three flat monthly prices. No per-user math, no feature hostages, no contracts.
+      Add a tech, add your spouse, add the office — your price doesn't move inside your tier.</p>
+    <div class="notice">
+      <b>Where we are right now:</b> TradeGOAT is in invited early access. Testing companies run a
+      <b>free 60–90 day white-glove pilot</b> — no payments are being taken yet, and nobody will ever
+      see a charge that wasn't agreed in writing first. The pricing below is what you're getting in
+      line for, published now so there are no surprises later.
+    </div>
+  </section>
+
+  <div class="tiers">
+    <div class="tier">
+      <h2>Starter</h2>
+      <div class="price">$149<span> /mo</span></div>
+      <div class="annual">~$119/mo billed annually</div>
+      <div class="who">Solo operators and two-person shops moving off spreadsheets and Word.</div>
+      <ul>
+        <li><b>The full tool</b> — every feature, every report</li>
+        <li>Up to 2 users</li>
+        <li>Month-to-month · cancel anytime</li>
+      </ul>
+    </div>
+    <div class="tier hot">
+      <span class="flag">Where most shops live</span>
+      <h2>Growth</h2>
+      <div class="price">$249<span> /mo</span></div>
+      <div class="annual">~$199/mo billed annually</div>
+      <div class="who">The 3–10 person shop — office plus crew, everyone in one account.</div>
+      <ul>
+        <li><b>The full tool</b> — every feature, every report</li>
+        <li>Up to 10 users — grow your crew without growing your bill</li>
+        <li>Month-to-month · cancel anytime</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <h2>Pro</h2>
+      <div class="price">$449<span> /mo</span></div>
+      <div class="annual">~$359/mo billed annually</div>
+      <div class="who">Bigger shops — or any shop that wants the advanced layer as it lands.</div>
+      <ul>
+        <li><b>The full tool</b> — every feature, every report</li>
+        <li>Unlimited users</li>
+        <li>White-glove onboarding — we set your company up with you</li>
+        <li>Priority support</li>
+        <li class="roadlabel">Landing first in Pro (in the build)</li>
+        <li class="road">Weather-aware scheduling &amp; dispatch</li>
+        <li class="road">Advanced win/loss analytics — the tool that learns your pricing</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="fullstrip">
+    <h2>Tiers are about scale — never hostages.</h2>
+    <p>Everything TradeGOAT does today is in <b>every</b> tier: bring-your-own proposal ingestion,
+      the honest margin-first calculator, signed-on-glass field tickets, maintenance clocks and the
+      missed-visit watch, QuickBooks connection, all four reports and Company Insights. We will never
+      move a feature you have <i>down</i> behind a gate. Higher tiers add scale and new capabilities
+      on top — they never take from below.</p>
+  </div>
+
+  <section class="block">
+    <h2>The founding ladder</h2>
+    <p class="lead">Early companies carry us through testing — the deal reflects that.</p>
+    <div class="cards3">
+      <div class="mini"><span class="n">1</span><b>Every pilot is free</b>
+        <p>60–90 days, white-glove: we help load your documents, your customers, your equipment.
+        You test the real tool on your real business, invited and unhurried.</p></div>
+      <div class="mini"><span class="n">2</span><b>First 25 companies: half price, forever</b>
+        <p><span class="em">$75 / $125 / $225 a month by tier — for as long as you stay.</span>
+        Founding badge, a real voice in the roadmap, and our permanent gratitude. The rate lives
+        as long as your subscription does; cancel and return later, and standard pricing applies.</p></div>
+      <div class="mini"><span class="n">3</span><b>Companies 26–100: half price, year one</b>
+        <p>Still early, still believers — 50% off your first year, then standard rates.
+        After 100, the discounts have done their job.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>How billing works — the no-surprises rules</h2>
+    <p class="lead">Written before we ever take a payment, so you can hold us to it.</p>
+    <div class="cards3">
+      <div class="mini"><b>Month-to-month, cancel anytime</b>
+        <p>No contracts, no cancellation calls to a "retention specialist," no fees for leaving.</p></div>
+      <div class="mini"><b>Your pilot never auto-converts</b>
+        <p>When your pilot ends, we talk. You pick a tier, we agree in writing, and only then does
+        billing start. The tool keeps working while we talk. <span class="em">Nobody is ever surprised
+        by a charge.</span></p></div>
+      <div class="mini"><b>Your data is yours</b>
+        <p>Export everything, anytime. If you cancel, your account stays restorable for 90 days —
+        then it's permanently deleted. Sooner, if you ask.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Questions owners actually ask</h2>
+    <div class="faq">
+      <details><summary>Is this really not per seat?</summary>
+        <p>Really. Per-seat pricing punishes you for growing and makes you share logins to save money —
+        the thing everybody hates about the big-name tools. TradeGOAT is flat per company within your
+        tier's user count. Hiring your fourth tech costs you nothing.</p></details>
+      <details><summary>What counts as a "user"?</summary>
+        <p>A login. Owner, office, field tech — each person gets their own login with the right
+        view for their role (techs see their work, not your money). Sharing logins is what we're
+        trying to save you from.</p></details>
+      <details><summary>What happens when my crew grows past my tier?</summary>
+        <p>You move up one tier and everything comes with you — nothing to migrate, nothing re-set-up.
+        Growth covers up to 10 people; past that, Pro is unlimited.</p></details>
+      <details><summary>When do payments actually start?</summary>
+        <p>When we exit the testing phase — and you'll know well in advance. We're building the boring
+        parts properly first (the legal entity, the payment rails). Until then: pilots are free,
+        the waitlist is real, and this page is the promise we'll be held to.</p></details>
+      <details><summary>What about the AI agents I've heard about?</summary>
+        <p>Add-on specialists (the first, a code-and-licensing reference agent, is already live for
+        pilot companies) will price separately as an optional layer. Nothing about agents changes
+        the core tiers above.</p></details>
+    </div>
+  </section>
+
+  <section class="close">
+    <h2>Drive it first. <span style="color:var(--gold)">Decide later.</span></h2>
+    <p>The live demo is open — no login, no email, nothing to cancel. Then get in line.</p>
+    <div class="cta-row">
+      <a class="btn" href="demo.html">🚗 Drive the live demo</a>
+      <a class="btn ghost" href="/#waitlist">Join the waitlist</a>
+    </div>
+  </section>
+
+  <footer class="pagefoot">
+    <p style="margin-bottom:8px;"><a href="mailto:hello@thetradegoat.com">hello@thetradegoat.com</a> · <a href="/">thetradegoat.com</a></p>
+    <p>© 2026 TradeGOAT</p>
+  </footer>
+</div>
+</body>
+</html>
