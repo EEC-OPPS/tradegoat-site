@@ -304,5 +304,11 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
   });
 })();
 </script>
+<script>
+(function(){try{
+  fetch('https://tradegoat.vercel.app/api/hit',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
+    body:JSON.stringify({page:location.pathname.replace(/^/$/,'/index')+(location.search.indexOf('ref=')>-1?'?ref':''),ref:document.referrer||null})});
+}catch(e){}})();
+</script>
 </body>
 </html>
