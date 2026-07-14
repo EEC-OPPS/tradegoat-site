@@ -849,8 +849,17 @@
   </script>
 <script>
 (function(){try{
+  var vid=null;
+  try{
+    if(location.search.indexOf('goat=me')>-1)localStorage.setItem('tg_me','1');
+    if(localStorage.getItem('tg_me')==='1'){vid='founder';}
+    else{
+      vid=localStorage.getItem('tg_vid');
+      if(!vid){vid='v'+Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('tg_vid',vid);}
+    }
+  }catch(e){}
   fetch('https://tradegoat.vercel.app/api/hit',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
-    body:JSON.stringify({page:(location.pathname==='/'?'/index':location.pathname)+(location.search.indexOf('ref=')>-1?'?ref':''),ref:document.referrer||null})});
+    body:JSON.stringify({page:(location.pathname==='/'?'/index':location.pathname)+(location.search.indexOf('ref=')>-1?'?ref':''),ref:document.referrer||null,visitor:vid})});
 }catch(e){}})();
 </script>
 </body>
