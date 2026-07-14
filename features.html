@@ -21,16 +21,16 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#0f1f3d; --navy-mid:#16294e; --gold:#f5a623; --gold-light:#ffc94d; --gold-deep:#d98b0f;
+  --navy:#0f1f3d; --navy-mid:#16294e; --gold:#D97706; --gold-light:#ffc94d; --gold-deep:#d98b0f;
   --white:#fff; --text-muted:#8a93a6; --text-soft:#c6cddb; --border:rgba(255,255,255,0.08);
 }
 html{scroll-behavior:smooth}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--navy);color:var(--white);-webkit-font-smoothing:antialiased}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(245,166,35,0.14) 0%,transparent 70%)}
+  background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(217,119,6,0.14) 0%,transparent 70%)}
 .wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:0 24px}
-a.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,var(--gold-light),var(--gold));color:var(--navy);font-weight:800;font-size:15px;text-decoration:none;padding:13px 24px;border-radius:11px;box-shadow:0 10px 26px rgba(245,166,35,0.28)}
-a.btn.ghost{background:rgba(255,255,255,0.04);color:var(--gold);border:1px solid rgba(245,166,35,0.45);box-shadow:none}
+a.btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,var(--gold-light),var(--gold));color:var(--navy);font-weight:800;font-size:15px;text-decoration:none;padding:13px 24px;border-radius:11px;box-shadow:0 10px 26px rgba(217,119,6,0.28)}
+a.btn.ghost{background:rgba(255,255,255,0.04);color:var(--gold);border:1px solid rgba(217,119,6,0.45);box-shadow:none}
 nav.bar{position:relative;z-index:40;background:rgba(10,23,48,0.82);border-bottom:1px solid var(--border)}
 nav.bar .inner{max-width:1020px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 nav.bar img{height:38px;background:#fff;border-radius:8px;padding:3px 7px}
@@ -59,20 +59,20 @@ nav.bar .inner{position:relative}
   nav.bar.open .mpanel{display:block}
 }
 .hero{text-align:center;padding:56px 0 30px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(245,166,35,0.4);background:rgba(245,166,35,0.07);padding:8px 18px;border-radius:99px;margin-bottom:22px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(217,119,6,0.4);background:rgba(217,119,6,0.07);padding:8px 18px;border-radius:99px;margin-bottom:22px}
 h1{font-size:clamp(30px,5vw,48px);line-height:1.12;letter-spacing:-.02em;margin-bottom:14px}
 h1 .gold{background:linear-gradient(120deg,var(--gold-light),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .sub{color:var(--text-soft);font-size:clamp(15px,2vw,17.5px);max-width:680px;margin:0 auto;line-height:1.65}
 section.stage{padding:34px 0;border-top:1px solid var(--border)}
 .stagehead{display:flex;align-items:center;gap:14px;margin-bottom:6px}
-.stagehead .n{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(245,166,35,0.14);border:1px solid rgba(245,166,35,0.4);color:var(--gold);font-weight:900;font-size:17px;flex-shrink:0}
+.stagehead .n{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(217,119,6,0.14);border:1px solid rgba(217,119,6,0.4);color:var(--gold);font-weight:900;font-size:17px;flex-shrink:0}
 .stagehead h2{font-size:clamp(20px,2.8vw,27px)}
 .stagelead{color:var(--text-muted);font-size:14px;margin:0 0 18px 56px;max-width:700px;line-height:1.6}
 .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:10px}
 .f{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
 .f b{display:block;font-size:14px;margin-bottom:4px}
 .f p{font-size:12.5px;color:var(--text-soft);line-height:1.6}
-.everystrip{margin:40px 0 8px;background:linear-gradient(120deg,rgba(245,166,35,0.12),rgba(245,166,35,0.04));border:1px solid rgba(245,166,35,0.3);border-radius:16px;padding:22px 26px;text-align:center;font-size:14.5px;color:var(--text-soft);line-height:1.7}
+.everystrip{margin:40px 0 8px;background:linear-gradient(120deg,rgba(217,119,6,0.12),rgba(217,119,6,0.04));border:1px solid rgba(217,119,6,0.3);border-radius:16px;padding:22px 26px;text-align:center;font-size:14.5px;color:var(--text-soft);line-height:1.7}
 .everystrip b{color:var(--gold-light)}
 .close{text-align:center;padding:52px 0 40px;border-top:1px solid var(--border);margin-top:26px}
 .close h2{font-size:clamp(22px,3vw,30px);margin-bottom:10px}
@@ -223,7 +223,7 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
     </div>
   </section>
 
-  <div style="margin-top:26px;background:rgba(245,166,35,0.07);border:1px solid rgba(245,166,35,0.3);border-radius:14px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+  <div style="margin-top:26px;background:rgba(217,119,6,0.07);border:1px solid rgba(217,119,6,0.3);border-radius:14px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
     <span style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)">The path · step 2 of 4 — <span style="color:var(--gold)">See it → Drive it → Price it → Request access</span></span>
     <a class="btn" href="demo.html" style="font-size:13.5px;padding:10px 18px">Next: Drive the demo →</a>
   </div>
