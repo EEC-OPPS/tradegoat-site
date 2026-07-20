@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>TradeGOAT — Trade-Show Flyer (double-sided, US Letter)</title>
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  html,body { background:#3a3a3a; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; }
+  .sheet { width:8.5in; height:11in; margin:0 auto 0.3in; position:relative; overflow:hidden; background:#0f1f3d; color:#fff; display:flex; flex-direction:column; }
+  .sheet + .sheet { page-break-before:always; }
+
+  /* ---- shared ---- */
+  .pad { padding:0.5in 0.55in; display:flex; flex-direction:column; flex:1; }
+  .orange { color:#D97706; }
+  .muted { color:#c6cddb; }
+  .shot { border-radius:9px; overflow:hidden; border:1px solid rgba(255,255,255,0.14); background:#fff; box-shadow:0 8px 22px rgba(0,0,0,0.28); }
+  .shot .bar { height:0.2in; background:#eef0f4; display:flex; align-items:center; gap:5px; padding:0 9px; }
+  .shot .bar i { width:7px; height:7px; border-radius:50%; background:#cfd4dc; display:inline-block; }
+  .shot .win { overflow:hidden; }
+  .shot .win img { width:100%; display:block; }
+
+  /* ---- FRONT ---- */
+  .hero-img { display:block; margin:0.3in auto 0.06in; max-height:2.9in; width:auto; max-width:100%; border-radius:12px; box-shadow:0 8px 22px rgba(0,0,0,0.3); }
+  .kicker { text-align:center; font-size:13pt; font-weight:700; line-height:1.35; margin:0.22in 0 0.14in; }
+  .kicker .muted { font-weight:400; }
+  .points { display:flex; flex-direction:column; gap:0.12in; margin:0.1in 0 0.02in; }
+  .pt { display:flex; gap:0.12in; align-items:baseline; font-size:12.5pt; line-height:1.35; }
+  .pt .arw { color:#D97706; font-weight:800; flex-shrink:0; }
+  .pt b { color:#fff; }
+  .pt span { color:#c6cddb; }
+  .cta { margin-top:auto; background:rgba(255,255,255,0.05); border:1px solid rgba(217,119,6,0.55); border-radius:14px; padding:0.24in 0.3in; display:flex; align-items:center; gap:0.26in; }
+  .cta .drive { font-size:15pt; font-weight:800; line-height:1.15; }
+  .cta .url { font-size:21pt; font-weight:800; color:#D97706; letter-spacing:-0.01em; }
+  .cta .free { font-size:11pt; color:#c6cddb; margin-top:0.05in; }
+  .qr { width:1.25in; height:1.25in; background:#fff; border-radius:9px; flex-shrink:0; display:flex; align-items:center; justify-content:center; text-align:center; color:#5b6472; font-size:9.5pt; font-weight:700; line-height:1.3; padding:0.09in; }
+
+  /* ---- BACK ---- */
+  .bhead { padding:0.42in 0.55in 0.2in; }
+  .bhead .wm { font-size:15pt; font-weight:800; letter-spacing:.3px; }
+  .bhead h2 { font-size:20pt; font-weight:800; margin-top:5px; line-height:1.12; }
+  .bhead h2 .muted { font-weight:400; font-size:14pt; }
+  .bpad { padding:0 0.55in 0.4in; display:flex; flex-direction:column; flex:1; gap:0.16in; }
+  .shotrow { display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.14in; }
+  .grid6 { display:grid; grid-template-columns:1fr 1fr; gap:0.14in 0.28in; }
+  .stage b { color:#D97706; font-size:11.5pt; letter-spacing:.02em; }
+  .stage ul { list-style:none; margin-top:4px; }
+  .stage li { font-size:10.5pt; line-height:1.5; color:#e7ebf3; padding-left:0.14in; position:relative; }
+  .stage li::before { content:'›'; color:#D97706; position:absolute; left:0; font-weight:800; }
+  .keystrip { background:linear-gradient(120deg,rgba(217,119,6,0.16),rgba(217,119,6,0.04)); border:1px solid rgba(217,119,6,0.4); border-radius:12px; padding:0.2in 0.28in; font-size:11pt; line-height:1.55; }
+  .keystrip b { color:#fff; }
+  .bfoot { margin-top:auto; text-align:center; font-size:12pt; padding-top:0.14in; }
+  .bfoot .orange { font-weight:800; font-size:15pt; }
+</style>
+</head>
+<body>
+
+<!-- ================= FRONT ================= -->
+<div class="sheet">
+  <img class="hero-img" src="../og-image.png" alt="TradeGOAT — Built by a contractor, for contractors" />
+  <div class="pad">
+    <p class="kicker">One tool for the whole business — <span class="muted">price the job, send the proposal, track the money to paid, and know what every job actually made.</span></p>
+
+    <div class="shot">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="win" style="height:2.0in;"><img src="../shots/dashboard-money.png" alt="Money dashboard" /></div>
+    </div>
+
+    <div class="points">
+      <div class="pt"><span class="arw">&rarr;</span><div><b>Bring your own proposal — it becomes the tool.</b> <span>You don't rebuild your company inside it.</span></div></div>
+      <div class="pt"><span class="arw">&rarr;</span><div><b>Track every job from bid to paid</b> <span>— with two-way QuickBooks billing — and finally know what it actually made.</span></div></div>
+      <div class="pt"><span class="arw">&rarr;</span><div><b>An AI office secretary</b> <span>that reads your email and sorts your books — and never does anything without your approval.</span></div></div>
+    </div>
+
+    <div class="cta">
+      <div style="flex:1;">
+        <div class="drive">Drive the live demo — no signup.</div>
+        <div class="url">thetradegoat.com</div>
+        <div class="free">Free during early access.</div>
+      </div>
+      <div class="qr"><img src="qr-demo.png" alt="Scan to preview the demo" style="width:100%;height:100%;object-fit:contain;display:block;" /></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= BACK ================= -->
+<div class="sheet">
+  <div class="bhead">
+    <div class="wm">Trade<span class="orange">GOAT</span></div>
+    <h2>Everything it does <span class="muted">— the whole loop, one tool.</span></h2>
+  </div>
+  <div class="bpad">
+
+    <div class="shotrow">
+      <div class="shot"><div class="bar"><i></i><i></i><i></i></div><div class="win" style="height:1.35in;"><img src="../shots/proposals-pipeline.png" alt="Proposals pipeline" /></div></div>
+      <div class="shot"><div class="bar"><i></i><i></i><i></i></div><div class="win" style="height:1.35in;"><img src="../shots/won-vs-lost.png" alt="Won vs lost" /></div></div>
+      <div class="shot"><div class="bar"><i></i><i></i><i></i></div><div class="win" style="height:1.35in;"><img src="../shots/invoices-ledger.png" alt="Invoice ledger" /></div></div>
+    </div>
+
+    <div class="grid6">
+      <div class="stage"><b>PRICE IT</b><ul><li>Cost-up calculator, honest margins</li><li>Overhead folded into cost — real profit</li><li>Multiple options per proposal</li></ul></div>
+      <div class="stage"><b>PROPOSE IT</b><ul><li>Your Word/PDF proposal becomes the template</li><li>Real Word output with your logo</li><li>Locks the moment it's signed</li></ul></div>
+      <div class="stage"><b>WIN IT</b><ul><li>A pipeline that doesn't forget a 9-month deal</li><li>Signing creates the job instantly</li><li>Every win and loss teaches</li></ul></div>
+      <div class="stage"><b>TRACK THE MONEY</b><ul><li>Two-way QuickBooks billing + payment detection</li><li>Parts owed, collected, backlog — labeled honestly</li><li>Know what each job truly cost</li></ul></div>
+      <div class="stage"><b>RUN IT</b><ul><li>Your field ticket, signed on a phone</li><li>Never miss a maintenance visit</li><li>Dispatch, scheduling, crews</li></ul></div>
+      <div class="stage"><b>LEARN FROM IT</b><ul><li>Live job scorecard — catch red before it's too late</li><li>Won-vs-lost, win rate, revenue by type</li><li>Your AI office secretary, approve-first</li></ul></div>
+    </div>
+
+    <div class="keystrip"><b>Every feature is in every tier.</b> Pricing gates how many people you bring — never what the tool will do for you. And it all starts from the documents you already use.</div>
+
+    <div class="bfoot">
+      <div>Drive the whole thing in ten minutes — no signup.</div>
+      <div class="orange">thetradegoat.com</div>
+      <div class="muted" style="font-size:11pt;">Built by Travis Evans · 20-year elevator contractor · Free during early access</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
