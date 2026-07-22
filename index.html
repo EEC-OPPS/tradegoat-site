@@ -591,7 +591,7 @@
         <a href="blog/index.html">Blog</a>
         <a href="updates.html">What's new</a>
       </div>
-      <a href="#waitlist" class="login" style="background:linear-gradient(180deg,#ffc94d,#D97706)">Request early access</a>
+      <a href="#waitlist" class="login" style="background:linear-gradient(180deg,#ffc94d,#D97706)">Get set up free</a>
       <a href="https://tradegoat.vercel.app/sign-in" class="login" style="background:none;color:#c6cddb;font-weight:700">Log in</a>
       <button class="burger" aria-label="Menu" onclick="this.closest('nav').classList.toggle('open')">☰</button>
       <div class="mpanel">
@@ -602,7 +602,7 @@
         <a href="blog/index.html">Blog</a>
         <a href="updates.html">What's new</a>
         <a href="https://tradegoat.vercel.app/sign-in">Log in</a>
-        <a class="cta" href="/#waitlist">Request early access</a>
+        <a class="cta" href="/#waitlist">Get set up free</a>
       </div>
     </div>
   </nav>
@@ -626,9 +626,9 @@
 
       <div class="cta-row">
         <a href="demo.html" class="btn-gold">Drive the demo — no login &rarr;</a>
-        <a href="#waitlist" class="btn-ghost">Request early access</a>
+        <a href="#beta" class="btn-ghost">Get set up free — 90-day beta</a>
       </div>
-      <p class="hero-note">Built by a 20-year contractor. Onboarding early companies one at a time.</p>
+      <p class="hero-note">Built by a 20-year contractor. We're onboarding verified trade businesses into the beta — free for at least 90 days, no card.</p>
 
       <div class="hero-shot">
         <div class="bar"><i></i><i></i><i></i><span>app.thetradegoat.com — your dashboard</span></div>
@@ -786,9 +786,9 @@
 
     <!-- ── WAITLIST — after the case is made ── -->
     <section class="waitlist-section">
-      <span id="waitlist"></span>
-      <h2 class="section-title">Get your invite</h2>
-      <p class="section-sub">We're onboarding early companies one at a time, so every operator gets real attention. Get in line — or skip it entirely by driving the <a href="demo.html" style="color:var(--gold)">demo</a> first.</p>
+      <span id="waitlist"></span><span id="beta"></span>
+      <h2 class="section-title">Try the whole tool free for 90 days</h2>
+      <p class="section-sub">We're actively onboarding <b style="color:#fff">verified trade businesses</b> into the beta — the full tool free for at least 90 days, and we help you load your documents, customers, and equipment. No credit card, cancel anytime, and your feedback shapes what we build next. Want to look first? Drive the <a href="demo.html" style="color:var(--gold)">demo</a> — no signup.</p>
       <form class="waitlist-form" id="waitlistForm" name="waitlist">
         <input type="email" id="emailInput" name="email" placeholder="your@email.com" required />
         <select id="toolInput" name="proposal_tool" required style="font:inherit;font-size:15px;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.06);color:#fff;min-width:230px">
@@ -799,11 +799,11 @@
           <option value="pen-paper" style="background:#0f1f3d;color:#fff">Pen &amp; paper</option>
         </select>
         <input type="hidden" name="_subject" value="New TradeGOAT waitlist signup" />
-        <button type="submit" id="submitBtn">Get in line for an invite</button>
+        <button type="submit" id="submitBtn">Get set up free</button>
       </form>
       <div class="success-msg" id="successMsg">
         <div id="posLine" style="font-size:18px;font-weight:800;margin-bottom:6px"></div>
-        <div style="font-size:13.5px;opacity:.9;margin-bottom:10px">Invites go out as we onboard each wave. <b>Want to move up the line?</b> Every operator who joins with your link bumps you up:</div>
+        <div style="font-size:13.5px;opacity:.9;margin-bottom:10px">We'll reach out to get you set up — we onboard in small waves so every operator gets real attention. <b>Want to move up?</b> Every operator who joins with your link bumps you up:</div>
         <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
           <input id="shareLink" readonly style="font:inherit;font-size:13px;padding:10px 12px;border-radius:9px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.08);color:#fff;min-width:260px" />
           <button type="button" id="copyLink" style="font:inherit;font-size:13px;font-weight:800;padding:10px 16px;border-radius:9px;border:none;cursor:pointer;background:linear-gradient(180deg,#ffc94d,#D97706);color:#0f1f3d">Copy link</button>
