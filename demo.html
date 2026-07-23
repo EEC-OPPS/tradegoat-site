@@ -318,7 +318,7 @@ table.sc td:first-child{text-align:left;font-weight:600}
     <a class="btn ghost" href="pricing.html" style="text-decoration:none">Pricing</a>
     <button class="btn ghost" id="guideBtn">? Guide</button>
     <button class="btn ghost" id="resetBtn">↺ Reset</button>
-    <a class="btn gold" href="/#waitlist">Get set up free</a>
+    <a class="btn gold" href="/#beta">Get set up free</a>
   </div>
 </div>
 
@@ -1086,7 +1086,7 @@ function renderGuide(){
   const step=GUIDE[S.guide];
   $("#guideText").textContent=step.txt;
   const go=$("#guideGo");
-  if(S.guide===GUIDE.length-1){ go.textContent="Get set up free →"; go.onclick=()=>location.href="/#waitlist"; }
+  if(S.guide===GUIDE.length-1){ go.textContent="Get set up free →"; go.onclick=()=>location.href="/#beta"; }
   else { go.textContent="Show me"; go.onclick=()=>{ if(step.scene) showScene(step.scene); setTimeout(()=>pulse(step.target()),800); }; }
   $("#guideSteps").innerHTML=GUIDE.map((_,i)=>'<i class="'+(i<S.guide?"done":"")+'"></i>').join("");
 }
