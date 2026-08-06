@@ -154,7 +154,8 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
     <p class="sub">Three flat monthly prices. No per-user math, no feature hostages, no contracts.
       Add a tech, add your spouse, add the office — your price doesn't move inside your tier.</p>
     <div class="notice">
-      <b>Start with 90 days of Pro, on us.</b> Every feature, unlimited users, and we load your
+      <b>Start with 90 days of Pro, on us — and the first 25 companies keep half price for as long
+      as they stay.</b> Every feature, unlimited users, and we load your
       documents with you. <b>A company name and an email is the whole signup</b> — no credit card,
       because we'd rather earn the sale than trap it. When the ninety days are up you pick a tier or you
       walk, and nobody ever sees a charge that wasn't agreed in writing first.
@@ -231,9 +232,9 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
         <p><span class="em">$75 / $125 / $299 a month by tier — for as long as you stay.</span>
         Founding badge, a real voice in the roadmap, and our permanent gratitude. The rate lives
         as long as your subscription does; cancel and return later, and standard pricing applies.</p></div>
-      <div class="mini"><span class="n">3</span><b>Companies 26–100: first month free, then 25% off for eleven months</b>
-        <p>Still early, still believers — your first month costs nothing, and the discount rides
-        through your first year. After 100, the discounts have done their job.</p></div>
+      <div class="mini"><span class="n">3</span><b>Your rate never moves on its own</b>
+        <p>Whatever you lock in at, that is your price. We do not raise it because you grew, added
+        a truck, or hired two more people. If we ever change list pricing, you keep yours.</p></div>
     </div>
   </section>
 
@@ -301,8 +302,12 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
 (function(){
   // Founding-25 counter - update SPOTS_TAKEN as companies land (1 = UpLift).
   var SPOTS_TAKEN = 1;
+  // Below 8 taken, a hard count advertises emptiness rather than scarcity. Both are true;
+  // the count starts helping us once it reads as momentum. Auto-flips at 8.
   var el=document.getElementById('spotsLeft');
-  if(el) el.textContent=(25-SPOTS_TAKEN)+' of 25 founding spots left';
+  if(el) el.textContent = SPOTS_TAKEN < 8
+    ? 'Most founding spots are still open'
+    : (25-SPOTS_TAKEN)+' of 25 founding spots left';
   var seg=document.getElementById('billSeg');
   seg.addEventListener('click',function(e){
     var b=e.target.closest('button'); if(!b) return;
