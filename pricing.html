@@ -201,7 +201,7 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
         <li><b>Every feature and every report</b>, dispatch included</li>
         <li>Unlimited users</li>
         <li><b>Dispatch</b> — assign from the office, techs acknowledge on their phones, and an emergency escalates until a human owns it. Everywhere else this is a second subscription billed per person on top of your field software. Here it is in the price.</li>
-        <li><b>Your AI office secretary — one seat included</b> (the owner's). She reads and drafts your email, files your documents, and runs your dispatch board — and nothing reaches a customer without your tap. Additional secretary seats $149/mo on any tier — she works your inbox and your documents wherever you are; the dispatch board she runs comes with Pro. She is priced per person because she lives inside one person's mailbox and can do everything in the tool that person can.</li>
+        <li><b>One secretary seat included — the owner's.</b> One, not one per person. She reads and drafts your email, files your documents, and runs your dispatch board — and nothing reaches a customer without your tap. Anyone else who wants their own is $149/mo, on any tier. She is priced per person because she lives inside one real mailbox and mirrors one real person — she can do everything in the tool that person can, and nothing they cannot.</li>
         <li>White-glove onboarding — we set your company up with you</li>
         <li>Priority support</li>
         <li class="roadlabel">Landing first in Pro (in the build)</li>
@@ -262,9 +262,20 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
     <h2>Questions owners actually ask</h2>
     <div class="faq">
       <details><summary>Is this really not per seat?</summary>
-        <p>Really. Per-seat pricing punishes you for growing and makes you share logins to save money —
-        the thing everybody hates about the big-name tools. TradeGOAT is flat per company within your
-        tier's user count. Hiring your fourth tech costs you nothing.</p></details>
+        <p>For the tool itself, yes. Per-seat pricing punishes you for growing and makes you share logins
+        to save money — the thing everybody hates about the big-name tools. TradeGOAT is flat per
+        company within your tier's user count. Hiring your fourth tech costs you nothing.
+        <b>The one exception is the secretary, and we will not bury it:</b> she is priced per person,
+        because she works inside one real mailbox. Adding a technician or another office seat is
+        never an add-on. Adding a second secretary is.</p></details>
+      <details><summary>How many secretaries do I get?</summary>
+        <p>Pro includes <b>one</b> — the owner's. Not one for every person in the tool. Each
+        additional secretary is $149/mo and can be given to anyone: your office manager, your
+        service coordinator, whoever actually needs one working alongside them.</p>
+        <p>The reason is simple. She is not a chat box everyone shares. She lives inside one
+        person's mailbox and works with exactly that person's reach — your office manager's
+        secretary sees what your office manager sees, and never a dollar a viewer could not see.
+        One of her per person is the only way that works honestly.</p></details>
       <details><summary>What counts as a "user"?</summary>
         <p>A login. Owner, office, field tech — each person gets their own login with the right
         view for their role (techs see their work, not your money). Sharing logins is what we're
@@ -305,13 +316,12 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
 <script>
 (function(){
   // Founding-25 counter - update SPOTS_TAKEN as companies land (1 = UpLift).
-  var SPOTS_TAKEN = 1;
-  // Below 8 taken, a hard count advertises emptiness rather than scarcity. Both are true;
-  // the count starts helping us once it reads as momentum. Auto-flips at 8.
+  // Travis, 2026-08-05: never publish a remaining-spots count. How many are left is
+  // nobody outside the company's business, and any number we print reads as "nobody is
+  // signing up" rather than as momentum. The urgency comes from the offer being finite
+  // and permanent, not from a countdown.
   var el=document.getElementById('spotsLeft');
-  if(el) el.textContent = SPOTS_TAKEN < 8
-    ? 'Most founding spots are still open'
-    : (25-SPOTS_TAKEN)+' of 25 founding spots left';
+  if(el) el.textContent = 'Once 25 are in, this rate is gone for good';
   var seg=document.getElementById('billSeg');
   seg.addEventListener('click',function(e){
     var b=e.target.closest('button'); if(!b) return;
