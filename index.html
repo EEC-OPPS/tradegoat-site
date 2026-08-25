@@ -803,7 +803,7 @@
       </form>
       <div class="success-msg" id="successMsg">
         <div id="posLine" style="font-size:18px;font-weight:800;margin-bottom:6px"></div>
-        <div style="font-size:13.5px;opacity:.9;margin-bottom:10px">We'll reach out to get you set up — we onboard in small waves so every operator gets real attention. <b>Want to move up?</b> Every operator who joins with your link bumps you up:</div>
+        <div style="font-size:13.5px;opacity:.9;margin-bottom:10px">Travis reads these himself and will email you back, usually the same day. If it looks like a fit, getting started is your email, your company, and about five minutes. <b>Know somebody else in the trades?</b> Send them this:</div>
         <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
           <input id="shareLink" readonly style="font:inherit;font-size:13px;padding:10px 12px;border-radius:9px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.08);color:#fff;min-width:260px" />
           <button type="button" id="copyLink" style="font:inherit;font-size:13px;font-weight:800;padding:10px 16px;border-radius:9px;border:none;cursor:pointer;background:linear-gradient(180deg,#ffc94d,#D97706);color:#0f1f3d">Copy link</button>
@@ -886,7 +886,7 @@
         if (data && data.ok) {
           form.style.display = 'none';
           document.getElementById('posLine').textContent =
-            (data.existing ? "You're already in line — spot #" : "✓ You're in line — spot #") + data.position + ' of ' + data.total;
+            data.existing ? "You're already on the list." : "✓ Got it — thank you.";
           document.getElementById('shareLink').value = 'https://thetradegoat.com/?ref=' + data.refCode;
           successMsg.style.display = 'block';
           return;
@@ -899,7 +899,7 @@
         });
         if (fb.ok) {
           form.style.display = 'none';
-          document.getElementById('posLine').textContent = "✓ You're in line.";
+          document.getElementById('posLine').textContent = "✓ Got it — thank you.";
           document.querySelector('#successMsg div[style*="opacity"]').style.display = 'none';
           document.getElementById('shareLink').parentElement.style.display = 'none';
           successMsg.style.display = 'block';
