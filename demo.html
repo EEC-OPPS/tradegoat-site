@@ -304,6 +304,139 @@ table.sc td:first-child{text-align:left;font-weight:600}
 .toast span{color:var(--muted);font-size:11.5px}
 @keyframes tin{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
 @media(max-width:760px){.guide{left:8px;right:8px;max-width:none}.toasts{right:8px;bottom:auto;top:104px}}
+/* the banner buttons were being squeezed into one-word columns on a phone */
+@media(max-width:760px){
+  .demobar{padding:9px 12px}
+  .demobar .acts{width:100%;flex-wrap:wrap;gap:6px}
+  .demobar .btn{white-space:nowrap;padding:7px 11px;font-size:11.5px}
+  .demobar .btn.gold{flex:1;justify-content:center}
+}
+
+/* ═════════ DRIVEWAY PROPOSAL ═════════ */
+.dwrap{display:grid;gap:16px;grid-template-columns:minmax(0,400px) minmax(0,400px);justify-content:center;align-items:start}
+@media(max-width:900px){.dwrap{grid-template-columns:minmax(0,400px);justify-content:center}}
+.dwrap .side{font-size:9.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:7px}
+.dcust{position:relative}
+.dinput{width:100%;font:inherit;font-size:13.5px;border:1px solid rgba(15,31,68,.18);border-radius:10px;padding:10px 12px;background:#fff;color:var(--ink)}
+.dinput:focus{outline:none;border-color:var(--orange)}
+.dinput::placeholder{color:rgba(15,31,68,.38)}
+.dmatch{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:20;background:#fff;border:1px solid var(--soft);border-radius:10px;box-shadow:0 14px 34px rgba(15,31,68,.16);overflow:hidden}
+.dmatch button{display:block;width:100%;text-align:left;font-size:12.5px;padding:9px 12px;border-bottom:1px solid var(--soft)}
+.dmatch button:last-child{border-bottom:none}
+.dmatch button:hover{background:var(--cream)}
+.dmatch button b{display:block;font-size:12.5px}
+.dmatch button span{font-size:10.5px;color:var(--muted)}
+.dmatch button.make{background:var(--orange-soft);color:var(--amber);font-weight:800}
+.dpick{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--cream);border-radius:10px;padding:9px 12px}
+.dpick b{font-size:13px} .dpick span{font-size:10.5px;color:var(--muted);display:block}
+.dpick .x{font-size:15px;color:var(--muted);line-height:1;padding:2px 5px}
+.dline{display:flex;gap:7px;align-items:center;margin-top:7px}
+.dline .t{flex:1;min-width:0}
+.dline .p{width:92px;text-align:right;font-family:var(--mono)}
+.dline .x{color:var(--muted);font-size:15px;padding:3px 5px;line-height:1}
+.dquick{margin-top:8px}
+.dquick .lb{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.dtot{display:flex;justify-content:space-between;align-items:baseline;border-top:1.5px solid var(--navy);margin-top:11px;padding-top:9px}
+.dtot .lb{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dtot .v{font-size:25px;font-weight:700}
+.dtot .note{font-size:10px;color:var(--muted);text-align:right;margin-top:1px}
+.dterm{display:flex;flex-direction:column;gap:5px;margin-top:11px}
+.dterm button{text-align:left;font-size:12.5px;font-weight:600;border:1.5px solid rgba(15,31,68,.15);border-radius:10px;padding:9px 12px;background:#fff}
+.dterm button.on{border-color:var(--navy);background:var(--navy);color:#fff}
+.dterm button span{display:block;font-size:10.5px;font-weight:500;opacity:.65;margin-top:1px}
+.dexits{display:flex;flex-direction:column;gap:7px;margin-top:13px}
+.dexits .abtn{padding:12px;font-size:13px;width:100%}
+.dexits .quiet{border:none;color:var(--muted);font-size:11.5px;font-weight:600;padding:7px}
+.dexits .quiet:hover{color:var(--orange)}
+
+/* the customer's page — no login, no app */
+.cpage{background:#fff;border:1px solid var(--soft);border-radius:22px;overflow:hidden;box-shadow:0 18px 44px rgba(15,31,68,.12);max-width:400px;margin:0 auto}
+.cpage.waiting{border-style:dashed;box-shadow:none;background:transparent}
+.cpage .wait{padding:52px 22px;text-align:center;font-size:12.5px;color:var(--muted);line-height:1.6}
+.cpage .brandbar{background:var(--navy);color:#fff;padding:15px 18px;display:flex;align-items:center;gap:11px}
+.cpage .brandbar .mk{width:38px;height:38px;border-radius:10px;background:#fff;color:var(--navy);font-weight:900;display:grid;place-items:center;font-size:17px;flex-shrink:0}
+.cpage .brandbar b{font-size:14px;display:block;line-height:1.25}
+.cpage .brandbar span{font-size:11px;color:rgba(255,255,255,.62)}
+.cpage .body{padding:17px 18px 20px}
+.cpage .hi{font-size:13px;line-height:1.5;margin-bottom:13px}
+.cpage .cl{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:9px 0;border-bottom:1px solid var(--soft)}
+.cpage .cl b{font-weight:500}
+.cpage .ct{display:flex;justify-content:space-between;align-items:baseline;padding-top:11px;margin-top:2px;border-top:1.5px solid var(--navy)}
+.cpage .ct .v{font-size:24px;font-weight:700}
+.cpage .terms{font-size:12.5px;color:var(--muted);margin-top:11px;line-height:1.5}
+.cpage .agree{width:100%;background:var(--green);color:#fff;font-size:15px;font-weight:800;border-radius:11px;padding:16px;margin-top:15px;letter-spacing:.01em}
+.cpage .agree:hover{opacity:.92}
+.cpage .whisper{text-align:center;font-size:9.5px;color:var(--muted);padding:11px;border-top:1px solid var(--soft);letter-spacing:.04em}
+.cpage .signed{text-align:center;padding:28px 20px}
+.cpage .signed .big{font-size:34px}
+.cpage .signed b{display:block;font-size:15px;margin:9px 0 4px}
+.cpage .signed p{font-size:12.5px;color:var(--muted);line-height:1.55}
+.dclock{background:var(--navy);color:#fff;border-radius:var(--radius);padding:12px 15px;margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.dclock .lb{font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#FFC94D}
+.dclock .v{font-size:13px;line-height:1.45}
+
+/* ═════════ AROUND ME — the map ═════════ */
+.maplay{display:grid;gap:12px;grid-template-columns:minmax(0,1fr) 270px;align-items:start}
+@media(max-width:860px){.maplay{grid-template-columns:1fr}}
+.mapbox{position:relative;background:#EDEDE4;border:1px solid var(--soft);border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3}
+.mapbox svg{display:block;width:100%;height:100%}
+.mapbox .rd{stroke:#fff;fill:none;stroke-linecap:round}
+.mapbox .blk{fill:#E3E3D8}
+.mapbox .wtr{fill:#CFDCE4}
+.mapbox .grn{fill:#DFE6D4}
+.pin{cursor:pointer}
+.pin circle.hd{stroke:#fff;stroke-width:2.5}
+.pin text{font-size:9px;font-weight:800;fill:#fff;text-anchor:middle;pointer-events:none}
+.pin.sel circle.hd{stroke-width:4}
+.pin:hover circle.hd{stroke-width:4}
+.truck circle.hd{stroke:var(--navy);stroke-width:2.5;fill:#fff}
+.truck text{fill:var(--navy)}
+.mapkey{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:9px}
+.mapkey i{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:-1px}
+.layers .lrow{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12.5px;padding:8px 0;border-bottom:1px solid var(--soft)}
+.layers .lrow:last-child{border-bottom:none}
+.layers .sw{width:38px;height:21px;border-radius:99px;background:rgba(15,31,68,.16);position:relative;flex-shrink:0;transition:background .18s}
+.layers .sw::after{content:"";position:absolute;top:2.5px;left:2.5px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .18s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.layers .sw.on{background:var(--navy)}
+.layers .sw.on::after{transform:translateX(17px)}
+.selcard{margin-top:12px}
+.selcard .nm{font-size:14px;font-weight:700;line-height:1.3}
+.selcard .cu{font-size:11.5px;color:var(--muted);margin-top:1px}
+.selcard .rows{margin-top:10px}
+.selcard .r{display:flex;justify-content:space-between;gap:10px;font-size:12px;padding:6px 0;border-top:1px solid var(--soft)}
+.selcard .r b{font-weight:600}
+.focusnote{background:var(--navy);color:#fff;font-size:11.5px;line-height:1.5;border-radius:9px;padding:10px 12px;margin-top:10px}
+.focusnote b{color:#FFC94D}
+
+/* ═════════ JOB MONEY — draws + vendors ═════════ */
+.mtabs{margin-bottom:12px}
+.jmhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.jmhead .l b{font-size:15px} .jmhead .l span{display:block;font-size:11.5px;color:var(--muted);margin-top:1px}
+.lockstrip{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--muted);background:var(--cream);border-radius:9px;padding:8px 12px;margin-top:11px;line-height:1.45}
+.drow{display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid var(--soft);flex-wrap:wrap}
+.drow .nm{flex:1;min-width:130px;font-size:13px;font-weight:600}
+.drow .nm span{display:block;font-size:10.5px;color:var(--muted);font-weight:500;margin-top:1px}
+.drow .amt{font-family:var(--mono);font-size:13.5px;font-weight:600;width:88px;text-align:right}
+.drow button.chip{font-size:9.5px;font-weight:800;letter-spacing:.05em;padding:5px 11px;border-radius:99px;text-transform:uppercase;border:1px solid transparent;min-width:84px}
+.drow button.chip:hover{filter:brightness(.94)}
+.balance{display:flex;justify-content:space-between;align-items:baseline;border-top:1.5px solid var(--navy);margin-top:4px;padding-top:10px;font-size:12.5px}
+.balance b{font-family:var(--mono);font-size:15px}
+.balance .ok{color:var(--green);font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.vsum{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));margin-bottom:12px}
+.vsum .card{border-top:3px solid var(--navy);padding:12px 14px}
+.vsum .card.owed{border-top-color:var(--amber)}
+.vsum .lb{font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.vsum .v{font-size:19px;font-weight:700;margin-top:2px}
+.vrow{border-top:1px solid var(--soft);padding:11px 0}
+.vrow .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.vrow .nm{flex:1;min-width:140px;font-size:13px;font-weight:600}
+.vrow .fig{font-family:var(--mono);font-size:12.5px;text-align:right;min-width:78px}
+.vrow .fig span{display:block;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-family:-apple-system,sans-serif;font-weight:800}
+.vmeter{height:6px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:8px}
+.vmeter i{display:block;height:100%;background:var(--green);border-radius:99px;transition:width .5s ease}
+.vsearch{width:100%;font:inherit;font-size:13px;border:1px solid rgba(15,31,68,.18);border-radius:10px;padding:9px 12px;margin-bottom:2px;background:#fff;color:var(--ink)}
+.vsearch:focus{outline:none;border-color:var(--orange)}
+.vempty{font-size:12.5px;color:var(--muted);padding:16px 0;text-align:center}
 </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -311,7 +444,7 @@ table.sc td:first-child{text-align:left;font-weight:600}
 
 <div class="demobar">
   <span class="dot"></span>
-  <div class="txt"><b>This is the whole tool — you're running the company.</b> Sign a deal, bill the draw, price a job, get a ticket signed in the field, and watch every dollar move. Real product, demo data, nothing to sign up for. Click anything. Break nothing.<span class="deskonly-note" style="display:none;color:#FFC94D"> Works great on your phone — a desktop shows more at once.</span></div>
+  <div class="txt"><b>This is the whole tool — you're running the company.</b> Price a job in the driveway and watch them agree, bill the draw, get a ticket signed in the field, and watch every dollar move. Real product, demo data, nothing to sign up for. Click anything. Break nothing.<span class="deskonly-note" style="display:none;color:#FFC94D"> Works great on your phone — a desktop shows more at once.</span></div>
   <style>@media(max-width:760px){.deskonly-note{display:inline !important}}</style>
   <div class="acts">
     <a class="btn ghost" href="features.html" style="text-decoration:none">Features</a>
@@ -328,11 +461,14 @@ table.sc td:first-child{text-align:left;font-weight:600}
     <a class="item on" href="#" data-scene="dash">Dashboard</a>
     <span class="grp">Sell</span>
     <a class="item" href="#" data-scene="calc">Price it</a>
+    <a class="item" href="#" data-scene="drive">Quick proposal</a>
     <a class="item" href="#" data-scene="props">Proposals</a>
     <a class="item" href="#" data-scene="tmpl">Templates</a>
     <span class="grp">Run</span>
     <a class="item" href="#" data-scene="maint">Maintenance</a>
     <a class="item" href="#" data-scene="ticket">Field ticket</a>
+    <a class="item" href="#" data-scene="map">Around me</a>
+    <a class="item" href="#" data-scene="jmoney">Job money</a>
     <a class="item" href="#" data-scene="cust">Customers</a>
     <span class="grp">Learn</span>
     <a class="item" href="#" data-scene="wl">Won vs Lost</a>
@@ -659,6 +795,129 @@ table.sc td:first-child{text-align:left;font-weight:600}
         person by person — owners included.
       </div>
     </section>
+
+    <!-- ═══════════ QUICK PROPOSAL — the driveway ═══════════ -->
+    <section class="scene" id="sc-drive">
+      <h1 class="pg">Quick proposal</h1>
+      <div class="sub">You're standing in Dana Whitfield's driveway looking at four dead sprinkler heads. Price it here, and they can agree before you've packed up.</div>
+      <div class="dwrap">
+        <div>
+          <div class="side">Your phone</div>
+          <div class="phone">
+            <div class="ptop">Quick proposal</div>
+
+            <div class="dcust" id="dCustWrap"></div>
+
+            <div style="margin-top:13px">
+              <div class="dquick"><div class="lb">The work</div></div>
+              <div id="dLines"></div>
+              <div class="dline">
+                <input class="dinput t" id="dNewT" placeholder="What are you doing?" />
+                <input class="dinput p" id="dNewP" placeholder="$" inputmode="decimal" />
+                <button class="abtn" id="dAdd" style="padding:9px 11px">+</button>
+              </div>
+              <div class="dquick" id="dQuick"></div>
+            </div>
+
+            <div class="dtot">
+              <div><div class="lb">Total</div><div class="note">Adds itself. Never typed.</div></div>
+              <div class="v money" id="dTotal">$0</div>
+            </div>
+
+            <div class="dterm" id="dTerms"></div>
+
+            <div class="dexits" id="dExits">
+              <button class="abtn gold" id="dSend">Send it</button>
+              <button class="abtn" id="dHere">Sign here now</button>
+              <button class="quiet" id="dSkip">Skip the email — just make the job</button>
+            </div>
+            <button class="abtn" id="dAgain" style="width:100%;margin-top:13px;padding:12px;display:none">↺ Write another one</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="side">What the customer gets</div>
+          <div id="dCustPage"></div>
+          <div id="dClock"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;font-size:12.5px;color:var(--muted);line-height:1.65">
+        No template, no variables, no builder, no job type, no schedule — <b style="color:var(--ink)">that's the whole point of this
+        door.</b> The customer's page has no login and no app on it. The link is the whole thing, it wears
+        <b style="color:var(--ink)">your</b> company's name and phone, and TradeGOAT appears once, in small type, at the bottom.
+        The moment they agree, the job exists with the real acceptance time on it, the payment schedule
+        is already written, and the phone in the truck buzzes. If they don't, nothing is created.
+      </div>
+    </section>
+
+    <!-- ═══════════ AROUND ME ═══════════ -->
+    <section class="scene" id="sc-map">
+      <h1 class="pg">Around me</h1>
+      <div class="sub">Every address you're responsible for, colored by what it needs. Tap a pin.</div>
+      <div class="maplay">
+        <div>
+          <div class="mapbox">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" id="mapSvg">
+              <rect width="400" height="300" fill="#EDEDE4"/>
+              <rect class="grn" x="238" y="10" width="104" height="62" rx="4"/>
+              <circle class="grn" cx="58" cy="248" r="44"/>
+              <path class="wtr" d="M0 190 C 58 180, 96 210, 146 204 S 236 174, 292 190 S 368 210, 400 200 L400 216 C366 226,300 206,288 206 S 192 222,146 218 S 56 196,0 206 Z"/>
+              <rect class="blk" x="86" y="66" width="46" height="46" rx="3"/>
+              <rect class="blk" x="170" y="66" width="58" height="46" rx="3"/>
+              <rect class="blk" x="86" y="138" width="46" height="40" rx="3"/>
+              <rect class="blk" x="266" y="98" width="52" height="80" rx="3"/>
+              <rect class="blk" x="170" y="230" width="62" height="44" rx="3"/>
+              <rect class="blk" x="290" y="230" width="56" height="44" rx="3"/>
+              <g class="rd">
+                <path d="M0 54 H400" stroke-width="10"/>
+                <path d="M0 126 H400" stroke-width="7"/>
+                <path d="M0 190 H400" stroke-width="7"/>
+                <path d="M0 222 H400" stroke-width="10"/>
+                <path d="M68 0 V300" stroke-width="10"/>
+                <path d="M152 0 V300" stroke-width="7"/>
+                <path d="M248 0 V300" stroke-width="7"/>
+                <path d="M348 0 V300" stroke-width="7"/>
+                <path d="M0 300 L152 126 L400 96" stroke-width="6" opacity=".85"/>
+              </g>
+              <g id="mapPins"></g>
+            </svg>
+          </div>
+          <div class="mapkey">
+            <span><i style="background:var(--red)"></i>Overdue</span>
+            <span><i style="background:var(--orange)"></i>Due soon</span>
+            <span><i style="background:var(--green)"></i>On schedule or done</span>
+            <span><i style="background:var(--navy)"></i>No date on it</span>
+            <span><i style="background:#fff;border:2px solid var(--navy)"></i>Your crew</span>
+          </div>
+        </div>
+        <div>
+          <div class="card layers" id="mapLayers"></div>
+          <div id="mapSel"></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.65">
+        The colors are the same everywhere in the tool, so red on this map means what red meant on the
+        Maintenance page. <b style="color:var(--ink)">Cedar Creek is red because its monthly window closed
+        without a ticket</b> — the same one the Wedge caught. When a tech taps <b style="color:var(--ink)">On it</b>
+        on a call, his map quiets down to the address he's driving to; the office map never does, because
+        a dispatcher's map has to answer "who's near this."
+      </div>
+    </section>
+
+    <!-- ═══════════ JOB MONEY ═══════════ -->
+    <section class="scene" id="sc-jmoney">
+      <h1 class="pg">Job money</h1>
+      <div class="sub">One job, both directions. What the customer still owes you, and what you still owe everybody else.</div>
+      <div class="card">
+        <div class="jmhead">
+          <div class="l"><b>Entry monument landscape renovation</b><span>Oakmont HOA · contract $24,500</span></div>
+          <span class="seg mtabs" id="jmSeg"><button class="on" data-jm="draws">Payment draws</button><button data-jm="vend">What I owe</button></span>
+        </div>
+        <div id="jmBody"></div>
+      </div>
+      <div class="card" style="margin-top:12px;font-size:12.5px;color:var(--muted);line-height:1.65" id="jmNote"></div>
+    </section>
   </main>
 </div>
 
@@ -720,6 +979,18 @@ function initial(){ return {
   ticket:{type:"maintenance", parts:[], signed:false, done:false},
   score:{tag:null},
   role:"owner",
+  drive:{cust:null, q:"", lines:[], terms:"one", stage:"compose", secs:null, name:""},
+  map:{sel:null, layers:{jobs:true, maint:true, props:true, crew:true, bldg:false}},
+  jm:{tab:"draws", vq:"", ms:[
+        {label:"50% deposit",        amt:12250, status:"collected", inv:"CW-1078"},
+        {label:"25% at planting",    amt:6125,  status:"unbilled",  inv:null},
+        {label:"25% on completion",  amt:6125,  status:"unbilled",  inv:null}],
+      vend:[
+        {n:"Gillespie Stone & Supply", cost:6480, paid:3000, note:"Block, cap stone, mortar"},
+        {n:"Cedar Valley Nursery",     cost:3310, paid:0,    note:"Trees, shrubs, bed plants"},
+        {n:"Hydro-Scape Irrigation",   cost:2140, paid:2140, note:"Valves, heads, controller"},
+        {n:"Bluebonnet Sod Farm",      cost:1725, paid:1725, note:"Bermuda, 46 pallets"},
+        {n:"Delta Ready-Mix",          cost:960,  paid:0,    note:"Footing pour"}]},
   guide:0, guideHidden:false,
   tmpl:{step:0, chips:{"Customer name":true,"Project address":true,"Contract total":false,"Scope of work":false,"Payment schedule":false}, badFixed:false, gateHit:false, emailFilled:false}
 };}
@@ -1071,6 +1342,9 @@ const GUIDE=[
   {txt:"The job is live. Send the deposit invoice on your new job.", scene:"dash", target:()=>$('[data-bill^="jNew"]'), done:()=>{const j=S.jobs.find(j=>j.id==="jNew");return j&&j.ms[0].status!=="unbilled";}},
   {txt:"The check came in — mark that deposit collected and watch every total move.", scene:"dash", target:()=>$('[data-collect^="jNew"]'), done:()=>{const j=S.jobs.find(j=>j.id==="jNew");return j&&j.ms[0].status==="collected";}},
   {txt:"Now price a job yourself — open Price it, move the sliders, feel the honest math.", scene:"calc", target:()=>$("#cSend"), done:()=>S.calc.sent},
+  {txt:"The driveway: open Quick proposal, price four sprinkler heads, send it, and agree as the customer.", scene:"drive", target:()=>$("#dSend"), done:()=>S.drive.stage==="agreed"||S.drive.stage==="skipped"},
+  {txt:"Open Around me — tap the red pin and find out why it's red.", scene:"map", target:()=>$('[data-pin="m3"]'), done:()=>S.map.sel==="m3"},
+  {txt:"Job money — bill a draw, then look at what you owe five suppliers on one job.", scene:"jmoney", target:()=>$('[data-jmms="1"]'), done:()=>S.jm.tab==="vend"||S.jm.ms[1].status!=="unbilled"},
   {txt:"Ride along with Marcus: fill the field ticket, get it signed on glass, send it.", scene:"ticket", target:()=>$("#sigbox"), done:()=>S.ticket.done},
   {txt:"See the Wedge catch a missed visit — open Maintenance and log it.", scene:"maint", target:()=>$("[data-logvisit]"), done:()=>S.maint[3].logged},
   {txt:"A job slipped its margin — open the Scorecard and tag why.", scene:"score", target:()=>$("#scTags"), done:()=>!!S.score.tag},
@@ -1197,16 +1471,299 @@ $("#moneyToggle").onclick=()=>{ S.moneyShown=!S.moneyShown; renderMoney(); rende
 $("#resetBtn").onclick=()=>{ S=initial();
   $("#sigbox").classList.remove("signed"); $("#sigHint").style.display="";
   $("#calcReview").style.display="none";
+  $("#dNewT").value=""; $("#dNewP").value="";
   renderAll(); toast("Demo reset","Clearwater is back to its opening state — drive it again.", "info"); };
 $("#guideHide").onclick=()=>{ S.guideHidden=true; renderGuide(); };
 $("#guidePill").onclick=()=>{ S.guideHidden=false; renderGuide(); };
 $("#guideBtn").onclick=()=>{
   if(S.guideHidden){ S.guideHidden=false; renderGuide(); toast("Guide's back","The Try-this box will walk you from wherever you are.","info"); }
-  else { S.guide=0; S.guideHidden=false; renderGuide(); toast("Walkthrough restarted","Follow the Try-this box in the corner — step 1 of 11.","info"); }
+  else { S.guide=0; S.guideHidden=false; renderGuide(); toast("Walkthrough restarted","Follow the Try-this box in the corner — step 1 of "+(GUIDE.length-1)+".","info"); }
 };
 
 /* ═════════ BOOT ═════════ */
-function renderAll(){ renderKpis(); renderMoney(); renderJobs(); renderProps(); renderDrafts(); renderFunnel(); renderCalc(); renderWL(); renderScore(); renderMaint(); renderTicket(); renderCust(); renderTmpl(); renderTeam(); renderGuide(); }
+/* ═════════ QUICK PROPOSAL — the driveway ═════════ */
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const DCUST=["Oakmont HOA","Riverbend Church","Summit Ridge Office Park","Cedar Creek Storage","Tom & Ellen Brady","Marie Castillo"];
+const DQUICK=[["Replace 4 sprinkler heads",180],["Service call",95],["Valve box repair",135],["Controller swap",210]];
+const DTERMS=[["one","One payment when it's done","Nothing up front"],
+              ["half","Half now, half at the end","Two payments"],
+              ["third","A third up front, the rest at the end","Two payments"]];
+const cents=n=>"$"+n.toLocaleString("en-US",{minimumFractionDigits:Math.round(n*100)%100?2:0,maximumFractionDigits:2});
+const dTot=()=>S.drive.lines.reduce((a,l)=>a+l.p,0);
+function dSplit(){ const t=dTot();
+  if(S.drive.terms==="half"){ const a=Math.round(t*50)/100; return [a, Math.round((t-a)*100)/100]; }
+  if(S.drive.terms==="third"){ const a=Math.round(t*100/3)/100; return [a, Math.round((t-a)*100)/100]; }
+  return [t]; }
+function dSentence(){ const t=dTot(); if(!t) return "";
+  const s=dSplit();
+  return s.length===1 ? "One payment of "+cents(t)+" when the work is done."
+                      : cents(s[0])+" to start and "+cents(s[1])+" when the work is done."; }
+
+function renderDCust(){
+  const d=S.drive, w=$("#dCustWrap"); if(!w) return;
+  if(d.cust){
+    w.innerHTML='<div class="dpick"><span><b>'+esc(d.cust)+'</b><span>Customer</span></span>'
+      +'<button class="x" id="dClear" title="Somebody else">✕</button></div>';
+    $("#dClear").onclick=()=>{ d.cust=null; d.q=""; renderDCust(); };
+    return;
+  }
+  if(!$("#dQ")){
+    w.innerHTML='<input class="dinput" id="dQ" placeholder="Who is this for?" autocomplete="off" />'
+      +'<span id="dMatch"></span>';
+    $("#dQ").oninput=e=>{ S.drive.q=e.target.value; dMatchList(); };
+  }
+  if($("#dQ").value!==d.q) $("#dQ").value=d.q;
+  dMatchList();
+}
+function dMatchList(){
+  const d=S.drive, m=$("#dMatch"); if(!m) return;
+  const q=d.q.trim();
+  if(!q){ m.innerHTML=""; return; }
+  const hits=DCUST.filter(c=>c.toLowerCase().includes(q.toLowerCase()));
+  m.innerHTML='<div class="dmatch">'
+    + hits.map(c=>'<button data-dc="'+esc(c)+'"><b>'+esc(c)+'</b><span>Already a customer</span></button>').join("")
+    + '<button class="make" data-dc="'+esc(q)+'">+ Add “'+esc(q)+'” as a new customer</button></div>';
+  $$("[data-dc]",m).forEach(b=>b.onclick=()=>{ d.cust=b.dataset.dc; d.q=""; renderDCust(); renderDrive(); });
+}
+function renderDrive(){
+  const d=S.drive; if(!$("#dLines")) return;
+  renderDCust();
+
+  $("#dLines").innerHTML=d.lines.map((l,i)=>
+    '<div class="dline"><span class="dinput t" style="background:var(--cream);border-color:transparent">'+esc(l.t)+'</span>'
+    +'<span class="dinput p money" style="background:var(--cream);border-color:transparent">'+fmt(l.p)+'</span>'
+    +'<button class="x" data-dx="'+i+'" title="Take it off">✕</button></div>').join("");
+  $$("[data-dx]").forEach(b=>b.onclick=()=>{ d.lines.splice(+b.dataset.dx,1); renderDrive(); });
+
+  const used=d.lines.map(l=>l.t);
+  const left=DQUICK.filter(q=>used.indexOf(q[0])<0);
+  $("#dQuick").innerHTML = left.length
+    ? '<div class="lb">Quick fills — from your own Pricing by service</div>'
+      + left.map(q=>'<button class="vchip" data-dq="'+esc(q[0])+'|'+q[1]+'">'+esc(q[0])+' · '+fmt(q[1])+'</button>').join("")
+    : "";
+  $$("[data-dq]").forEach(b=>b.onclick=()=>{ const p=b.dataset.dq.split("|");
+    d.lines.push({t:p[0], p:+p[1]}); renderDrive(); });
+
+  $("#dTotal").textContent=fmt(dTot());
+  $("#dTerms").innerHTML=DTERMS.map(t=>'<button class="'+(d.terms===t[0]?"on":"")+'" data-dt="'+t[0]+'">'
+    +t[1]+'<span>'+t[2]+'</span></button>').join("");
+  $$("[data-dt]").forEach(b=>b.onclick=()=>{ d.terms=b.dataset.dt; renderDrive(); });
+
+  const composing=d.stage==="compose", ready=!!d.cust && d.lines.length>0;
+  $("#dExits").style.display=composing?"":"none";
+  $("#dAgain").style.display=composing?"none":"block";
+  ["dSend","dHere","dSkip"].forEach(id=>{ const b=$("#"+id); if(b) b.disabled=!ready; });
+  renderDPage();
+}
+function renderDPage(){
+  const d=S.drive, box=$("#dCustPage"), clock=$("#dClock"); if(!box) return;
+  const t=dTot();
+  if(d.stage==="compose"){
+    box.innerHTML='<div class="cpage waiting"><div class="wait">Nothing has left your phone yet.<br/>'
+      +'Pick who it’s for, add the work, then press <b>Send it</b>.</div></div>';
+    clock.innerHTML=""; return;
+  }
+  if(d.stage==="skipped"){
+    box.innerHTML='<div class="cpage"><div class="signed"><div class="big">🧾</div>'
+      +'<b>No email went anywhere.</b><p>The job just exists. Nothing was agreed to, so nothing is frozen and you can still change it.</p></div></div>';
+    clock.innerHTML=""; return;
+  }
+  if(d.stage==="agreed"){
+    box.innerHTML='<div class="cpage"><div class="signed"><div class="big">✓</div>'
+      +'<b>Thanks, you’re all set.</b><p>Clearwater Outdoor Services has it. Call (970) 555-0163 with any questions.</p></div>'
+      +'<div class="whisper">Sent with TradeGOAT</div></div>';
+    clock.innerHTML='<div class="dclock"><div><div class="lb">Round trip</div>'
+      +'<div class="v">Sent to agreed in <b>'+(d.secs!=null?d.secs+(d.secs===1?" second":" seconds"):"under a minute")+'</b>.<br/>'
+      +'You never left the driveway.</div></div></div>';
+    return;
+  }
+  /* sent / handed over */
+  const head = d.stage==="here"
+    ? 'You handed them your phone.'
+    : 'Their phone, wherever they are. No login, no app, no account.';
+  box.innerHTML='<div class="cpage">'
+    +'<div class="brandbar"><span class="mk">C</span><span><b>Clearwater Outdoor Services</b><span>(970) 555-0163</span></span></div>'
+    +'<div class="body">'
+    +'<div class="hi">Here’s what we talked about, '+esc(String(d.cust).split(" ")[0])+'.</div>'
+    + d.lines.map(l=>'<div class="cl"><b>'+esc(l.t)+'</b><span class="money">'+fmt(l.p)+'</span></div>').join("")
+    +'<div class="ct"><span style="font-size:12.5px;color:var(--muted)">Total</span><span class="v money">'+fmt(t)+'</span></div>'
+    +'<div class="terms">'+dSentence()+'</div>'
+    +'<button class="agree" id="dAgree">Agree</button>'
+    +'</div><div class="whisper">Sent with TradeGOAT</div></div>';
+  $("#dAgree").onclick=dAgree;
+  clock.innerHTML='<div class="dclock"><div><div class="lb">'+(d.stage==="here"?"In your hand":"Sent")+'</div>'
+    +'<div class="v">'+head+'<br/>Nothing exists yet — decline or ignore it and no job is created.</div></div></div>';
+}
+function dSend(mode){
+  const d=S.drive; if(!d.cust||!d.lines.length) return;
+  d.stage=mode; d.t0=Date.now(); renderDrive();
+  if(mode==="sent") toast("Proposal sent","One link, no attachment. It wears your company’s name, not ours.","info");
+}
+function dAgree(){
+  const d=S.drive, t=dTot();
+  d.secs = d.t0 ? Math.max(1, Math.round((Date.now()-d.t0)/1000)) : null;
+  d.stage="agreed";
+  const p=dSplit();
+  const ms = p.length===1
+    ? [{label:"One payment on completion", amt:p[0], status:"unbilled", inv:null}]
+    : [{label:d.terms==="half"?"Half to start":"A third to start", amt:p[0], status:"unbilled", inv:null},
+       {label:"The rest on completion", amt:p[1], status:"unbilled", inv:null}];
+  S.jobs=S.jobs.filter(j=>j.id!=="jDrive");
+  S.jobs.unshift({id:"jDrive", name:d.lines[0].t, cust:d.cust, total:t, fresh:true, ms:ms});
+  const prevK={...S.kpi}; S.kpi.backlog+=t;
+  toast("Agreed — the job exists ✓", esc(d.cust)+" agreed to "+fmt(t)+". The job carries the moment they tapped, not the moment you got back to the shop.");
+  renderDrive(); renderJobs(); renderKpis(prevK); renderGuide();
+}
+function dSkip(){
+  const d=S.drive, t=dTot(); if(!d.cust||!d.lines.length) return;
+  d.stage="skipped";
+  S.jobs=S.jobs.filter(j=>j.id!=="jDrive");
+  S.jobs.unshift({id:"jDrive", name:d.lines[0].t, cust:d.cust, total:t, fresh:true, ms:[
+    {label:"One payment on completion", amt:t, status:"unbilled", inv:null}]});
+  const prevK={...S.kpi}; S.kpi.backlog+=t;
+  toast("Job made — nobody was emailed","A handshake job has no paperwork behind it, so it isn’t locked. Edit it like a notebook.","info");
+  renderDrive(); renderJobs(); renderKpis(prevK);
+}
+
+/* ═════════ AROUND ME ═════════ */
+const MAPPINS=[
+ {id:"m1",x:112,y:88, st:"soon",k:"job",  n:"Entry monument landscape renovation", c:"Oakmont HOA",
+  rows:[["Crew on site","2 · Tue through Thu"],["Next draw","$6,125 at planting"],["Contract","$24,500"]]},
+ {id:"m2",x:292,y:150,st:"ok",  k:"job",  n:"Irrigation install — main lawn", c:"Riverbend Church",
+  rows:[["Stage","Rough-in complete"],["Billed","$2,940 · awaiting payment"],["Contract","$9,800"]]},
+ {id:"m3",x:196,y:250,st:"over",k:"maint",n:"Perimeter Strips", c:"Cedar Creek Storage",
+  rows:[["Monthly visit","Overdue 8 days"],["Last ticket","May 28"],["Why it’s red","The window closed with no ticket on it"]]},
+ {id:"m4",x:318,y:74, st:"soon",k:"maint",n:"Campus Front Turf", c:"Summit Ridge Office Park",
+  rows:[["Next visit","Due in 5 days"],["Last visit","Jun 24"],["Covered by","Maintenance contract"]]},
+ {id:"m5",x:96, y:160,st:"ok",  k:"maint",n:"Common Area Turf", c:"Oakmont HOA",
+  rows:[["Visited","Jun 24"],["Next due","Jul 24"],["Covered by","Maintenance contract"]]},
+ {id:"m6",x:60, y:96, st:"none",k:"prop", n:"Storm-damaged maple removal", c:"Tom & Ellen Brady",
+  rows:[["Proposal","$2,350 · sent"],["Out","4 days"],["No date on it","Nothing is scheduled until it’s signed"]]},
+ {id:"m7",x:214,y:170,st:"none",k:"prop", n:"Backyard drip irrigation", c:"Marie Castillo",
+  rows:[["Draft","$3,150"],["No date on it","Not sent yet"]]},
+ {id:"m8",x:344,y:206,st:"ok",  k:"job",  n:"Beer garden hardscape & pergola beds", c:"Trellis Public House",
+  rows:[["Finished","Jun 30"],["Collected","$32,600"],["Left to do","Nothing — closed"]]}
+];
+const MAPCREW=[
+ {id:"c1",x:286,y:52, ini:"MW",n:"Marcus Webb",  rows:[["On","Campus Front Turf · Summit Ridge"],["Since","8:00a"],["Ticket","Open, not signed yet"]]},
+ {id:"c2",x:130,y:104,ini:"DO",n:"Danny Ortiz",  rows:[["On","Entry monument · Oakmont HOA"],["Since","7:15a"],["Truck","104"]]}
+];
+const MAPQUIET=[[42,72],[128,42],[176,104],[228,60],[268,120],[300,178],[86,196],[160,158],[240,240],[330,258],[190,196],[74,272],[358,132],[110,236]];
+const LAYERS=[["jobs","Jobs"],["maint","Maintenance due"],["props","Open proposals"],["crew","Your crew"],["bldg","Every property"]];
+
+function renderMap(){
+  const L=S.map.layers, sel=S.map.sel, g=$("#mapPins"); if(!g) return;
+  const col={over:"var(--red)",soon:"var(--orange)",ok:"var(--green)",none:"var(--navy)"};
+  const on=p=>(p.k==="job"&&L.jobs)||(p.k==="maint"&&L.maint)||(p.k==="prop"&&L.props);
+  let h = L.bldg ? MAPQUIET.map(q=>'<circle cx="'+q[0]+'" cy="'+q[1]+'" r="4" fill="var(--navy)" opacity=".28"/>').join("") : "";
+  h += MAPPINS.filter(on).map(p=>'<g class="pin'+(sel===p.id?" sel":"")+'" data-pin="'+p.id+'" transform="translate('+p.x+','+p.y+')">'
+    +'<circle class="hd" r="10" fill="'+col[p.st]+'"/><text y="3.4">'+(p.k==="job"?"J":p.k==="maint"?"M":"P")+'</text></g>').join("");
+  if(L.crew) h += MAPCREW.map(c=>'<g class="pin truck'+(sel===c.id?" sel":"")+'" data-pin="'+c.id+'" transform="translate('+c.x+','+c.y+')">'
+    +'<circle class="hd" r="11"/><text y="3.4" style="font-size:8px">'+c.ini+'</text></g>').join("");
+  g.innerHTML=h;
+  $$("[data-pin]").forEach(el=>el.onclick=()=>{ S.map.sel=el.dataset.pin; renderMap(); });
+
+  const hidden=LAYERS.filter(l=>l[0]!=="bldg" && !L[l[0]]).map(l=>l[1].toLowerCase());
+  $("#mapLayers").innerHTML='<div style="font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Layers</div>'
+    + LAYERS.map(l=>'<div class="lrow"><span>'+l[1]+'</span><span class="sw'+(L[l[0]]?" on":"")+'" data-ly="'+l[0]+'"></span></div>').join("")
+    + (hidden.length?'<div style="font-size:11px;color:var(--amber);margin-top:9px;line-height:1.45">You’ve hidden '+hidden.join(" and ")+'. It’s in Layers whenever you want it back.</div>':"");
+  $$("[data-ly]").forEach(s=>s.onclick=()=>{ L[s.dataset.ly]=!L[s.dataset.ly]; renderMap(); });
+
+  const box=$("#mapSel");
+  const it=MAPPINS.concat(MAPCREW).find(p=>p.id===sel);
+  if(!it){ box.innerHTML='<div class="card selcard" style="font-size:12.5px;color:var(--muted);line-height:1.55">Tap any pin. The letter tells you what it is — <b style="color:var(--ink)">J</b>ob, <b style="color:var(--ink)">M</b>aintenance, <b style="color:var(--ink)">P</b>roposal — and the color tells you what it needs.</div>'; return; }
+  const isCrew=!it.k;
+  box.innerHTML='<div class="card selcard"><div class="nm">'+esc(it.n)+'</div>'
+    +'<div class="cu">'+(isCrew?"On the clock":esc(it.c))+'</div>'
+    +'<div class="rows">'+it.rows.map(r=>'<div class="r"><span style="color:var(--muted)">'+r[0]+'</span><b>'+r[1]+'</b></div>').join("")+'</div>'
+    +'</div>'
+    +(isCrew?'<div class="focusnote">If '+esc(it.n.split(" ")[0])+' taps <b>On it</b> on a call, that map quiets down to the one address until the call is over. Yours doesn’t change — a dispatcher’s map has to answer “who’s near this.”</div>':"");
+}
+
+/* ═════════ JOB MONEY ═════════ */
+const JMLBL={unbilled:["Not billed","pill unbilled"],billed:["Billed","pill billed"],collected:["Paid","pill collected"]};
+function renderJM(){
+  const jm=S.jm, body=$("#jmBody"); if(!body) return;
+  $$("#jmSeg button").forEach(b=>b.classList.toggle("on",b.dataset.jm===jm.tab));
+
+  if(jm.tab==="draws"){
+    const tot=jm.ms.reduce((a,m)=>a+m.amt,0);
+    const paid=jm.ms.filter(m=>m.status==="collected").reduce((a,m)=>a+m.amt,0);
+    let h='<div class="lockstrip">🔒 <span>Signed Jun 12, so the $24,500 is frozen. Extra work goes on as a change order, which <b style="color:var(--ink)">adds</b> a draw rather than moving one.</span></div>';
+    jm.ms.forEach((m,i)=>{
+      const L=JMLBL[m.status];
+      h+='<div class="drow"><span class="nm">'+esc(m.label)+'<span>'+(m.inv?"Invoice "+m.inv:"Not billed yet")+'</span></span>'
+        +'<span class="amt money">'+fmt(m.amt)+'</span>'
+        +'<button class="chip '+L[1]+'" data-jmms="'+i+'">'+L[0]+'</button></div>';
+      if(jm.confirm===i){
+        h+='<div class="lockstrip" style="background:#FDF1E3;color:var(--amber);flex-wrap:wrap">'
+          +'<span style="flex:1;min-width:180px">“'+esc(jm.ms[jm.earlier].label)+'” hasn’t been paid yet. Real life pays out of order sometimes — this is fine, just checking.</span>'
+          +'<button class="abtn" data-jmyes="'+i+'">Mark it paid anyway</button>'
+          +'<button class="abtn" data-jmno="1">Never mind</button></div>';
+      }
+    });
+    h+='<div class="balance"><span>Draws add to <b class="money">'+fmt(tot)+'</b> against a '+fmt(24500)+' contract'
+      +' <span class="ok">balanced</span></span><span>In hand <b class="money" style="color:var(--green)">'+fmt(paid)+'</b></span></div>';
+    body.innerHTML=h;
+    $$("[data-jmms]").forEach(b=>b.onclick=()=>jmCycle(+b.dataset.jmms));
+    $$("[data-jmyes]").forEach(b=>b.onclick=()=>{ const i=+b.dataset.jmyes; jm.confirm=null; jm.ms[i].status="collected"; renderJM(); toast("Paid ✓","Recorded out of order, exactly the way it happened."); });
+    $$("[data-jmno]").forEach(b=>b.onclick=()=>{ jm.confirm=null; renderJM(); });
+    $("#jmNote").innerHTML='Two people can work this screen at the same time and neither one wipes out the other’s work. '
+      +'A job that nobody signed anything for — the handshake repair, the lump sum — carries <b style="color:var(--ink)">no lock at all</b> and stays plainly editable, because there’s nothing agreed to protect.';
+    return;
+  }
+
+  const q=jm.vq.trim().toLowerCase();
+  const all=jm.vend, shown=q?all.filter(v=>v.n.toLowerCase().includes(q)):all;
+  const cost=all.reduce((a,v)=>a+v.cost,0), paid=all.reduce((a,v)=>a+v.paid,0);
+  let h='<div class="vsum">'
+    +'<div class="card"><div class="lb">Parts cost</div><div class="v money">'+fmt(cost)+'</div></div>'
+    +'<div class="card"><div class="lb">You’ve paid</div><div class="v money" style="color:var(--green)">'+fmt(paid)+'</div></div>'
+    +'<div class="card owed"><div class="lb">Still owed</div><div class="v money" style="color:var(--amber)">'+fmt(cost-paid)+'</div></div></div>'
+    +'<input class="vsearch" id="vQ" placeholder="Find a supplier — '+all.length+' on this job" value="'+esc(jm.vq)+'" autocomplete="off" />';
+  h += shown.length ? shown.map(v=>{
+      const owed=v.cost-v.paid, pct=v.cost?Math.round(v.paid/v.cost*100):0;
+      return '<div class="vrow"><div class="top"><span class="nm">'+esc(v.n)+'<span style="display:block;font-size:10.5px;color:var(--muted);font-weight:500">'+esc(v.note)+'</span></span>'
+        +'<span class="fig"><span>Cost</span>'+fmt(v.cost)+'</span>'
+        +'<span class="fig" style="color:'+(owed?"var(--amber)":"var(--green)")+'"><span>'+(owed?"Owed":"Settled")+'</span>'+(owed?fmt(owed):"—")+'</span></div>'
+        +'<div class="vmeter"><i style="width:'+pct+'%"></i></div></div>'; }).join("")
+    : '<div class="vempty">Nobody by that name on this job.</div>';
+  body.innerHTML=h;
+  const inp=$("#vQ");
+  inp.oninput=e=>{ jm.vq=e.target.value; renderJM(); const n=$("#vQ"); if(n){ n.focus(); n.setSelectionRange(n.value.length,n.value.length); } };
+  $("#jmNote").innerHTML='Each supplier keeps its own line, and the job’s parts figure is the <b style="color:var(--ink)">sum of those lines</b> rather than a number anybody types. '
+    +'Five here, thirty on a big one, a thousand on a tower — the math is the same and the search is how you find the one you’re about to call.';
+}
+function jmCycle(i){
+  const jm=S.jm, m=jm.ms[i];
+  if(m.status==="unbilled"){ m.status="billed"; m.inv="CW-"+(++S.invSeq); renderJM(); toast("Invoice "+m.inv+" sent",fmt(m.amt)+" — Oakmont HOA."); return; }
+  if(m.status==="billed"){
+    const earlier=jm.ms.findIndex((x,k)=>k<i && x.status!=="collected");
+    if(earlier>=0){ jm.confirm=i; jm.earlier=earlier; renderJM(); return; }
+    m.status="collected"; renderJM(); toast("Paid ✓",fmt(m.amt)+" in hand."); return;
+  }
+  m.status="unbilled"; m.inv=null; jm.confirm=null; renderJM();
+}
+
+/* one-time wiring for the new screens */
+function dAddLine(){
+  const t=$("#dNewT"), p=$("#dNewP");
+  const txt=t.value.trim(), amt=parseFloat(String(p.value).replace(/[^0-9.]/g,""));
+  if(!txt){ t.focus(); return; }
+  if(!(amt>0)){ p.focus(); return; }
+  S.drive.lines.push({t:txt, p:amt});
+  t.value=""; p.value=""; renderDrive(); t.focus();
+}
+$("#dAdd").onclick=dAddLine;
+["dNewT","dNewP"].forEach(id=>$("#"+id).addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); dAddLine(); } }));
+$("#dSend").onclick=()=>dSend("sent");
+$("#dHere").onclick=()=>dSend("here");
+$("#dSkip").onclick=dSkip;
+$("#dAgain").onclick=()=>{ S.drive={cust:null, q:"", lines:[], terms:"one", stage:"compose", secs:null, name:""};
+  $("#dNewT").value=""; $("#dNewP").value=""; $("#dCustWrap").innerHTML=""; renderDrive(); };
+$$("#jmSeg button").forEach(b=>b.onclick=()=>{ S.jm.tab=b.dataset.jm; S.jm.confirm=null; S.jm.vq=""; renderJM(); });
+
+function renderAll(){ renderKpis(); renderMoney(); renderJobs(); renderProps(); renderDrafts(); renderFunnel(); renderCalc(); renderWL(); renderScore(); renderMaint(); renderTicket(); renderCust(); renderTmpl(); renderTeam(); renderDrive(); renderMap(); renderJM(); renderGuide(); }
 renderAll();
 })();
 </script>
