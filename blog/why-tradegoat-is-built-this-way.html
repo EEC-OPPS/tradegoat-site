@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why I Built TradeGOAT the Way I Did | TradeGOAT</title>
+  <meta name="description" content="The story of why TradeGOAT exists is already on this blog. This is about the choices that came after — why it starts from your proposal, locks the price at signing, and tells you what each job made." />
+  <link rel="canonical" href="https://www.thetradegoat.com/blog/why-tradegoat-is-built-this-way.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="TradeGOAT" />
+  <meta property="og:title" content="Why I Built TradeGOAT the Way I Did" />
+  <meta property="og:description" content="Why TradeGOAT starts from your own proposal, locks the price at signing, brings the crew's hours in stamped, and tells you what each job made." />
+  <meta property="og:url" content="https://www.thetradegoat.com/blog/why-tradegoat-is-built-this-way.html" />
+  <meta property="og:image" content="https://www.thetradegoat.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.thetradegoat.com/og-image.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0f1f3d; --navy-mid:#1a2f54; --gold:#D97706; --white:#fff; --ink:#1f2430; --muted:#5b6472; --line:#e7e9ee; }
+    body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#fff; color:var(--ink); line-height:1.65; }
+    header.top { background:var(--navy); padding:18px 24px; }
+    header.top a { color:#fff; text-decoration:none; font-weight:800; font-size:20px; }
+    header.top a .g { color:var(--gold); }
+    .wrap { max-width:720px; margin:0 auto; padding:0 24px; }
+    article { padding:48px 0 64px; }
+    .eyebrow { color:var(--gold); font-weight:700; font-size:13px; letter-spacing:1.5px; text-transform:uppercase; }
+    h1 { font-size:2.15rem; line-height:1.2; margin:10px 0 8px; color:var(--navy); }
+    .byline { color:var(--muted); font-size:14px; margin-bottom:32px; }
+    article h2 { font-size:1.4rem; color:var(--navy); margin:36px 0 12px; }
+    article p { margin:0 0 18px; }
+    article ul, article ol { margin:0 0 18px 22px; }
+    article li { margin:0 0 10px; }
+    .callout { background:#fff7ed; border-left:4px solid var(--gold); padding:16px 20px; border-radius:0 8px 8px 0; margin:24px 0; }
+    .cta { background:var(--navy); color:#fff; border-radius:14px; padding:28px; text-align:center; margin:40px 0 0; }
+    .cta h3 { color:#fff; margin-bottom:8px; font-size:1.3rem; }
+    .cta p { color:#c9d2e3; margin-bottom:18px; }
+    .cta a { display:inline-block; background:var(--gold); color:var(--navy); font-weight:800; text-decoration:none; padding:13px 26px; border-radius:10px; }
+    .backlink { display:inline-block; margin-top:40px; color:var(--muted); text-decoration:none; font-size:14px; font-weight:600; }
+    footer { background:var(--navy); color:#8a93a6; text-align:center; padding:28px; font-size:13px; }
+    footer a { color:#c9d2e3; }
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Why I Built TradeGOAT the Way I Did","description":"The story of why TradeGOAT exists is already on this blog. This is about the choices that came after — why it starts from your proposal, locks the price at signing, and tells you what each job made.","author":{"@type":"Person","name":"Travis Evans","jobTitle":"Founder of TradeGOAT"},"publisher":{"@type":"Organization","name":"TradeGOAT","logo":{"@type":"ImageObject","url":"https://www.thetradegoat.com/og-image.png"}},"datePublished":"2026-09-30","mainEntityOfPage":"https://www.thetradegoat.com/blog/why-tradegoat-is-built-this-way.html","image":"https://www.thetradegoat.com/og-image.png"}
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+  <header class="top"><div class="wrap"><a href="/">Trade<span class="g">GOAT</span></a></div></header>
+  <div class="wrap">
+    <article>
+      <p class="eyebrow">Why We Built It</p>
+      <h1>Why I Built TradeGOAT the Way I Did</h1>
+      <p class="byline">By Travis Evans, Founder of TradeGOAT &middot; 20+ years in the trades</p>
+
+      <p>I've already told <a href="/blog/why-we-built-tradegoat.html" style="color:var(--navy);font-weight:700">the story of why TradeGOAT exists</a>. The short version is that my wife Robin was doing the elevator company's books at the kitchen table after the kids went to bed, and I wanted her nights back. That piece is on this blog, and I won't tell it twice.</p>
+      <p>This one is about the choices that came after. Once I decided to build it, every screen had to answer to the way my own company actually runs. Here are the decisions that came out of that, and the reason behind each one.</p>
+
+      <h2>It starts from the proposal I already had</h2>
+      <p>I'd been sending the same proposal for years, and my customers knew it. I didn't want a tool that made me rebuild it inside somebody else's boxes before it would do anything for me. So TradeGOAT reads the Word or PDF proposal you already send, marks the spots that change from job to job, and leaves the rest in your words. The first thing you do in it is hand it something you've already got.</p>
+
+      <h2>The price locks when the customer signs</h2>
+      <p>At my company, a signed proposal is a promise going both directions. Once a customer has agreed to a number, I don't want anybody in my office able to quietly change it, including me on a bad day. So when a customer signs in TradeGOAT, the job is created and the sold price on it is locked.</p>
+
+      <h2>The crew's hours come in with a location on them</h2>
+      <p>I wanted to stop getting hours on scraps of paper at the end of the week. In TradeGOAT the crew clocks in and out from their phones, and every punch carries a location stamp. The week arrives in the office as a timecard per person with anything odd flagged, so the office asks about the few that need a question and approves the rest.</p>
+
+      <h2>Payroll gets hours, never wages</h2>
+      <p>When the payroll person needs the week, they export it, and the export carries hours only. Nobody's pay rate goes out in that file. The person running payroll doesn't need it to do the job, and I'd rather it didn't travel.</p>
+
+      <h2>The field and the office look at the same job</h2>
+      <p>My techs and my office used to find out about each other's work by phone. Now a tech opens the ticket on the job from his phone, writes up the work, and finishes it right there, and it posts to the job where the office sees it. A receipt from the supply house goes on that same job with a photo and an amount.</p>
+
+      <h2>It tells me whether the job paid</h2>
+      <p>This is the one I built the whole thing for. The scorecard puts the hours I quoted next to the hours the crew actually clocked, priced at my own rates. I don't have to wait months and dig through a spreadsheet to learn whether a job made money, because the answer is sitting on the job.</p>
+
+      <p>None of these were features I picked off a list. Each one is a place where my own company was costing me a night or a phone call, and I wanted it gone. If you run a shop that bids work and sends people out to do it, the same decisions are in there for you at <a href="/" style="color:var(--navy);font-weight:700">thetradegoat.com</a>.</p>
+
+      <div class="cta">
+        <h3>See how it would run your company</h3>
+        <p>TradeGOAT starts from your own proposal, locks the price when the customer signs, brings the crew's hours in stamped, and shows you what each job made.</p>
+        <a href="/#beta">Start free — 90 days of Pro &rarr;</a>
+        <p style="margin-top:16px;margin-bottom:0;font-size:.92rem;">We hand you the <b style="color:#fff">top tier</b> for ninety days, because that is a real test of how well the tool fits your company. Every feature, up to 25 users, and we load your documents with you. <b style="color:#ffc94d">After that, the first 25 companies in pay half price on whatever plan they choose, for as long as they use the tool.</b> A company name and an email is the entire signup — no credit card. Or <a href="/demo.html" style="background:none;color:#ffc94d;padding:0;text-decoration:underline;font-weight:700">drive the demo first</a>.</p>
+      </div>
+
+      <a class="backlink" href="/blog/">← More from the TradeGOAT blog</a>
+    </article>
+  </div>
+  <footer>Follow along: <a href="https://www.linkedin.com/company/tradegoat" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.facebook.com/thetradegoat" target="_blank" rel="noopener">Facebook</a><br/>© 2026 TradeGOAT · <a href="/">thetradegoat.com</a></footer>
+</body>
+</html>
