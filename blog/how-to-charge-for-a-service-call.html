@@ -100,5 +100,76 @@
   <footer>
     <div class="wrap">© 2026 TradeGOAT · <a href="/">thetradegoat.com</a></div>
   </footer>
+<script>
+/* Site beacon: one page view per load, plus funnel events (rows whose page starts
+   with "evt:"). Every event string and where it fires is listed in TRACKING.md.
+   Same visitor token and founder mark as before; fail-silent. Served from
+   localhost it posts to a local sink, never to production. */
+(function(){try{
+  if(location.protocol==='file:')return;
+  var h=location.hostname,U;
+  if(/^(localhost|127\.0\.0\.1|\[::1\])$/.test(h))U=location.origin+'/__tg_sink';
+  else if(/(^|\.)thetradegoat\.com$/.test(h))U='https://tradegoat.vercel.app/api/hit';
+  else return;
+  var vid=null;
+  try{
+    if(location.search.indexOf('goat=me')>-1)localStorage.setItem('tg_me','1');
+    if(localStorage.getItem('tg_me')==='1'){vid='founder';}
+    else{
+      vid=localStorage.getItem('tg_vid');
+      if(!vid){vid='v'+Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('tg_vid',vid);}
+    }
+  }catch(e){}
+  function send(page,ref){try{
+    var b=JSON.stringify({page:String(page).slice(0,120),ref:ref||null,visitor:vid});
+    if(navigator.sendBeacon&&navigator.sendBeacon(U,b))return;
+    fetch(U,{method:'POST',body:b,keepalive:true,mode:'no-cors',credentials:'omit',headers:{'Content-Type':'text/plain'}});
+  }catch(e){}}
+  var P=location.pathname.replace(/^\/+/,'').replace(/\.html?$/,'').replace(/\/$/,'/index')||'index';
+  window.tgEvt=function(n){send('evt:'+n,null);};
+  send((location.pathname==='/'?'/index':location.pathname)+(location.search.indexOf('ref=')>-1?'?ref':''),document.referrer||null);
+  /* Call-to-action clicks: evt:cta:<page>:<kind>-<zone> */
+  function kind(el){
+    var u=(el.getAttribute('href')||'').toLowerCase(),t=(el.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+    if(/#beta|#waitlist|\/sign-up/.test(u)||/^(next: )?start free/.test(t))return 'start';
+    if(/sign-in/.test(u))return 'login';
+    if(/(^|\/)demo\.html/.test(u))return 'demo';
+    if(/(^|\/)pricing\.html/.test(u))return 'pricing';
+    if(/(^|\/)tour\.html/.test(u))return 'tour';
+    return '';
+  }
+  function zone(el){
+    return el.closest('.mpanel')?'menu':el.closest('nav,header,.demobar')?'nav':el.closest('#guide')?'guide':
+      el.closest('.hero')?'hero':el.closest('footer,.pagefoot')?'foot':'body';
+  }
+  document.addEventListener('click',function(e){try{
+    var el=e.target&&e.target.closest&&e.target.closest('a[href],button');
+    if(!el||el.closest('form'))return;
+    var k=kind(el);if(k)window.tgEvt('cta:'+P+':'+k+'-'+zone(el));
+  }catch(x){}},true);
+  /* Waitlist form: evt:form:<page>:invalid|submit|ok|fallback|fail */
+  var f=document.getElementById('waitlistForm');
+  if(f){
+    var fp='form:'+P+':',iv=0;
+    f.addEventListener('invalid',function(){if(!iv){iv=1;window.tgEvt(fp+'invalid');setTimeout(function(){iv=0;},2000);}},true);
+    f.addEventListener('submit',function(){window.tgEvt(fp+'submit');},true);
+    var on=function(x){return !!x&&!!x.style.display&&x.style.display!=='none';};
+    var watch=function(x,name){
+      if(!x||!window.MutationObserver)return;
+      var was=on(x);
+      new MutationObserver(function(){
+        var now=on(x);
+        if(now&&!was){
+          var sl=document.getElementById('shareLink');
+          window.tgEvt(fp+(name==='fail'?'fail':(sl&&sl.parentElement&&sl.parentElement.style.display==='none'?'fallback':'ok')));
+        }
+        was=now;
+      }).observe(x,{attributes:true,attributeFilter:['style']});
+    };
+    watch(document.getElementById('successMsg'),'ok');
+    watch(document.getElementById('errorMsg'),'fail');
+  }
+}catch(e){}})();
+</script>
 </body>
 </html>
