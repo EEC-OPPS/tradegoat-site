@@ -451,7 +451,7 @@ table.sc td:first-child{text-align:left;font-weight:600}
     <a class="btn ghost" href="pricing.html" style="text-decoration:none">Pricing</a>
     <button class="btn ghost" id="guideBtn">? Guide</button>
     <button class="btn ghost" id="resetBtn">↺ Reset</button>
-    <a class="btn gold" href="https://tradegoat.vercel.app/sign-up">Start free — 14 days of Pro</a>
+    <a class="btn gold" href="https://app.thetradegoat.com/sign-up">Start free — 14 days of Pro</a>
   </div>
 </div>
 
@@ -1360,7 +1360,7 @@ function renderGuide(){
   const step=GUIDE[S.guide];
   $("#guideText").textContent=step.txt;
   const go=$("#guideGo");
-  if(S.guide===GUIDE.length-1){ go.textContent="Start free →"; go.onclick=()=>location.href="https://tradegoat.vercel.app/sign-up"; }
+  if(S.guide===GUIDE.length-1){ go.textContent="Start free →"; go.onclick=()=>location.href="https://app.thetradegoat.com/sign-up"; }
   else { go.textContent="Show me"; go.onclick=()=>{ if(step.scene) showScene(step.scene); setTimeout(()=>pulse(step.target()),800); }; }
   $("#guideSteps").innerHTML=GUIDE.map((_,i)=>'<i class="'+(i<S.guide?"done":"")+'"></i>').join("");
 }
