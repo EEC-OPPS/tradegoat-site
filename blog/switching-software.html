@@ -144,5 +144,21 @@
   }
 }catch(e){}})();
 </script>
+<script>
+/* Sign-up source: tags every Start-free link with the page it was clicked on (src)
+   and the site's own anonymous visitor token (v), so a new company can be joined
+   to where it came from. First-party only; fail-silent. */
+(function(){try{
+  var p=location.pathname.replace(/^\/|\.html$/g,'')||'home',s;
+  if(p==='proposal-software')s='ads-proposal';else if(p==='dispatch-software')s='ads-dispatch';
+  else if(p==='home'||p==='index')s='site-home';else if(p==='pricing')s='site-pricing';
+  else if(p==='features')s='site-features';else if(p==='tour')s='site-tour';
+  else if(p==='demo')s='site-demo';else if(p.indexOf('blog')===0)s='site-blog';else s='site-'+p.split('/')[0];
+  var v='';try{if(localStorage.getItem('tg_me')==='1')v='founder';else{v=localStorage.getItem('tg_vid');
+    if(!v){v='v'+Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('tg_vid',v);}}}catch(e){}
+  var a=document.querySelectorAll('a[href*="app.thetradegoat.com/sign-up"]');
+  for(var i=0;i<a.length;i++){var u=new URL(a[i].href);u.searchParams.set('src',s);if(v)u.searchParams.set('v',v);a[i].href=u.toString();}
+}catch(e){}})();
+</script>
 </body>
 </html>
