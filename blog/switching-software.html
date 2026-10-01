@@ -157,7 +157,8 @@
   var v='';try{if(localStorage.getItem('tg_me')==='1')v='founder';else{v=localStorage.getItem('tg_vid');
     if(!v){v='v'+Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('tg_vid',v);}}}catch(e){}
   var a=document.querySelectorAll('a[href*="app.thetradegoat.com/sign-up"]');
-  for(var i=0;i<a.length;i++){var u=new URL(a[i].href);u.searchParams.set('src',s);if(v)u.searchParams.set('v',v);a[i].href=u.toString();}
+  var q=new URLSearchParams(location.search),keep=[];q.forEach(function(val,k){if(k==='gclid'||k==='gbraid'||k==='wbraid'||k.indexOf('utm_')===0)keep.push([k,val]);});
+  for(var i=0;i<a.length;i++){var u=new URL(a[i].href);u.searchParams.set('src',s);if(v)u.searchParams.set('v',v);for(var j=0;j<keep.length;j++)u.searchParams.set(keep[j][0],keep[j][1]);a[i].href=u.toString();}
 }catch(e){}})();
 </script>
 </body>
