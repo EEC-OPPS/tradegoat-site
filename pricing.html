@@ -17,7 +17,7 @@
   <meta name="twitter:title" content="TradeGOAT — Simple, honest pricing" />
   <meta name="twitter:description" content="Flat per company inside your tier. You pay for the company, not per head." />
   <meta name="twitter:image" content="https://www.thetradegoat.com/og-image.png" />
-<meta name="description" content="TradeGOAT pricing: three flat tiers, priced per company inside your tier instead of per head. Growth adds the maintenance program. Pro adds dispatch and the map. 14 days of Pro free. The first 25 companies pay half price on whatever plan they choose, for as long as they use the tool. Month-to-month, cancel anytime, your data is yours." />
+<meta name="description" content="TradeGOAT pricing: three flat tiers, priced per company inside your tier instead of per head. Growth adds the maintenance program. Pro adds dispatch and the map. 14 days of Pro free. Founding rate: half price for as long as you stay. Limited spots — once they're gone, they're gone. Month-to-month, cancel anytime, your data is yours." />
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -154,8 +154,7 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
     <p class="sub">Three flat monthly prices. No per-user math, no feature hostages, no contracts.
       Add a tech, add your spouse, add the office — your price doesn't move inside your tier.</p>
     <div class="notice">
-      <b>Start with 14 days of Pro, on us. After that, the first 25 companies in pay half price on whatever plan they choose, for as long as they use the tool
-      as they stay.</b> Every feature, up to 25 users, and we load your
+      <b>Start with 14 days of Pro, on us. Founding rate: half price for as long as you stay. Limited spots — once they're gone, they're gone.</b> Every feature, up to 25 users, and we load your
       documents with you. <b>A company name and an email is the whole signup</b> — no credit card,
       because we'd rather earn the sale than trap it. When the fourteen days are up you pick a tier or you
       walk, and nobody ever sees a charge that wasn't agreed in writing first.
@@ -222,7 +221,7 @@ secretary can run that board for you.
       <div class="mini"><span class="n">1</span><b>14 days of Pro, free</b>
         <p>Every feature, up to 25 users, white-glove: we load your documents, your customers,
         your equipment with you. Your real business on the real tool, from day one.</p></div>
-      <div class="mini"><span class="n">2</span><b>First 25 companies: half price, forever</b>
+      <div class="mini"><span class="n">2</span><b>Founding rate: half price for as long as you stay</b>
         <p style="margin:6px 0 2px"><span id="spotsLeft" style="display:inline-block;background:rgba(217,119,6,0.15);border:1px solid rgba(217,119,6,0.45);color:var(--gold-light);font-weight:800;font-size:12px;padding:4px 12px;border-radius:99px"></span></p>
         <p><span class="em">$74.50 / $124.50 / $299.50 a month by tier — half the tier price, for as long as you stay.</span> Prices are before sales tax.
         Founding badge, a real voice in the roadmap, and our permanent gratitude. The rate lives
@@ -310,13 +309,13 @@ secretary can run that board for you.
 </div>
 <script>
 (function(){
-  // Founding-25 counter - update SPOTS_TAKEN as companies land (1 = UpLift).
+  // Founding note. Travis, 2026-10-01: no number anywhere public.
   // Travis, 2026-08-05: never publish a remaining-spots count. How many are left is
   // nobody outside the company's business, and any number we print reads as "nobody is
   // signing up" rather than as momentum. The urgency comes from the offer being finite
   // and permanent, not from a countdown.
   var el=document.getElementById('spotsLeft');
-  if(el) el.textContent = 'Once 25 are in, this rate is gone for good';
+  if(el) el.textContent = "Limited spots — once they're gone, they're gone";
   var seg=document.getElementById('billSeg');
   if(seg) seg.addEventListener('click',function(e){
     var b=e.target.closest('button'); if(!b) return;
