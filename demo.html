@@ -481,7 +481,7 @@ table.sc td:first-child{text-align:left;font-weight:600}
     <!-- ═══════════ DASHBOARD ═══════════ -->
     <section class="scene on" id="sc-dash">
       <h1 class="pg">Dashboard</h1>
-      <div class="sub">Clearwater Outdoor Services · Sunday, July 5</div>
+      <div class="sub">Clearwater Outdoor Services · <span id="demoToday"></span></div>
       <div class="grid kpis" id="kpis"></div>
       <div class="sechead moneyhead">
         <h2><i style="background:var(--green)"></i> Money made</h2>
@@ -644,7 +644,7 @@ table.sc td:first-child{text-align:left;font-weight:600}
       <div class="phone">
         <div class="ptop">Grounds service ticket · Clearwater Outdoor</div>
         <div class="frow">
-          <span class="f"><b>Date</b>7/5/2026 <span class="auto">(auto)</span></span>
+          <span class="f"><b>Date</b><span id="demoDate"></span> <span class="auto">(auto)</span></span>
           <span class="f"><b>Customer</b>Summit Ridge Office Park <span class="auto">(auto)</span></span>
         </div>
         <div class="frow">
@@ -931,6 +931,9 @@ table.sc td:first-child{text-align:left;font-weight:600}
 <div class="toasts" id="toasts"></div>
 
 <script>
+/* Demo dates follow today's date so the company never looks stale. */
+const _T=new Date();
+function D(n){const d=new Date(_T);d.setDate(d.getDate()+n);return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
 (function(){
 "use strict";
 /* ═════════ STATE ═════════ */
@@ -968,9 +971,9 @@ function initial(){ return {
     {n:"Front yard re-sod & beds", o:"lost", p:6900, m:34, d:2.5}
   ]},
   maint:[
-    {n:"Common Area Turf", c:"Oakmont HOA", st:"ok", msg:"Visited Jun 24 · next due Jul 24"},
-    {n:"Main Lawn & Beds", c:"Riverbend Church", st:"ok", msg:"Visited Jun 28 · next due Jul 28"},
-    {n:"Campus Front Turf", c:"Summit Ridge Office Park", st:"warn", msg:"Due in 5 days — Jul 10"},
+    {n:"Common Area Turf", c:"Oakmont HOA", st:"ok", msg:"Visited "+D(-11)+" · next due "+D(19)+""},
+    {n:"Main Lawn & Beds", c:"Riverbend Church", st:"ok", msg:"Visited "+D(-7)+" · next due "+D(23)+""},
+    {n:"Campus Front Turf", c:"Summit Ridge Office Park", st:"warn", msg:"Due in 5 days — "+D(5)+""},
     {n:"Perimeter Strips", c:"Cedar Creek Storage", st:"over", msg:"Monthly visit overdue 8 days — window closed with no ticket", logged:false}
   ],
   nb:[{d:"Storm cleanup — Riverbend Church", m:"3.5 hrs · 12 mi · limbs hauled", amt:640, done:false}],
@@ -1039,7 +1042,7 @@ function renderMoney(prevBooks){
   area.innerHTML=
   '<div class="bankstrip enter"><div class="l"><span class="ic">🏛</span><span><span class="lb">In the bank — from QuickBooks</span><br/><span class="accts">'+S.bank.accts+'</span></span></div><span class="tot money">'+fmt(S.bank.total)+'</span></div>'+
   '<div class="grid bcards" style="margin-top:12px">'+
-    '<div class="card bcard yr"><div class="lb">This year — 2026</div><div class="big money" id="bYtdB">'+fmt(b.ytdB)+'</div><div class="cap">Billed — your books (33 invoices)</div>'+
+    '<div class="card bcard yr"><div class="lb">This year — '+_T.getFullYear()+'</div><div class="big money" id="bYtdB">'+fmt(b.ytdB)+'</div><div class="cap">Billed — your books (33 invoices)</div>'+
       '<div class="brow"><span>Collected — your books</span><span class="money g" id="bYtdC">'+fmt(b.ytdC)+'</span></div>'+
       '<div class="brow"><span>Billed, awaiting payment</span><span class="money a" id="bOpen1">'+fmt(b.open)+'</span></div></div>'+
     '<div class="card bcard"><div class="lb">Lifetime — since 2022</div><div class="big money" id="bLifeB">'+fmt(b.lifeB)+'</div><div class="cap">Billed — your books (187 invoices)</div>'+
@@ -1453,7 +1456,7 @@ function loseProposal(p){
 }
 function m$bind(){
   $$("[data-logvisit]").forEach(b=>b.onclick=()=>{
-    const u=S.maint[+b.dataset.logvisit]; u.logged=true; u.st="ok"; u.msg="Visited today · clock reset — next due Aug 5";
+    const u=S.maint[+b.dataset.logvisit]; u.logged=true; u.st="ok"; u.msg="Visited today · clock reset — next due "+D(31)+"";
     toast("Visit logged ✓","Service clock reset. The customer never knew it slipped — that’s the point.");
     renderMaint(); renderGuide();
   });
@@ -1632,17 +1635,17 @@ const MAPPINS=[
  {id:"m2",x:292,y:150,st:"ok",  k:"job",  n:"Irrigation install — main lawn", c:"Riverbend Church",
   rows:[["Stage","Rough-in complete"],["Billed","$2,940 · awaiting payment"],["Contract","$9,800"]]},
  {id:"m3",x:196,y:250,st:"over",k:"maint",n:"Perimeter Strips", c:"Cedar Creek Storage",
-  rows:[["Monthly visit","Overdue 8 days"],["Last ticket","May 28"],["Why it’s red","The window closed with no ticket on it"]]},
+  rows:[["Monthly visit","Overdue 8 days"],["Last ticket",""+D(-38)+""],["Why it’s red","The window closed with no ticket on it"]]},
  {id:"m4",x:318,y:74, st:"soon",k:"maint",n:"Campus Front Turf", c:"Summit Ridge Office Park",
-  rows:[["Next visit","Due in 5 days"],["Last visit","Jun 24"],["Covered by","Maintenance contract"]]},
+  rows:[["Next visit","Due in 5 days"],["Last visit",""+D(-11)+""],["Covered by","Maintenance contract"]]},
  {id:"m5",x:96, y:160,st:"ok",  k:"maint",n:"Common Area Turf", c:"Oakmont HOA",
-  rows:[["Visited","Jun 24"],["Next due","Jul 24"],["Covered by","Maintenance contract"]]},
+  rows:[["Visited",""+D(-11)+""],["Next due",""+D(19)+""],["Covered by","Maintenance contract"]]},
  {id:"m6",x:60, y:96, st:"none",k:"prop", n:"Storm-damaged maple removal", c:"Tom & Ellen Brady",
   rows:[["Proposal","$2,350 · sent"],["Out","4 days"],["No date on it","Nothing is scheduled until it’s signed"]]},
  {id:"m7",x:214,y:170,st:"none",k:"prop", n:"Backyard drip irrigation", c:"Marie Castillo",
   rows:[["Draft","$3,150"],["No date on it","Not sent yet"]]},
  {id:"m8",x:344,y:206,st:"ok",  k:"job",  n:"Beer garden hardscape & pergola beds", c:"Trellis Public House",
-  rows:[["Finished","Jun 30"],["Collected","$32,600"],["Left to do","Nothing — closed"]]}
+  rows:[["Finished",""+D(-5)+""],["Collected","$32,600"],["Left to do","Nothing — closed"]]}
 ];
 const MAPCREW=[
  {id:"c1",x:286,y:52, ini:"MW",n:"Marcus Webb",  rows:[["On","Campus Front Turf · Summit Ridge"],["Since","8:00a"],["Ticket","Open, not signed yet"]]},
@@ -1689,7 +1692,7 @@ function renderJM(){
   if(jm.tab==="draws"){
     const tot=jm.ms.reduce((a,m)=>a+m.amt,0);
     const paid=jm.ms.filter(m=>m.status==="collected").reduce((a,m)=>a+m.amt,0);
-    let h='<div class="lockstrip">🔒 <span>Signed Jun 12, so the $24,500 is frozen. Extra work goes on as a change order, which <b style="color:var(--ink)">adds</b> a draw rather than moving one.</span></div>';
+    let h='<div class="lockstrip">🔒 <span>Signed '+D(-23)+', so the $24,500 is frozen. Extra work goes on as a change order, which <b style="color:var(--ink)">adds</b> a draw rather than moving one.</span></div>';
     jm.ms.forEach((m,i)=>{
       const L=JMLBL[m.status];
       h+='<div class="drow"><span class="nm">'+esc(m.label)+'<span>'+(m.inv?"Invoice "+m.inv:"Not billed yet")+'</span></span>'
@@ -1887,6 +1890,7 @@ renderAll();
   var q=new URLSearchParams(location.search),keep=[];q.forEach(function(val,k){if(k==='gclid'||k==='gbraid'||k==='wbraid'||k.indexOf('utm_')===0)keep.push([k,val]);});
   for(var i=0;i<a.length;i++){var u=new URL(a[i].href);u.searchParams.set('src',s);if(v)u.searchParams.set('v',v);for(var j=0;j<keep.length;j++)u.searchParams.set(keep[j][0],keep[j][1]);a[i].href=u.toString();}
 }catch(e){}})();
+(function(){var a=document.getElementById('demoToday');if(a)a.textContent=_T.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});var b=document.getElementById('demoDate');if(b)b.textContent=_T.toLocaleDateString('en-US');})();
 </script>
 </body>
 </html>
