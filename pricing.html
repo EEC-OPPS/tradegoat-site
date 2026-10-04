@@ -17,7 +17,7 @@
   <meta name="twitter:title" content="TradeGOAT — Simple, honest pricing" />
   <meta name="twitter:description" content="Flat per company inside your tier. You pay for the company, not per head." />
   <meta name="twitter:image" content="https://www.thetradegoat.com/og-image.png" />
-<meta name="description" content="TradeGOAT pricing: three flat tiers, priced per company inside your tier instead of per head. Growth adds the maintenance program. Pro adds dispatch and the map. 14 days of Pro free. Founding rate: half price for as long as you stay. Spots are limited, and once they're gone, they're gone. Month-to-month, cancel anytime, your data is yours." />
+<meta name="description" content="TradeGOAT pricing: three flat tiers, priced per company inside your tier instead of per head. Growth adds the maintenance program. Pro adds dispatch and the map. 14 days of Pro free. Founding rate: the first 25 companies get half price for as long as they stay. Once those are gone, they're gone. Month-to-month, cancel anytime, your data is yours." />
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -154,7 +154,7 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
     <p class="sub">Three flat monthly prices. No per-user math, no feature hostages, no contracts.
       Add a tech, add your spouse, add the office — your price doesn't move inside your tier.</p>
     <div class="notice">
-      <b>Start with 14 days of Pro, on us. Founding rate: half price for as long as you stay. Spots are limited, and once they're gone, they're gone.</b> Every feature, up to 25 users, and we load your
+      <b>Start with 14 days of Pro, on us. Founding rate: the first 25 companies get half price for as long as they stay. Once those are gone, they're gone.</b> Every feature, up to 25 users, and we load your
       documents with you. <b>A company name and an email is the whole signup</b> — no credit card,
       because we'd rather earn the sale than trap it. When the fourteen days are up you pick a tier or you
       walk, and nobody ever sees a charge that wasn't agreed in writing first.
@@ -309,13 +309,13 @@ secretary can run that board for you.
 </div>
 <script>
 (function(){
-  // Founding note. Travis, 2026-10-01: no number anywhere public.
+  // Founding note. Travis, 2026-10-04: "first 25" is back (the size of the offer, not a count of who is in).
   // Travis, 2026-08-05: never publish a remaining-spots count. How many are left is
   // nobody outside the company's business, and any number we print reads as "nobody is
   // signing up" rather than as momentum. The urgency comes from the offer being finite
   // and permanent, not from a countdown.
   var el=document.getElementById('spotsLeft');
-  if(el) el.textContent = "Spots are limited, and once they're gone, they're gone";
+  if(el) el.textContent = "First 25 companies. Once those are gone, they're gone";
   var seg=document.getElementById('billSeg');
   if(seg) seg.addEventListener('click',function(e){
     var b=e.target.closest('button'); if(!b) return;
