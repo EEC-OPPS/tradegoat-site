@@ -87,6 +87,9 @@ footer.pagefoot{text-align:center;color:var(--text-muted);font-size:12.5px;paddi
 footer.pagefoot a{color:var(--text-soft);text-decoration:none}
 </style>
   <script defer src="/_vercel/insights/script.js"></script>
+  <!-- Google tag: Google Analytics G-42WBGHMLE9 + Google Ads AW-18487719470 (Travis 10/27). Named on privacy.html. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-42WBGHMLE9"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-42WBGHMLE9');gtag('config','AW-18487719470');</script>
 </head>
 <body>
 
@@ -337,7 +340,7 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
   document.addEventListener('click',function(e){try{
     var el=e.target&&e.target.closest&&e.target.closest('a[href],button');
     if(!el||el.closest('form'))return;
-    var k=kind(el);if(k)window.tgEvt('cta:'+P+':'+k+'-'+zone(el));
+    var k=kind(el);if(k)window.tgEvt('cta:'+P+':'+k+'-'+zone(el));if(k&&window.gtag){if(k==='start')gtag('event','begin_signup',{page_name:P});else if(k==='demo')gtag('event','demo_click',{page_name:P});}
   }catch(x){}},true);
   /* Waitlist form: evt:form:<page>:invalid|submit|ok|fallback|fail */
   var f=document.getElementById('waitlistForm');

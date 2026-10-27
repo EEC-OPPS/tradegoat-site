@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TradeGOAT — Privacy Policy</title>
   <link rel="canonical" href="https://www.thetradegoat.com/privacy.html" />
-  <meta name="description" content="TradeGOAT's privacy policy in plain language: we never sell your information, never use it for advertising, and never read your account beyond the specific problem you asked us to fix." />
+  <meta name="description" content="TradeGOAT's privacy policy in plain language: we never sell your information, never use what's in your account for advertising, and never read your account beyond the specific problem you asked us to fix." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --navy:#0f1f3d; --gold:#D97706; --ink:#1f2430; --muted:#5b6472; --line:#e7e9ee; }
@@ -28,12 +28,15 @@
     footer { background:var(--navy); color:#8a93a6; text-align:center; padding:28px; font-size:13px; }
     footer a { color:#c9d2e3; }
   </style>
+  <!-- Google tag: Google Analytics G-42WBGHMLE9 + Google Ads AW-18487719470 (Travis 10/27). Named on privacy.html. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-42WBGHMLE9"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-42WBGHMLE9');gtag('config','AW-18487719470');</script>
 </head>
 <body>
   <header class="top"><a href="/">Trade<span class="g">GOAT</span></a></header>
   <div class="wrap">
     <h1>Privacy Policy</h1>
-    <p class="date">Effective August 7, 2026 · TradeGOAT LLC, a Texas company</p>
+    <p class="date">Effective August 7, 2026 · Updated October 27, 2026 · TradeGOAT LLC, a Texas company</p>
 
     <p>Your business records are the most sensitive thing about your business — what you
     charge, what your jobs make, who your customers are. This page says what we collect,
@@ -45,18 +48,18 @@
       <p><b>We will never sell your information.</b> Not your email, not your customer
       list, not your pricing, not your numbers. Not to data brokers, not to "partners,"
       not to anyone, not ever.</p>
-      <p><b>We will never use your information for advertising.</b> No ad pixels on your
-      data, no custom audiences, no lookalike lists, no retargeting built from anything
-      you put in the tool. Your information is never the fuel for anyone's ads, including
-      ours.</p>
+      <p><b>We will never use your information for advertising.</b> No custom audiences,
+      no lookalike lists, no retargeting built from anything you put in the tool. What's
+      inside your account is never the fuel for anyone's ads, including ours.</p>
       <p><b>We will never read your account beyond what you asked us to fix.</b> When you
       ask for help, we look at the specific item you asked about — that ticket, that
       proposal, that sync error — and nothing else. Nobody at TradeGOAT browses customer
       accounts, and support access ends when your problem does.</p>
-      <p><b>The tracking we do is purely internal.</b> We count visits and usage to
-      measure our own work — which pages get read, which features get used. Those
-      measurements stay inside the company and are never shared, sold, or used to profile
-      you anywhere else.</p>
+      <p><b>How we measure.</b> We count visits and usage to measure our own work, which
+      pages get read and which features get used, and that stays inside the company. On
+      this public website and the sign-up page we also use Google Analytics and Google Ads,
+      so we can see which ads bring people in. Those tools see page visits and that a
+      sign-up happened. They never see anything inside your account.</p>
     </div>
 
     <h2>What we collect, and why</h2>
@@ -64,8 +67,11 @@
     <h3>On this website</h3>
     <ul>
       <li><b>Anonymous visit counts.</b> A first-party counter tells us which pages get
-      read. It uses a random token, not your identity, and we do not run advertising
-      trackers of any kind.</li>
+      read. It uses a random token, not your identity.</li>
+      <li><b>Google Analytics and Google Ads.</b> These record page visits, clicks on
+      "Start free" and "Drive the demo", and whether a visit came from one of our ads, so
+      we know which ads are worth paying for. Google's own privacy policy covers what
+      Google does with that data.</li>
       <li><b>What you type into the signup form.</b> Your name, company name, and email
       address. That is the whole signup by design — we do not ask for a card.</li>
     </ul>
@@ -134,8 +140,10 @@
     </ul>
 
     <h2>Cookies</h2>
-    <p>We use the cookies required to keep you signed in securely. We do not use
-    advertising or cross-site tracking cookies.</p>
+    <p>We use the cookies required to keep you signed in securely. On the public website
+    and the sign-up page, Google Analytics and Google Ads also set cookies to measure
+    visits and which ads lead to sign-ups. Nothing inside your account is shared with
+    them.</p>
 
     <h2>Email from us</h2>
     <p>We email you about your own account, and — if you signed up for it — about what is
@@ -215,7 +223,7 @@
   document.addEventListener('click',function(e){try{
     var el=e.target&&e.target.closest&&e.target.closest('a[href],button');
     if(!el||el.closest('form'))return;
-    var k=kind(el);if(k)window.tgEvt('cta:'+P+':'+k+'-'+zone(el));
+    var k=kind(el);if(k)window.tgEvt('cta:'+P+':'+k+'-'+zone(el));if(k&&window.gtag){if(k==='start')gtag('event','begin_signup',{page_name:P});else if(k==='demo')gtag('event','demo_click',{page_name:P});}
   }catch(x){}},true);
   /* Waitlist form: evt:form:<page>:invalid|submit|ok|fallback|fail */
   var f=document.getElementById('waitlistForm');
