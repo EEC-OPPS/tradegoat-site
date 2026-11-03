@@ -8,7 +8,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="TradeGOAT" />
   <meta property="og:title" content="TradeGOAT videos" />
-  <meta property="og:description" content="Every TradeGOAT video in one place: the two-minute overview, two one-minute stories and six short clips." />
+  <meta property="og:description" content="Every TradeGOAT video in one place: the one-minute overview, two one-minute stories and six short clips." />
   <meta property="og:url" content="https://www.thetradegoat.com/videos.html" />
   <meta property="og:image" content="https://www.thetradegoat.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -17,7 +17,7 @@
   <meta name="twitter:title" content="TradeGOAT videos" />
   <meta name="twitter:description" content="The full feature set: pricing, proposals from your own documents, job tracking, QuickBooks sync, field tickets, time clock, and win/loss intelligence." />
   <meta name="twitter:image" content="https://www.thetradegoat.com/og-image.png" />
-<meta name="description" content="Every TradeGOAT video in one place: the two-minute overview, two one-minute stories and six short clips." />
+<meta name="description" content="Every TradeGOAT video in one place: the one-minute overview, two one-minute stories and six short clips." />
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -93,6 +93,8 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
 .vgrid .vf{aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--border)}
 .vgrid video{width:100%;height:100%;display:block;object-fit:cover}
 .vgrid figcaption{margin-top:10px;font-weight:700}
+.ovfig .ov-wide{display:none}
+@media (min-width:760px){.vgrid figure.ovfig{max-width:860px}.ovfig .vf{aspect-ratio:16/9}.ovfig .ov-tall{display:none}.ovfig .ov-wide{display:block}}
 .vgrid figcaption span{display:block;font-weight:500;font-size:13px;color:var(--text-muted)}
 .vhead{font-size:clamp(20px,2.8vw,27px);text-align:center;margin:26px 0 14px}
 </style>
@@ -135,9 +137,9 @@ footer.pagefoot a{color:var(--text-soft);text-decoration:none}
     <p class="sub">Every video in one place. Press play on any of them.</p>
   </section>
 
-  <h2 class="vhead">The whole tool in two minutes</h2>
+  <h2 class="vhead">The whole tool in a minute</h2>
   <section class="vgrid">
-    <figure><div class="vf"><video controls playsinline preload="none" poster="videos/overview-poster.jpg" src="videos/tradegoat-overview.mp4" title="TradeGOAT in two minutes"></video></div><figcaption>TradeGOAT in two minutes<span>2:04</span></figcaption></figure>
+    <figure class="ovfig"><div class="vf"><video class="ov-tall" controls playsinline preload="none" poster="videos/overview-tall-poster.jpg" src="videos/tradegoat-overview-tall.mp4" title="TradeGOAT in a minute"></video><video class="ov-wide" controls playsinline preload="none" poster="videos/overview-wide-poster.jpg" src="videos/tradegoat-overview-wide.mp4" title="TradeGOAT in a minute"></video></div><figcaption>TradeGOAT in a minute<span>1:05</span></figcaption></figure>
   </section>
 
   <h2 class="vhead">One-minute stories</h2>
