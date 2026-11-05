@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/jobber-vs-housecall-pro-vs-tradegoat-plans.html", "destination": "/jobber-vs-housecall-pro-vs-tradegoat.html", "statusCode": 301 },
+    { "source": "/jobber-vs-housecall-pro-vs-tradegoat-plans", "destination": "/jobber-vs-housecall-pro-vs-tradegoat.html", "statusCode": 301 }
+  ]
+}
