@@ -1,0 +1,39 @@
+HOW-TO #3 — FIELD TICKETS: what was staged for these screenshots (2026-11-04, evening Central)
+
+All of it lives in a harness company made for this shoot. It is not a real customer's org,
+and it is not Travis's Clearwater demo org.
+
+COMPANY      Clearwater Outdoor   (plan: Pro; set to Growth only for shot 11, see below)
+             office / reply-to email: office@clearwateroutdoor.example   (reserved-TLD sink)
+             phone (970) 555-0163 · time zone America/Chicago
+TECH         Marcus Webb · role Technician (no prices, no invoices, no money keys)
+             crew card "Marcus Webb", set to Field app only (the three-tab phone shell: My Day · Map · More)
+OWNER        Jordan Reyes (used only for shot 13)
+CUSTOMER     Cedar Creek Storage · contact Rick Dawson
+             email rick@cedarcreekstorage.example   (reserved-TLD sink)
+             address on the ticket: 2650 Cedar Creek Rd · phone (970) 555-0148
+             map/My Day address: 2650 Cedar Creek Rd, Fort Collins, CO, 80524
+EQUIPMENT    Perimeter Strips (type "Grounds area")
+CALENDARS    Monthly grounds (monthly, about 8 days overdue, pre-checked on the ticket)
+             Quarterly bed care (every 3 months, due in about 40 days, not checked)
+THE STOP     booked for Marcus today, 9:00 AM
+AGREEMENT    "Cedar Creek Storage — grounds maintenance": maintenance visits covered; parts billed
+             except Mulch (bag); repair labor billed; trouble calls billed; mileage covered.
+PARTS LIST   Rotor head ........ Billable
+             Drip line (25 ft) .. Billable
+             Mulch (bag) ........ Contract
+THE TICKET   the company's own: "Grounds Service Log"
+             This visit is for: Scheduled grounds visit (one of six answers)
+             Crew on site (people): 2 · Billable work?: Billable · Mileage: 18
+             Lunch start 12:00 PM · Lunch end 12:30 PM
+             Work log: Mow, edge & blow · All four perimeter strips · Time in 8:00 AM · Time out 3:30 PM · Hours 7
+             Time on this work: 7 hr 0 min (added up from the work log, lunch taken out)
+             Signature rows: "Crew lead signature" -> Signed · Marcus Webb
+                             "Property manager signature" -> Signed · Cedar Creek Storage
+             Photo: a mowed-turf picture uploaded through "Choose from photos"
+NEIGHBOURS   on the map only: Summit Ridge Office Park (Campus Front Turf), Oakmont HOA (Common Area Turf),
+             Riverbend Church (Main Lawn & Beds), Tom & Ellen Brady (no maintenance plan)
+
+PLANS        Shot 11 was taken with the company on Growth (no map), so the phone stays on the
+             "Ticket finished" panel. Shot 12 was taken on Pro (the map), so the phone goes straight
+             to the map. Technician login for both.
