@@ -206,30 +206,122 @@ table.sc td:first-child{text-align:left;font-weight:600}
 .tagchip{display:inline-block;font-size:11.5px;font-weight:700;border:1.5px solid rgba(15,31,68,.2);border-radius:99px;padding:6px 13px;margin:4px 5px 0 0;background:#fff;transition:all .15s}
 .tagchip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
 
-/* maintenance */
+/* maintenance: the product's Maintenance page, in the demo's clothes */
 .munit{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;border-left:4px solid var(--green)}
-.munit.warn{border-left-color:var(--amber)} .munit.over{border-left-color:var(--red)}
+.munit.nb{border-left-color:var(--amber)}
 .munit .ul b{font-size:13px;display:block}
 .munit .ul span{font-size:11.5px;color:var(--muted)}
-.mstat{font-size:11px;font-weight:700}
-.mstat.ok{color:var(--green)} .mstat.warn{color:var(--amber)} .mstat.over{color:var(--red)}
+.mnext{font-size:12px;font-weight:700;color:#B45309;margin:0 0 10px}
+.mtiles{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:4px}
+.mtiles .kpi{padding:12px 14px}
+.mgroup{margin-bottom:10px;padding:0;overflow:hidden}
+.mgh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:9px 14px;background:var(--cream);border-bottom:1px solid var(--soft);flex-wrap:wrap}
+.mgh b{font-size:13px} .mgh span{font-size:11px;color:var(--muted)}
+.mrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;border-left:4px solid var(--green);border-top:1px solid var(--soft)}
+.mgh+.mrow{border-top:none}
+.mrow.overdue{border-left-color:var(--red)} .mrow.soon{border-left-color:var(--orange)}
+.mrow b{font-size:13px;display:block} .mrow .s{font-size:11.5px;color:var(--muted)}
+.mchip{display:inline-block;font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;white-space:nowrap}
+.mchip.red{background:#FBEAEA;color:var(--red)} .mchip.orange{background:#FDF1E3;color:#B45309}
+.mchip.green{background:var(--green-soft);color:var(--green)} .mchip.slate{background:var(--soft);color:#44506B}
+.mintro{font-size:11.5px;color:var(--muted);margin:-4px 0 9px;line-height:1.45}
+.nbacts{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.munit .ul .mchip{font-size:10.5px;margin-left:7px;vertical-align:1px}
+.munit .ul .mchip.green{color:var(--green)}
+.mhl{animation:enter .6s ease,ptarget 1.2s ease 2}
 
-/* field ticket */
+/* field ticket: Clearwater's own ticket, the way the product draws a company's own form */
 .phone{max-width:400px;margin:0 auto;background:#fff;border:1px solid var(--soft);border-radius:22px;padding:16px 15px;box-shadow:0 18px 44px rgba(15,31,68,.12)}
-.phone .ptop{text-align:center;font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:800;margin-bottom:9px}
+.thero{background:#1B2A4A;border-radius:12px;padding:10px 13px;display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.thero .k{display:block;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#F59E0B}
+.thero b{display:block;font-size:14px;font-weight:800;color:#fff;line-height:1.25}
+.tchip{display:inline-block;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap;border:1px solid;flex-shrink:0}
+.tchip.prog{color:#B45309;background:#FDF1E3;border-color:rgba(217,119,6,.35)}
+.tchip.fin{color:var(--green);background:var(--green-soft);border-color:rgba(21,128,61,.35)}
+.thead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:11px}
+.thead .tt{display:block;font-size:17px;font-weight:700;line-height:1.2}
+.thead .d{font-size:11.5px;color:var(--muted)}
+.tsec{margin-top:13px}
+.tlb{display:block;font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#3F4A5E;margin-bottom:6px}
+.tq{display:block;font-size:12px;font-weight:500;color:#44506B}
+.tauto{background:var(--cream);border-radius:11px;padding:10px 10px 3px}
+.tauto .f{background:#fff}
 .frow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-.f{flex:1;min-width:126px;background:var(--cream);border-radius:9px;padding:7px 10px;font-size:12px}
+.f{flex:1;min-width:126px;background:var(--cream);border-radius:9px;padding:7px 10px;font-size:12px;overflow-wrap:anywhere}
 .f b{display:block;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
-.f .auto{font-size:9.5px;color:var(--muted)}
+.f.box{background:#fff;border:1px solid rgba(15,31,68,.16)}
+.f.tsmall{flex:0 1 190px}
+.f.tnotes{min-height:54px}
 .vchip{display:inline-block;font-size:11px;font-weight:700;border:1.5px solid rgba(15,31,68,.2);border-radius:99px;padding:6px 12px;margin:0 5px 6px 0;background:#fff}
-.vchip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.prow2{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:7px 0;border-top:1px solid var(--soft)}
-.sigbox{border:1.5px dashed rgba(15,31,68,.25);border-radius:10px;height:74px;margin-top:8px;display:grid;place-items:center;position:relative;overflow:hidden}
-.sigbox svg{position:absolute;inset:0;width:100%;height:100%}
-.sigbox svg path{stroke:#2b4a8f;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-dasharray:560;stroke-dashoffset:560}
-.sigbox.signed svg path{animation:draw 1.4s ease forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
-.sigbox .hint{font-size:11px;color:var(--muted)}
+.vchip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.tline{font-size:11.5px;color:var(--muted);margin-top:5px;line-height:1.45}
+.twarn{font-size:11.5px;font-weight:600;color:#B45309;line-height:1.45}
+.tgood{font-size:11.5px;font-weight:600;color:var(--green);margin-top:6px;line-height:1.45}
+.tbill{border:1px solid rgba(15,31,68,.16);border-radius:11px;padding:10px 11px;margin-top:5px}
+.tbill b{font-size:12.5px;font-weight:600}
+.tbill .opt{display:inline-block;font-size:11.5px;font-weight:600;border:1px solid rgba(15,31,68,.2);border-radius:99px;padding:5px 12px;margin:7px 5px 0 0;background:#fff}
+.tbill .opt.on.y{background:var(--green);border-color:var(--green);color:#fff}
+.tbill .opt.on.n{background:var(--navy);border-color:var(--navy);color:#fff}
+.wlog{border:1px solid rgba(15,31,68,.16);border-radius:10px;padding:9px 10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px 10px;font-size:12px}
+.wlog .c b{display:block;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.wlog .c.w{grid-column:1/-1}
+.clk{display:flex;align-items:center;gap:9px;width:100%;min-height:42px;border:1px solid #E7E3D8;border-radius:9px;padding:0 11px;margin-top:6px;background:#fff;font-size:12.5px;font-weight:700;color:#1B2A4A;text-align:left}
+.clk .bx{width:18px;height:18px;border-radius:5px;border:2px solid #C7CCE0;display:grid;place-items:center;font-size:11px;line-height:1;color:#fff;flex-shrink:0;background:#fff}
+.clk.on{border-color:var(--green);background:#E7F6EC;color:var(--green)}
+.clk.on .bx{border-color:var(--green);background:var(--green)}
+.thrs{display:flex;align-items:center;gap:7px;font-size:12px;color:#44506B}
+.thrs .bx{min-width:52px;border:1px solid rgba(15,31,68,.18);border-radius:8px;padding:6px 10px;font-size:13px;color:var(--ink);background:#fff}
+.tpart{display:flex;align-items:center;gap:6px;flex-wrap:wrap;border:1px solid rgba(15,31,68,.16);border-radius:9px;padding:6px 8px;margin-bottom:6px;font-size:12px}
+.tpart .pn{flex:1;min-width:96px;font-weight:600}
+.tpart .q{width:32px;text-align:center;border:1px solid rgba(15,31,68,.16);border-radius:6px;padding:3px 0;font-family:var(--mono)}
+.tpart .dd>button.sel{min-width:0;padding:4px 8px;font-size:11px;font-weight:700;gap:6px}
+.tpart .dd .menu{min-width:130px}
+.tpart .rm{color:var(--muted);padding:3px;display:inline-grid;place-items:center}
+.tpart .rm:hover{color:var(--red)}
+.dd.tadd{display:inline-block}
+.dd.tadd .menu{left:0;right:auto}
+.dd>button.taddp{border:none;background:none;min-width:0;padding:4px 0;font-size:12px;font-weight:700;color:var(--navy)}
+.dd>button.taddp::after{display:none}
+.dd>button.taddp:hover{text-decoration:underline}
+.sigrow{display:flex;align-items:center;gap:10px;width:100%;min-height:58px;border:1.5px dashed rgba(15,31,68,.3);border-radius:11px;padding:8px 11px;margin-bottom:7px;background:#fff;text-align:left}
+.sigrow:hover{background:rgba(15,31,68,.03)}
+.sigrow.signed{border-style:solid}
+.sigrow:disabled{opacity:.5;cursor:default}
+.sigrow .sl{flex:1;min-width:0}
+.sigrow .sl b{display:block;font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#3F4A5E}
+.sigrow .sl span{font-size:11.5px;color:var(--muted)}
+.sigrow img{height:36px;width:84px;object-fit:contain;border:1px solid var(--soft);border-radius:6px;background:var(--cream);flex-shrink:0}
+.sigrow .sb{font-size:11.5px;font-weight:700;border:1px solid rgba(15,31,68,.3);border-radius:99px;padding:5px 11px;color:var(--navy);white-space:nowrap}
+.twaive{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;color:var(--muted);line-height:1.4;cursor:pointer;margin-top:2px}
+.twaive input{margin-top:2px;accent-color:var(--orange)}
+.tcopy{border:1px solid rgba(15,31,68,.16);border-radius:11px;padding:10px 11px;font-size:12px;line-height:1.45}
+.tcopy .ok{color:var(--green);margin-right:5px}
+.tcopy .em{font-weight:600;word-break:break-all}
+.tblock{font-size:11.5px;font-weight:700;color:#B45309;margin-top:12px;line-height:1.45}
+.tblock button{color:var(--navy);text-decoration:underline;font-weight:700}
+.tbar{display:flex;gap:9px;margin-top:9px}
+.tbar .abtn{flex:1;padding:11px;font-size:12.5px}
+.tsent{border:1px solid rgba(21,128,61,.4);background:#E7F6EC;border-radius:11px;padding:12px}
+.tsent .t{font-size:12.5px;font-weight:700;line-height:1.4;overflow-wrap:anywhere}
+.tsent .t .ok{color:var(--green)}
+.tsent .d{font-size:11.5px;color:var(--muted);margin-top:3px}
+.tsent .acts{display:flex;gap:14px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.tsent .lnk{font-size:12px;font-weight:700;color:var(--navy)}
+.tsent .lnk:hover{text-decoration:underline}
+/* the signature sheet: full screen, Clear and Apply, as on the phone */
+.sigsheet{position:fixed;inset:0;z-index:96;background:var(--cream);display:none;flex-direction:column}
+.sigsheet.open{display:flex}
+.sigsheet .hd{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 16px;background:#fff;border-bottom:1px solid var(--soft)}
+.sigsheet .hd b{font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#3F4A5E}
+.sigsheet .hd button{font-size:17px;width:38px;height:38px;border-radius:50%;color:var(--navy)}
+.sigsheet .pad{position:relative;flex:1;min-height:0;width:100%;max-width:760px;margin:0 auto;padding:12px}
+.sigsheet canvas{position:absolute;left:12px;top:12px;width:calc(100% - 24px);height:calc(100% - 24px);display:block;background:#fff;border:1px solid rgba(15,31,68,.16);border-radius:12px;touch-action:none;cursor:crosshair}
+.sigsheet .hint{position:absolute;left:0;right:0;top:50%;text-align:center;font-size:13px;color:var(--muted);pointer-events:none}
+.sigsheet .sbar{display:flex;justify-content:center;gap:12px;padding:12px 16px;background:#fff;border-top:1px solid var(--soft)}
+.sigsheet .sbar button{flex:1;max-width:360px;height:46px;border-radius:11px;font-size:14px;font-weight:700}
+.sigsheet .sbar .clr{border:1px solid rgba(15,31,68,.3);color:var(--navy);background:#fff}
+.sigsheet .sbar .apl{background:var(--primary);color:#fff}
+.sigsheet .sbar .apl:disabled{opacity:.45;cursor:default}
 
 /* customers */
 .custcard{margin-bottom:12px;cursor:pointer;border-left:4px solid var(--primary);transition:box-shadow .15s}
@@ -407,6 +499,11 @@ table.sc td:first-child{text-align:left;font-weight:600}
 .selcard .r b{font-weight:600}
 .focusnote{background:var(--navy);color:#fff;font-size:11.5px;line-height:1.5;border-radius:9px;padding:10px 12px;margin-top:10px}
 .focusnote b{color:#FFC94D}
+.selcard .tone{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:800;padding:3px 9px;border-radius:6px;margin-bottom:7px}
+.selcard .tone.overdue{background:#FBEAEA;color:var(--red)} .selcard .tone.soon{background:#FDF1E3;color:#B45309} .selcard .tone.ok{background:var(--green-soft);color:var(--green)}
+.selcard .noplan{font-size:12px;color:#516079;border-top:1px solid var(--soft);padding-top:8px;margin-top:9px}
+.layers .lrow.off{color:rgba(15,31,68,.42)}
+.layers .soon{font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:rgba(15,31,68,.42)}
 
 /* ═════════ JOB MONEY — draws + vendors ═════════ */
 .mtabs{margin-bottom:12px}
@@ -631,50 +728,23 @@ table.sc td:first-child{text-align:left;font-weight:600}
     <!-- ═══════════ MAINTENANCE ═══════════ -->
     <section class="scene" id="sc-maint">
       <h1 class="pg">Maintenance</h1>
-      <div class="sub">Service clocks on everything under contract — Clearwater's word is "Properties"; yours is yours</div>
-      <div id="maintArea"></div>
-      <div class="sechead"><h2><i style="background:var(--amber)"></i> Needs billing</h2></div>
+      <div class="sub">Recurring service — what's due, what's overdue, and what's ready to bill.</div>
+      <div id="maintTop"></div>
       <div id="nbArea"></div>
+      <div id="maintArea"></div>
       <div class="card" style="margin-top:12px;font-size:12.5px;color:var(--muted);line-height:1.6">
-        The red one is <b style="color:var(--ink)">the Wedge</b> — a maintenance window closed without a visit, caught before
-        the customer noticed. Billable field work lands on needs-billing with hours, miles, and parts
-        already totaled — "got it running, didn't take payment" never happens again.
+        Each piece of equipment keeps its own date on every calendar it rides. When the tech taps
+        <b style="color:var(--ink)">Finalize &amp; send</b> on his ticket, each calendar he checked moves forward by itself,
+        counted from the day the work was done. A visit he marks <b style="color:var(--ink)">Billable</b> waits
+        under Needs billing until you bill it.
       </div>
     </section>
 
     <!-- ═══════════ FIELD TICKET ═══════════ -->
     <section class="scene" id="sc-ticket">
       <h1 class="pg">Field ticket</h1>
-      <div class="sub">Marcus's phone, on site at Summit Ridge — the company's own paper form, reborn. Fill it out.</div>
-      <div class="phone">
-        <div class="ptop">Grounds service ticket · Clearwater Outdoor</div>
-        <div class="frow">
-          <span class="f"><b>Date</b><span id="demoDate"></span> <span class="auto">(auto)</span></span>
-          <span class="f"><b>Customer</b>Summit Ridge Office Park <span class="auto">(auto)</span></span>
-        </div>
-        <div class="frow">
-          <span class="f"><b>Property</b>Campus Front Turf <span class="auto">(auto)</span></span>
-          <span class="f"><b>Tech</b>M. Webb <span class="auto">(auto)</span></span>
-        </div>
-        <div style="margin:4px 0 8px" id="vchips"></div>
-        <div class="prow2"><span><b style="font-size:12px">Hours</b> — 8:00a → 3:30p, lunch out</span><b class="money">7.0</b></div>
-        <div class="prow2"><span style="flex:1"><b style="font-size:12px">Parts used</b></span>
-          <span class="dd" id="partDD"><button>+ Add part</button>
-            <span class="menu">
-              <button data-part="Rotor head:18.5">Rotor head — $18.50</button>
-              <button data-part="Drip line (25 ft):9.75">Drip line (25 ft) — $9.75</button>
-              <button data-part="Mulch (bag):6.5">Mulch (bag) — $6.50</button>
-            </span></span></div>
-        <div id="tParts"></div>
-        <div class="prow2"><span><b style="font-size:12px">Billable?</b> <span style="font-size:10.5px;color:var(--muted)">contract covers mowing; parts are billable</span></span>
-          <span class="pill billed" id="tBillPill">SPLIT</span></div>
-        <div class="sigbox" id="sigbox">
-          <svg viewBox="0 0 340 70" preserveAspectRatio="none"><path d="M14 46 C 40 12, 62 56, 92 34 S 148 14, 172 40 S 232 58, 258 26 S 308 30, 328 40"/></svg>
-          <span class="hint" id="sigHint">Customer signs on glass — tap to sign</span>
-        </div>
-        <button class="abtn gold" id="tFinal" style="width:100%;margin-top:10px;padding:11px" disabled>Finalize &amp; send</button>
-        <p style="font-size:10.5px;color:var(--muted);text-align:center;margin-top:7px" id="tDone">Signed PDF goes to the customer and the office — and files itself to this Property's history forever.</p>
-      </div>
+      <div class="sub">Marcus's phone, on site at Cedar Creek Storage. This is Clearwater's own ticket, in their own words. Fill it out and finish it.</div>
+      <div class="phone" id="tPhone"></div>
     </section>
 
     <!-- ═══════════ CUSTOMERS ═══════════ -->
@@ -891,9 +961,9 @@ table.sc td:first-child{text-align:left;font-weight:600}
           <div class="mapkey">
             <span><i style="background:var(--red)"></i>Overdue</span>
             <span><i style="background:var(--orange)"></i>Due soon</span>
-            <span><i style="background:var(--green)"></i>On schedule or done</span>
-            <span><i style="background:var(--navy)"></i>No date on it</span>
-            <span><i style="background:#fff;border:2px solid var(--navy)"></i>Your crew</span>
+            <span><i style="background:var(--green)"></i>Done</span>
+            <span><i style="background:var(--navy)"></i>No maintenance plan</span>
+            <span><i style="background:#fff;border:2px solid var(--navy)"></i>Crew</span>
           </div>
         </div>
         <div>
@@ -902,9 +972,9 @@ table.sc td:first-child{text-align:left;font-weight:600}
         </div>
       </div>
       <div class="card" style="margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.65">
-        The colors are the same everywhere in the tool, so red on this map means what red meant on the
-        Maintenance page. <b style="color:var(--ink)">Cedar Creek is red because its monthly window closed
-        without a ticket</b> — the same one the Wedge caught. When a tech taps <b style="color:var(--ink)">On it</b>
+        The colors are the same everywhere in the tool, so red on this map means what red means on the
+        Maintenance page. <b style="color:var(--ink)">Cedar Creek Storage is red while its monthly visit is past its date,
+        and it turns green when Marcus finishes his ticket there.</b> When a tech taps <b style="color:var(--ink)">On it</b>
         on a call, his map quiets down to the address he's driving to; the office map never does, because
         a dispatcher's map has to answer "who's near this."
       </div>
@@ -933,6 +1003,11 @@ table.sc td:first-child{text-align:left;font-weight:600}
   <div class="steps" id="guideSteps"></div>
 </div>
 <button class="gpill" id="guidePill" title="Reopen the guide">?</button>
+<div class="sigsheet" id="sigSheet" role="dialog" aria-modal="true" aria-labelledby="sigLabel">
+  <div class="hd"><b id="sigLabel">Signature</b><button id="sigClose" aria-label="Close without signing">✕</button></div>
+  <div class="pad"><canvas id="sigCanvas"></canvas><span class="hint" id="sigHint">Sign here with your finger</span></div>
+  <div class="sbar"><button class="clr" id="sigClear">Clear</button><button class="apl" id="sigApply" disabled>Apply</button></div>
+</div>
 <div class="toasts" id="toasts"></div>
 
 <script>
@@ -941,6 +1016,22 @@ const _T=new Date();
 function D(n){const d=new Date(_T);d.setDate(d.getDate()+n);return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});}
 (function(){
 "use strict";
+/* ═════════ SERVICE CLOCKS ═════════
+   Counted the way the product counts them (lib/maintenance/due.ts): a calendar
+   comes due its period after the last visit, and the chip reads Overdue Nd,
+   Due in Nd (inside the 7-day warning) or Next YYYY-MM-DD. */
+function day0(){ return new Date(_T.getFullYear(),_T.getMonth(),_T.getDate()); }
+function dayAt(n){ const d=day0(); d.setDate(d.getDate()+n); return d; }
+function addMonths(d,m){ const x=new Date(d.getFullYear(),d.getMonth()+m,1), end=new Date(x.getFullYear(),x.getMonth()+1,0).getDate(); x.setDate(Math.min(d.getDate(),end)); return x; }
+function isoD(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function mdyD(d){ return (d.getMonth()+1)+"/"+d.getDate()+"/"+d.getFullYear(); }
+function longD(d){ return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getMonth()]+" "+d.getDate()+", "+d.getFullYear(); }
+function sched(u,c,svc,months,nextIn){ const next=dayAt(nextIn); return {u:u, c:c, svc:svc, months:months, next:next, last:addMonths(next,-months), fresh:false}; }
+function due(s){ const n=Math.round((s.next-day0())/86400000);
+  if(n<0) return {tone:"overdue", label:"Overdue "+(-n)+"d", n:n};
+  if(n<=7) return {tone:"soon", label:"Due in "+n+"d", n:n};
+  return {tone:"ok", label:"Next "+isoD(s.next), n:n}; }
+
 /* ═════════ STATE ═════════ */
 function initial(){ return {
   moneyShown:false,
@@ -976,19 +1067,21 @@ function initial(){ return {
     {n:"Front yard re-sod & beds", o:"lost", p:6900, m:34, d:2.5}
   ]},
   maint:[
-    {n:"Common Area Turf", c:"Oakmont HOA", st:"ok", msg:"Visited "+D(-11)+" · next due "+D(19)+""},
-    {n:"Main Lawn & Beds", c:"Riverbend Church", st:"ok", msg:"Visited "+D(-7)+" · next due "+D(23)+""},
-    {n:"Campus Front Turf", c:"Summit Ridge Office Park", st:"warn", msg:"Due in 5 days — "+D(5)+""},
-    {n:"Perimeter Strips", c:"Cedar Creek Storage", st:"over", msg:"Monthly visit overdue 8 days — window closed with no ticket", logged:false}
+    sched("Perimeter Strips","Cedar Creek Storage","Monthly grounds",1,-8),
+    sched("Perimeter Strips","Cedar Creek Storage","Quarterly bed care",3,40),
+    sched("Campus Front Turf","Summit Ridge Office Park","Monthly grounds",1,5),
+    sched("Common Area Turf","Oakmont HOA","Monthly grounds",1,19),
+    sched("Main Lawn & Beds","Riverbend Church","Monthly grounds",1,23)
   ],
-  nb:[{d:"Storm cleanup — Riverbend Church", m:"3.5 hrs · 12 mi · limbs hauled", amt:640, done:false}],
+  seenReset:false,
+  nb:[{c:"Riverbend Church", u:"Main Lawn & Beds", on:dayAt(-2), hrs:3.5, mi:12, parts:39, covered:true, ticket:false, fresh:false}],
   invSeq:1082,
   calc:{crew:2, days:3, parts:1800, margin:33, sent:false},
-  ticket:{type:"maintenance", parts:[], signed:false, done:false},
+  ticket:{visit:null, billable:null, clocks:[true,false], parts:[], techSig:null, custSig:null, waive:false, sending:false, done:false},
   score:{tag:null},
   role:"owner",
   drive:{cust:null, q:"", lines:[], terms:"one", stage:"compose", secs:null, name:""},
-  map:{sel:null, layers:{jobs:true, maint:true, props:true, crew:true, bldg:false}},
+  map:{sel:null, layers:{bldg:true, crew:true, saved:true}},
   jm:{tab:"draws", vq:"", ms:[
         {label:"50% deposit",        amt:12250, status:"collected", inv:"CW-1078"},
         {label:"25% at planting",    amt:6125,  status:"unbilled",  inv:null},
@@ -1217,45 +1310,178 @@ function renderScore(){
 }
 
 /* ═════════ MAINTENANCE ═════════ */
+const PER_MILE=0.70;   /* Clearwater's per-mile rate (demo value) */
+function money2(n){ return n.toLocaleString("en-US",{style:"currency",currency:"USD",maximumFractionDigits:2}); }
+function nbMileage(n){ return Math.round(n.mi*PER_MILE*100)/100; }
+function nbLine(n){ return mdyD(n.on)+" · "+n.hrs+" hrs · "+n.mi+" mi ("+money2(nbMileage(n))+" mileage)"+(n.parts>0?" · parts "+money2(n.parts):""); }
+function byCustomer(rows){ const order=[], by={};
+  rows.forEach(r=>{ if(!by[r.s.c]){ by[r.s.c]=[]; order.push(r.s.c); } by[r.s.c].push(r); });
+  return order.map(c=>({c:c, rows:by[c]})); }
+function maintGroup(g,onCal){
+  const units=new Set(g.rows.map(r=>r.s.u)).size;
+  return '<div class="card mgroup"><div class="mgh"><b>'+esc(g.c)+'</b><span>'+units+' '+(units===1?"piece":"pieces")+' of equipment</span></div>'
+    + g.rows.map(r=>'<div class="mrow '+(onCal?"ok":r.d.tone)+(r.s.fresh?" mhl":"")+'" data-mrow="'+r.i+'"><span><b>'+esc(r.s.u)+'</b><span class="s">'+esc(r.s.svc)+'</span></span>'
+      +'<span class="mchip '+(onCal?"green":r.d.tone==="overdue"?"red":r.d.tone==="soon"?"orange":"slate")+'">'+r.d.label+'</span></div>').join("")
+    + '</div>';
+}
 function renderMaint(){
-  $("#maintArea").innerHTML=S.maint.map((u,i)=>{
-    const cls=u.st==="over"?"over":(u.st==="warn"?"warn":"");
-    const stat=u.st==="over"?'<span class="mstat over">● OVERDUE — the Wedge caught it</span>':
-               u.st==="warn"?'<span class="mstat warn">● Due soon</span>':'<span class="mstat ok">● On schedule</span>';
-    const act=u.st==="over"&&!u.logged?'<button class="abtn solid" data-logvisit="'+i+'">Log the visit</button>':"";
-    return '<div class="card munit '+cls+'"><span class="ul"><b>'+u.n+'</b><span>'+u.c+' · monthly grounds</span><br/><span style="font-size:11px;color:var(--muted)">'+u.msg+'</span></span><span style="display:flex;gap:10px;align-items:center">'+stat+act+'</span></div>';
-  }).join("");
-  $("#nbArea").innerHTML=S.nb.map((n,i)=>n.done?
-    '<div class="card munit"><span class="ul"><b>'+n.d+'</b><span>'+n.m+'</span></span><span class="pill billed">billed ✓</span></div>':
-    '<div class="card munit warn"><span class="ul"><b>'+n.d+'</b><span>'+n.m+' — marked billable by the tech</span></span><span style="display:flex;gap:10px;align-items:center"><span class="pa money" style="font-weight:700">'+fmt(n.amt)+'</span><button class="abtn solid" data-nb="'+i+'">Mark billed</button></span></div>').join("");
+  const all=S.maint.map((s,i)=>({s:s, i:i, d:due(s)}));
+  const att=all.filter(r=>r.d.tone!=="ok").sort((a,b)=>a.d.n-b.d.n);
+  const cal=all.filter(r=>r.d.tone==="ok").sort((a,b)=>a.d.n-b.d.n);
+  const over=att.filter(r=>r.d.tone==="overdue").length;
+  const billTotal=S.nb.reduce((t,n)=>t+nbMileage(n)+(n.parts||0),0);
+  const tile=(lb,v,hot)=>'<div class="card kpi" style="border-top-color:'+(hot?"var(--orange)":"var(--navy)")+'"><div class="lb">'+lb+'</div><div class="v" style="color:'+(hot?"#B45309":"var(--ink)")+'">'+v+'</div></div>';
+  $("#maintTop").innerHTML=(S.nb.length?'<p class="mnext">▸ Next: '+S.nb.length+' visit'+(S.nb.length===1?"":"s")+' ready to bill — '+fmt(billTotal)+'</p>':"")
+    +'<div class="grid mtiles">'+tile("Overdue",over,over>0)+tile("Due soon",att.length-over,false)+tile("Tracked",S.maint.length,false)+'</div>';
+  $("#nbArea").innerHTML=S.nb.length
+    ? '<div class="sechead"><h2><i style="background:var(--amber)"></i> Needs billing ('+S.nb.length+')</h2></div>'
+      + S.nb.map((n,i)=>'<div class="card munit nb'+(n.fresh?" enter":"")+'"><span class="ul"><b>'+esc(n.c)+' <span style="font-weight:500">· '+esc(n.u)+'</span>'+(n.covered?'<span class="mchip green">Covered</span>':'')+'</b><span>'+nbLine(n)+'</span></span>'
+        +'<span class="nbacts"><button class="abtn" data-nbview="'+i+'">View ticket</button><button class="abtn solid" data-nbsend="'+i+'">Send the bill</button><button class="abtn solid" data-nb="'+i+'">Mark billed</button></span></div>').join("")
+    : "";
+  let h='<div class="sechead"><h2><i style="background:var(--red)"></i> Needs attention · '+att.length+'</h2></div>'
+    + (att.length ? byCustomer(att).map(g=>maintGroup(g,false)).join("")
+                  : '<div class="card" style="font-size:12.5px;color:var(--muted)">All current — nothing overdue or due soon.</div>');
+  if(cal.length) h+='<div class="sechead"><h2><i style="background:var(--green)"></i> On the calendar · '+cal.length+'</h2></div>'
+    +'<p class="mintro">These have a date and nothing is due about them yet. This is where a date you just set shows up.</p>'
+    + byCustomer(cal).map(g=>maintGroup(g,true)).join("");
+  $("#maintArea").innerHTML=h;
   m$bind();
 }
 
-/* ═════════ FIELD TICKET ═════════ */
-function renderTicket(){
-  const t=S.ticket;
-  $("#vchips").innerHTML=["maintenance","repair","service call"].map(v=>'<button class="vchip'+(t.type===v?" on":"")+'" data-v="'+v+'">'+v.charAt(0).toUpperCase()+v.slice(1)+'</button>').join("");
-  $$("#vchips [data-v]").forEach(b=>b.onclick=()=>{t.type=b.dataset.v; renderTicket();});
-  $("#tParts").innerHTML=t.parts.map((p,i)=>'<div class="prow2" style="border-top:none;padding:4px 0"><span style="font-size:12px;color:var(--muted)">'+p.n+'</span><span style="display:flex;gap:8px;align-items:center"><span class="money" style="font-size:12px">'+fmt(p.c)+'</span><button style="color:var(--red);font-weight:800" data-rmpart="'+i+'">✕</button></span></div>').join("");
-  $$("#tParts [data-rmpart]").forEach(b=>b.onclick=()=>{t.parts.splice(+b.dataset.rmpart,1); renderTicket();});
-  const fin=$("#tFinal");
-  if(t.done){ fin.disabled=true; fin.textContent="✓ Sent — customer + office have the PDF"; $("#sigHint").style.display="none"; }
-  else { fin.disabled=!t.signed; fin.textContent="Finalize & send"; }
+/* ═════════ FIELD TICKET ═════════
+   Clearwater's own ticket ("Grounds Service Log"), drawn the way the product
+   draws a company's own form: its own questions, its own signature labels, the
+   calendars section after the work log, and no prices on the tech's phone. */
+const TCUST="Cedar Creek Storage", TUNIT="Perimeter Strips", TTECH="Marcus Webb", TEMAIL="rick@cedarcreekstorage.example";
+const TSCHED=[0,1];   /* the calendars Perimeter Strips rides (indexes into S.maint) */
+const TVISIT=["Scheduled grounds visit","Bed & shrub care","Irrigation start-up or winterization","Irrigation repair","Emergency service call","Property inspection"];
+const TPARTS=[["Rotor head",18.5],["Drip line (25 ft)",9.75],["Mulch (bag)",6.5]];   /* the catalog; prices stay with the office */
+const PSTAT=[["contract","Contract"],["billable","Billable"],["split","Split"],["not_billable","Not billable"]];
+const PLIFE=[["needed","Needed"],["ordered","On order"],["replaced","Replaced"]];
+const TRASH='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6"/></svg>';
+function tBlock(t){ if(!t.visit) return "visit"; if(!t.techSig) return "tech"; if(!t.custSig&&!t.waive) return "cust"; return null; }
+function closeDD(){ $$(".dd.open").forEach(o=>o.classList.remove("open")); syncDodge(); }
+function tMenu(label,items,attr,i){ return '<span class="dd"><button class="sel">'+label+'</button><span class="menu">'+items.map(o=>'<button '+attr+'="'+i+':'+o[0]+'">'+o[1]+'</button>').join("")+'</span></span>'; }
+function sigRow(key,label,val,who,dis,note){
+  return '<button class="sigrow'+(val?" signed":"")+'" data-sig="'+key+'"'+(dis?" disabled":"")+'><span class="sl"><b>'+label+'</b><span>'
+    +(dis&&note?note:val?"Signed · "+esc(who):"Not signed yet")+'</span></span>'
+    +(val?'<img src="'+val+'" alt="'+label+' — captured"/>':'')+'<span class="sb">✎ '+(val?"Redo":"Sign")+'</span></button>';
 }
-$("#sigbox").onclick=()=>{
-  if(S.ticket.signed) return;
-  S.ticket.signed=true;
-  $("#sigbox").classList.add("signed"); $("#sigHint").style.display="none";
-  setTimeout(()=>{ renderTicket(); toast("Signed on glass ✓","Greg from Summit Ridge signed right on Marcus's phone."); },1200);
-};
-$("#tFinal").onclick=()=>{
-  const t=S.ticket; if(t.done||!t.signed) return;
-  t.done=true;
-  const partsTotal=t.parts.reduce((s,p)=>s+p.c,0);
-  S.nb.push({d:"Ticket — Summit Ridge · "+t.type, m:"7.0 hrs · "+t.parts.length+" part"+(t.parts.length===1?"":"s")+" · signed on glass", amt:Math.round(85+partsTotal), done:false});
-  toast("Finalized & sent ✓","PDF emailed to the customer and the office — and it's on the needs-billing list with everything totaled.");
-  renderTicket(); renderMaint(); renderGuide();
-};
+function renderTicket(){
+  const t=S.ticket, ph=$("#tPhone"); if(!ph) return;
+  let h='<div class="thero"><span><span class="k">Service ticket</span><b>'+TCUST+' · '+TUNIT+'</b></span><span class="tchip '+(t.done?"fin":"prog")+'">'+(t.done?"Finalized":"In progress")+'</span></div>';
+  if(t.done){
+    h+='<div class="thead"><span><b class="tt">Ticket finished</b><span class="d">Signed, locked and filed to the record.</span></span><span class="tchip fin">Finalized</span></div>'
+      +'<div class="tsent"><p class="t"><span class="ok">✓</span> Sent to '+TCUST+' at '+TEMAIL+'.</p><p class="d">A copy went to the office too.</p>'
+      +'<div class="acts"><button class="abtn" id="tResend">Resend</button><button class="lnk" id="tToMap">Around me</button></div></div>';
+    ph.innerHTML=h;
+    $("#tResend").onclick=e=>{ const b=e.currentTarget; if(b.disabled) return; b.disabled=true; b.textContent="Sending…";
+      setTimeout(()=>{ b.disabled=false; b.textContent="Resend"; toast("Sent to "+TCUST+" at "+TEMAIL+"."); },800); };
+    $("#tToMap").onclick=()=>{ S.map.sel="m3"; renderMap(); showScene("map"); };
+    return;
+  }
+  const blk=tBlock(t), chk=TSCHED.filter((_,k)=>t.clocks[k]).length;
+  h+='<div class="thead"><span><b class="tt">Grounds Service Log</b><span class="d">Today · '+longD(day0())+'</span></span><span class="tchip prog">In progress</span></div>'
+   +'<div class="tauto"><span class="tlb">Auto-filled · from the unit you opened</span>'
+   +'<div class="frow"><span class="f"><b>Date</b>'+mdyD(day0())+'</span><span class="f"><b>Customer</b>'+TCUST+'</span></div>'
+   +'<div class="frow"><span class="f"><b>Crew lead</b>'+TTECH+'</span><span class="f"><b>Property</b>'+TUNIT+'</span></div>'
+   +'<div class="frow"><span class="f"><b>Property address</b>2650 Cedar Creek Rd</span><span class="f"><b>Phone</b>(970) 555-0148</span></div></div>'
+   +'<div class="tsec" id="tVisitQ"><span class="tlb">This visit is for</span>'
+   +TVISIT.map(v=>'<button class="vchip'+(t.visit===v?" on":"")+'" data-tv="'+esc(v)+'">'+esc(v)+'</button>').join("")+'</div>'
+   +'<div class="tsec frow"><span class="f box tsmall"><b>Crew on site (people)</b>2</span></div>'
+   +'<div class="tbill" id="tBillQ"><b>Billable work?</b><div>'
+   +["Billable","Not billable"].map(o=>'<button class="opt'+(t.billable===o?(o==="Billable"?" on y":" on n"):"")+'" data-tb="'+o+'">'+o+'</button>').join("")
+   +'</div><p class="tline">The office sees billable tickets in the needs-billing list.</p></div>'
+   +'<div class="tsec frow"><span class="f box tsmall"><b>Mileage</b>18</span></div>'
+   +'<div class="frow"><span class="f box"><b>Lunch start (optional)</b>12:00 PM</span><span class="f box"><b>Lunch end (optional)</b>12:30 PM</span></div>'
+   +'<div class="frow"><span class="f box tnotes"><b>Notes for the office</b></span></div>'
+   +'<div class="tsec"><span class="tlb">Work log</span><div class="wlog"><span class="c w"><b>Service performed</b>Mow, edge &amp; blow</span><span class="c w"><b>Areas covered</b>All four perimeter strips</span>'
+   +'<span class="c"><b>Time in</b>8:00 AM</span><span class="c"><b>Time out</b>3:30 PM</span><span class="c"><b>Hours</b>7</span></div></div>'
+   +'<div class="tsec" id="tClocks"><span class="tq">Which calendars did this visit take care of?</span>'
+   +(t.clocks[0]?'<p class="tline" style="margin-top:2px">Filled in from this equipment’s calendar. Tap to change it.</p>':'')
+   +(chk===0?'<p class="twarn" style="margin-top:3px">Leave these blank for a trouble call or a repair. If this visit DID take care of a calendar and you skip it, that equipment keeps reading overdue after you have been there.</p>':'')
+   +TSCHED.map((si,k)=>'<button class="clk'+(t.clocks[k]?" on":"")+'" data-tclk="'+k+'" aria-pressed="'+(t.clocks[k]?"true":"false")+'"><span class="bx">'+(t.clocks[k]?"✓":"")+'</span>'+esc(S.maint[si].svc)+'</button>').join("")
+   +(chk>1?'<p class="tgood">'+chk+' calendars reset when you finish this ticket. Each one moves by its own schedule, and a state certificate keeps its own date.</p>':'')
+   +'</div>'
+   +'<div class="tsec"><span class="tlb">Time on this work</span><div class="thrs"><span class="bx">7</span>hr<span class="bx">0</span>min</div>'
+   +'<p class="tline">Added up from the work log, with lunch already taken out. Type over it if the total isn’t right.</p></div>'
+   +'<div class="tsec"><span class="tlb">Parts used</span>'
+   +(t.parts.length
+      ? t.parts.map((p,i)=>'<div class="tpart"><span class="pn">'+esc(p.n)+'</span><span class="q" title="Quantity">'+p.q+'</span>'
+          +tMenu(PSTAT.find(o=>o[0]===p.bs)[1],PSTAT,"data-pbs",i)+tMenu(PLIFE.find(o=>o[0]===p.lc)[1],PLIFE,"data-plc",i)
+          +'<button class="rm" data-rmpart="'+i+'" aria-label="Remove part" title="Remove part">'+TRASH+'</button></div>').join("")
+      : '<p class="tline" style="margin:0 0 6px">No parts added.</p>')
+   +'<span class="dd tadd"><button class="taddp"><span aria-hidden="true">+</span> Add a part</button><span class="menu">'
+   +TPARTS.map(p=>'<button data-part="'+esc(p[0])+'">'+esc(p[0])+'</button>').join("")+'</span></span></div>'
+   +'<div class="tsec" id="tSigs"><span class="tlb">Signatures on glass</span>'
+   +sigRow("tech","Crew lead signature",t.techSig,TTECH,false,"")
+   +sigRow("cust","Property manager signature",t.custSig,TCUST,t.waive,"Waived — sending tech-signed only.")
+   +'<label class="twaive"><input type="checkbox" id="tWaive"'+(t.waive?" checked":"")+'/><span>No customer on site. Send as tech-signed only. (You’ll get a copy for your records.)</span></label></div>'
+   +'<div class="tsec tcopy"><span class="tlb">Customer copy</span><span class="ok" aria-hidden="true">✉</span>Customer copy goes to <span class="em">'+TEMAIL+'</span></div>'
+   +(blk?'<p class="tblock">'+(blk==="visit"?"Answer “This visit is for” above to finish this ticket.":blk==="tech"?"The employee signature is required to finalize.":"Capture the customer signature, or waive it to finalize.")
+       +' <button id="tJump">'+(blk==="visit"?"Answer it":blk==="tech"?"Sign":"Get the signature")+' ›</button></p>':'')
+   +'<div class="tbar"><button class="abtn" id="tDraft">Save draft</button><button class="abtn gold" id="tFinal"'+(blk||t.sending?" disabled":"")+'>'+(t.sending?"Sending…":"Finalize &amp; send")+'</button></div>';
+  ph.innerHTML=h;
+  $$("[data-tv]",ph).forEach(b=>b.onclick=()=>{ t.visit=b.dataset.tv; renderTicket(); });
+  $$("[data-tb]",ph).forEach(b=>b.onclick=()=>{ t.billable=b.dataset.tb; renderTicket(); });
+  $$("[data-tclk]",ph).forEach(b=>b.onclick=()=>{ const k=+b.dataset.tclk; t.clocks[k]=!t.clocks[k]; renderTicket(); });
+  $$(".dd",ph).forEach(dd=>{ const btn=dd.querySelector(":scope>button");
+    btn.onclick=e=>{ e.stopPropagation(); $$(".dd.open").forEach(o=>{ if(o!==dd) o.classList.remove("open"); }); dd.classList.toggle("open"); syncDodge(); }; });
+  $$("[data-part]",ph).forEach(b=>b.onclick=e=>{ e.stopPropagation(); closeDD(); t.parts.push({n:b.dataset.part, q:1, bs:"billable", lc:"replaced"}); renderTicket(); });
+  $$("[data-pbs]",ph).forEach(b=>b.onclick=e=>{ e.stopPropagation(); closeDD(); const a=b.dataset.pbs.split(":"); t.parts[+a[0]].bs=a[1]; renderTicket(); });
+  $$("[data-plc]",ph).forEach(b=>b.onclick=e=>{ e.stopPropagation(); closeDD(); const a=b.dataset.plc.split(":"); t.parts[+a[0]].lc=a[1]; renderTicket(); });
+  $$("[data-rmpart]",ph).forEach(b=>b.onclick=()=>{ t.parts.splice(+b.dataset.rmpart,1); renderTicket(); });
+  $$("[data-sig]",ph).forEach(b=>b.onclick=()=>openSig(b.dataset.sig));
+  $("#tWaive").onchange=e=>{ t.waive=e.target.checked; renderTicket(); };
+  if($("#tJump")) $("#tJump").onclick=()=>pulse($(blk==="visit"?"#tVisitQ":"#tSigs"));
+  $("#tDraft").onclick=()=>toast("Draft saved. Find it under Field › Pick up where you left off.");
+  $("#tFinal").onclick=finalizeTicket;
+}
+/* Finalize & send: the ticket locks and sends, and each calendar he checked
+   starts over from the day of the work. Nobody else has to touch it. */
+function finalizeTicket(){
+  const t=S.ticket; if(t.done||t.sending||tBlock(t)) return;
+  t.sending=true; renderTicket();
+  setTimeout(()=>{
+    if(t!==S.ticket) return;
+    t.sending=false; t.done=true;
+    const today=day0();
+    TSCHED.forEach((si,k)=>{ if(t.clocks[k]){ const s=S.maint[si]; s.last=today; s.next=addMonths(today,s.months); s.fresh=true; } });
+    const parts=t.parts.filter(p=>p.bs==="billable").reduce((a,p)=>a+TPARTS.find(x=>x[0]===p.n)[1]*p.q,0);
+    if(t.billable==="Billable"||parts>0) S.nb.unshift({c:TCUST, u:TUNIT, on:today, hrs:7, mi:18, parts:Math.round(parts*100)/100, ticket:true, fresh:true});
+    renderTicket(); renderMaint(); renderMap(); renderGuide();
+    if($("#tPhone")&&$("#tPhone").offsetParent) window.scrollTo({top:0,behavior:"smooth"});
+  },900);
+}
+/* The signature sheet: full screen, "Sign here with your finger", Clear and Apply. */
+let sigFor=null, sigInk=false, sigBox=null;
+function sizeSig(){ const c=$("#sigCanvas"), r=c.getBoundingClientRect(), k=window.devicePixelRatio||1;
+  c.width=Math.max(1,Math.round(r.width*k)); c.height=Math.max(1,Math.round(r.height*k));
+  const x=c.getContext("2d"); x.setTransform(k,0,0,k,0,0); x.lineWidth=2.6; x.lineCap="round"; x.lineJoin="round"; x.strokeStyle="#1B2A4A"; x.fillStyle="#1B2A4A";
+  sigInk=false; sigBox=null; $("#sigHint").style.display=""; $("#sigApply").disabled=true; }
+function openSig(key){ const t=S.ticket; if(t.done||(key==="cust"&&t.waive)) return;
+  sigFor=key; $("#sigLabel").textContent=key==="tech"?"Crew lead signature":"Property manager signature";
+  $("#sigCanvas").setAttribute("aria-label",$("#sigLabel").textContent+" — sign here");
+  $("#sigSheet").classList.add("open"); document.body.style.overflow="hidden"; sizeSig(); }
+function closeSig(){ $("#sigSheet").classList.remove("open"); document.body.style.overflow=""; sigFor=null; }
+(function(){ const c=$("#sigCanvas"); let down=false, last=null;
+  const at=e=>{ const r=c.getBoundingClientRect(), p={x:e.clientX-r.left, y:e.clientY-r.top};
+    sigBox=sigBox?{x0:Math.min(sigBox.x0,p.x),y0:Math.min(sigBox.y0,p.y),x1:Math.max(sigBox.x1,p.x),y1:Math.max(sigBox.y1,p.y)}:{x0:p.x,y0:p.y,x1:p.x,y1:p.y}; return p; };
+  const inked=()=>{ if(!sigInk){ sigInk=true; $("#sigHint").style.display="none"; $("#sigApply").disabled=false; } };
+  c.addEventListener("pointerdown",e=>{ e.preventDefault(); down=true; last=at(e); try{ c.setPointerCapture(e.pointerId); }catch(_){}
+    const x=c.getContext("2d"); x.beginPath(); x.arc(last.x,last.y,1.3,0,Math.PI*2); x.fill(); inked(); });
+  c.addEventListener("pointermove",e=>{ if(!down) return; const p=at(e), x=c.getContext("2d"); x.beginPath(); x.moveTo(last.x,last.y); x.lineTo(p.x,p.y); x.stroke(); last=p; });
+  ["pointerup","pointercancel","pointerleave"].forEach(n=>c.addEventListener(n,()=>{ down=false; }));
+})();
+$("#sigClear").onclick=sizeSig;
+$("#sigClose").onclick=closeSig;
+/* The row's preview is cropped to the ink, as the product crops it. */
+function sigImage(){ const c=$("#sigCanvas"), k=window.devicePixelRatio||1; if(!sigBox) return c.toDataURL("image/png");
+  const pad=8, x=Math.max(0,(sigBox.x0-pad)*k), y=Math.max(0,(sigBox.y0-pad)*k), w=Math.min(c.width-x,(sigBox.x1-sigBox.x0+2*pad)*k), h=Math.min(c.height-y,(sigBox.y1-sigBox.y0+2*pad)*k);
+  const o=document.createElement("canvas"); o.width=Math.max(1,Math.round(w)); o.height=Math.max(1,Math.round(h)); o.getContext("2d").drawImage(c,x,y,w,h,0,0,o.width,o.height); return o.toDataURL("image/png"); }
+$("#sigApply").onclick=()=>{ if(!sigInk||!sigFor) return; const url=sigImage();
+  if(sigFor==="tech") S.ticket.techSig=url; else S.ticket.custSig=url; closeSig(); renderTicket(); };
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&sigFor) closeSig(); });
 
 /* ═════════ CUSTOMERS ═════════ */
 const CUSTS=[
@@ -1353,8 +1579,8 @@ const GUIDE=[
   {txt:"The driveway: open Quick proposal, price four sprinkler heads, send it, and agree as the customer.", scene:"drive", target:()=>$("#dSend"), done:()=>S.drive.stage==="agreed"||S.drive.stage==="skipped"},
   {txt:"Open Around me — tap the red pin and find out why it's red.", scene:"map", target:()=>$('[data-pin="m3"]'), done:()=>S.map.sel==="m3"},
   {txt:"Job money — bill a draw, then look at what you owe five suppliers on one job.", scene:"jmoney", target:()=>$('[data-jmms="1"]'), done:()=>S.jm.tab==="vend"||S.jm.ms[1].status!=="unbilled"},
-  {txt:"Ride along with Marcus: fill the field ticket, get it signed on glass, send it.", scene:"ticket", target:()=>$("#sigbox"), done:()=>S.ticket.done},
-  {txt:"See the Wedge catch a missed visit — open Maintenance and log it.", scene:"maint", target:()=>$("[data-logvisit]"), done:()=>S.maint[3].logged},
+  {txt:"Ride along with Marcus at Cedar Creek Storage: fill out Clearwater’s own ticket, get both signatures on the glass, then Finalize & send.", scene:"ticket", target:()=>$("#tVisitQ")||$("#tPhone"), done:()=>S.ticket.done},
+  {txt:"Back to Maintenance: find Perimeter Strips. Finishing the ticket moved the date on each calendar Marcus checked.", scene:"maint", target:()=>$('[data-mrow="0"]'), done:()=>S.ticket.done&&S.seenReset},
   {txt:"A job slipped its margin — open the Scorecard and tag why.", scene:"score", target:()=>$("#scTags"), done:()=>!!S.score.tag},
   {txt:"The headline act: open Templates and feed it a document — all the way to the safety gate.", scene:"tmpl", target:()=>$("#wRead"), done:()=>S.tmpl.step===6},
   {txt:"Last seat: Roles & access — flip to Marcus and watch the money disappear.", scene:"team", target:()=>$('#roleSeg [data-role="tech"]'), done:()=>S.role==="tech"},
@@ -1378,6 +1604,7 @@ function showScene(key){
   $$(".rail a.item").forEach(a=>a.classList.toggle("on",a.dataset.scene===key));
   $$(".scene").forEach(s=>s.classList.remove("on"));
   $("#sc-"+key).classList.add("on");
+  if(key==="maint"){ if(S.ticket.done) S.seenReset=true; renderMaint(); S.maint.forEach(s=>s.fresh=false); S.nb.forEach(n=>n.fresh=false); }
   renderGuide();
   window.scrollTo({top:0,behavior:"smooth"});
 }
@@ -1417,12 +1644,6 @@ function p$bind(){
     toast(to==="hold"?"On hold — it keeps its place":"Status updated", p.name+" → "+STATUS_LABEL[to], "info");
     renderProps(); renderFunnel();
   });
-  $$("#partDD [data-part]").forEach(b=>b.onclick=e=>{
-    e.stopPropagation(); $$(".dd.open").forEach(o=>o.classList.remove("open")); syncDodge();
-    const [n,c]=b.dataset.part.split(":");
-    S.ticket.parts.push({n:n, c:+c}); renderTicket();
-    toast("Part added","From the parts catalog — price and billable status came with it.","info");
-  });
   $$("#partsDD [data-parts]").forEach(b=>b.onclick=e=>{
     e.stopPropagation(); $$(".dd.open").forEach(o=>o.classList.remove("open")); syncDodge();
     S.calc.parts=+b.dataset.parts; renderCalc();
@@ -1460,24 +1681,17 @@ function loseProposal(p){
   },600);
 }
 function m$bind(){
-  $$("[data-logvisit]").forEach(b=>b.onclick=()=>{
-    const u=S.maint[+b.dataset.logvisit]; u.logged=true; u.st="ok"; u.msg="Visited today · clock reset — next due "+D(31)+"";
-    toast("Visit logged ✓","Service clock reset. The customer never knew it slipped — that’s the point.");
-    renderMaint(); renderGuide();
-  });
-  $$("[data-nb]").forEach(b=>b.onclick=()=>{
-    const n=S.nb[+b.dataset.nb]; n.done=true;
-    const prevK={...S.kpi}; S.kpi.awaiting+=n.amt;
-    const prevB={...S.books}; S.books.open+=n.amt; S.books.ytdB+=n.amt; S.books.lifeB+=n.amt;
-    toast("Billed "+fmt(n.amt),"Off the needs-billing list — hours, miles, and parts were already totaled.", "info");
-    renderMaint(); renderKpis(prevK); renderMoney(prevB);
-  });
+  /* Mark billed is a flag today: it stamps the ticket and sends nothing. */
+  $$("[data-nb]").forEach(b=>b.onclick=()=>{ S.nb.splice(+b.dataset.nb,1); toast("Marked billed."); renderMaint(); });
+  $$("[data-nbview]").forEach(b=>b.onclick=()=>{ const n=S.nb[+b.dataset.nbview];
+    if(n&&n.ticket){ showScene("ticket"); return; }
+    toast("View ticket","In the tool this opens the signed ticket, ready to print.","info"); });
+  $$("[data-nbsend]").forEach(b=>b.onclick=()=>toast("Send the bill","In the tool this opens the bill with the ticket’s billable parts already on it. You add the work and send it to the customer.","info"));
 }
 
 /* top controls */
 $("#moneyToggle").onclick=()=>{ S.moneyShown=!S.moneyShown; renderMoney(); renderGuide(); };
-$("#resetBtn").onclick=()=>{ S=initial();
-  $("#sigbox").classList.remove("signed"); $("#sigHint").style.display="";
+$("#resetBtn").onclick=()=>{ S=initial(); closeSig();
   $("#calcReview").style.display="none";
   $("#dNewT").value=""; $("#dNewP").value="";
   renderAll(); toast("Demo reset","Clearwater is back to its opening state — drive it again.", "info"); };
@@ -1634,58 +1848,70 @@ function dSkip(){
 }
 
 /* ═════════ AROUND ME ═════════ */
+/* One pin per place, in the tone of the worst calendar there (lib/field/around-me-core.ts).
+   A customer address with nothing on a calendar is a navy pin. */
 const MAPPINS=[
- {id:"m1",x:112,y:88, st:"soon",k:"job",  n:"Entry monument landscape renovation", c:"Oakmont HOA",
-  rows:[["Crew on site","2 · Tue through Thu"],["Next draw","$6,125 at planting"],["Contract","$24,500"]]},
- {id:"m2",x:292,y:150,st:"ok",  k:"job",  n:"Irrigation install — main lawn", c:"Riverbend Church",
-  rows:[["Stage","Rough-in complete"],["Billed","$2,940 · awaiting payment"],["Contract","$9,800"]]},
- {id:"m3",x:196,y:250,st:"over",k:"maint",n:"Perimeter Strips", c:"Cedar Creek Storage",
-  rows:[["Monthly visit","Overdue 8 days"],["Last ticket",""+D(-38)+""],["Why it’s red","The window closed with no ticket on it"]]},
- {id:"m4",x:318,y:74, st:"soon",k:"maint",n:"Campus Front Turf", c:"Summit Ridge Office Park",
-  rows:[["Next visit","Due in 5 days"],["Last visit",""+D(-11)+""],["Covered by","Maintenance contract"]]},
- {id:"m5",x:96, y:160,st:"ok",  k:"maint",n:"Common Area Turf", c:"Oakmont HOA",
-  rows:[["Visited",""+D(-11)+""],["Next due",""+D(19)+""],["Covered by","Maintenance contract"]]},
- {id:"m6",x:60, y:96, st:"none",k:"prop", n:"Storm-damaged maple removal", c:"Tom & Ellen Brady",
-  rows:[["Proposal","$2,350 · sent"],["Out","4 days"],["No date on it","Nothing is scheduled until it’s signed"]]},
- {id:"m7",x:214,y:170,st:"none",k:"prop", n:"Backyard drip irrigation", c:"Marie Castillo",
-  rows:[["Draft","$3,150"],["No date on it","Not sent yet"]]},
- {id:"m8",x:344,y:206,st:"ok",  k:"job",  n:"Beer garden hardscape & pergola beds", c:"Trellis Public House",
-  rows:[["Finished",""+D(-5)+""],["Collected","$32,600"],["Left to do","Nothing — closed"]]}
+ {id:"m1",x:112,y:88, c:"Oakmont HOA", sch:[3]},
+ {id:"m2",x:292,y:150,c:"Riverbend Church", sch:[4]},
+ {id:"m3",x:196,y:250,c:"Cedar Creek Storage", sch:[0,1], tour:true},
+ {id:"m4",x:318,y:74, c:"Summit Ridge Office Park", sch:[2]},
+ {id:"m6",x:60, y:96, c:"Tom & Ellen Brady", sch:[]},
+ {id:"m7",x:214,y:170,c:"Marie Castillo", sch:[]},
+ {id:"m8",x:344,y:206,c:"Trellis Public House", sch:[]}
 ];
 const MAPCREW=[
- {id:"c1",x:286,y:52, ini:"MW",n:"Marcus Webb",  rows:[["On","Campus Front Turf · Summit Ridge"],["Since","8:00a"],["Ticket","Open, not signed yet"]]},
- {id:"c2",x:130,y:104,ini:"DO",n:"Danny Ortiz",  rows:[["On","Entry monument · Oakmont HOA"],["Since","7:15a"],["Truck","104"]]}
+ {id:"c1",x:228,y:266,ini:"MW",n:"Marcus Webb", rows:()=>[["On",TUNIT+" · "+TCUST],["Since","8:00 AM"],["Ticket",S.ticket.done?"Finalized":"In progress"]]},
+ {id:"c2",x:130,y:104,ini:"DO",n:"Danny Ortiz", rows:()=>[["On","Entry monument · Oakmont HOA"],["Since","7:15 AM"],["Truck","104"]]}
 ];
-const MAPQUIET=[[42,72],[128,42],[176,104],[228,60],[268,120],[300,178],[86,196],[160,158],[240,240],[330,258],[190,196],[74,272],[358,132],[110,236]];
-const LAYERS=[["jobs","Jobs"],["maint","Maintenance due"],["props","Open proposals"],["crew","Your crew"],["bldg","Every property"]];
+const LAYERS=[["bldg","Buildings"],["calls","Open calls"],["crew","Crew"],["saved","Saved places"]];
+const TONE_RANK={overdue:0,soon:1,ok:2};
+function worse(a,b){ return (!a||TONE_RANK[b.tone]<TONE_RANK[a.tone]||(b.tone===a.tone&&b.n<a.n))?b:a; }
+function pinState(p){
+  if(p.tour&&S.ticket.done) return {tone:"ok", label:"Done"};
+  if(!p.sch.length) return {tone:"none", label:""};
+  let w=null; p.sch.forEach(i=>{ w=worse(w,due(S.maint[i])); }); return w;
+}
+function pinUnits(p){
+  const by={}, order=[];
+  p.sch.forEach(i=>{ const s=S.maint[i]; if(!(s.u in by)) order.push(s.u); by[s.u]=worse(by[s.u],due(s)); });
+  return order.map(n=>({n:n, label:by[n].label}));
+}
 
 function renderMap(){
   const L=S.map.layers, sel=S.map.sel, g=$("#mapPins"); if(!g) return;
-  const col={over:"var(--red)",soon:"var(--orange)",ok:"var(--green)",none:"var(--navy)"};
-  const on=p=>(p.k==="job"&&L.jobs)||(p.k==="maint"&&L.maint)||(p.k==="prop"&&L.props);
-  let h = L.bldg ? MAPQUIET.map(q=>'<circle cx="'+q[0]+'" cy="'+q[1]+'" r="4" fill="var(--navy)" opacity=".28"/>').join("") : "";
-  h += MAPPINS.filter(on).map(p=>'<g class="pin'+(sel===p.id?" sel":"")+'" data-pin="'+p.id+'" transform="translate('+p.x+','+p.y+')">'
-    +'<circle class="hd" r="10" fill="'+col[p.st]+'"/><text y="3.4">'+(p.k==="job"?"J":p.k==="maint"?"M":"P")+'</text></g>').join("");
-  if(L.crew) h += MAPCREW.map(c=>'<g class="pin truck'+(sel===c.id?" sel":"")+'" data-pin="'+c.id+'" transform="translate('+c.x+','+c.y+')">'
+  const col={overdue:"var(--red)",soon:"var(--orange)",ok:"var(--green)",none:"var(--navy)"};
+  let h="";
+  if(L.bldg) h+=MAPPINS.map(p=>'<g class="pin'+(sel===p.id?" sel":"")+'" data-pin="'+p.id+'" transform="translate('+p.x+','+p.y+')"><circle class="hd" r="10" fill="'+col[pinState(p).tone]+'"/></g>').join("");
+  if(L.crew) h+=MAPCREW.map(c=>'<g class="pin truck'+(sel===c.id?" sel":"")+'" data-pin="'+c.id+'" transform="translate('+c.x+','+c.y+')">'
     +'<circle class="hd" r="11"/><text y="3.4" style="font-size:8px">'+c.ini+'</text></g>').join("");
   g.innerHTML=h;
   $$("[data-pin]").forEach(el=>el.onclick=()=>{ S.map.sel=el.dataset.pin; renderMap(); });
 
-  const hidden=LAYERS.filter(l=>l[0]!=="bldg" && !L[l[0]]).map(l=>l[1].toLowerCase());
-  $("#mapLayers").innerHTML='<div style="font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Layers</div>'
-    + LAYERS.map(l=>'<div class="lrow"><span>'+l[1]+'</span><span class="sw'+(L[l[0]]?" on":"")+'" data-ly="'+l[0]+'"></span></div>').join("")
-    + (hidden.length?'<div style="font-size:11px;color:var(--amber);margin-top:9px;line-height:1.45">You’ve hidden '+hidden.join(" and ")+'. It’s in Layers whenever you want it back.</div>':"");
+  const cnt={bldg:MAPPINS.length, crew:MAPCREW.length, saved:0};
+  const someOff=["bldg","crew","saved"].some(k=>!L[k]);
+  $("#mapLayers").innerHTML='<div style="font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Layers'+(someOff?" · some hidden":"")+'</div>'
+    + LAYERS.map(l=>l[0]==="calls"
+      ? '<div class="lrow off"><span>'+l[1]+'</span><span class="soon">Coming soon</span></div>'
+      : '<div class="lrow"><span>'+l[1]+' <span style="color:var(--muted)">('+cnt[l[0]]+')</span></span><span class="sw'+(L[l[0]]?" on":"")+'" data-ly="'+l[0]+'"></span></div>').join("");
   $$("[data-ly]").forEach(s=>s.onclick=()=>{ L[s.dataset.ly]=!L[s.dataset.ly]; renderMap(); });
 
   const box=$("#mapSel");
   const it=MAPPINS.concat(MAPCREW).find(p=>p.id===sel);
-  if(!it){ box.innerHTML='<div class="card selcard" style="font-size:12.5px;color:var(--muted);line-height:1.55">Tap any pin. The letter tells you what it is — <b style="color:var(--ink)">J</b>ob, <b style="color:var(--ink)">M</b>aintenance, <b style="color:var(--ink)">P</b>roposal — and the color tells you what it needs.</div>'; return; }
-  const isCrew=!it.k;
-  box.innerHTML='<div class="card selcard"><div class="nm">'+esc(it.n)+'</div>'
-    +'<div class="cu">'+(isCrew?"On the clock":esc(it.c))+'</div>'
-    +'<div class="rows">'+it.rows.map(r=>'<div class="r"><span style="color:var(--muted)">'+r[0]+'</span><b>'+r[1]+'</b></div>').join("")+'</div>'
-    +'</div>'
-    +(isCrew?'<div class="focusnote">If '+esc(it.n.split(" ")[0])+' taps <b>On it</b> on a call, that map quiets down to the one address until the call is over. Yours doesn’t change — a dispatcher’s map has to answer “who’s near this.”</div>':"");
+  if(!it){ box.innerHTML='<div class="card selcard" style="font-size:12.5px;color:var(--muted);line-height:1.55">Tap any pin. Its color says what is due there, in the same colors the Maintenance page uses.</div>'; return; }
+  if(it.ini){
+    box.innerHTML='<div class="card selcard"><div class="nm">'+esc(it.n)+'</div><div class="cu">On the clock</div>'
+      +'<div class="rows">'+it.rows().map(r=>'<div class="r"><span style="color:var(--muted)">'+r[0]+'</span><b>'+esc(r[1])+'</b></div>').join("")+'</div></div>'
+      +'<div class="focusnote">If '+esc(it.n.split(" ")[0])+' taps <b>On it</b> on a call, that map quiets down to the one address until the call is over. Yours doesn’t change — a dispatcher’s map has to answer “who’s near this.”</div>';
+    return;
+  }
+  const st=pinState(it), units=pinUnits(it);
+  box.innerHTML='<div class="card selcard">'
+    +(st.tone!=="none"?'<span class="tone '+st.tone+'">● '+st.label+'</span>':'')
+    +'<div class="nm">'+esc(it.c)+'</div>'
+    +(units.length?'<div class="cu">'+(units.length===1?"1 unit":units.length+" units")+'</div>':'')
+    +(st.tone==="none"?'<p class="noplan">No maintenance plan here.</p>':'')
+    +(units.length?'<div class="rows">'+units.map(u=>'<div class="r"><span>'+esc(u.n)+'</span><b style="color:var(--muted)">'+u.label+'</b></div>').join("")+'</div>':'')
+    +'</div>';
 }
 
 /* ═════════ JOB MONEY ═════════ */
