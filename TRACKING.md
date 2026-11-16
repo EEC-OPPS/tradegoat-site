@@ -46,6 +46,8 @@ per-browser token that page views already used.
 | `evt:tour:step:<chapter id>` | the first time each chapter is reached (`ch1`, `ch2`, `ch3`, `ch4`, `ch-owner`, `ch5`, `ch6`, `ch-lang`, `ch7`, `ch-history`, `ch8`): in the scrolling tour when it crosses the middle of the screen, in `?tv=1` mode when its slide shows | `tour.html` |
 | `evt:tour:end:s=<seconds>:deep=<n>:last=<chapter id>` | once, when the tour page is left: seconds on screen, the furthest chapter by position (1–11), the chapter it was left on | `tour.html` |
 
+**Retired 2026-11-15:** the `evt:form:*` rows above no longer fire. The home page waitlist form was replaced by the Start 14 days free button on 9/30, and its leftover Formspree script was removed 11/15. Every Start button counts as `evt:cta:<page>:start-<zone>`.
+
 ## Known limits
 
 - A phone that is backgrounded and then closed by the system may never fire

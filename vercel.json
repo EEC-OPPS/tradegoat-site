@@ -1,6 +1,18 @@
 {
   "redirects": [
     { "source": "/jobber-vs-housecall-pro-vs-tradegoat-plans.html", "destination": "/jobber-vs-housecall-pro-vs-tradegoat.html", "statusCode": 301 },
-    { "source": "/jobber-vs-housecall-pro-vs-tradegoat-plans", "destination": "/jobber-vs-housecall-pro-vs-tradegoat.html", "statusCode": 301 }
+    { "source": "/jobber-vs-housecall-pro-vs-tradegoat-plans", "destination": "/jobber-vs-housecall-pro-vs-tradegoat.html", "statusCode": 301 },
+    { "source": "/pricing", "destination": "/pricing.html", "statusCode": 301 },
+    { "source": "/demo", "destination": "/demo.html", "statusCode": 301 },
+    { "source": "/kaufman", "destination": "/kaufman.html", "statusCode": 301 },
+    { "source": "/features", "destination": "/features.html", "statusCode": 301 },
+    { "source": "/tour", "destination": "/tour.html", "statusCode": 301 },
+    { "source": "/videos", "destination": "/videos.html", "statusCode": 301 },
+    { "source": "/start", "destination": "/start.html", "statusCode": 301 },
+    { "source": "/sign-in", "destination": "https://app.thetradegoat.com/sign-in", "statusCode": 302 },
+    { "source": "/signup", "destination": "https://app.thetradegoat.com/sign-up?src=site-shortlink", "statusCode": 302 },
+    { "source": "/sign-up", "destination": "https://app.thetradegoat.com/sign-up?src=site-shortlink", "statusCode": 302 },
+    { "source": "/trial", "destination": "https://app.thetradegoat.com/sign-up?src=site-shortlink", "statusCode": 302 },
+    { "source": "/login", "destination": "https://app.thetradegoat.com/sign-in", "statusCode": 302 }
   ]
 }

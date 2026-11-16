@@ -479,75 +479,14 @@
       margin-bottom: 64px;
     }
 
-    .waitlist-form {
-      display: flex;
-      gap: 10px;
-      max-width: 560px;
-      margin: 0 auto 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
 
-    .waitlist-form input[type="email"] {
-      flex: 1;
-      min-width: 220px;
-      padding: 14px 18px;
-      border-radius: 10px;
-      border: 1.5px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.07);
-      color: var(--white);
-      font-size: 15px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
 
-    .waitlist-form input[type="email"]::placeholder { color: rgba(255,255,255,0.35); }
-    .waitlist-form input[type="email"]:focus { border-color: var(--gold); background: rgba(255,255,255,0.1); }
 
-    .waitlist-form button {
-      padding: 14px 22px;
-      border-radius: 10px;
-      border: none;
-      background: var(--gold);
-      color: var(--navy);
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.2s, transform 0.1s;
-    }
 
-    .waitlist-form button:hover { background: var(--gold-light); transform: translateY(-1px); }
-    .waitlist-form button:active { transform: translateY(0); }
 
     .form-note { font-size: 12px; color: var(--text-muted); }
 
-    .success-msg {
-      display: none;
-      background: rgba(217,119,6,0.1);
-      border: 1px solid rgba(217,119,6,0.3);
-      border-radius: 10px;
-      padding: 16px 20px;
-      color: var(--gold);
-      font-size: 15px;
-      font-weight: 600;
-      max-width: 480px;
-      margin: 0 auto 16px;
-      text-align: center;
-    }
 
-    .error-msg {
-      display: none;
-      background: rgba(220, 60, 60, 0.1);
-      border: 1px solid rgba(220, 60, 60, 0.4);
-      border-radius: 10px;
-      padding: 14px 18px;
-      color: #ff8888;
-      font-size: 14px;
-      max-width: 480px;
-      margin: 0 auto 16px;
-      text-align: center;
-    }
 
     /* ── FOOTER ── */
     footer {
@@ -640,9 +579,9 @@
       <div class="cta-row">
         <a href="https://app.thetradegoat.com/sign-up" class="btn-gold">Start 14 days free &rarr;</a>
         <a href="demo.html" class="btn-ghost" style="font-size:16px;padding:15px 30px">Drive the demo</a>
-        <a href="#video" class="btn-ghost" style="font-size:16px;padding:15px 30px">&#9654; Watch the 2-minute video</a>
+        <a href="#video" class="btn-ghost" style="font-size:16px;padding:15px 30px">&#9654; Watch the 1-minute video</a>
       </div>
-      <p class="hero-note">14 days free, no credit card. A company name and an email is the whole signup.</p>
+      <p class="hero-note">14 days free, no credit card. Sign up with Google or your email, then name your company.</p>
       <p class="hero-note" style="margin-top:10px;color:rgba(255,255,255,0.85)">Evans Elevator Company runs on it every day. A second elevator company runs its service work on it.</p>
 
       <div class="hero-shot">
@@ -832,95 +771,6 @@
 
   </div>
 
-  <script>
-    // ============================================================
-    // WAITLIST FORM — wired to Formspree.
-    //
-    // TO GO LIVE (5-minute setup):
-    //   1. Sign up at https://formspree.io with hello@thetradegoat.com
-    //      (free plan: 50 submissions/month — plenty for waitlist start)
-    //   2. Create a new form. Formspree gives you an endpoint URL like:
-    //      https://formspree.io/f/abcd1234
-    //   3. Paste that URL into FORMSPREE_ENDPOINT below, replacing the
-    //      placeholder. Save the file. The form is live.
-    //
-    // While the placeholder is in place, submissions show an error
-    // message instead of pretending to work — no signups vanish silently.
-    // ============================================================
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwvyblwn';
-
-    try { const r = new URLSearchParams(location.search).get('ref'); if (r) localStorage.setItem('tg_ref', r); } catch (e) {}
-    document.addEventListener('click', function(e){
-      if (e.target && e.target.id === 'copyLink') {
-        const inp = document.getElementById('shareLink');
-        inp.select(); document.execCommand('copy');
-        e.target.textContent = 'Copied ✓';
-        setTimeout(function(){ e.target.textContent = 'Copy link'; }, 2000);
-      }
-    });
-    const form = document.getElementById('waitlistForm');
-    const successMsg = document.getElementById('successMsg');
-    const errorMsg = document.getElementById('errorMsg');
-    const submitBtn = document.getElementById('submitBtn');
-
-    if (form) form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const email = document.getElementById('emailInput').value;
-      errorMsg.style.display = 'none';
-
-      // Guard: refuse to fake-succeed if endpoint isn't configured.
-      if (FORMSPREE_ENDPOINT === 'PASTE_YOUR_FORMSPREE_URL_HERE' || !FORMSPREE_ENDPOINT.startsWith('https://')) {
-        errorMsg.textContent = 'Waitlist is not live yet — please email hello@thetradegoat.com directly.';
-        errorMsg.style.display = 'block';
-        console.warn('⚠️  FORMSPREE_ENDPOINT not configured. Email NOT captured:', email);
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-
-      const tool = (document.getElementById('toolInput')||{}).value || '';
-      const ref = (function(){ try { return new URLSearchParams(location.search).get('ref') || localStorage.getItem('tg_ref') || ''; } catch(e){ return ''; } })();
-      try {
-        // TradeGOAT's own waitlist engine — positions + referral line.
-        const res = await fetch('https://tradegoat.vercel.app/api/waitlist', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, proposal_tool: tool, ref: ref })
-        });
-        const data = res.ok ? await res.json() : null;
-        if (data && data.ok) {
-          form.style.display = 'none';
-          document.getElementById('posLine').textContent =
-            data.existing ? "You're already on the list." : "✓ Got it — thank you.";
-          document.getElementById('shareLink').value = 'https://thetradegoat.com/?ref=' + data.refCode;
-          successMsg.style.display = 'block';
-          return;
-        }
-        // Engine unreachable — fall back to Formspree so no signup is lost.
-        const fb = await fetch(FORMSPREE_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, proposal_tool: tool, _subject: 'New TradeGOAT waitlist signup (fallback)' })
-        });
-        if (fb.ok) {
-          form.style.display = 'none';
-          document.getElementById('posLine').textContent = "✓ Got it — thank you.";
-          document.querySelector('#successMsg div[style*="opacity"]').style.display = 'none';
-          document.getElementById('shareLink').parentElement.style.display = 'none';
-          successMsg.style.display = 'block';
-        } else {
-          throw new Error('Both endpoints failed');
-        }
-      } catch (err) {
-        console.error('Waitlist submission failed:', err);
-        errorMsg.textContent = 'Something went wrong. Try again, or email us at hello@thetradegoat.com.';
-        errorMsg.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Start free';
-      }
-    });
-  </script>
 <script>
 /* Site beacon: one page view per load, plus funnel events (rows whose page starts
    with "evt:"). Every event string and where it fires is listed in TRACKING.md.
