@@ -9,6 +9,7 @@
     { "source": "/tour", "destination": "/tour.html", "statusCode": 301 },
     { "source": "/videos", "destination": "/videos.html", "statusCode": 301 },
     { "source": "/start", "destination": "/start.html", "statusCode": 301 },
+    { "source": "/verizon", "destination": "/verizon-connect-work.html?src=verizon", "statusCode": 302 },
     { "source": "/sign-in", "destination": "https://app.thetradegoat.com/sign-in", "statusCode": 302 },
     { "source": "/signup", "destination": "https://app.thetradegoat.com/sign-up?src=site-shortlink", "statusCode": 302 },
     { "source": "/sign-up", "destination": "https://app.thetradegoat.com/sign-up?src=site-shortlink", "statusCode": 302 },
