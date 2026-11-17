@@ -58,3 +58,5 @@ per-browser token that page views already used.
 - The demo and tour hooks watch the page itself (the `.scene` / `#guideSteps`
   markup and the `section.ch[id]` chapters). If those are renamed, update the
   matching block at the bottom of `demo.html` / `tour.html`.
+
+Added 2026-11-16: on start.html the Start button under the subhead logs as `evt:cta:start:start-top` (the one after the video stays `start-hero`).
