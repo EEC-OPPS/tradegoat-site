@@ -14,6 +14,13 @@ if force:
 else:
     today = datetime.datetime.now(ZoneInfo("America/Chicago")).date()
 
+# The workflow runs several times each morning as a backup (GitHub can drop a
+# timed run). This stamp keeps it to ONE post per Central day no matter how
+# many runs fire or how many folders are overdue.
+stamp = "scripts/last_published.txt"
+if os.path.exists(stamp) and io.open(stamp, encoding="utf-8").read().strip() == today.isoformat():
+    print(f"already published a post on {today}"); sys.exit(0)
+
 root = "scheduled"
 if not os.path.isdir(root):
     print("nothing scheduled"); sys.exit(0)
@@ -44,6 +51,7 @@ shutil.move(os.path.join(folder, posts[0]), f"blog/{slug}.html")
 io.open("blog/index.html", "w", encoding="utf-8", newline="").write(idx)
 io.open("sitemap.xml", "w", encoding="utf-8", newline="").write(sm)
 shutil.rmtree(folder)
+io.open(stamp, "w", encoding="utf-8", newline="").write(today.isoformat() + "\n")
 with open(os.environ.get("GITHUB_OUTPUT", os.devnull), "a") as fh:
     fh.write(f"slug={slug}\n")
 print(f"published {slug} (scheduled {d})")

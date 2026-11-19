@@ -1,14 +1,23 @@
 name: Publish scheduled blog post
 # Runs on GitHub's servers: no app open, no approval prompts.
-# 13:20 UTC = 7:20am Central (standard time). One post per run at most.
+# 13:20 UTC = 7:20am Central (standard time). GitHub can drop or delay a timed
+# run (it dropped the first one, 11/19), so backup runs follow through the day.
+# scripts/last_published.txt keeps it to one post per Central day.
 on:
   schedule:
     - cron: "20 13 * * *"
+    - cron: "50 14 * * *"
+    - cron: "20 16 * * *"
+    - cron: "50 18 * * *"
+    - cron: "20 21 * * *"
   workflow_dispatch:
   push:
     branches: [scheduler-test]
 permissions:
   contents: write
+concurrency:
+  group: blog-publish
+  cancel-in-progress: false
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -27,4 +36,5 @@ jobs:
           git config user.email "travis@thetradegoat.com"
           git add -A
           git commit -m "Blog: publish scheduled post ${{ steps.pub.outputs.slug }}"
+          git pull --rebase
           git push
