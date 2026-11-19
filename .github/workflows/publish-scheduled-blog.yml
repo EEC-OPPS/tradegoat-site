@@ -1,0 +1,30 @@
+name: Publish scheduled blog post
+# Runs on GitHub's servers: no app open, no approval prompts.
+# 13:20 UTC = 7:20am Central (standard time). One post per run at most.
+on:
+  schedule:
+    - cron: "20 13 * * *"
+  workflow_dispatch:
+  push:
+    branches: [scheduler-test]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - id: pub
+        env:
+          PUBLISH_DATE: ${{ github.ref_name == 'scheduler-test' && '2099-01-01' || '' }}
+        run: python scripts/publish_scheduled.py
+      - if: steps.pub.outputs.slug != ''
+        run: |
+          git config user.name "TradeGOAT scheduler"
+          git config user.email "travis@thetradegoat.com"
+          git add -A
+          git commit -m "Blog: publish scheduled post ${{ steps.pub.outputs.slug }}"
+          git push
