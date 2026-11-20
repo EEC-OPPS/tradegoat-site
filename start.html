@@ -239,7 +239,7 @@
     if(tall)v.poster='videos/overview-tall-v6-poster.jpg';
     v.title='TradeGOAT in a minute';box.appendChild(v);card.parentNode.replaceChild(box,card);card=null;
     try{var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}
-    try{if(window.tgEvt)window.tgEvt('video:start:play');}catch(e){}
+    try{if(window.tgEvt)window.tgEvt('video:'+(/^\/(index\.html)?$/.test(location.pathname)?'home':'start')+':play');}catch(e){}
   }
   if(card)card.addEventListener('click',play);
   if(link)link.addEventListener('click',function(){var s=document.getElementById('video');if(s)s.scrollIntoView({behavior:'smooth',block:'start'});play();});
@@ -292,10 +292,10 @@
     if(!el||el.closest('form'))return;
     var k=kind(el);if(k)window.tgEvt('cta:'+P+':'+k+'-'+zone(el));if(k&&window.gtag){if(k==='start')gtag('event','begin_signup',{page_name:P});else if(k==='demo')gtag('event','demo_click',{page_name:P});}
   }catch(x){}},true);
-  /* How far down the page a visitor got: evt:start:scroll:<25|50|75|100>, once each. */
+  /* How far down the page a visitor got: evt:<home|start>:scroll:<25|50|75|100>, once each. */
   var seen={};window.addEventListener('scroll',function(){try{
     var d=document.documentElement,pct=Math.round((window.scrollY+window.innerHeight)/d.scrollHeight*100);
-    [25,50,75,100].forEach(function(m){if(pct>=m&&!seen[m]){seen[m]=1;window.tgEvt('start:scroll:'+m);}});
+    [25,50,75,100].forEach(function(m){if(pct>=m&&!seen[m]){seen[m]=1;window.tgEvt((P==='index'?'home':P)+':scroll:'+m);}});
   }catch(x){}},{passive:true});
 }catch(e){}})();
 </script>

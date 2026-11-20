@@ -21,484 +21,103 @@
   <meta name="description" content="TradeGOAT is all-in-one software for service contractors: pricing, proposals, signatures, dispatch, field tickets, maintenance contracts, invoicing and QuickBooks in one tool. 14 days of Pro free." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0f1f3d; --navy2:#16284a; --card:#1a2b4d; --line:rgba(255,255,255,0.10); --gold:#D97706; --gold-light:#ffc94d; --yellow:#fbbf24; --muted:#a3acbf; --soft:#c6cddb; }
+    html, body { background: var(--navy); }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color:#fff; line-height:1.5; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
 
-    :root {
-      --navy: #0f1f3d;
-      --navy-mid: #1a2f54;
-      --gold: #D97706;
-      --gold-light: #ffc94d;
-      --white: #ffffff;
-      --off-white: #f8f9fc;
-      --text-muted: #8a93a6;
-      --border: rgba(255,255,255,0.08);
+    /* Top bar */
+    .top { position: sticky; top: 0; z-index: 10; background: rgba(15,31,61,0.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
+    .top .wrap { display:flex; align-items:center; justify-content:space-between; height: 56px; }
+    .brand { display:flex; align-items:center; gap:9px; text-decoration:none; font-weight:900; font-size:19px; letter-spacing:-.01em; }
+    .brand img { width:28px; height:28px; border-radius:6px; }
+    .brand b { color: var(--gold); }
+    .top nav { display:flex; align-items:center; gap:14px; }
+    .login { color: var(--muted); text-decoration:none; font-weight:600; font-size:15px; }
+    .tstart { background: var(--gold); color: var(--navy); text-decoration:none; font-weight:800; font-size:15px; padding: 9px 15px; border-radius: 10px; }
+
+    /* Hero */
+    .hero { padding-top: 30px; padding-bottom: 30px; }
+    .pill { display:inline-block; border:1px solid rgba(217,119,6,0.55); background: rgba(217,119,6,0.10); color: var(--gold-light); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; padding: 7px 14px; border-radius: 999px; }
+    h1 { font-size: clamp(31px, 7.6vw, 50px); line-height: 1.1; font-weight: 900; letter-spacing: -.02em; margin-top: 18px; }
+    .alt { color: var(--yellow); font-weight: 800; font-size: clamp(20px, 4.6vw, 27px); line-height: 1.25; margin-top: 16px; }
+    .by { font-weight: 700; font-size: clamp(17px, 3.8vw, 21px); line-height: 1.3; margin-top: 8px; }
+    .lede { color: var(--soft); font-size: clamp(16px, 3.6vw, 18px); margin-top: 16px; }
+    .btn { display:block; text-align:center; background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--navy); font-weight: 900; font-size: clamp(17px, 4.2vw, 20px); text-decoration: none; padding: 17px 20px; border-radius: 14px; box-shadow: 0 10px 28px rgba(217,119,6,0.35); }
+    .btn:hover { filter: brightness(1.05); }
+    .hero .btn { margin-top: 26px; }
+    .note { color: var(--muted); font-size: 14px; margin-top: 10px; }
+    .watch { display:inline-flex; align-items:center; gap:12px; margin-top: 20px; color: var(--yellow); font-weight: 800; font-size: 17px; text-decoration:none; background:none; border:0; cursor:pointer; font-family:inherit; }
+    .watch i { width:34px; height:34px; border:2px solid var(--yellow); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-style:normal; font-size:12px; padding-left:2px; }
+
+    section.band { border-top: 1px solid var(--line); padding: 34px 0; }
+    h2 { font-size: clamp(25px, 6vw, 36px); line-height: 1.15; font-weight: 900; letter-spacing: -.015em; }
+    h2 span { color: var(--gold); }
+
+    /* Video card */
+    .vcard { position: relative; display:block; width:100%; margin-top: 18px; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16 / 9; background:#000 url("videos/start-video-cover.jpg") center / cover no-repeat; cursor: pointer; padding:0; }
+    .vcard::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.55)); }
+    .vcard .tag { position:absolute; z-index:1; top:12px; left:12px; background: var(--gold-light); color: var(--navy); font-weight: 900; font-size: 14px; padding: 4px 10px; border-radius: 6px; }
+    .vcard .big { position:absolute; z-index:1; left:0; right:0; bottom: 14%; text-align:center; font-weight: 900; font-size: clamp(30px, 8.4vw, 54px); line-height: .98; text-transform: uppercase; color:#fff; text-shadow: 0 3px 0 rgba(0,0,0,0.6), 0 0 18px rgba(0,0,0,0.5); letter-spacing: .01em; }
+    .vcard .big em { display:block; font-style: normal; color: var(--yellow); }
+    .vcard .play { position:absolute; z-index:2; left:50%; top:46%; transform: translate(-50%,-50%); width: 76px; height: 76px; border-radius: 50%; background: var(--gold); display:flex; align-items:center; justify-content:center; box-shadow: 0 8px 24px rgba(0,0,0,0.45); }
+    .vcard .play::before { content:""; margin-left: 6px; border-left: 24px solid var(--navy); border-top: 15px solid transparent; border-bottom: 15px solid transparent; }
+    .vcard .len { position:absolute; z-index:1; right:12px; bottom:12px; background: rgba(0,0,0,0.75); color:#fff; font-weight:700; font-size:14px; padding: 3px 9px; border-radius: 6px; }
+    .vbox { margin-top: 18px; border-radius: 16px; overflow:hidden; border:1px solid var(--line); background:#000; }
+    .vbox video { display:block; width:100%; height:auto; }
+    .vbox.tall { max-width: 340px; margin-left:auto; margin-right:auto; }
+
+    /* Feature grid */
+    .grid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+    .f { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 15px 18px; }
+    .f .ic { font-size: 30px; line-height: 1; }
+    .f b { display:block; font-size: 18px; line-height: 1.25; margin-top: 10px; }
+    .f p { color: var(--soft); font-size: 15px; line-height: 1.4; margin-top: 6px; }
+
+    /* Screens carousel */
+    .shots { display:flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 20px; margin: 22px -20px 0; padding: 0 20px 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .shots::-webkit-scrollbar { display:none; }
+    .shots figure { flex: 0 0 76%; max-width: 330px; scroll-snap-align: start; }
+    .shots .frame { background: var(--card); border:1px solid var(--line); border-radius: 18px; padding: 9px; }
+    .shots img { display:block; width:100%; height: 250px; object-fit: cover; object-position: left top; border-radius: 12px; background:#f5f3ee; }
+    .shots figcaption { color: var(--soft); text-align:center; font-size: 15px; margin-top: 10px; }
+
+    /* Why different */
+    .why { list-style:none; margin-top: 20px; display:grid; gap: 20px; }
+    .why li { display:grid; grid-template-columns: 40px 1fr; gap: 14px; align-items:start; }
+    .why .ck { width:40px; height:40px; border-radius: 10px; background: rgba(217,119,6,0.16); color: var(--gold); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px; }
+    .why b { display:block; font-size: 18px; line-height:1.3; }
+    .why p { color: var(--soft); font-size: 16px; margin-top: 3px; }
+    .plans { display:grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 26px; }
+    .plan { border:1px solid var(--line); border-radius: 14px; padding: 14px 6px; text-align:center; background: rgba(255,255,255,0.02); }
+    .plan .n { color: var(--muted); font-weight:700; font-size: 14px; }
+    .plan .p { font-weight: 900; font-size: clamp(21px, 5.4vw, 28px); margin-top: 4px; }
+    .plan .p small { font-size: .62em; font-weight: 600; color: var(--soft); }
+    .plan .u { color: var(--soft); font-size: 13.5px; margin-top: 4px; }
+    .more { display:inline-block; margin-top: 14px; color: var(--yellow); font-weight: 800; font-size: 15px; text-decoration:none; }
+
+    /* Founder note */
+    .note2 { display:grid; grid-template-columns: 56px 1fr; gap: 16px; align-items:start; }
+    .av { width:56px; height:56px; border-radius:50%; background: linear-gradient(160deg, var(--gold), #9a4b05); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:20px; }
+    .note2 q { display:block; font-size: 18px; line-height: 1.45; quotes: "\201C" "\201D"; }
+    .note2 q a { color: var(--yellow); }
+    .note2 .who { color: var(--muted); font-size: 14.5px; margin-top: 10px; }
+
+    /* Close */
+    .close { text-align:center; padding-bottom: 40px; }
+    .close h2 { font-size: clamp(27px, 6.6vw, 38px); }
+    .close .sub { color: var(--soft); font-size: 17px; margin: 8px 0 22px; }
+    .demo { display:inline-block; margin-top: 18px; color: var(--yellow); font-weight: 800; font-size: 16px; }
+    footer { border-top: 1px solid var(--line); padding: 22px 0 34px; text-align:center; }
+    footer nav { display:flex; flex-wrap:wrap; justify-content:center; gap: 6px 18px; }
+    footer a { color: var(--muted); text-decoration:none; font-size: 14.5px; }
+    footer p { color: var(--muted); font-size: 13.5px; margin-top: 10px; }
+
+    @media (min-width: 760px) {
+      .grid { grid-template-columns: repeat(4, 1fr); }
+      .shots figure { flex-basis: 46%; }
     }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--navy);
-      color: var(--white);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ── BACKGROUND TEXTURE ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(217,119,6,0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 100% 80%, rgba(26,47,84,0.8) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      text-align: center;
-      padding: 44px 0 24px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(217,119,6,0.12);
-      border: 1px solid rgba(217,119,6,0.3);
-      border-radius: 100px;
-      padding: 5px 14px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 24px;
-    }
-
-    .badge::before {
-      content: '●';
-      font-size: 8px;
-      animation: pulse 1.8s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    h1 {
-      font-size: clamp(34px, 6vw, 56px);
-      font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-    }
-
-    h1 span { color: var(--gold); }
-
-    .hero-tag {
-      text-align: center;
-      color: var(--gold);
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: .02em;
-      margin: 0 0 16px;
-    }
-
-    .subtitle {
-      font-size: 18px;
-      line-height: 1.65;
-      color: rgba(255,255,255,0.72);
-      max-width: 640px;
-      margin: 0 auto 30px;
-    }
-
-    .cta-row {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 0 0 14px;
-    }
-
-    .btn-gold {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(180deg, var(--gold-light), var(--gold));
-      color: var(--navy);
-      font-weight: 800;
-      font-size: 16px;
-      text-decoration: none;
-      padding: 15px 30px;
-      border-radius: 11px;
-      box-shadow: 0 10px 26px rgba(217,119,6,0.28);
-    }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.06);
-      color: var(--gold);
-      font-weight: 800;
-      font-size: 15px;
-      text-decoration: none;
-      padding: 14px 24px;
-      border-radius: 11px;
-      border: 1px solid rgba(217,119,6,0.5);
-    }
-
-    .hero-note {
-      font-size: 12.5px;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    /* ── HERO PRODUCT SHOT (a real screen, framed like a browser) ── */
-    .hero-shot {
-      max-width: 960px;
-      margin: 26px auto 0;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid rgba(217,119,6,0.28);
-      box-shadow: 0 40px 110px rgba(0,0,0,0.6);
-      background: #0a1730;
-      text-align: left;
-    }
-
-    .hero-shot .bar {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 14px;
-      background: rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .hero-shot .bar i {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: rgba(255,255,255,0.18); display: inline-block;
-    }
-
-    .hero-shot .bar span {
-      margin-left: 10px;
-      font-size: 11.5px;
-      color: var(--text-muted);
-      font-style: normal;
-    }
-
-    .hero-shot .clip {
-      max-height: 520px;
-      overflow: hidden;
-    }
-
-    .hero-shot img {
-      width: 100%;
-      display: block;
-    }
-
-    @media (max-width: 640px) {
-      .hero-shot .clip { max-height: 340px; }
-    }
-
-    /* ── THE LOOP (six beats, one line each) ── */
-    .loop {
-      margin: 64px 0 8px;
-    }
-
-    .loop-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    @media (max-width: 760px) { .loop-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 480px) { .loop-grid { grid-template-columns: 1fr; } }
-
-    .beat {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px 16px;
-      transition: border-color .2s, background .2s;
-    }
-
-    .beat:hover { border-color: rgba(217,119,6,0.3); background: rgba(255,255,255,0.06); }
-
-    .beat svg {
-      width: 22px; height: 22px;
-      stroke: var(--gold);
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .beat b {
-      display: block;
-      font-size: 14.5px;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-
-    .beat p { font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
-
-    .beat .new {
-      display: inline-block;
-      font-size: 9.5px;
-      font-weight: 800;
-      letter-spacing: .08em;
-      color: var(--navy);
-      background: var(--gold);
-      border-radius: 99px;
-      padding: 2px 7px;
-      margin-left: 6px;
-      vertical-align: 2px;
-    }
-
-    /* ── PROOF SECTIONS (screenshot + words, alternating) ── */
-    .proof {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 36px;
-      align-items: center;
-      margin: 72px 0;
-    }
-
-    @media (max-width: 760px) {
-      .proof { grid-template-columns: 1fr; gap: 20px; }
-      .proof .shot { order: 2; }
-    }
-
-    .proof .shot {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
-      background: #0a1730;
-    }
-
-    .proof .shot img { width: 100%; display: block; }
-
-    .proof .shot.tall { max-height: 420px; }
-    .proof .shot.tall img { object-fit: cover; object-position: top; height: 420px; }
-
-    .kicker {
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 10px;
-    }
-
-    .proof h3 {
-      font-size: clamp(22px, 3.2vw, 30px);
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      line-height: 1.15;
-      margin-bottom: 14px;
-    }
-
-    .proof p { font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.7); margin-bottom: 12px; }
-
-    .proof ul { list-style: none; margin-top: 4px; }
-
-    .proof li {
-      font-size: 14px;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.72);
-      padding-left: 22px;
-      position: relative;
-      margin-bottom: 8px;
-    }
-
-    .proof li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-      font-weight: 800;
-    }
-
-    .proof li .new {
-      display: inline-block;
-      font-size: 9.5px;
-      font-weight: 800;
-      letter-spacing: .08em;
-      color: var(--navy);
-      background: var(--gold);
-      border-radius: 99px;
-      padding: 2px 7px;
-      margin-right: 6px;
-      vertical-align: 1px;
-    }
-
-    .see-all {
-      text-align: center;
-      margin: -28px 0 64px;
-    }
-
-    .see-all a {
-      color: var(--gold);
-      font-weight: 700;
-      font-size: 15px;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(217,119,6,0.4);
-      padding-bottom: 2px;
-    }
-
-    /* ── VIDEO ── */
-    .video-section { margin: 8px 0 64px; text-align: center; }
-    .video-frame { width: 100%; max-width: 340px; aspect-ratio: 9 / 16; margin: 0 auto; border-radius: 18px; overflow: hidden; background: #000; box-shadow: 0 18px 50px rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.12); }
-    .video-frame video { width: 100%; height: 100%; display: block; object-fit: cover; }
-    .video-frame .ov-wide { display: none; }
-    @media (min-width: 760px) { .video-frame { max-width: 860px; aspect-ratio: 16 / 9; } .video-frame .ov-tall { display: none; } .video-frame .ov-wide { display: block; } }
-
-    /* ── HOW IT WORKS ── */
-    .how-it-works { margin: 8px 0 72px; }
-
-    .section-title {
-      font-size: clamp(26px, 4vw, 36px);
-      font-weight: 800;
-      text-align: center;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-    }
-
-    .section-sub {
-      font-size: 16px;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.6);
-      text-align: center;
-      max-width: 540px;
-      margin: 0 auto 36px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-    }
-
-    @media (max-width: 540px) { .steps { grid-template-columns: 1fr; } }
-
-    .step {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px 20px;
-      position: relative;
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .step:hover { border-color: rgba(217,119,6, 0.3); background: rgba(255, 255, 255, 0.06); }
-
-    .step-num {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--gold); color: var(--navy);
-      font-weight: 800; font-size: 16px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 14px;
-    }
-
-    .step-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
-    .step-desc { font-size: 13px; line-height: 1.55; color: var(--text-muted); }
-
-    /* ── ORIGIN STORY (+ the action shot beside it) ── */
-    .origin-wrap { margin-bottom: 72px; }
-
-    .origin-img {
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(217,119,6,0.3);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-      margin-bottom: 22px;
-    }
-
-    .origin-img img { width: 100%; display: block; }
-
-    .origin {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
-      position: relative;
-    }
-
-    .origin::before {
-      content: '"';
-      position: absolute;
-      top: 12px; left: 24px;
-      font-size: 60px;
-      color: var(--gold);
-      opacity: 0.3;
-      font-family: Georgia, serif;
-      line-height: 1;
-    }
-
-    .origin p {
-      font-size: 16px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.75);
-      padding-top: 20px;
-      margin-bottom: 20px;
-    }
-
-    .origin-sig { display: flex; align-items: center; gap: 12px; }
-
-    .sig-avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 16px; color: var(--navy);
-      flex-shrink: 0;
-    }
-
-    .sig-name { font-size: 14px; font-weight: 700; color: var(--white); }
-    .sig-title { font-size: 12px; color: var(--text-muted); }
-
-    /* ── WAITLIST (bottom — after the case is made) ── */
-    .waitlist-section {
-      text-align: center;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(217,119,6,0.25);
-      border-radius: 18px;
-      padding: 44px 28px;
-      margin-bottom: 64px;
-    }
-
-
-
-
-
-
-    .form-note { font-size: 12px; color: var(--text-muted); }
-
-
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 32px 0 48px;
-      border-top: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 13px;
-    }
-
-    footer a { color: var(--text-muted); text-decoration: none; }
-    footer a:hover { color: var(--gold); }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <!-- Google tag: Google Analytics G-42WBGHMLE9 + Google Ads AW-18487719470 (Travis 10/27). Named on privacy.html. -->
@@ -508,269 +127,136 @@
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','927696483608592');fbq('track','PageView');</script>
 </head>
 <body>
-
-  <style>
-    .tgnav{position:sticky;top:0;z-index:40;background:rgba(10,23,48,0.88);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,0.08)}
-    .tgnav .in{max-width:1060px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-    .tgnav .wm{color:var(--gold);font-weight:900;font-size:17px;text-decoration:none;white-space:nowrap}
-    .tgnav .wm span{color:#fff}
-    .tgnav .lk{display:flex;gap:4px;flex:1;justify-content:center;flex-wrap:wrap}
-    .tgnav .lk a{color:#8a93a6;text-decoration:none;font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:99px;white-space:nowrap}
-    .tgnav .lk a:hover{color:#fff;background:rgba(255,255,255,0.06)}
-    .tgnav .login{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--navy);font-weight:800;font-size:13px;text-decoration:none;padding:8px 15px;border-radius:9px;margin-left:auto;white-space:nowrap}
-    .tgnav .lk{flex:initial;margin-left:6px}
-    .tgnav .burger{display:none;background:none;border:1px solid rgba(255,255,255,0.2);border-radius:9px;color:#fff;font-size:17px;width:38px;height:36px;cursor:pointer;margin-left:auto}
-    .tgnav .mpanel{display:none;position:absolute;left:0;right:0;top:100%;background:#0a1730;border-bottom:1px solid rgba(255,255,255,0.08);padding:10px 16px 14px;z-index:50}
-    .tgnav .mpanel a{display:block;color:#c6cddb;text-decoration:none;font-size:15px;font-weight:700;padding:11px 8px;border-bottom:1px solid rgba(255,255,255,0.06)}
-    .tgnav .mpanel a.cta{color:var(--navy);background:linear-gradient(180deg,#ffc94d,#D97706);border-radius:10px;text-align:center;margin-top:10px;border:none}
-    .tgnav .in{position:relative}
-    @media(max-width:820px){
-      .tgnav .lk{display:none}
-      .tgnav .login{display:none}
-      .tgnav .burger{display:block}
-      .tgnav.open .mpanel{display:block}
-    }
-  </style>
-  <nav class="tgnav">
-    <div class="in">
-      <a href="/" class="wm">Trade<span>GOAT</span></a>
-      <div class="lk">
-        <a href="tour.html">Tour</a>
-        <a href="demo.html">Drive the demo</a>
-        <a href="videos.html">Videos</a>
-        <a href="features.html">Everything it does</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="blog/index.html">Blog</a>
-        <a href="updates.html">What's new</a>
-      </div>
-      <a href="https://app.thetradegoat.com/sign-up" class="login" style="background:linear-gradient(180deg,#ffc94d,#D97706)">Start 14 days free</a>
-      <a href="https://app.thetradegoat.com/sign-in" class="login" style="background:none;color:#c6cddb;font-weight:700">Log in</a>
-      <button class="burger" aria-label="Menu" onclick="this.closest('nav').classList.toggle('open')">☰</button>
-      <div class="mpanel">
-        <a href="tour.html">Tour</a>
-        <a href="demo.html">Drive the demo</a>
-        <a href="videos.html">Videos</a>
-        <a href="features.html">Everything it does</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="blog/index.html">Blog</a>
-        <a href="updates.html">What's new</a>
-        <a href="https://app.thetradegoat.com/sign-in">Log in</a>
-        <a class="cta" href="https://app.thetradegoat.com/sign-up">Start 14 days free</a>
-      </div>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="logo.jpg" alt="" width="28" height="28"><span>Trade<b>GOAT</b></span></a>
+      <nav>
+        <a class="login" href="https://app.thetradegoat.com/sign-in">Log in</a>
+        <a class="tstart" href="https://app.thetradegoat.com/sign-up">Start free</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <div class="container">
-
-    <!-- ── HERO: the claim, then the PROOF (a real screen) ── -->
-    <section class="hero">
-      <div class="badge">Live now · 14 days of Pro, free</div>
-
-      <h1 style="font-size:clamp(30px,5.2vw,52px);line-height:1.12">The all-in-one software for <span>service contractors.</span></h1>
-      <p class="subtitle" style="color:#fff;font-weight:600">
-        Pricing, proposals, signatures, dispatch, field tickets, maintenance contracts,
-        invoicing and QuickBooks. One tool runs all of it.
-      </p>
-      <p class="subtitle" style="font-size:16px;margin-top:-14px">
-        For elevator, plumbing, electrical, HVAC, landscaping, locksmith, handyman or any other trade. The office works on a PC,
-        the crew works on a phone, and the owner sees every job and every dollar.
-      </p>
-
-      <div class="cta-row">
-        <a href="https://app.thetradegoat.com/sign-up" class="btn-gold">Start 14 days free &rarr;</a>
-        <a href="demo.html" class="btn-ghost" style="font-size:16px;padding:15px 30px">Drive the demo</a>
-        <a href="#video" class="btn-ghost" style="font-size:16px;padding:15px 30px">&#9654; Watch the 1-minute video</a>
-      </div>
-      <p class="hero-note">14 days free, no credit card. Sign up with Google or your email, then name your company.</p>
-      <p class="hero-note" style="margin-top:10px;color:rgba(255,255,255,0.85)">Evans Elevator Company runs on it every day. A second elevator company runs its service work on it.</p>
-
-      <div class="hero-shot">
-        <div class="bar"><i></i><i></i><i></i><span>app.thetradegoat.com — your dashboard</span></div>
-        <div class="clip"><img src="shots/dashboard-money.png" alt="The TradeGOAT dashboard — money tiles, active jobs, and the proposal pipeline" loading="eager" /></div>
-      </div>
-    </section>
-
-    <!-- ── VIDEO: the one-minute overview (Oli v6, 11/6): tall on phones, wide on PC ── -->
-    <section class="video-section" id="video">
-      <h2 class="section-title">See TradeGOAT in a minute.</h2>
-      <div class="video-frame">
-        <video class="ov-tall" controls playsinline preload="none" poster="videos/overview-tall-v6-poster.jpg" src="videos/tradegoat-overview-tall-v6.mp4" title="TradeGOAT in a minute"></video><video class="ov-wide" controls playsinline preload="metadata" src="videos/tradegoat-overview-wide-v6.mp4#t=1.5" title="TradeGOAT in a minute"></video>
-      </div>
-      <p class="section-sub" style="margin:18px auto 0"><a href="videos.html" style="color:#ffc94d;font-weight:700">See all the TradeGOAT videos &rarr;</a></p>
-    </section>
-
-    <!-- ── THE LOOP: what it runs, in six beats ── -->
-    <section class="loop">
-      <h2 class="section-title">The whole job, in the order it happens.</h2>
-      <p class="section-sub">One tool from the first proposal to the last payment.</p>
-      <div class="loop-grid">
-        <div class="beat">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>
-          <b>1. Build the proposal</b>
-          <p>From your own documents and your own language. Upload the proposal you already send and it becomes your template.</p>
-        </div>
-        <div class="beat">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16v4a8 8 0 0 1-16 0zM8 21h8M12 16v5"/></svg>
-          <b>2. Get it signed</b>
-          <p>On a Quick proposal the customer taps Agree on their own phone or signs on yours. A full proposal goes to the customer to open and sign on their own phone or computer, or you mark it signed when they sign on paper. Either way, signing starts the job.</p>
-        </div>
-        <div class="beat">
-          <svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 6 6c0 2.5-1.5 4-3 5.5-.5.5-1 1-1 1.5h-4c0-.5-.5-1-1-1.5C7.5 13 6 11.5 6 9a6 6 0 0 1 6-6z"/></svg>
-          <b>3. Dispatch the job</b>
-          <p>Send it to a tech from one board. Their phone buzzes, they acknowledge, and you watch it move to done.</p>
-        </div>
-        <div class="beat">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-          <b>4. Run the field</b>
-          <p>Your techs get their own screen on their phone: time clock, service tickets and receipts, and nothing else to learn.</p>
-        </div>
-        <div class="beat">
-          <svg viewBox="0 0 24 24"><path d="M12 2v20M17 6.5c0-1.9-2.2-3-5-3s-5 1.1-5 3 1.6 2.6 5 3.3 5 1.6 5 3.7-2.2 3-5 3-5-1.1-5-3"/></svg>
-          <b>5. Sync the money</b>
-          <p>Invoices push to QuickBooks and payments read back, so your bookkeeper or CPA works from the books they already use.</p>
-        </div>
-        <div class="beat">
-          <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-6 3 4 5-8"/></svg>
-          <b>6. See all of it</b>
-          <p>Every job, every dollar and every tech, from a PC, a tablet or a phone.</p>
-        </div>
-      </div>
-      <p class="section-sub" style="margin-top:22px"><b style="color:#fff">You decide who sees the money.</b> Prices are turned on person by person, so a tech can do the work in the tool without seeing what the job is worth.</p>
-    </section>
-
-    <!-- ── PROOF 1: the headline act — your documents ── -->
-    <section class="proof">
-      <div>
-        <div class="kicker">The headline act</div>
-        <h3>Start with the proposal you already use</h3>
-        <p>Upload your Word or PDF. TradeGOAT reads your scope language, terms, warranty, and payment schedule — and you confirm every fill-in spot against your own words before anything is saved.</p>
-        <ul>
-          <li>Finished proposals render to <b>real Word documents</b> in your format, with your logo</li>
-          <li>A proposal physically can't go out with a blank a customer would see</li>
-          <li>Signed proposals freeze forever — changes become change orders</li>
-        </ul>
-      </div>
-      <div class="shot tall"><img src="shots/phase1-quotebuilder.png" alt="Building a proposal from your own document" loading="lazy" /></div>
-    </section>
-
-    <!-- ── PROOF 2: money ── -->
-    <section class="proof">
-      <div class="shot tall"><img src="shots/job-in-progress.png" alt="A live job scorecard — bid vs actual by cost bucket" loading="lazy" /></div>
-      <div>
-        <div class="kicker">Track the money</div>
-        <h3>Know what every job is making — while it runs</h3>
-        <p>Most contractors find out what a job made at tax time. The live scorecard shows bid vs actual by cost bucket while you can still steer the margin back into the green.</p>
-        <ul>
-          <li>Billing milestones per job — your payment split, invoice numbers, collected status per draw</li>
-          <li><b>QuickBooks connected</b> — push invoices, read payments back; the books are the billing truth</li>
-          <li>The owner's money view — billed vs collected vs backlog, revealed on tap, gated person by person</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ── PROOF 3: the field (NEW) ── -->
-    <section class="proof">
-      <div>
-        <div class="kicker">Run the field</div>
-        <h3>The field runs through it now, too</h3>
-        <p>Your techs don't need a manual or a laptop. It installs from the browser like an app and works from the truck.</p>
-        <ul>
-          <li><span class="new">NEW</span><b>GPS time clock</b> — clock in and out on a phone, switch jobs mid-day, punches land on a map</li>
-          <li><span class="new">NEW</span><b>Timecards that flag themselves</b> — missed punches and overtime surface automatically; payroll hours export in one click</li>
-          <li><span class="new">NEW</span><b>Field receipts</b> — snap it on the phone and it files to the job</li>
-          <li><span class="new">NEW</span><b>Time on the work order</b> — tickets carry the hours; every unit under contract shows its service time</li>
-          <li>Your own service ticket digitized — filled on a phone, signed on glass, PDF emails itself</li>
-        </ul>
-      </div>
-      <div class="shot tall"><img src="shots/missed-visit-watch.png" alt="The maintenance watch — a missed visit gets flagged before the customer notices" loading="lazy" /></div>
-    </section>
-
-    <!-- ── PROOF 4: learn ── -->
-    <section class="proof">
-      <div class="shot tall"><img src="shots/won-vs-lost.png" alt="Won vs lost — your winning proposals next to the ones that got away" loading="lazy" /></div>
-      <div>
-        <div class="kicker">Learn from it</div>
-        <h3>Every job teaches you something — automatically</h3>
-        <p>Won and lost proposals freeze their economics the moment they close. No data entry, no spreadsheet homework — the analysis builds itself from work you already did.</p>
-        <ul>
-          <li>Won vs lost — margins, price per day, where you win by size and type</li>
-          <li>Qualification packet — the questions general contractors ask, printable in one click</li>
-          <li>Business overview and customer reports, exportable</li>
-        </ul>
-      </div>
-    </section>
-
-    <p class="see-all"><a href="features.html">See everything it does &rarr;</a></p>
-
-    <!-- ── HOW IT WORKS — the BYO story ── -->
-    <section class="how-it-works">
-      <h2 class="section-title">How it works</h2>
-      <p class="section-sub">No rebuilding your business inside someone else's app. No starting over. Bring what you already have and we map it.</p>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-title">Drop your stuff in</div>
-          <div class="step-desc">Word docs, PDFs, Excel files, photos of a printed contract, screenshots from your old tool — anything. The messier the better. We handle it.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-title">We map it</div>
-          <div class="step-desc">AI reads your file. Pulls out your scope language, terms and conditions, warranty clauses, payment schedule, customer fields. Shows you the result. You confirm or fix.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-title">Send. Sign. Get paid.</div>
-          <div class="step-desc">Generate proposals in your exact format. Send it to be signed, and the job starts when they sign. Milestones track themselves. QuickBooks invoicing is built in.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── ORIGIN: the founder and the work ── -->
-    <div class="origin-wrap">
-      <div class="origin-img">
-        <img src="goat-hero.jpg" alt="Real trade work — this tool comes from the field, not a boardroom" loading="lazy" />
-      </div>
-      <div class="origin">
-        <p>
-          I have been in the elevator business for over 20 years, and running my own companies for the last seven. And for those seven years, the answer was always the same: spreadsheets, Word docs, and chasing payments that were already owed to me. That's not a business. That's a second job.
-        </p>
-        <p>
-          TradeGOAT is what I wish existed when I started. Built by a contractor. For contractors.
-        </p>
-        <div class="origin-sig">
-          <div class="sig-avatar">TE</div>
-          <div>
-            <div class="sig-name">Travis Evans</div>
-            <div class="sig-title">Founder · Evans Elevator Company · 20+ years in the trades</div>
-          </div>
-        </div>
-      </div>
+  <main>
+    <div class="wrap hero">
+      <span class="pill">Software for service contractors</span>
+      <h1>The alternative to the big, pricey contractor software.</h1>
+      <p class="alt">Think Jobber or Housecall Pro only better.</p>
+      <p class="by">Built and used by contractors for contractors.</p>
+      <p class="lede">Proposals, scheduling, your field crew, invoicing and job costing. One app, one monthly price for the whole company.</p>
+      <a href="https://app.thetradegoat.com/sign-up" class="btn btn-top">Start 14 days free, no credit card</a>
+      <p class="note">Sign up with Google or your email. Any trade, any size.</p>
+      <button type="button" class="watch" id="watchLink"><i>&#9654;</i>Watch the 1-minute video</button>
     </div>
 
-    <!-- ── WAITLIST — after the case is made ── -->
-    <section class="waitlist-section">
-      <span id="waitlist"></span><span id="beta"></span>
-      <h2 class="section-title">TradeGOAT is live. 14 days of Pro, free.</h2>
-      <p class="section-sub">Fourteen days of the <b style="color:#fff">top tier</b>, free. Every feature, up to 25 users, and we load your documents, customers, and equipment with you. <b style="color:#fff">Sign up with Google or your email, then name your company</b>. We don't ask for a credit card, because we don't need one to earn this. Want to look first? Drive the <a href="demo.html" style="color:var(--gold)">demo</a>.</p>
-      <div class="cta-row" style="justify-content:center;margin-top:18px">
-        <a href="https://app.thetradegoat.com/sign-up" class="btn-gold">Start 14 days free &rarr;</a>
+    <section class="band" id="video">
+      <div class="wrap">
+        <h2>See it in <span>one minute.</span></h2>
+        <button type="button" class="vcard" id="vcard" aria-label="Play the 1-minute TradeGOAT video">
+          <span class="tag">Any size. 14 days free.</span>
+          <span class="play"></span>
+          <span class="big">One app <em>any trade</em></span>
+          <span class="len">1:00</span>
+        </button>
       </div>
-      <p class="form-note">Rather ask a question first? Email Travis at hello@thetradegoat.com. He reads every one himself.</p>
     </section>
 
-    <footer>
-      <p style="margin-bottom:8px;">
-        <a href="mailto:hello@thetradegoat.com">hello@thetradegoat.com</a>
-      </p>
-      <p style="margin-bottom:8px;"><a href="proposal-software.html">Proposal software</a> · <a href="construction-proposal-software.html">Construction proposal software</a> · <a href="contractor-estimating-software.html">Contractor estimating software</a> · <a href="dispatch-software.html">Dispatch software</a> · <a href="jobber-vs-housecall-pro-vs-tradegoat.html">Jobber vs Housecall Pro vs TradeGOAT</a></p>
-      <p style="margin-bottom:8px;"><a href="blog/index.html">The TradeGOAT blog — straight talk for trade businesses</a></p>
-      <p style="margin-bottom:8px;">Follow along: <a href="https://www.linkedin.com/company/tradegoat" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.facebook.com/thetradegoat" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.youtube.com/@thetradegoat" target="_blank" rel="noopener">YouTube</a></p>
-      <p><a href="/support.html">Support</a> · <a href="https://app.thetradegoat.com/terms">Terms</a> · <a href="/privacy.html">Privacy</a> · © 2026 TradeGOAT · thetradegoat.com</p>
-    </footer>
+    <section class="band">
+      <div class="wrap">
+        <h2>Everything you run, <span>in one place.</span></h2>
+        <div class="grid">
+          <div class="f"><div class="ic">&#128221;</div><b>Proposals</b><p>Start from the proposal and terms you already use.</p></div>
+          <div class="f"><div class="ic">&#128197;</div><b>Scheduling &amp; dispatch</b><p>Put jobs on the board and send them to a tech.</p></div>
+          <div class="f"><div class="ic">&#128241;</div><b>Field app</b><p>Crew clocks in, fills tickets and gets signatures on a phone.</p></div>
+          <div class="f"><div class="ic">&#129534;</div><b>Invoicing &amp; draws</b><p>Bill deposits and progress payments on your own schedule.</p></div>
+          <div class="f"><div class="ic">&#128202;</div><b>Job costing</b><p>See what each job is making while it runs.</p></div>
+          <div class="f"><div class="ic">&#128295;</div><b>Maintenance</b><p>Every contract visit tracked. Missed ones get flagged.</p></div>
+          <div class="f"><div class="ic">&#128279;</div><b>QuickBooks</b><p>Invoices go in, payments come back.</p></div>
+          <div class="f"><div class="ic">&#128274;</div><b>You pick who sees money</b><p>Techs do the work without seeing job prices.</p></div>
+        </div>
+        <div class="shots">
+          <figure><div class="frame"><img src="shots/start-tmpl.jpg" width="812" height="632" alt="TradeGOAT reading your own proposal and finding the customer name, address, contract total and scope" loading="lazy"></div><figcaption>Your proposal, your terms</figcaption></figure>
+          <figure><div class="frame"><img src="shots/start-draws.jpg" width="812" height="1258" alt="Payment draws on a signed job: 50% deposit paid, two 25% draws not billed yet" loading="lazy"></div><figcaption>Deposits and draws</figcaption></figure>
+          <figure><div class="frame"><img src="shots/missed-visit-watch.png" width="1440" height="1155" alt="The maintenance watch flagging a missed contract visit" loading="lazy"></div><figcaption>Missed visits flagged</figcaption></figure>
+        </div>
+      </div>
+    </section>
 
-  </div>
+    <section class="band">
+      <div class="wrap">
+        <h2>Why it's different from <span>the big guys.</span></h2>
+        <ul class="why">
+          <li><span class="ck">&#10003;</span><div><b>One price for your whole company.</b><p>Add a tech or someone in the office and your bill doesn't move inside your plan.</p></div></li>
+          <li><span class="ck">&#10003;</span><div><b>Your paperwork, not theirs.</b><p>Upload the proposal, terms and payment schedule you already use. TradeGOAT works from those.</p></div></li>
+          <li><span class="ck">&#10003;</span><div><b>Made in a working shop.</b><p>It runs a real service company every day, so it's built around how jobs actually go.</p></div></li>
+          <li><span class="ck">&#10003;</span><div><b>Set up with you, personally.</b><p>We load your documents, customers and equipment with you.</p></div></li>
+          <li><span class="ck">&#10003;</span><div><b>No contract.</b><p>Month to month. Cancel anytime.</p></div></li>
+        </ul>
+        <div class="plans">
+          <div class="plan"><div class="n">Starter</div><div class="p">$149<small>/mo</small></div><div class="u">up to 2 users</div></div>
+          <div class="plan"><div class="n">Growth</div><div class="p">$249<small>/mo</small></div><div class="u">up to 10 users</div></div>
+          <div class="plan"><div class="n">Pro</div><div class="p">$599<small>/mo</small></div><div class="u">up to 25 users</div></div>
+        </div>
+        <a class="more" href="pricing.html">See what's in each plan &rarr;</a>
+      </div>
+    </section>
 
+    <section class="band">
+      <div class="wrap note2">
+        <div class="av">TE</div>
+        <div>
+          <q>I run an elevator company in Kaufman County, Texas, and we run on it every day. Got a question first? Email me at <a href="mailto:travis@thetradegoat.com">travis@thetradegoat.com</a>. I read every one.</q>
+          <p class="who">Travis Evans &middot; Evans Elevator Company &middot; 20+ years in the trades</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band close">
+      <div class="wrap">
+        <h2>Try it on a <span>real job.</span></h2>
+        <p class="sub">Every feature for 14 days. No credit card.</p>
+        <a href="https://app.thetradegoat.com/sign-up" class="btn">Start 14 days free, no credit card</a>
+        <a href="demo.html" class="demo">Or drive the demo first &rarr;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <nav>
+        <a href="features.html">Features</a>
+        <a href="demo.html">Demo</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="videos.html">Videos</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="/support.html">Support</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="https://app.thetradegoat.com/terms">Terms</a>
+      </nav>
+      <p>&copy; 2026 TradeGOAT</p>
+    </div>
+  </footer>
+
+<script>
+/* The 1-minute video: the cover card swaps for the real player on tap. Phones get the
+   tall cut (captions readable), wider screens the wide cut. Both v6 cuts, 58 s. */
+(function(){
+  var card=document.getElementById('vcard'),link=document.getElementById('watchLink');
+  function play(){
+    if(!card||!card.parentNode)return;
+    var tall=window.matchMedia('(max-width: 759px)').matches;
+    var box=document.createElement('div');box.className='vbox'+(tall?' tall':'');
+    var v=document.createElement('video');v.controls=true;v.playsInline=true;v.setAttribute('playsinline','');v.autoplay=true;
+    v.src=tall?'videos/tradegoat-overview-tall-v6.mp4':'videos/tradegoat-overview-wide-v6.mp4';
+    if(tall)v.poster='videos/overview-tall-v6-poster.jpg';
+    v.title='TradeGOAT in a minute';box.appendChild(v);card.parentNode.replaceChild(box,card);card=null;
+    try{var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}
+    try{if(window.tgEvt)window.tgEvt('video:'+(/^\/(index\.html)?$/.test(location.pathname)?'home':'start')+':play');}catch(e){}
+  }
+  if(card)card.addEventListener('click',play);
+  if(link)link.addEventListener('click',function(){var s=document.getElementById('video');if(s)s.scrollIntoView({behavior:'smooth',block:'start'});play();});
+})();
+</script>
 <script>
 /* Site beacon: one page view per load, plus funnel events (rows whose page starts
    with "evt:"). Every event string and where it fires is listed in TRACKING.md.
@@ -810,7 +296,7 @@
     return '';
   }
   function zone(el){
-    return el.closest('.mpanel')?'menu':el.closest('nav,header,.demobar')?'nav':el.closest('#guide')?'guide':
+    return el.classList.contains('btn-top')?'top':el.closest('.mpanel')?'menu':el.closest('nav,header,.demobar')?'nav':el.closest('#guide')?'guide':
       el.closest('.hero')?'hero':el.closest('footer,.pagefoot')?'foot':'body';
   }
   document.addEventListener('click',function(e){try{
@@ -818,45 +304,11 @@
     if(!el||el.closest('form'))return;
     var k=kind(el);if(k)window.tgEvt('cta:'+P+':'+k+'-'+zone(el));if(k&&window.gtag){if(k==='start')gtag('event','begin_signup',{page_name:P});else if(k==='demo')gtag('event','demo_click',{page_name:P});}
   }catch(x){}},true);
-  /* Waitlist form: evt:form:<page>:invalid|submit|ok|fallback|fail */
-  var f=document.getElementById('waitlistForm');
-  if(f){
-    var fp='form:'+P+':',iv=0;
-    f.addEventListener('invalid',function(){if(!iv){iv=1;window.tgEvt(fp+'invalid');setTimeout(function(){iv=0;},2000);}},true);
-    f.addEventListener('submit',function(){window.tgEvt(fp+'submit');},true);
-    var on=function(x){return !!x&&!!x.style.display&&x.style.display!=='none';};
-    var watch=function(x,name){
-      if(!x||!window.MutationObserver)return;
-      var was=on(x);
-      new MutationObserver(function(){
-        var now=on(x);
-        if(now&&!was){
-          var sl=document.getElementById('shareLink');
-          window.tgEvt(fp+(name==='fail'?'fail':(sl&&sl.parentElement&&sl.parentElement.style.display==='none'?'fallback':'ok')));
-        }
-        was=now;
-      }).observe(x,{attributes:true,attributeFilter:['style']});
-    };
-    watch(document.getElementById('successMsg'),'ok');
-    watch(document.getElementById('errorMsg'),'fail');
-  }
-}catch(e){}})();
-</script>
-<script>
-/* Home page scroll depth, coarse: evt:home:scroll:25|50|75|100, once each per view. */
-(function(){try{
-  var E=window.tgEvt;if(!E)return;
-  var M=[25,50,75,100],hit={},busy=0;
-  function tick(){
-    busy=0;
-    var d=document.documentElement,H=Math.max(d.scrollHeight,document.body?document.body.scrollHeight:0);
-    var p=H?((window.pageYOffset||d.scrollTop||0)+window.innerHeight)/H*100:0;
-    for(var i=0;i<M.length;i++){var m=M[i];if(!hit[m]&&p>=(m===100?98:m)){hit[m]=1;E('home:scroll:'+m);}}
-  }
-  window.addEventListener('scroll',function(){
-    if(busy)return;busy=1;
-    if(window.requestAnimationFrame)window.requestAnimationFrame(tick);else setTimeout(tick,60);
-  },{passive:true});
+  /* How far down the page a visitor got: evt:<home|start>:scroll:<25|50|75|100>, once each. */
+  var seen={};window.addEventListener('scroll',function(){try{
+    var d=document.documentElement,pct=Math.round((window.scrollY+window.innerHeight)/d.scrollHeight*100);
+    [25,50,75,100].forEach(function(m){if(pct>=m&&!seen[m]){seen[m]=1;window.tgEvt((P==='index'?'home':P)+':scroll:'+m);}});
+  }catch(x){}},{passive:true});
 }catch(e){}})();
 </script>
 <script>
@@ -865,7 +317,7 @@
    to where it came from. First-party only; fail-silent. */
 (function(){try{
   var p=location.pathname.replace(/^\/|\.html$/g,'')||'home',s;
-  if(p==='proposal-software')s='ads-proposal';else if(p==='dispatch-software')s='ads-dispatch';
+  if(p==='start')s='ads-fb';else if(p==='proposal-software')s='ads-proposal';else if(p==='dispatch-software')s='ads-dispatch';
   else if(p==='home'||p==='index')s='site-home';else if(p==='pricing')s='site-pricing';
   else if(p==='features')s='site-features';else if(p==='tour')s='site-tour';
   else if(p==='demo')s='site-demo';else if(p.indexOf('blog')===0)s='site-blog';else s='site-'+p.split('/')[0];
@@ -873,6 +325,7 @@
     if(!v){v='v'+Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('tg_vid',v);}}}catch(e){}
   var a=document.querySelectorAll('a[href*="app.thetradegoat.com/sign-up"]');
   var q=new URLSearchParams(location.search),keep=[];q.forEach(function(val,k){if(k==='gclid'||k==='gbraid'||k==='wbraid'||k==='fbclid'||k.indexOf('utm_')===0)keep.push([k,val]);});
+  var d=document.querySelectorAll('a[href^="demo.html"]');for(var n=0;n<d.length;n++){var du=new URL(d[n].href);du.searchParams.set('src',s);for(var m=0;m<keep.length;m++)du.searchParams.set(keep[m][0],keep[m][1]);d[n].href=du.toString();}
   for(var i=0;i<a.length;i++){var u=new URL(a[i].href);u.searchParams.set('src',s);if(v)u.searchParams.set('v',v);for(var j=0;j<keep.length;j++)u.searchParams.set(keep[j][0],keep[j][1]);a[i].href=u.toString();}
 }catch(e){}})();
 </script>
