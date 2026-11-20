@@ -6,39 +6,109 @@
   <meta name="robots" content="noindex, follow" />
   <title>Start TradeGOAT free | TradeGOAT</title>
   <link rel="canonical" href="https://www.thetradegoat.com/" />
-  <meta name="description" content="Price the job on your phone, send the proposal, and your customer signs on theirs. Try it free for 14 days." />
-  <meta property="og:title" content="TradeGOAT: every proposal in one place" />
-  <meta property="og:description" content="Price the job on your phone, send the proposal, and your customer signs on theirs. Try it free for 14 days." />
+  <meta name="description" content="The alternative to the big, pricey contractor software. Proposals, scheduling, your field crew, invoicing and job costing. One app, one monthly price for the whole company. Try it free for 14 days." />
+  <meta property="og:title" content="TradeGOAT: the alternative to the big, pricey contractor software" />
+  <meta property="og:description" content="Proposals, scheduling, your field crew, invoicing and job costing. One app, one monthly price for the whole company. 14 days free, no credit card." />
   <meta property="og:image" content="https://www.thetradegoat.com/og-image.png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --navy:#0f1f3d; --gold:#D97706; --gold-light:#ffc94d; --muted:#8a93a6; }
+    :root { --navy:#0f1f3d; --navy2:#16284a; --card:#1a2b4d; --line:rgba(255,255,255,0.10); --gold:#D97706; --gold-light:#ffc94d; --yellow:#fbbf24; --muted:#a3acbf; --soft:#c6cddb; }
     html, body { background: var(--navy); }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color:#fff; min-height:100vh; line-height:1.5; }
-    main { max-width: 760px; margin: 0 auto; padding: 12px 16px 40px; text-align: center; }
-    .eyebrow { color: var(--gold-light); font-size: 12.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 8px; }
-    h1 { font-size: clamp(28px, 6vw, 46px); line-height: 1.12; font-weight: 900; }
-    h1 span { color: var(--gold); }
-    .sub { color: #c6cddb; font-size: clamp(16px, 2.6vw, 19px); max-width: 600px; margin: 10px auto 16px; }
-    .vid { width: 100%; max-width: 280px; aspect-ratio: 9 / 16; margin: 0 auto; border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 18px 50px rgba(0,0,0,0.35); background:#000; }
-    .vid video { display:block; width:100%; height:100%; object-fit: cover; }
-    .vid .ov-wide { display:none; }
-    @media (min-width: 760px) { .vid { max-width: 728px; aspect-ratio: 16 / 9; } .vid .ov-tall { display:none; } .vid .ov-wide { display:block; } }
-    .btn { display:inline-block; margin-top: 24px; background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--navy); font-weight: 900; font-size: 18px; text-decoration: none; padding: 16px 30px; border-radius: 12px; box-shadow: 0 10px 28px rgba(217,119,6,0.35); }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color:#fff; line-height:1.5; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+    /* Top bar */
+    .top { position: sticky; top: 0; z-index: 10; background: rgba(15,31,61,0.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
+    .top .wrap { display:flex; align-items:center; justify-content:space-between; height: 56px; }
+    .brand { display:flex; align-items:center; gap:9px; text-decoration:none; font-weight:900; font-size:19px; letter-spacing:-.01em; }
+    .brand img { width:28px; height:28px; border-radius:6px; }
+    .brand b { color: var(--gold); }
+    .top nav { display:flex; align-items:center; gap:14px; }
+    .login { color: var(--muted); text-decoration:none; font-weight:600; font-size:15px; }
+    .tstart { background: var(--gold); color: var(--navy); text-decoration:none; font-weight:800; font-size:15px; padding: 9px 15px; border-radius: 10px; }
+
+    /* Hero */
+    .hero { padding-top: 30px; padding-bottom: 30px; }
+    .pill { display:inline-block; border:1px solid rgba(217,119,6,0.55); background: rgba(217,119,6,0.10); color: var(--gold-light); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; padding: 7px 14px; border-radius: 999px; }
+    h1 { font-size: clamp(31px, 7.6vw, 50px); line-height: 1.1; font-weight: 900; letter-spacing: -.02em; margin-top: 18px; }
+    .alt { color: var(--yellow); font-weight: 800; font-size: clamp(20px, 4.6vw, 27px); line-height: 1.25; margin-top: 16px; }
+    .by { font-weight: 700; font-size: clamp(17px, 3.8vw, 21px); line-height: 1.3; margin-top: 8px; }
+    .lede { color: var(--soft); font-size: clamp(16px, 3.6vw, 18px); margin-top: 16px; }
+    .btn { display:block; text-align:center; background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--navy); font-weight: 900; font-size: clamp(17px, 4.2vw, 20px); text-decoration: none; padding: 17px 20px; border-radius: 14px; box-shadow: 0 10px 28px rgba(217,119,6,0.35); }
     .btn:hover { filter: brightness(1.05); }
-    .note { color: #c6cddb; font-size: 14px; margin-top: 12px; }
-    .btn-top { margin-top: 16px; font-size: 20px; padding: 18px 30px; }
-    .shot { display:block; width:100%; max-width: 360px; height:auto; margin: 14px auto 0; border-radius: 16px; border: 1px solid rgba(255,255,255,0.15); }
-    h1 { margin-top: 8px; }
-    .btn2 { display:inline-block; margin: 0 auto 18px; color:#fff; font-weight:700; font-size:15px; text-decoration:none; padding: 11px 18px; border:1.5px solid rgba(255,255,255,0.55); border-radius: 12px; }
-    .btn2:hover { border-color:#fff; }
-    .note-top { margin: 8px auto 14px; max-width: 420px; }
-    .proof { color: rgba(255,255,255,0.85); font-size: 14px; margin-top: 18px; }
-    .list { text-align:left; max-width: 520px; margin: 30px auto 0; display:grid; gap:10px; }
-    .list div { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 11px; padding: 12px 14px; font-size: 15px; color:#dfe4ee; }
-    .list b { color:#fff; }
-    .legal { margin-top: 34px; font-size: 13px; color: var(--muted); }
-    .legal a { color: #c6cddb; }
+    .hero .btn { margin-top: 26px; }
+    .note { color: var(--muted); font-size: 14px; margin-top: 10px; }
+    .watch { display:inline-flex; align-items:center; gap:12px; margin-top: 20px; color: var(--yellow); font-weight: 800; font-size: 17px; text-decoration:none; background:none; border:0; cursor:pointer; font-family:inherit; }
+    .watch i { width:34px; height:34px; border:2px solid var(--yellow); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-style:normal; font-size:12px; padding-left:2px; }
+
+    section.band { border-top: 1px solid var(--line); padding: 34px 0; }
+    h2 { font-size: clamp(25px, 6vw, 36px); line-height: 1.15; font-weight: 900; letter-spacing: -.015em; }
+    h2 span { color: var(--gold); }
+
+    /* Video card */
+    .vcard { position: relative; display:block; width:100%; margin-top: 18px; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16 / 9; background:#000 url("videos/start-video-cover.jpg") center / cover no-repeat; cursor: pointer; padding:0; }
+    .vcard::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.55)); }
+    .vcard .tag { position:absolute; z-index:1; top:12px; left:12px; background: var(--gold-light); color: var(--navy); font-weight: 900; font-size: 14px; padding: 4px 10px; border-radius: 6px; }
+    .vcard .big { position:absolute; z-index:1; left:0; right:0; bottom: 14%; text-align:center; font-weight: 900; font-size: clamp(30px, 8.4vw, 54px); line-height: .98; text-transform: uppercase; color:#fff; text-shadow: 0 3px 0 rgba(0,0,0,0.6), 0 0 18px rgba(0,0,0,0.5); letter-spacing: .01em; }
+    .vcard .big em { display:block; font-style: normal; color: var(--yellow); }
+    .vcard .play { position:absolute; z-index:2; left:50%; top:46%; transform: translate(-50%,-50%); width: 76px; height: 76px; border-radius: 50%; background: var(--gold); display:flex; align-items:center; justify-content:center; box-shadow: 0 8px 24px rgba(0,0,0,0.45); }
+    .vcard .play::before { content:""; margin-left: 6px; border-left: 24px solid var(--navy); border-top: 15px solid transparent; border-bottom: 15px solid transparent; }
+    .vcard .len { position:absolute; z-index:1; right:12px; bottom:12px; background: rgba(0,0,0,0.75); color:#fff; font-weight:700; font-size:14px; padding: 3px 9px; border-radius: 6px; }
+    .vbox { margin-top: 18px; border-radius: 16px; overflow:hidden; border:1px solid var(--line); background:#000; }
+    .vbox video { display:block; width:100%; height:auto; }
+    .vbox.tall { max-width: 340px; margin-left:auto; margin-right:auto; }
+
+    /* Feature grid */
+    .grid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+    .f { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 15px 18px; }
+    .f .ic { font-size: 30px; line-height: 1; }
+    .f b { display:block; font-size: 18px; line-height: 1.25; margin-top: 10px; }
+    .f p { color: var(--soft); font-size: 15px; line-height: 1.4; margin-top: 6px; }
+
+    /* Screens carousel */
+    .shots { display:flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 20px; margin: 22px -20px 0; padding: 0 20px 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .shots::-webkit-scrollbar { display:none; }
+    .shots figure { flex: 0 0 76%; max-width: 330px; scroll-snap-align: start; }
+    .shots .frame { background: var(--card); border:1px solid var(--line); border-radius: 18px; padding: 9px; }
+    .shots img { display:block; width:100%; height: 250px; object-fit: cover; object-position: left top; border-radius: 12px; background:#f5f3ee; }
+    .shots figcaption { color: var(--soft); text-align:center; font-size: 15px; margin-top: 10px; }
+
+    /* Why different */
+    .why { list-style:none; margin-top: 20px; display:grid; gap: 20px; }
+    .why li { display:grid; grid-template-columns: 40px 1fr; gap: 14px; align-items:start; }
+    .why .ck { width:40px; height:40px; border-radius: 10px; background: rgba(217,119,6,0.16); color: var(--gold); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px; }
+    .why b { display:block; font-size: 18px; line-height:1.3; }
+    .why p { color: var(--soft); font-size: 16px; margin-top: 3px; }
+    .plans { display:grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 26px; }
+    .plan { border:1px solid var(--line); border-radius: 14px; padding: 14px 6px; text-align:center; background: rgba(255,255,255,0.02); }
+    .plan .n { color: var(--muted); font-weight:700; font-size: 14px; }
+    .plan .p { font-weight: 900; font-size: clamp(21px, 5.4vw, 28px); margin-top: 4px; }
+    .plan .p small { font-size: .62em; font-weight: 600; color: var(--soft); }
+    .plan .u { color: var(--soft); font-size: 13.5px; margin-top: 4px; }
+    .more { display:inline-block; margin-top: 14px; color: var(--yellow); font-weight: 800; font-size: 15px; text-decoration:none; }
+
+    /* Founder note */
+    .note2 { display:grid; grid-template-columns: 56px 1fr; gap: 16px; align-items:start; }
+    .av { width:56px; height:56px; border-radius:50%; background: linear-gradient(160deg, var(--gold), #9a4b05); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:20px; }
+    .note2 q { display:block; font-size: 18px; line-height: 1.45; quotes: "\201C" "\201D"; }
+    .note2 q a { color: var(--yellow); }
+    .note2 .who { color: var(--muted); font-size: 14.5px; margin-top: 10px; }
+
+    /* Close */
+    .close { text-align:center; padding-bottom: 40px; }
+    .close h2 { font-size: clamp(27px, 6.6vw, 38px); }
+    .close .sub { color: var(--soft); font-size: 17px; margin: 8px 0 22px; }
+    .demo { display:inline-block; margin-top: 18px; color: var(--yellow); font-weight: 800; font-size: 16px; }
+    footer { border-top: 1px solid var(--line); padding: 22px 0 34px; text-align:center; }
+    footer nav { display:flex; flex-wrap:wrap; justify-content:center; gap: 6px 18px; }
+    footer a { color: var(--muted); text-decoration:none; font-size: 14.5px; }
+    footer p { color: var(--muted); font-size: 13.5px; margin-top: 10px; }
+
+    @media (min-width: 760px) {
+      .grid { grid-template-columns: repeat(4, 1fr); }
+      .shots figure { flex-basis: 46%; }
+    }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <!-- Google tag: Google Analytics G-42WBGHMLE9 + Google Ads AW-18487719470 (Travis 10/27). Named on privacy.html. -->
@@ -48,26 +118,134 @@
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','927696483608592');fbq('track','PageView');</script>
 </head>
 <body>
-  <main class="hero">
-    <h1>Still chasing signatures and paper tickets <span>after the job is done?</span></h1>
-    <img class="shot" src="shots/start-both-signed.jpg" width="780" height="630" alt="A field ticket in TradeGOAT, signed on the phone by the crew lead and the property manager">
-    <a href="https://app.thetradegoat.com/sign-up" class="btn btn-top">Try it free, 14 days, no card &rarr;</a>
-    <p class="note note-top">Sign up with Google or your email, then name your company.</p>
-    <p class="sub">For trade shops: proposals, customer signatures, field tickets and change orders, in one app on your phone.</p>
-    <a href="demo.html" class="btn2">Not ready? Drive the demo first. Nothing to sign up for.</a>
-    <div class="vid">
-      <video class="ov-tall" controls playsinline preload="none" poster="videos/overview-tall-v6-poster.jpg" src="videos/tradegoat-overview-tall-v6.mp4" title="TradeGOAT in a minute"></video><video class="ov-wide" controls playsinline preload="metadata" src="videos/tradegoat-overview-wide-v6.mp4#t=1.5" title="TradeGOAT in a minute"></video>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="logo.jpg" alt="" width="28" height="28"><span>Trade<b>GOAT</b></span></a>
+      <nav>
+        <a class="login" href="https://app.thetradegoat.com/sign-in">Log in</a>
+        <a class="tstart" href="https://app.thetradegoat.com/sign-up">Start free</a>
+      </nav>
     </div>
-    <a href="https://app.thetradegoat.com/sign-up" class="btn">Try it free, 14 days, no card &rarr;</a>
-    <p class="note">Free for 14 days. Sign up with Google or your email, then name your company.</p>
-    <p class="proof">Built by elevator contractors to run any trade. Evans Elevator Company runs on it every day. A second elevator company runs its service work on it.</p>
-    <div class="list">
-      <div><b>Proposals on your own paperwork.</b> Upload the proposal you already send and it becomes your template.</div>
-      <div><b>Signed on the spot.</b> Your customer signs on their phone or yours, and the signed copy is filed on the job.</div>
-      <div><b>The whole job on one page.</b> Field tickets with photos, change orders and every document, filed on the job.</div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <span class="pill">Software for service contractors</span>
+      <h1>The alternative to the big, pricey contractor software.</h1>
+      <p class="alt">Think Jobber or Housecall Pro only better.</p>
+      <p class="by">Built and used by contractors for contractors.</p>
+      <p class="lede">Proposals, scheduling, your field crew, invoicing and job costing. One app, one monthly price for the whole company.</p>
+      <a href="https://app.thetradegoat.com/sign-up" class="btn btn-top">Start 14 days free, no credit card</a>
+      <p class="note">Sign up with Google or your email. Any trade, any size.</p>
+      <button type="button" class="watch" id="watchLink"><i>&#9654;</i>Watch the 1-minute video</button>
     </div>
-    <p class="legal"><a href="/support.html">Support</a> · <a href="https://app.thetradegoat.com/terms">Terms</a> · <a href="/privacy.html">Privacy</a></p>
+
+    <section class="band" id="video">
+      <div class="wrap">
+        <h2>See it in <span>one minute.</span></h2>
+        <button type="button" class="vcard" id="vcard" aria-label="Play the 1-minute TradeGOAT video">
+          <span class="tag">Any size. 14 days free.</span>
+          <span class="play"></span>
+          <span class="big">One app <em>any trade</em></span>
+          <span class="len">1:00</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <h2>Everything you run, <span>in one place.</span></h2>
+        <div class="grid">
+          <div class="f"><div class="ic">&#128221;</div><b>Proposals</b><p>Start from the proposal and terms you already use.</p></div>
+          <div class="f"><div class="ic">&#128197;</div><b>Scheduling &amp; dispatch</b><p>Put jobs on the board and send them to a tech.</p></div>
+          <div class="f"><div class="ic">&#128241;</div><b>Field app</b><p>Crew clocks in, fills tickets and gets signatures on a phone.</p></div>
+          <div class="f"><div class="ic">&#129534;</div><b>Invoicing &amp; draws</b><p>Bill deposits and progress payments on your own schedule.</p></div>
+          <div class="f"><div class="ic">&#128202;</div><b>Job costing</b><p>See what each job is making while it runs.</p></div>
+          <div class="f"><div class="ic">&#128295;</div><b>Maintenance</b><p>Every contract visit tracked. Missed ones get flagged.</p></div>
+          <div class="f"><div class="ic">&#128279;</div><b>QuickBooks</b><p>Invoices go in, payments come back.</p></div>
+          <div class="f"><div class="ic">&#128274;</div><b>You pick who sees money</b><p>Techs do the work without seeing job prices.</p></div>
+        </div>
+        <div class="shots">
+          <figure><div class="frame"><img src="shots/start-tmpl.jpg" width="812" height="632" alt="TradeGOAT reading your own proposal and finding the customer name, address, contract total and scope" loading="lazy"></div><figcaption>Your proposal, your terms</figcaption></figure>
+          <figure><div class="frame"><img src="shots/start-draws.jpg" width="812" height="1258" alt="Payment draws on a signed job: 50% deposit paid, two 25% draws not billed yet" loading="lazy"></div><figcaption>Deposits and draws</figcaption></figure>
+          <figure><div class="frame"><img src="shots/missed-visit-watch.png" width="1440" height="1155" alt="The maintenance watch flagging a missed contract visit" loading="lazy"></div><figcaption>Missed visits flagged</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <h2>Why it's different from <span>the big guys.</span></h2>
+        <ul class="why">
+          <li><span class="ck">&#10003;</span><div><b>One price for your whole company.</b><p>Add a tech or someone in the office and your bill doesn't move inside your plan.</p></div></li>
+          <li><span class="ck">&#10003;</span><div><b>Your paperwork, not theirs.</b><p>Upload the proposal, terms and payment schedule you already use. TradeGOAT works from those.</p></div></li>
+          <li><span class="ck">&#10003;</span><div><b>Made in a working shop.</b><p>It runs a real service company every day, so it's built around how jobs actually go.</p></div></li>
+          <li><span class="ck">&#10003;</span><div><b>Set up with you, personally.</b><p>We load your documents, customers and equipment with you.</p></div></li>
+          <li><span class="ck">&#10003;</span><div><b>No contract.</b><p>Month to month. Cancel anytime.</p></div></li>
+        </ul>
+        <div class="plans">
+          <div class="plan"><div class="n">Starter</div><div class="p">$149<small>/mo</small></div><div class="u">up to 2 users</div></div>
+          <div class="plan"><div class="n">Growth</div><div class="p">$249<small>/mo</small></div><div class="u">up to 10 users</div></div>
+          <div class="plan"><div class="n">Pro</div><div class="p">$599<small>/mo</small></div><div class="u">up to 25 users</div></div>
+        </div>
+        <a class="more" href="pricing.html">See what's in each plan &rarr;</a>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap note2">
+        <div class="av">TE</div>
+        <div>
+          <q>I run an elevator company in Kaufman County, Texas, and we run on it every day. Got a question first? Email me at <a href="mailto:travis@thetradegoat.com">travis@thetradegoat.com</a>. I read every one.</q>
+          <p class="who">Travis Evans &middot; Evans Elevator Company &middot; 20+ years in the trades</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band close">
+      <div class="wrap">
+        <h2>Try it on a <span>real job.</span></h2>
+        <p class="sub">Every feature for 14 days. No credit card.</p>
+        <a href="https://app.thetradegoat.com/sign-up" class="btn">Start 14 days free, no credit card</a>
+        <a href="demo.html" class="demo">Or drive the demo first &rarr;</a>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="wrap">
+      <nav>
+        <a href="pricing.html">Pricing</a>
+        <a href="jobber-vs-housecall-pro-vs-tradegoat.html">Compare</a>
+        <a href="videos.html">Videos</a>
+        <a href="/support.html">Support</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="https://app.thetradegoat.com/terms">Terms</a>
+      </nav>
+      <p>&copy; 2026 TradeGOAT</p>
+    </div>
+  </footer>
+
+<script>
+/* The 1-minute video: the cover card swaps for the real player on tap. Phones get the
+   tall cut (captions readable), wider screens the wide cut. Both v6 cuts, 58 s. */
+(function(){
+  var card=document.getElementById('vcard'),link=document.getElementById('watchLink');
+  function play(){
+    if(!card||!card.parentNode)return;
+    var tall=window.matchMedia('(max-width: 759px)').matches;
+    var box=document.createElement('div');box.className='vbox'+(tall?' tall':'');
+    var v=document.createElement('video');v.controls=true;v.playsInline=true;v.setAttribute('playsinline','');v.autoplay=true;
+    v.src=tall?'videos/tradegoat-overview-tall-v6.mp4':'videos/tradegoat-overview-wide-v6.mp4';
+    if(tall)v.poster='videos/overview-tall-v6-poster.jpg';
+    v.title='TradeGOAT in a minute';box.appendChild(v);card.parentNode.replaceChild(box,card);card=null;
+    try{var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}
+    try{if(window.tgEvt)window.tgEvt('video:start:play');}catch(e){}
+  }
+  if(card)card.addEventListener('click',play);
+  if(link)link.addEventListener('click',function(){var s=document.getElementById('video');if(s)s.scrollIntoView({behavior:'smooth',block:'start'});play();});
+})();
+</script>
 <script>
 /* Site beacon: one page view per load, plus funnel events (rows whose page starts
    with "evt:"). Every event string and where it fires is listed in TRACKING.md.
@@ -115,28 +293,11 @@
     if(!el||el.closest('form'))return;
     var k=kind(el);if(k)window.tgEvt('cta:'+P+':'+k+'-'+zone(el));if(k&&window.gtag){if(k==='start')gtag('event','begin_signup',{page_name:P});else if(k==='demo')gtag('event','demo_click',{page_name:P});}
   }catch(x){}},true);
-  /* Waitlist form: evt:form:<page>:invalid|submit|ok|fallback|fail */
-  var f=document.getElementById('waitlistForm');
-  if(f){
-    var fp='form:'+P+':',iv=0;
-    f.addEventListener('invalid',function(){if(!iv){iv=1;window.tgEvt(fp+'invalid');setTimeout(function(){iv=0;},2000);}},true);
-    f.addEventListener('submit',function(){window.tgEvt(fp+'submit');},true);
-    var on=function(x){return !!x&&!!x.style.display&&x.style.display!=='none';};
-    var watch=function(x,name){
-      if(!x||!window.MutationObserver)return;
-      var was=on(x);
-      new MutationObserver(function(){
-        var now=on(x);
-        if(now&&!was){
-          var sl=document.getElementById('shareLink');
-          window.tgEvt(fp+(name==='fail'?'fail':(sl&&sl.parentElement&&sl.parentElement.style.display==='none'?'fallback':'ok')));
-        }
-        was=now;
-      }).observe(x,{attributes:true,attributeFilter:['style']});
-    };
-    watch(document.getElementById('successMsg'),'ok');
-    watch(document.getElementById('errorMsg'),'fail');
-  }
+  /* How far down the page a visitor got: evt:start:scroll:<25|50|75|100>, once each. */
+  var seen={};window.addEventListener('scroll',function(){try{
+    var d=document.documentElement,pct=Math.round((window.scrollY+window.innerHeight)/d.scrollHeight*100);
+    [25,50,75,100].forEach(function(m){if(pct>=m&&!seen[m]){seen[m]=1;window.tgEvt('start:scroll:'+m);}});
+  }catch(x){}},{passive:true});
 }catch(e){}})();
 </script>
 <script>
