@@ -42,6 +42,7 @@ per-browser token that page views already used.
 | `evt:home:scroll:25` / `50` / `75` / `100` | how far down the page the bottom of the screen reached, as a share of the page; once each per view (rebuilt home, 11/20) | `index.html` |
 | `evt:start:scroll:25` / `50` / `75` / `100` | same, on the Facebook landing page | `start.html` |
 | `evt:video:home:play` / `evt:video:start:play` | the 1-minute video card was tapped and the player opened | `index.html` / `start.html` |
+| `evt:banner:scan` | a phone opened demo.html with no link behind it (the printed banner QR) and was sent to `start.html?src=banner&utm_source=banner&utm_medium=qr` (11/20) | `start.html` |
 | `evt:demo:scene:<id>` | each time the demo's screen changes (`dash`, `calc`, `drive`, `props`, `tmpl`, `maint`, `ticket`, `map`, `jmoney`, `cust`, `wl`, `score`, `team`), including the first screen on load | `demo.html` |
 | `evt:demo:guide:<n>` | the first time Try-this step `n` shows (1–13 are the steps; 14 is the closing "That's the whole loop" card) | `demo.html` |
 | `evt:demo:end:s=<seconds>:deep=<n>:last=<id>` | once, when the demo page is left (`pagehide`): seconds the page was on screen (hidden-tab time not counted), the deepest Try-this step reached, the screen it was left on | `demo.html` |
