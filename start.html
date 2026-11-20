@@ -273,6 +273,7 @@
   var P=location.pathname.replace(/^\/+/,'').replace(/\.html?$/,'').replace(/\/$/,'/index')||'index';
   window.tgEvt=function(n){send('evt:'+n,null);};
   send((location.pathname==='/'?'/index':location.pathname)+(location.search.indexOf('ref=')>-1?'?ref':''),document.referrer||null);
+  if(/[?&]src=banner(&|$)/.test(location.search))window.tgEvt('banner:scan');
   /* Call-to-action clicks: evt:cta:<page>:<kind>-<zone> */
   function kind(el){
     var u=(el.getAttribute('href')||'').toLowerCase(),t=(el.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
@@ -305,7 +306,7 @@
    to where it came from. First-party only; fail-silent. */
 (function(){try{
   var p=location.pathname.replace(/^\/|\.html$/g,'')||'home',s;
-  if(p==='start')s='ads-fb';else if(p==='proposal-software')s='ads-proposal';else if(p==='dispatch-software')s='ads-dispatch';
+  if(p==='start')s=((new URLSearchParams(location.search).get('src')||'')==='banner')?'banner':'ads-fb';else if(p==='proposal-software')s='ads-proposal';else if(p==='dispatch-software')s='ads-dispatch';
   else if(p==='home'||p==='index')s='site-home';else if(p==='pricing')s='site-pricing';
   else if(p==='features')s='site-features';else if(p==='tour')s='site-tour';
   else if(p==='demo')s='site-demo';else if(p.indexOf('blog')===0)s='site-blog';else s='site-'+p.split('/')[0];

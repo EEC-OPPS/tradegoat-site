@@ -3,6 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+/* Printed banner QR (bare demo.html, no tag): a phone opening the demo with no link behind it
+   goes to the landing page, tagged so scans are counted and sign-ups marked banner (Travis 11/20).
+   Links from our pages, ads, posts and anything carrying ?src= still open the demo. ?stay=1 skips it. */
+(function(){try{
+  var q=new URLSearchParams(location.search);
+  if(document.referrer||q.get('src')||q.has('stay'))return;
+  if(/bot|crawl|spider|slurp|googlebot|google-inspectiontool|bingbot|preview|facebookexternalhit|embedly/i.test(navigator.userAgent))return;
+  if(!(window.matchMedia&&matchMedia('(pointer:coarse)').matches))return;
+  location.replace('/start.html?src=banner&utm_source=banner&utm_medium=qr');
+}catch(e){}})();
+</script>
 <title>TradeGOAT — Drive it yourself · The live demo</title>
   <link rel="canonical" href="https://www.thetradegoat.com/demo.html" />
   <meta property="og:type" content="website" />
@@ -2214,7 +2226,7 @@ renderAll();
   else if(p==='features')s='site-features';else if(p==='tour')s='site-tour';
   else if(p==='demo')s='site-demo';else if(p.indexOf('blog')===0)s='site-blog';else s='site-'+p.split('/')[0];
   /* An ad visitor who came through a landing page keeps that page's source. */
-  var inS=(new URLSearchParams(location.search).get('src')||'').toLowerCase();if(p==='demo'&&/^ads-[a-z0-9-]{1,40}$/.test(inS))s=inS;
+  var inS=(new URLSearchParams(location.search).get('src')||'').toLowerCase();if(p==='demo'&&/^(ads-[a-z0-9-]{1,40}|banner)$/.test(inS))s=inS;
   /* Opened with no link behind it (the printed banner's QR lands here bare). */
   if(p==='demo'&&!inS&&!document.referrer)s='demo-direct';
   var v='';try{if(localStorage.getItem('tg_me')==='1')v='founder';else{v=localStorage.getItem('tg_vid');
