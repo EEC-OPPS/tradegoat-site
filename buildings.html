@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Preview until manager sign-up is live (Travis 11/24). Remove noindex at go-live. -->
+  <meta name="robots" content="noindex, follow" />
+  <title>TradeGOAT Buildings | For property managers</title>
+  <link rel="canonical" href="https://www.thetradegoat.com/buildings.html" />
+  <meta name="description" content="TradeGOAT Buildings: every building, every contractor, one page. Approve work with the price, confirm visits, and keep every unit's service history and invoices in one place." />
+  <meta property="og:title" content="TradeGOAT Buildings: every building, every contractor, one page" />
+  <meta property="og:description" content="Approve work with the price, confirm visits, and keep every unit's service history and invoices in one place." />
+  <meta property="og:image" content="https://www.thetradegoat.com/og-image.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0f1f3d; --card:#1a2b4d; --line:rgba(255,255,255,0.10); --gold:#D97706; --gold-light:#ffc94d; --yellow:#fbbf24; --muted:#a3acbf; --soft:#c6cddb; }
+    html, body { background: var(--navy); }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color:#fff; line-height:1.5; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+    .top { position: sticky; top: 0; z-index: 10; background: rgba(15,31,61,0.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
+    .top .wrap { display:flex; align-items:center; justify-content:space-between; height: 56px; }
+    .brand { display:flex; align-items:center; gap:9px; text-decoration:none; font-weight:900; font-size:19px; letter-spacing:-.01em; }
+    .brand img { width:28px; height:28px; border-radius:6px; }
+    .brand b { color: var(--gold); }
+    .brand small { color: var(--muted); font-weight:700; font-size: 14px; margin-left: 2px; }
+    .login { color: var(--muted); text-decoration:none; font-weight:600; font-size:15px; }
+
+    .hero { padding-top: 30px; padding-bottom: 30px; }
+    .pill { display:inline-block; border:1px solid rgba(217,119,6,0.55); background: rgba(217,119,6,0.10); color: var(--gold-light); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; padding: 7px 14px; border-radius: 999px; }
+    h1 { font-size: clamp(31px, 7.6vw, 50px); line-height: 1.1; font-weight: 900; letter-spacing: -.02em; margin-top: 18px; }
+    .alt { color: var(--yellow); font-weight: 800; font-size: clamp(20px, 4.6vw, 27px); line-height: 1.25; margin-top: 16px; }
+    .lede { color: var(--soft); font-size: clamp(16px, 3.6vw, 18px); margin-top: 16px; }
+    .btn { display:block; text-align:center; background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--navy); font-weight: 900; font-size: clamp(17px, 4.2vw, 20px); text-decoration: none; padding: 17px 20px; border-radius: 14px; box-shadow: 0 10px 28px rgba(217,119,6,0.35); }
+    .btn:hover { filter: brightness(1.05); }
+    .hero .btn { margin-top: 26px; }
+    .note { color: var(--muted); font-size: 14px; margin-top: 10px; }
+
+    section.band { border-top: 1px solid var(--line); padding: 34px 0; }
+    h2 { font-size: clamp(25px, 6vw, 36px); line-height: 1.15; font-weight: 900; letter-spacing: -.015em; }
+    h2 span { color: var(--gold); }
+    .sub2 { color: var(--soft); font-size: 17px; margin-top: 10px; }
+
+    .vwrap { margin-top: 18px; border-radius: 16px; overflow:hidden; border:1px solid var(--line); background:#000; aspect-ratio: 16 / 9; }
+    .vwrap iframe { display:block; width:100%; height:100%; border:0; }
+
+    /* Monday, then and now */
+    .day { display:grid; gap: 12px; margin-top: 20px; }
+    .day .t { background: var(--card); border:1px solid var(--line); border-radius: 16px; padding: 16px; }
+    .day .t b { display:block; color: var(--yellow); font-size: 14px; letter-spacing:.08em; text-transform: uppercase; }
+    .day .t p { font-size: 17px; margin-top: 6px; }
+
+    .grid { display:grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+    .f { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 15px 18px; }
+    .f .ic { font-size: 30px; line-height: 1; }
+    .f b { display:block; font-size: 18px; line-height: 1.25; margin-top: 10px; }
+    .f p { color: var(--soft); font-size: 15.5px; line-height: 1.45; margin-top: 6px; }
+
+    .why { list-style:none; margin-top: 20px; display:grid; gap: 20px; }
+    .why li { display:grid; grid-template-columns: 40px 1fr; gap: 14px; align-items:start; }
+    .why .ck { width:40px; height:40px; border-radius: 10px; background: rgba(217,119,6,0.16); color: var(--gold); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px; }
+    .why b { display:block; font-size: 18px; line-height:1.3; }
+    .why p { color: var(--soft); font-size: 16px; margin-top: 3px; }
+
+    .note2 { display:grid; grid-template-columns: 56px 1fr; gap: 16px; align-items:start; }
+    .av { width:56px; height:56px; border-radius:50%; background: linear-gradient(160deg, var(--gold), #9a4b05); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:20px; }
+    .note2 q { display:block; font-size: 18px; line-height: 1.45; quotes: "\201C" "\201D"; }
+    .note2 q a { color: var(--yellow); }
+    .note2 .who { color: var(--muted); font-size: 14.5px; margin-top: 10px; }
+
+    .close { text-align:center; padding-bottom: 40px; }
+    .close h2 { font-size: clamp(27px, 6.6vw, 38px); }
+    .close .sub { color: var(--soft); font-size: 17px; margin: 8px 0 22px; }
+    .contractor { display:inline-block; margin-top: 18px; color: var(--yellow); font-weight: 800; font-size: 16px; }
+    footer { border-top: 1px solid var(--line); padding: 22px 0 34px; text-align:center; }
+    footer nav { display:flex; flex-wrap:wrap; justify-content:center; gap: 6px 18px; }
+    footer a { color: var(--muted); text-decoration:none; font-size: 14.5px; }
+    footer p { color: var(--muted); font-size: 13.5px; margin-top: 10px; }
+
+    @media (min-width: 760px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .day { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-42WBGHMLE9"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('set','allow_ad_personalization_signals',false);gtag('config','G-42WBGHMLE9');gtag('config','AW-18487719470');</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','927696483608592');fbq('track','PageView');</script>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/buildings.html"><img src="logo.jpg" alt="" width="28" height="28"><span>Trade<b>GOAT</b> <small>Buildings</small></span></a>
+      <a class="login" href="https://app.thetradegoat.com/sign-in">Log in</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <span class="pill">For property managers</span>
+      <h1>Every building. Every contractor. One page.</h1>
+      <p class="alt">Approvals, visits, service history and invoices from the contractors who work your buildings.</p>
+      <p class="lede">Monday, 7 AM. The phone is ringing, a crew just walked in, the HVAC tech needs a yes, and last month's elevator ticket is buried in your email. TradeGOAT Buildings puts all of it in one place.</p>
+      <a href="mailto:travis@thetradegoat.com?subject=TradeGOAT%20Buildings" class="btn btn-top js-signup">Set up your buildings</a>
+      <p class="note">Did a contractor send you this link? You're in the right place.</p>
+    </div>
+
+    <section class="band" id="video">
+      <div class="wrap">
+        <h2>Dana's Monday, <span>in about a minute.</span></h2>
+        <div class="vwrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/6vojhLSufDw?rel=0" title="TradeGOAT Buildings: Dana's Monday" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <h2>What's on <span>your page.</span></h2>
+        <div class="grid">
+          <div class="f"><div class="ic">&#127970;</div><b>Every building at a glance</b><p>One card per building, marked Current, Due soon or Needs attention against the service schedule your contractor keeps.</p></div>
+          <div class="f"><div class="ic">&#9989;</div><b>Approve work, with the price</b><p>When a contractor needs your OK, you see what it is, why, and the price. Approve it, decline it, or ask a question. Their answer shows right on the card.</p></div>
+          <div class="f"><div class="ic">&#128197;</div><b>Visits you confirm</b><p>Your contractor proposes a day, morning or afternoon if they pick one. You confirm it or suggest another day. Booked visits show under Coming up.</p></div>
+          <div class="f"><div class="ic">&#128295;</div><b>Every unit's history</b><p>Each elevator, pump and panel keeps its own service schedule, service history, and parts from needed to ordered to replaced.</p></div>
+          <div class="f"><div class="ic">&#129534;</div><b>Invoices in one place</b><p>Approved work your contractor bills lands on your Invoices page, so nothing is buried in email.</p></div>
+          <div class="f"><div class="ic">&#129309;</div><b>Bring in your other contractors</b><p>Invite the fire alarm company, the HVAC shop or the plumber by email, and watch each one go from Invite sent to Connected.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <h2>Built for both sides <span>of the work.</span></h2>
+        <ul class="why">
+          <li><span class="ck">&#10003;</span><div><b>You see what you need.</b><p>Your buildings, your units, the work asked for and the price asked.</p></div></li>
+          <li><span class="ck">&#10003;</span><div><b>Your contractors keep their business private.</b><p>Their own costs, labor and other customers stay theirs.</p></div></li>
+          <li><span class="ck">&#10003;</span><div><b>Made by people who service buildings.</b><p>We built it at Evans Elevator, because elevator contractors live this every day.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap note2">
+        <div class="av">TE</div>
+        <div>
+          <q>I run an elevator company in Kaufman County, Texas. Got a question first? Email me at <a href="mailto:travis@thetradegoat.com">travis@thetradegoat.com</a>. I read every one.</q>
+          <p class="who">Travis Evans &middot; Evans Elevator Company &middot; 20+ years in the trades</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band close">
+      <div class="wrap">
+        <h2>Your buildings, <span>one page.</span></h2>
+        <p class="sub">Every contractor, every visit, every approval.</p>
+        <a href="mailto:travis@thetradegoat.com?subject=TradeGOAT%20Buildings" class="btn js-signup">Set up your buildings</a>
+        <a href="/" class="contractor">Run a trade business? See TradeGOAT for contractors &rarr;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <nav>
+        <a href="/">For contractors</a>
+        <a href="/support.html">Support</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="https://app.thetradegoat.com/terms">Terms</a>
+      </nav>
+      <p>&copy; 2026 TradeGOAT</p>
+    </div>
+  </footer>
+
+<script>
+/* Manager sign-up button. SIGNUP is empty until the manager sign-up is built and
+   Travis approves it (11/24); until then both buttons stay an email to Travis.
+   When SIGNUP is set, every query value on this page's address (the sender's
+   invite code included, whatever its name) is carried onto the sign-up link. */
+(function(){try{
+  var SIGNUP='';
+  if(!SIGNUP)return;
+  var q=new URLSearchParams(location.search),a=document.querySelectorAll('a.js-signup');
+  for(var i=0;i<a.length;i++){var u=new URL(SIGNUP);q.forEach(function(v,k){u.searchParams.set(k,v);});u.searchParams.set('src','buildings');a[i].href=u.toString();}
+}catch(e){}})();
+</script>
+<script>
+/* Site beacon, same as the other pages: one page view per load plus scroll depth
+   (evt:buildings:scroll:N) and button clicks (evt:cta:buildings:*). TRACKING.md. */
+(function(){try{
+  if(location.protocol==='file:')return;
+  var h=location.hostname,U;
+  if(/^(localhost|127\.0\.0\.1|\[::1\])$/.test(h))U=location.origin+'/__tg_sink';
+  else if(/(^|\.)thetradegoat\.com$/.test(h))U='https://tradegoat.vercel.app/api/hit';
+  else return;
+  var vid=null;
+  try{
+    if(location.search.indexOf('goat=me')>-1)localStorage.setItem('tg_me','1');
+    if(localStorage.getItem('tg_me')==='1'){vid='founder';}
+    else{vid=localStorage.getItem('tg_vid');if(!vid){vid='v'+Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('tg_vid',vid);}}
+  }catch(e){}
+  function send(page,ref){try{
+    var b=JSON.stringify({page:String(page).slice(0,120),ref:ref||null,visitor:vid});
+    if(navigator.sendBeacon&&navigator.sendBeacon(U,b))return;
+    fetch(U,{method:'POST',body:b,keepalive:true,mode:'no-cors',credentials:'omit',headers:{'Content-Type':'text/plain'}});
+  }catch(e){}}
+  window.tgEvt=function(n){send('evt:'+n,null);};
+  send(location.pathname,document.referrer||null);
+  document.addEventListener('click',function(e){try{
+    var el=e.target&&e.target.closest&&e.target.closest('a[href]');if(!el)return;
+    var k=el.classList.contains('js-signup')?'signup':/sign-in/.test(el.href)?'login':el.classList.contains('contractor')?'contractor':'';
+    if(k)window.tgEvt('cta:buildings:'+k+'-'+(el.closest('.hero')?'hero':el.closest('header')?'nav':'body'));
+  }catch(x){}},true);
+  var seen={};window.addEventListener('scroll',function(){try{
+    var d=document.documentElement,pct=Math.round((window.scrollY+window.innerHeight)/d.scrollHeight*100);
+    [25,50,75,100].forEach(function(m){if(pct>=m&&!seen[m]){seen[m]=1;window.tgEvt('buildings:scroll:'+m);}});
+  }catch(x){}},{passive:true});
+}catch(e){}})();
+</script>
+</body>
+</html>
