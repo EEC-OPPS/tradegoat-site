@@ -102,7 +102,7 @@
       <h1>Every building. Every contractor. One page.</h1>
       <p class="alt">Approvals, visits, service history and invoices from the contractors who work your buildings.</p>
       <p class="lede">Monday, 7 AM. The phone is ringing, a crew just walked in, the HVAC tech needs a yes, and last month's elevator ticket is buried in your email. TradeGOAT Buildings puts you and your contractors on the same page.</p>
-      <a href="mailto:travis@thetradegoat.com?subject=TradeGOAT%20Buildings" class="btn btn-top js-signup">Set up your buildings</a>
+      <a href="https://app.thetradegoat.com/buildings/start" class="btn btn-top js-signup">Set up your buildings</a>
       <p class="note">Did a contractor send you this link? You're in the right place.</p>
     </div>
 
@@ -124,7 +124,7 @@
           <div class="f"><div class="ic">&#128197;</div><b>Visits you confirm</b><p>Your contractor proposes a day, morning or afternoon if they pick one. You confirm it or suggest another day. Booked visits show under Coming up.</p></div>
           <div class="f"><div class="ic">&#128295;</div><b>Every unit's history</b><p>Each elevator, pump and panel keeps its own service schedule, service history, and parts from needed to ordered to replaced.</p></div>
           <div class="f"><div class="ic">&#129534;</div><b>Invoices in one place</b><p>Approved work your contractor bills lands on your Invoices page, so nothing is buried in email.</p></div>
-          <div class="f"><div class="ic">&#129309;</div><b>Bring in your other contractors</b><p>Invite the fire alarm company, the HVAC shop or the plumber by email. Each one gets a free account with limited use, and you watch it go from Invite sent to Connected.</p></div>
+          <div class="f"><div class="ic">&#129309;</div><b>Bring in your other contractors</b><p>Invite the fire alarm company, the HVAC shop or the plumber by email. Watch each one go from Invite sent to Connected.</p></div>
         </div>
       </div>
     </section>
@@ -155,7 +155,7 @@
       <div class="wrap">
         <h2>Your buildings, <span>one page.</span></h2>
         <p class="sub">Every contractor, every visit, every approval.</p>
-        <a href="mailto:travis@thetradegoat.com?subject=TradeGOAT%20Buildings" class="btn js-signup">Set up your buildings</a>
+        <a href="https://app.thetradegoat.com/buildings/start" class="btn js-signup">Set up your buildings</a>
         <a href="/" class="contractor">Run a trade business? See TradeGOAT for contractors &rarr;</a>
       </div>
     </section>
@@ -174,15 +174,16 @@
   </footer>
 
 <script>
-/* Manager sign-up button. SIGNUP is empty until the manager sign-up is built and
-   Travis approves it (11/24); until then both buttons stay an email to Travis.
-   When SIGNUP is set, every query value on this page's address (the sender's
-   invite code included, whatever its name) is carried onto the sign-up link. */
+/* Manager sign-up button (invite-link design approved 11/24, Madison V1). A contractor
+   sends thetradegoat.com/buildings.html?from=CODE; the buttons go to
+   app.thetradegoat.com/buildings/start and carry ?from=CODE only when CODE is exactly
+   8 characters of A-Z and 2-9. Anything else is dropped. With scripts off the plain
+   button still works, just without the code. */
 (function(){try{
-  var SIGNUP='';
-  if(!SIGNUP)return;
-  var q=new URLSearchParams(location.search),a=document.querySelectorAll('a.js-signup');
-  for(var i=0;i<a.length;i++){var u=new URL(SIGNUP);q.forEach(function(v,k){u.searchParams.set(k,v);});u.searchParams.set('src','buildings');a[i].href=u.toString();}
+  var c=(new URLSearchParams(location.search).get('from')||'');
+  if(!/^[A-Z2-9]{8}$/.test(c))return;
+  var a=document.querySelectorAll('a.js-signup');
+  for(var i=0;i<a.length;i++)a[i].href='https://app.thetradegoat.com/buildings/start?from='+c;
 }catch(e){}})();
 </script>
 <script>
