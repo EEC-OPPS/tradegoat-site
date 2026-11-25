@@ -9,7 +9,7 @@
    Links from our pages, ads, posts and anything carrying ?src= still open the demo. ?stay=1 skips it. */
 (function(){try{
   var q=new URLSearchParams(location.search);
-  if(document.referrer||q.get('src')||q.has('stay'))return;
+  if(document.referrer||q.get('src')||q.has('stay')||q.has('scene'))return;
   if(/bot|crawl|spider|slurp|googlebot|google-inspectiontool|bingbot|preview|facebookexternalhit|embedly/i.test(navigator.userAgent))return;
   if(!(window.matchMedia&&matchMedia('(pointer:coarse)').matches))return;
   location.replace('/start.html?src=banner&utm_source=banner&utm_medium=qr');
@@ -546,6 +546,152 @@ table.sc td:first-child{text-align:left;font-weight:600}
 .vsearch{width:100%;font:inherit;font-size:13px;border:1px solid rgba(15,31,68,.18);border-radius:10px;padding:9px 12px;margin-bottom:2px;background:#fff;color:var(--ink)}
 .vsearch:focus{outline:none;border-color:var(--orange)}
 .vempty{font-size:12.5px;color:var(--muted);padding:16px 0;text-align:center}
+
+/* ═════════ BILLING · TAKE A PAYMENT · SCHEDULE · CREWS (added 2026-11-25, from the live tool's screens) ═════════ */
+.bl-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}
+.bl-tile{background:#fff;border:1px solid var(--soft);border-radius:var(--radius);padding:12px 14px;text-align:left;border-top:3px solid var(--c)}
+.bl-tile.on{box-shadow:inset 0 0 0 2px var(--c)}
+.bl-tile .lb{font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.bl-tile .v{font-family:var(--mono);font-size:21px;font-weight:700;margin-top:3px;color:var(--c)}
+.bl-tile .d{font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.35}
+.bl-search{width:100%;margin-top:12px;padding:10px 12px;border:1px solid rgba(15,31,68,.15);border-radius:9px;font:inherit;font-size:13px;background:#fff;color:var(--ink)}
+.bl-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;align-items:center}
+.bl-chips .lbl{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.bl-chip{font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:99px;border:1px solid rgba(15,31,68,.15);background:#fff;color:var(--muted)}
+.bl-chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.bl-grp{display:flex;align-items:center;gap:8px;margin:18px 0 6px;flex-wrap:wrap;font-size:12px}
+.bl-grp .tot{margin-left:auto;font-family:var(--mono);font-weight:700}
+.bl-grp .note{color:var(--muted);font-size:11px}
+.bl-grp .key{font-size:10.5px;color:var(--muted)}
+.bl-grp .key i{display:inline-block;width:8px;height:8px;border-radius:2px;margin:0 3px 0 6px}
+.bl-st{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.st-ready{background:#FEF3C7;color:#92400E}.st-out{background:#CFFAFE;color:#155E75}.st-late{background:#FDE7CF;color:#9A4A06}
+.st-late60{background:#FBD3B0;color:#8A3A00}.st-late90{background:#FAD4D4;color:#9B1C1C}.st-paid{background:var(--green-soft);color:var(--green)}.st-come{background:var(--soft);color:var(--muted)}
+.bl-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--soft);border-radius:var(--radius);overflow:hidden;font-size:12.5px}
+.bl-table th{font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 10px;background:var(--cream);white-space:nowrap}
+.bl-table td{padding:10px;border-top:1px solid var(--soft);vertical-align:middle}
+.bl-table tr.lt td:first-child{box-shadow:inset 3px 0 0 var(--lc)}
+.bl-table tr.go{cursor:pointer}.bl-table tr.go:hover td{background:#FBFAF6}
+.bl-table tr.go .bl-who b{text-decoration:underline;text-decoration-color:rgba(15,31,68,.25);text-underline-offset:3px}
+.bl-table .num{font-family:var(--mono);text-align:right;white-space:nowrap}
+.bl-table td.rec{background:#FFFDF8}
+.bl-kind{font-size:10px;font-weight:700;color:var(--primary);background:rgba(27,58,107,.08);padding:2px 7px;border-radius:6px;white-space:nowrap}
+.bl-who b{display:block;font-weight:700}.bl-who span{font-size:11px;color:var(--muted)}
+.bl-hint{display:flex;gap:8px;align-items:center;background:var(--orange-soft);color:var(--amber);border-radius:9px;padding:9px 12px;font-size:12px;margin-top:12px;font-weight:700}
+.bl-rec{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px}
+.bl-rec b{font-family:var(--mono)}
+.bl-empty{background:#fff;border:1px dashed rgba(15,31,68,.18);border-radius:var(--radius);padding:22px;text-align:center;color:var(--muted);font-size:13px;margin-top:14px}
+@media(max-width:760px){
+ .bl-tiles{grid-template-columns:1fr 1fr}
+ .bl-table thead{display:none}
+ .bl-table,.bl-table tbody,.bl-table tr,.bl-table td{display:block;width:100%}
+ .bl-table tr{border-top:1px solid var(--soft);padding:8px 12px}
+ .bl-table tr:first-child{border-top:none}
+ .bl-table td{border:none;padding:2px 0}
+ .bl-table td.num{text-align:left}
+ .bl-table td[data-l]::before{content:attr(data-l) ": ";font-size:10.5px;color:var(--muted);font-family:-apple-system,'Segoe UI',sans-serif}
+ .bl-table tr.lt td:first-child{box-shadow:none}
+ .bl-table tr.lt{box-shadow:inset 3px 0 0 var(--lc)}
+}
+.js-back{font-size:12px;font-weight:700;color:var(--primary)}
+.js-sec{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.js-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-top:1px solid var(--soft);flex-wrap:wrap}
+.js-row .nm{flex:1;min-width:170px;font-size:13px;font-weight:700}
+.js-row .nm span{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-top:2px}
+.js-row .nm span.stripe{color:var(--green);font-weight:600}
+.js-row .amt{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:80px;text-align:right}
+.js-chip{font-size:9.5px;font-weight:800;letter-spacing:.06em;padding:4px 10px;border-radius:99px;min-width:86px;text-align:center}
+.jc-due{background:#FEF3C7;color:#92400E}.jc-not{background:var(--soft);color:var(--muted)}.jc-billed{background:#CFFAFE;color:#155E75}.jc-coll{background:var(--green-soft);color:var(--green)}
+.js-acts{display:flex;gap:6px;flex-wrap:wrap;width:100%;justify-content:flex-end}
+.tp-wrap{display:grid;grid-template-columns:minmax(0,360px) minmax(0,340px);gap:18px;justify-content:center;align-items:start;margin-top:16px}
+.tp-sheet{background:#fff;border:1px solid var(--soft);border-radius:14px;padding:18px;box-shadow:0 10px 30px rgba(15,31,68,.08)}
+.tp-sheet h3{font-size:16px;margin-bottom:3px}
+.tp-sheet .sub2{font-size:12px;color:var(--muted);line-height:1.45}
+.tp-qr{display:block;width:190px;height:190px;margin:12px auto 8px;background:#fff;padding:8px;border:1px solid var(--soft);border-radius:10px}
+.tp-btns{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.tp-status{margin-top:14px;padding:10px 12px;border-radius:9px;font-size:12.5px;font-weight:700;background:var(--cream);display:flex;gap:8px;align-items:center}
+.tp-status.paid{background:var(--green-soft);color:var(--green)}
+.tp-status i{width:8px;height:8px;border-radius:50%;background:var(--orange);display:inline-block;animation:pulse 2.2s infinite;flex-shrink:0}
+.tp-status.paid i{background:var(--green);animation:none}
+.tp-foot{font-size:11px;color:var(--muted);text-align:center;margin-top:10px}
+.tp-phone{border:10px solid #111827;border-radius:34px;background:#F3F4F6;min-height:580px;overflow:hidden;box-shadow:0 18px 40px rgba(15,31,68,.18)}
+.tp-phone .bar{height:20px;background:#111827;width:110px;margin:0 auto;border-radius:0 0 14px 14px}
+.tp-phone .scr{padding:14px 12px 18px}
+.pb-card{background:#fff;border-radius:14px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);color:#111827}
+.pb-logo{width:42px;height:42px;border-radius:10px;background:#166534;color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:18px}
+.pb-co{font-size:20px;font-weight:800;color:#14532D;margin-top:8px;line-height:1.15}
+.pb-ct{font-size:11.5px;color:#6B7280;margin-top:3px;line-height:1.45;word-break:break-word}
+.pb-h{display:flex;justify-content:space-between;font-weight:800;font-size:14px;margin-top:14px;padding-top:12px;border-top:1px solid #E5E7EB}
+.pb-meta{font-size:12px;color:#4B5563;margin-top:6px;line-height:1.55}
+.pb-line{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;margin-top:10px;line-height:1.4}
+.pb-line b{font-family:var(--mono);white-space:nowrap}
+.pb-tot{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #E5E7EB;margin-top:12px;padding-top:10px;font-weight:800}
+.pb-tot b{font-size:24px;font-family:var(--mono)}
+.pb-pay{width:100%;margin-top:14px;background:var(--navy);color:#fff;font-weight:800;font-size:15px;padding:13px;border-radius:10px;display:flex;justify-content:center;gap:8px}
+.pb-pay:disabled{opacity:.7}
+.pb-hint{font-size:11.5px;color:#6B7280;text-align:center;margin-top:7px}
+.pb-other{font-size:12px;color:#4B5563;margin-top:14px;line-height:1.5}
+.pb-other b{display:block;color:#111827;font-size:12.5px}
+.pb-box{border-radius:10px;padding:12px;font-size:12.5px;margin-top:14px;line-height:1.45}
+.pb-box.pend{background:#CFFAFE;color:#155E75}.pb-box.paid{background:#DCFCE7;color:#14532D}
+.pb-box b{display:block;font-size:14px;margin-bottom:2px}
+.pb-pow{text-align:center;font-size:10.5px;color:#9CA3AF;margin-top:12px}
+.pb-stripe{background:#fff;border:1.5px dashed #9CA3AF;border-radius:12px;padding:18px;text-align:center;font-size:12.5px;color:#4B5563;line-height:1.55;margin-top:40px}
+.pb-stripe b{display:block;color:#111827;font-size:15px;margin-bottom:6px}
+.pb-wait{display:flex;align-items:center;justify-content:center;min-height:520px;color:#9CA3AF;font-size:12.5px;text-align:center;padding:20px;line-height:1.5}
+@media(max-width:860px){.tp-wrap{grid-template-columns:minmax(0,380px)}}
+.sk-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.sk-bar .sp{flex:1}
+.sk-wrap{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:12px;margin-top:12px;align-items:start}
+.sk-month{background:#fff;border:1px solid var(--soft);border-radius:var(--radius);overflow:hidden}
+.sk-mh{padding:10px 12px;font-weight:800;font-size:14px}
+.sk-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.sk-dow{font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:6px 8px;background:var(--cream)}
+.sk-day{min-height:100px;border-top:1px solid var(--soft);border-left:1px solid var(--soft);padding:5px;font-size:11px;min-width:0}
+.sk-day:nth-child(7n+1){border-left:none}
+.sk-day .n{font-size:10.5px;font-weight:700;color:var(--muted)}
+.sk-day.out{background:#FBFAF6}.sk-day.out .n{opacity:.45}
+.sk-day.today .n{background:var(--orange);color:#fff;border-radius:99px;padding:1px 6px}
+.sk-day.pick,.sk-list .row.pick{cursor:pointer}
+.sk-day.pick:hover,.sk-day.dragover,.sk-list .row.pick:hover{background:var(--orange-soft)}
+.sk-blk{background:rgba(27,58,107,.09);border-left:3px solid var(--navy);border-radius:5px;padding:3px 5px;margin-top:3px;line-height:1.3;min-width:0}
+.sk-blk b{display:block;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sk-blk span{font-size:9.5px;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sk-blk.mt{background:var(--green-soft);border-left-color:var(--green)}
+.sk-blk.off{background:repeating-linear-gradient(135deg,#F3F1EA,#F3F1EA 5px,#E6E2D6 5px,#E6E2D6 10px);border-left-color:#9CA3AF}
+.sk-blk.new{box-shadow:0 0 0 2px var(--orange);animation:fadein .4s ease}
+.sk-more{font-size:9.5px;color:var(--muted);font-weight:700;margin-top:2px}
+.sk-side .card{margin-bottom:10px}
+.sk-side h4{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sk-side p{font-size:11.5px;color:var(--muted);margin:4px 0 6px;line-height:1.4}
+.sk-un{border:1px solid var(--soft);border-radius:8px;padding:8px;margin-top:6px;font-size:12px;cursor:grab;background:#fff}
+.sk-un.sel{border-color:var(--orange);box-shadow:0 0 0 2px var(--orange-soft)}
+.sk-un b{display:block}.sk-un span{font-size:11px;color:var(--muted)}
+.sk-un .abtn{margin-top:6px}
+.sk-list .row{display:flex;gap:10px;padding:9px 4px;border-top:1px solid var(--soft);font-size:12.5px;align-items:baseline}
+.sk-list .row:first-child{border-top:none}
+.sk-list .row .dt{width:118px;flex-shrink:0;font-weight:700;color:var(--muted);font-size:11.5px}
+.sk-list .row .nb{color:var(--muted);font-style:italic;font-size:12px}
+.sk-list .row .sk-blk span,.sk-list .row .sk-blk b{white-space:normal}
+.sk-lanes{background:#fff;border:1px solid var(--soft);border-radius:var(--radius);padding:10px 12px;margin-top:12px;overflow:hidden}
+.sk-lh{display:grid;grid-template-columns:120px 1fr;font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.sk-lh .ms{position:relative;height:16px}
+.sk-lh .ms span{position:absolute;top:0}
+.sk-lane{display:grid;grid-template-columns:120px 1fr;align-items:center;border-top:1px solid var(--soft);min-height:44px}
+.sk-lane .ln{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:8px}
+.sk-lane .tr{position:relative;height:44px}
+.sk-lane .tb{position:absolute;top:9px;height:26px;border-radius:6px;background:rgba(27,58,107,.12);border-left:3px solid var(--navy);font-size:10.5px;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:26px}
+.sk-lane .tb.mt{background:var(--green-soft);border-left-color:var(--green)}
+.sk-lane .tb.off{background:repeating-linear-gradient(135deg,#F3F1EA,#F3F1EA 5px,#E6E2D6 5px,#E6E2D6 10px);border-left-color:#9CA3AF}
+.sk-lane .now{position:absolute;top:0;bottom:0;width:2px;background:var(--orange)}
+.sk-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.cr-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--soft);font-size:13px}
+.cr-row .nm{flex:1}.cr-row .nm b{display:block}.cr-row .nm span{font-size:11.5px;color:var(--muted)}
+.cr-sheet{border:1.5px solid var(--orange);border-radius:10px;padding:12px;margin:4px 0 10px;background:#FFFDF8}
+.cr-sheet label{display:block;font-size:11px;font-weight:800;color:var(--muted);margin:8px 0 4px}
+.cr-sheet input[type=text]{width:100%;max-width:320px;padding:8px 10px;border:1px solid rgba(15,31,68,.18);border-radius:8px;font:inherit;font-size:13px}
+@media(max-width:860px){.sk-wrap{grid-template-columns:1fr}}
+@media(max-width:560px){.sk-stats{grid-template-columns:1fr}.sk-lh,.sk-lane{grid-template-columns:84px 1fr}}
 </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <!-- Google tag: Google Analytics G-42WBGHMLE9 + Google Ads AW-18487719470 (Travis 10/27). Named on privacy.html. -->
@@ -603,8 +749,10 @@ table.sc td:first-child{text-align:left;font-weight:600}
     <span class="grp">Run</span>
     <a class="item" href="#" data-scene="maint">Maintenance</a>
     <a class="item" href="#" data-scene="ticket">Field ticket</a>
+    <a class="item" href="#" data-scene="sched">Schedule</a>
     <a class="item" href="#" data-scene="map">Around me</a>
     <a class="item" href="#" data-scene="jmoney">Job money</a>
+    <a class="item" href="#" data-scene="bill">Billing</a>
     <a class="item" href="#" data-scene="cust">Customers</a>
     <span class="grp">Learn</span>
     <a class="item" href="#" data-scene="wl">Won vs Lost</a>
@@ -1027,6 +1175,35 @@ table.sc td:first-child{text-align:left;font-weight:600}
       </div>
       <div class="card" style="margin-top:12px;font-size:12.5px;color:var(--muted);line-height:1.65" id="jmNote"></div>
     </section>
+
+    <!-- ═══════════ BILLING (the live tool's Billing page) ═══════════ -->
+    <section class="scene" id="sc-bill">
+      <div id="blList">
+        <h1 class="pg">Billing</h1>
+        <div class="sub" id="blSub"></div>
+        <div class="bl-tiles" id="blTiles"></div>
+        <input class="bl-search" id="blQ" placeholder="Search by invoice #, customer, job, unit, amount, or ticket" autocomplete="off" />
+        <div class="bl-chips" id="blShow"></div>
+        <div class="bl-chips" id="blKind"></div>
+        <div id="blHint"></div>
+        <div id="blBody"></div>
+      </div>
+      <div id="blJob" style="display:none"></div>
+    </section>
+
+    <!-- ═══════════ SCHEDULE + CREWS ═══════════ -->
+    <section class="scene" id="sc-sched">
+      <h1 class="pg">Schedule</h1>
+      <div class="sub">Who's where and what's coming up. Put new jobs on the calendar here.</div>
+      <div class="sk-bar">
+        <span class="seg" id="skView"><button data-v="days" class="on">Days</button><button data-v="long">Long view</button><button data-v="list">List</button></span>
+        <span class="sp"></span>
+        <span class="seg" id="skCrew"></span>
+      </div>
+      <div id="skBody"></div>
+      <div class="sechead"><h2><i style="background:var(--navy)"></i> Settings → Crew</h2></div>
+      <div class="card" id="crCard"></div>
+    </section>
   </main>
 </div>
 
@@ -1202,6 +1379,7 @@ function initial(){ return {
         {n:"Hydro-Scape Irrigation",   cost:2140, paid:2140, note:"Valves, heads, controller"},
         {n:"Bluebonnet Sod Farm",      cost:1725, paid:1725, note:"Bermuda, 46 pallets"},
         {n:"Delta Ready-Mix",          cost:960,  paid:0,    note:"Footing pour"}]},
+  bl:blInit(), sk:skInit(),
   guide:0, guideHidden:false,
   tmpl:{step:0, chips:{"Customer name":true,"Project address":true,"Contract total":false,"Scope of work":false,"Payment schedule":false}, badFixed:false, gateHit:false, emailFilled:false}
 };}
@@ -2107,8 +2285,373 @@ $("#dAgain").onclick=()=>{ S.drive={cust:null, q:"", lines:[], terms:"one", stag
   $("#dNewT").value=""; $("#dNewP").value=""; $("#dCustWrap").innerHTML=""; renderDrive(); };
 $$("#jmSeg button").forEach(b=>b.onclick=()=>{ S.jm.tab=b.dataset.jm; S.jm.confirm=null; S.jm.vq=""; renderJM(); });
 
-function renderAll(){ renderKpis(); renderMoney(); renderJobs(); renderProps(); renderDrafts(); renderFunnel(); renderCalc(); renderWL(); renderScore(); renderMaint(); renderTicket(); renderCust(); renderTmpl(); renderTeam(); renderDrive(); renderMap(); renderJM(); renderGuide(); }
+
+/* ═════════ BILLING · TAKE A PAYMENT (added 2026-11-25)
+   Wording and layout follow the live tool: the Billing page (lib/invoices/billing-view.ts),
+   the job's billing schedule, the Take a payment sheet and the customer's bill page (/p/[token]).
+   Paying happens on Stripe's own page in the real tool; the demo never imitates that page. ═════════ */
+function blInit(){ return {
+  show:"needs", kind:"all", q:"", view:"list", tp:null, rec:null,
+  rows:[
+    {id:"r1", kind:"Job draw", cust:"Riverbend Church", job:"Memorial garden — phase 1", what:"25% at planting", inv:"CW-1066", billed:-68, due:-38, owed:2880, st:"late60"},
+    {id:"r2", kind:"Job draw", cust:"Cedar Creek Storage", job:"Gate-area drainage fix", what:"50% on signing", inv:"CW-1071", billed:-47, due:-17, owed:2700, st:"late"},
+    {id:"r4", kind:"Service ticket", cust:"Cedar Creek Storage", job:"Perimeter Strips", what:"Irrigation repair", inv:null, fin:-2, owed:385, st:"ready"},
+    {id:"r5", kind:"Job draw", cust:"Lakeview Apartments", job:"Courtyard re-plant", what:"50% on signing", inv:"CW-1081", billed:-1, due:29, owed:3400, st:"out"},
+    {id:"r6", kind:"Agreement", cust:"Summit Ridge Office Park", job:"Campus Front Turf", what:"Monthly grounds", inv:"CW-1080", billed:-7, due:23, owed:1150, st:"out"},
+    {id:"r7", kind:"Change order", cust:"Oakmont HOA", job:"Entry monument landscape renovation", what:"Added path lighting", inv:"CW-1079", billed:-12, due:18, owed:800, amt:1400, st:"part"},
+    {id:"r9", kind:"Job draw", cust:"Oakmont HOA", job:"Entry monument landscape renovation", what:"50% deposit", inv:"CW-1078", paid:-23, owed:12250, st:"paid"}
+  ],
+  job:{name:"Backyard patio & drainage", cust:"Hendricks family", total:14900, ms:[
+    {label:"30% on signing", pct:30, amt:4470, st:"collected", inv:"CW-1074", how:"stripe", paidOff:-16},
+    {label:"40% when the patio is poured", pct:40, amt:5960, st:"unbilled", dueNow:true, inv:null},
+    {label:"30% on completion", pct:30, amt:4470, st:"unbilled", after:"Patio poured", inv:null}]}
+};}
+let blTok=0;
+function blJobRows(){
+  const j=S.bl.job;
+  return j.ms.map((m,i)=>{
+    const r={id:"h"+i, hk:i, kind:"Job draw", cust:j.cust, job:j.name, what:m.label, inv:m.inv, owed:m.amt};
+    if(m.st==="collected"){ r.st="paid"; r.paid=m.paidOff; }
+    else if(m.st==="billed"){ r.st="out"; r.billed=m.billedOff; r.due=m.billedOff+30; }
+    else if(m.dueNow){ r.st="ready"; r.fin=-1; }
+    else { r.st="come"; }
+    return r;
+  });
+}
+function blAll(){ return S.bl.rows.concat(blJobRows()); }
+function blGroup(r){ return /^late/.test(r.st)?"late":r.st==="ready"?"ready":(r.st==="out"||r.st==="part")?"out":r.st==="come"?"come":"paid"; }
+function blStand(r){
+  if(r.st==="ready") return ["st-ready","Ready"];
+  if(r.st==="come") return ["st-come","Comes after "+S.bl.job.ms[r.hk].after];
+  if(r.st==="out"){ const d=-r.billed; return ["st-out", d<=0?"Out today":"Out "+d+" day"+(d===1?"":"s")]; }
+  if(r.st==="part") return ["st-out","Partially paid: "+fmt(r.amt-r.owed)+" of "+fmt(r.amt)];
+  if(r.st==="late") return ["st-late","Late "+(-r.due)+" days"];
+  if(r.st==="late60") return ["st-late60","Late "+(-r.due)+" days · over 60"];
+  if(r.st==="late90") return ["st-late90","Late "+(-r.due)+" days · over 90"];
+  return ["st-paid","Paid "+D(r.paid)];
+}
+const BL_LC={late:"#E8A15A",late60:"#D97706",late90:"#C62828"};
+const BL_SHOW=[["needs","Needs you"],["ready","Ready to bill"],["out","Out"],["late","Late"],["paid","Paid"],["all","Everything"],["come","Still to come"]];
+const BL_KINDS=[["all","All kinds"],["Job draw","Job draws"],["Service ticket","Service tickets"],["Change order","Change orders"],["Agreement","Agreements"],["Approval","Approvals"]];
+function blInMonth(off){ const d=dayAt(off); return d.getMonth()===_T.getMonth()&&d.getFullYear()===_T.getFullYear(); }
+function renderBL(){
+  const bl=S.bl; if(!bl||!$("#sc-bill")) return;
+  $("#blList").style.display=bl.view==="list"?"":"none";
+  $("#blJob").style.display=bl.view==="job"?"":"none";
+  if(bl.view==="job"){ renderBLJob(); return; }
+  const phone=window.innerWidth<760, all=blAll();
+  $("#blSub").textContent=phone?"What's not billed, what's out, what's late.":"What's ready to bill, what's out, what's late, and what's still to come. Billed work stays on its job.";
+  const g=k=>all.filter(r=>blGroup(r)===k), sum=a=>a.reduce((s,r)=>s+r.owed,0);
+  const late=g("late"), ready=g("ready"), out=g("out");
+  const paidM=g("paid").filter(r=>blInMonth(r.paid)).reduce((s,r)=>s+r.owed,0);
+  const p60=late.filter(r=>-r.billed>60).length, p90=late.filter(r=>-r.billed>90).length;
+  const tiles=[
+    {k:"ready", c:"var(--orange)", lb:"Ready to bill", v:sum(ready), d:ready.length+" item"+(ready.length===1?"":"s")},
+    {k:"out", c:"var(--navy)", lb:phone?"Out":"Out — waiting on payment", v:sum(out), d:out.length+" invoice"+(out.length===1?"":"s")},
+    {k:"late", c:"var(--red)", lb:"Late", v:sum(late), d:late.length+" invoice"+(late.length===1?"":"s")+" · "+p60+" past 60 · "+p90+" past 90"},
+    {k:"paid", c:"var(--green)", lb:"Paid this month", v:paidM, d:"&nbsp;"}];
+  if(phone) tiles.unshift(tiles.splice(2,1)[0]);
+  $("#blTiles").innerHTML=tiles.map(t=>'<button class="bl-tile'+(bl.show===t.k?' on':'')+'" style="--c:'+t.c+'" data-tile="'+t.k+'"><div class="lb">'+t.lb+'</div><div class="v">'+fmt(t.v)+'</div><div class="d">'+t.d+'</div></button>').join("");
+  const hasCome=g("come").length>0;
+  $("#blShow").innerHTML='<span class="lbl">Show</span>'+BL_SHOW.filter(s=>s[0]!=="come"||hasCome).map(s=>'<button class="bl-chip'+(bl.show===s[0]?' on':'')+'" data-show="'+s[0]+'">'+s[1]+'</button>').join("");
+  $("#blKind").innerHTML='<span class="lbl">Kind</span>'+BL_KINDS.map(s=>'<button class="bl-chip'+(bl.kind===s[0]?' on':'')+'" data-kind="'+s[0]+'">'+s[1]+'</button>').join("");
+  const q=bl.q.trim().toLowerCase();
+  const shown=all.filter(r=>{
+    const gr=blGroup(r);
+    if(bl.show==="needs"&&!(gr==="late"||gr==="ready")) return false;
+    if(bl.show!=="needs"&&bl.show!=="all"&&gr!==bl.show) return false;
+    if(bl.kind!=="all"&&r.kind!==bl.kind) return false;
+    if(q&&![r.inv||"",r.cust,r.job,r.what,String(r.owed),fmt(r.owed)].join(" ").toLowerCase().includes(q)) return false;
+    return true; });
+  const hkReady=shown.some(r=>r.hk===1&&r.st==="ready");
+  $("#blHint").innerHTML=hkReady?'<div class="bl-hint">👉 Click the Hendricks patio job to open its payment schedule and take the payment.</div>':'';
+  const GR=[["late","Late","st-late","most late first"],["ready","Ready to bill","st-ready","soonest due first"],["out","Out — waiting","st-out","not late yet, oldest first"],["come","Still to come","st-come","in the order they come"],["paid","Paid","st-paid","newest first"]];
+  let h="";
+  GR.forEach(([k,lb,cls,note])=>{
+    let rs=shown.filter(r=>blGroup(r)===k); if(!rs.length) return;
+    if(k==="late") rs.sort((a,b)=>a.due-b.due); else if(k==="out") rs.sort((a,b)=>a.billed-b.billed); else if(k==="paid") rs.sort((a,b)=>b.paid-a.paid);
+    const rdy=k==="ready"||k==="come";
+    h+='<div class="bl-grp"><span class="bl-st '+cls+'">'+lb+'</span><b>'+rs.length+' '+(rdy?'item':'invoice')+(rs.length===1?'':'s')+'</b><span class="note">'+note+'</span>'
+      +(k==="late"?'<span class="key"><i style="background:'+BL_LC.late+'"></i>30<i style="background:'+BL_LC.late60+'"></i>60<i style="background:'+BL_LC.late90+'"></i>90 days since sent</span>':'')
+      +'<span class="tot">'+fmt(rs.reduce((s,r)=>s+r.owed,0))+'</span></div>';
+    h+='<table class="bl-table"><thead><tr><th>Kind</th><th>Customer · job or unit</th><th>What</th>'
+      +(rdy?'<th>Finished / due</th><th style="text-align:right">Amount</th>':'<th>Invoice #</th><th>Billed</th><th>Due</th><th style="text-align:right">Owed</th>')
+      +'<th>Where it stands</th><th></th></tr></thead><tbody>';
+    rs.forEach(r=>{
+      const st=blStand(r), lt=/^late/.test(r.st);
+      let act="";
+      if(r.st==="ready") act='<button class="abtn solid" data-send="'+r.id+'">Send the bill</button>';
+      else if(r.st==="out"||r.st==="part"||lt) act='<button class="abtn" data-rec="'+r.id+'">Record payment</button>';
+      else if(r.st==="paid") act='<button class="abtn" data-rcpt="'+r.id+'">Receipt</button>';
+      h+='<tr class="'+(lt?'lt ':'')+(r.hk!==undefined?'go':'')+'"'+(lt?' style="--lc:'+BL_LC[r.st]+'"':'')+(r.hk!==undefined?' data-hk="1"':'')+'>'
+        +'<td><span class="bl-kind">'+r.kind+'</span></td>'
+        +'<td class="bl-who"><b>'+esc(r.cust)+'</b><span>'+esc(r.job)+'</span></td>'
+        +'<td>'+esc(r.what)+'</td>'
+        +(rdy?'<td data-l="Finished">'+(r.fin!==undefined?D(r.fin):'—')+'</td><td class="num" data-l="Amount">'+fmt(r.owed)+'</td>'
+             :'<td data-l="Invoice">'+(r.inv||'—')+'</td><td data-l="Billed">'+(r.billed!==undefined?D(r.billed):'—')+'</td><td data-l="Due">'+(r.due!==undefined?D(r.due):'—')+'</td><td class="num" data-l="Owed">'+(r.st==="paid"?'$0':fmt(r.owed))+'</td>')
+        +'<td><span class="bl-st '+st[0]+'">'+st[1]+'</span></td><td style="text-align:right">'+act+'</td></tr>';
+      if(bl.rec===r.id) h+='<tr><td colspan="9" class="rec"><div class="bl-rec"><span><b style="font-family:inherit">Record a payment</b> · Invoice '+(r.inv||'')+' · '+esc(r.cust)+' · '+fmt(r.owed)+' still owed</span>'
+        +'<span style="flex:1"></span><button class="abtn gold" data-recok="'+r.id+'">Record payment</button><button class="abtn" data-recno="1">Cancel</button></div></td></tr>';
+    });
+    h+='</tbody></table>';
+  });
+  if(!h) h='<div class="bl-empty">'+(bl.show==="needs"&&!q?'Nothing needs you.':'Nothing here.')+'</div>';
+  $("#blBody").innerHTML=h;
+  $$("[data-tile]").forEach(b=>b.onclick=()=>{ bl.show=bl.show===b.dataset.tile?"needs":b.dataset.tile; bl.rec=null; renderBL(); });
+  $$("[data-show]").forEach(b=>b.onclick=()=>{ bl.show=b.dataset.show; bl.rec=null; renderBL(); });
+  $$("[data-kind]").forEach(b=>b.onclick=()=>{ bl.kind=b.dataset.kind; bl.rec=null; renderBL(); });
+  $$("#blBody tr[data-hk]").forEach(tr=>tr.onclick=e=>{ if(e.target.closest("button")) return; bl.view="job"; renderBL(); window.scrollTo({top:0,behavior:"smooth"}); });
+  $$("[data-send]").forEach(b=>b.onclick=()=>blSend(b.dataset.send));
+  $$("[data-rec]").forEach(b=>b.onclick=()=>{ bl.rec=b.dataset.rec; renderBL(); });
+  $$("[data-recno]").forEach(b=>b.onclick=()=>{ bl.rec=null; renderBL(); });
+  $$("[data-recok]").forEach(b=>b.onclick=()=>blRecord(b.dataset.recok));
+  $$("[data-rcpt]").forEach(b=>b.onclick=()=>toast("Receipt","The paid invoice, ready to print or send to the customer.","info"));
+}
+function blSend(id){
+  const bl=S.bl;
+  if(id[0]==="h"){ const m=bl.job.ms[+id.slice(1)]; m.st="billed"; m.inv="CW-"+(++S.invSeq); m.billedOff=0; renderBL(); toast("Invoice "+m.inv+" sent",fmt(m.amt)+" — "+bl.job.cust+"."); return; }
+  const r=bl.rows.find(x=>x.id===id); r.st="out"; r.inv="CW-"+(++S.invSeq); r.billed=0; r.due=30; renderBL(); toast("Invoice "+r.inv+" sent",fmt(r.owed)+" — "+r.cust+".");
+}
+function blRecord(id){
+  const bl=S.bl; bl.rec=null;
+  if(id[0]==="h"){ const m=bl.job.ms[+id.slice(1)]; m.st="collected"; m.how="check"; m.paidOff=0; }
+  else { const r=bl.rows.find(x=>x.id===id); if(r.amt) r.owed=r.amt; r.st="paid"; r.paid=0; }
+  renderBL(); toast("Paid in full — moved to Paid.","Recorded the way it came in: check, card, bank transfer or cash.");
+}
+function renderBLJob(){
+  const bl=S.bl, j=bl.job, el=$("#blJob");
+  const inHand=j.ms.filter(m=>m.st==="collected").reduce((a,m)=>a+m.amt,0);
+  let h='<button class="js-back" id="jsBack">← Billing</button>'
+    +'<h1 class="pg" style="margin-top:6px">'+esc(j.name)+'</h1>'
+    +'<div class="sub">'+esc(j.cust)+' · contract '+fmt(j.total)+' · signed '+D(-17)+'</div>'
+    +'<div class="card"><div class="js-sec"><span>Billing schedule: every draw</span><span>'+j.ms.length+' draws</span></div>';
+  j.ms.forEach((m,i)=>{
+    let det=m.pct+"%";
+    if(m.st==="unbilled") det+=m.after?" · Comes after "+m.after:" · Due "+D(0);
+    else if(m.st==="billed") det+=" · Due "+D(m.billedOff+30)+" · Invoice "+m.inv;
+    else det+=" · Invoice "+m.inv;
+    const chip=m.st==="collected"?["jc-coll","Collected"]:m.st==="billed"?["jc-billed","Billed"]:m.after?["jc-not","Unbilled"]:["jc-due","Unbilled"];
+    let acts="";
+    if(m.st==="unbilled"&&!m.after) acts='<button class="abtn solid" data-tpay="'+i+'">▦ Take a payment</button><button class="abtn" data-jbill="'+i+'">Record it as billed</button>';
+    else if(m.st==="unbilled") acts='<button class="abtn" data-jready="'+i+'">Mark ready to bill</button>';
+    else if(m.st==="billed") acts='<button class="abtn solid" data-tpay="'+i+'">▦ Take a payment</button><button class="abtn" data-jrec="'+i+'">Record payment</button>';
+    h+='<div class="js-row"><span class="nm">'+esc(m.label)+'<span>'+det+'</span>'
+      +(m.st==="collected"&&m.how==="stripe"?'<span class="stripe">Paid by card through Stripe · '+D(m.paidOff)+'</span>':'')
+      +(m.st==="collected"&&m.how==="check"?'<span>Payment recorded · '+D(m.paidOff)+'</span>':'')+'</span>'
+      +'<span class="amt">'+fmt(m.amt)+'</span><span class="js-chip '+chip[0]+'">'+chip[1].toUpperCase()+'</span>'
+      +(acts?'<span class="js-acts">'+acts+'</span>':'')+'</div>';
+  });
+  h+='<div class="balance"><span>Draws add to <b class="money">'+fmt(j.ms.reduce((a,m)=>a+m.amt,0))+'</b> against a '+fmt(j.total)+' contract <span class="ok">balanced</span></span>'
+    +'<span>In hand <b class="money" style="color:var(--green)">'+fmt(inHand)+'</b></span></div></div>';
+  if(bl.tp) h+='<div class="tp-wrap" id="tpWrap">'+tpSheet()+tpPhone()+'</div>';
+  h+='<div class="card" style="margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.65">'
+    +'<b style="color:var(--ink)">Take a payment</b> puts a code on your screen. Your customer points their phone at it and sees your invoice with a Pay button. '
+    +'Paying happens on Stripe\'s secure page, and the money goes from Stripe to your bank. TradeGOAT takes nothing from your payments. Stripe\'s own fee applies.</div>';
+  el.innerHTML=h;
+  $("#jsBack").onclick=()=>{ bl.view="list"; bl.tp=null; renderBL(); window.scrollTo({top:0,behavior:"smooth"}); };
+  $$("[data-tpay]",el).forEach(b=>b.onclick=()=>{ const i=+b.dataset.tpay; bl.tp={i, stage:j.ms[i].st==="unbilled"?"bill":"qr", tok:++blTok}; renderBLJob(); const w=$("#tpWrap"); if(w) w.scrollIntoView({behavior:"smooth",block:"start"}); });
+  $$("[data-jbill]",el).forEach(b=>b.onclick=()=>{ const m=j.ms[+b.dataset.jbill]; m.st="billed"; m.inv="CW-"+(++S.invSeq); m.billedOff=0; bl.tp=null; renderBLJob(); toast("Recorded as billed","Invoice "+m.inv+" · "+fmt(m.amt)+"."); });
+  $$("[data-jready]",el).forEach(b=>b.onclick=()=>{ const m=j.ms[+b.dataset.jready]; m.after=null; m.dueNow=true; renderBLJob(); toast("Ready to bill",m.label+" now shows under Ready to bill.","info"); });
+  $$("[data-jrec]",el).forEach(b=>b.onclick=()=>{ const m=j.ms[+b.dataset.jrec]; m.st="collected"; m.how="check"; m.paidOff=0; bl.tp=null; renderBLJob(); toast("Paid in full — moved to Paid.",fmt(m.amt)+" recorded."); });
+  const go=(id,fn)=>{ const x=$("#"+id); if(x) x.onclick=fn; };
+  go("tpBill",()=>{ const m=j.ms[bl.tp.i]; m.st="billed"; m.inv="CW-"+(++S.invSeq); m.billedOff=0; bl.tp.stage="qr"; renderBLJob(); toast("Invoice "+m.inv+" billed",fmt(m.amt)+" — the code is ready for them to scan.","info"); });
+  go("tpScan",()=>{ bl.tp.stage="open"; renderBLJob(); });
+  go("tpPay",()=>{ const b=$("#tpPay"); b.disabled=true; const t=bl.tp.tok; setTimeout(()=>{ if(S.bl.tp&&S.bl.tp.tok===t){ S.bl.tp.stage="stripe"; renderBLJob(); } },600); });
+  go("tpFinish",()=>{ bl.tp.stage="pending"; renderBLJob(); const t=bl.tp.tok;
+    setTimeout(()=>{ const tp=S.bl.tp; if(!tp||tp.tok!==t) return; const m=S.bl.job.ms[tp.i]; tp.stage="paid"; m.st="collected"; m.how="stripe"; m.paidOff=0;
+      if($("#sc-bill").classList.contains("on")&&S.bl.view==="job") renderBLJob(); toast("They paid "+fmt(m.amt)+" by card.","The money goes from Stripe to your bank."); },2200); });
+  $$("[data-tpx]",el).forEach(b=>b.onclick=()=>{ const k=b.dataset.tpx;
+    if(k==="done"){ bl.tp=null; renderBLJob(); return; }
+    if(k==="copy") toast("Link copied","Paste it anywhere: a text, an email, a chat.","info");
+    if(k==="text") toast("Text the link","Opens your phone's texting app with the pay link in it.","info");
+    if(k==="share") toast("Share","Your phone's share menu, with the pay link.","info"); });
+}
+function tpQR(){
+  let seed=11; const rnd=()=>{ seed=(seed*9301+49297)%233280; return seed/233280; };
+  let px="";
+  for(let y=0;y<25;y++) for(let x=0;x<25;x++){ if((x<8&&y<8)||(x>16&&y<8)||(x<8&&y>16)) continue; if(rnd()<.46) px+='<rect x="'+x+'" y="'+y+'" width="1" height="1"/>'; }
+  const fin=(x,y)=>'<rect x="'+x+'" y="'+y+'" width="7" height="7" fill="#0F1F44"/><rect x="'+(x+1)+'" y="'+(y+1)+'" width="5" height="5" fill="#fff"/><rect x="'+(x+2)+'" y="'+(y+2)+'" width="3" height="3" fill="#0F1F44"/>';
+  return '<svg class="tp-qr" viewBox="0 0 25 25" shape-rendering="crispEdges" role="img" aria-label="Pay code (demo picture)"><g fill="#0F1F44">'+px+'</g>'+fin(0,0)+fin(18,0)+fin(0,18)+'</svg>';
+}
+function tpSheet(){
+  const tp=S.bl.tp, j=S.bl.job, m=j.ms[tp.i];
+  let h='<div class="tp-sheet"><h3>Take a payment</h3><div class="sub2">'+esc(j.cust)+' · '+esc(m.label)+' · <b class="money" style="color:var(--ink)">'+fmt(m.amt)+'</b></div>';
+  if(tp.stage==="bill"){
+    h+='<button class="abtn gold" id="tpBill" style="width:100%;padding:12px;margin-top:16px;font-size:13.5px">Bill it and take the payment</button>';
+  } else {
+    const paid=tp.stage==="paid", onStripe=tp.stage==="stripe"||tp.stage==="pending";
+    h+='<p style="font-size:13.5px;font-weight:700;text-align:center;margin-top:14px">Have them point their phone\'s camera here.</p>'+tpQR()
+      +'<div class="tp-btns"><button class="abtn" data-tpx="copy">Copy</button><button class="abtn" data-tpx="text">Text the link</button><button class="abtn" data-tpx="share">Share</button><button class="abtn solid" data-tpx="done">Done</button></div>'
+      +'<div class="tp-status'+(paid?' paid':'')+'"><i></i>'+(paid?'They paid '+fmt(m.amt)+' by card.':onStripe?'They\'re on Stripe\'s page now.':'Waiting for them to open it.')+'</div>';
+    if(tp.stage==="qr") h+='<button class="abtn" id="tpScan" style="width:100%;margin-top:10px;padding:9px;border-style:dashed">▶ Demo: they scan it with their phone</button>';
+  }
+  return h+'<div class="tp-foot">The money goes from Stripe to your bank.</div></div>';
+}
+function tpPhone(){
+  const tp=S.bl.tp, j=S.bl.job, m=j.ms[tp.i];
+  let s;
+  if(tp.stage==="bill"||tp.stage==="qr") s='<div class="pb-wait">Your customer\'s phone.<br>'+(tp.stage==="bill"?'Bill the draw and a code shows up for them to scan.':'Waiting for them to scan the code.')+'</div>';
+  else if(tp.stage==="stripe") s='<div class="pb-stripe"><b>Stripe\'s secure page</b>In the real tool your customer finishes here, on Stripe\'s own page: card, Apple Pay or Google Pay where their phone offers it, or straight from their bank account.<br><br>Nothing is charged in this demo.<br><button class="abtn solid" id="tpFinish" style="margin-top:12px;padding:10px 16px">Finish paying (demo)</button></div>';
+  else {
+    const paid=tp.stage==="paid";
+    s='<div class="pb-card"><div class="pb-logo">C</div><div class="pb-co">Clearwater Outdoor Services</div>'
+      +'<div class="pb-ct">(972) 555-0148 · office@clearwater-outdoor.example</div>'
+      +'<div class="pb-h"><span>'+(paid?'Your receipt':'Your invoice')+'</span><span>#'+esc(m.inv||'')+'</span></div>'
+      +'<div class="pb-meta">Bill to: '+esc(j.cust)+'<br>Date: '+D(0)+'</div>'
+      +'<div class="pb-line"><span>'+esc(j.name)+' — '+esc(m.label)+'</span><b>'+fmt(m.amt)+'</b></div>'
+      +'<div class="pb-tot"><span>Total</span><b>'+fmt(m.amt)+'</b></div>';
+    if(tp.stage==="open") s+='<button class="pb-pay" id="tpPay">🔒 Pay '+fmt(m.amt)+'</button><div class="pb-hint">By card or from your bank account, on Stripe\'s secure page.</div>'
+      +'<div class="pb-other"><b>Other ways to pay</b>Checks payable to Clearwater Outdoor Services.</div><div class="pb-other">Questions? Call (972) 555-0148</div>';
+    if(tp.stage==="pending") s+='<div class="pb-box pend"><b>Thank you. Your payment is going through.</b>This page shows Paid as soon as Stripe confirms it.</div>';
+    if(paid) s+='<div class="pb-box paid"><b>Paid '+D(0)+'. Thank you.</b>You paid by card.</div>';
+    s+='</div><div class="pb-pow">Powered by TradeGOAT</div>';
+  }
+  return '<div class="tp-phone"><div class="bar"></div><div class="scr">'+s+'</div></div>';
+}
+
+/* ═════════ SCHEDULE + CREWS (added 2026-11-25; the live tool's Schedule page and Settings → Crew) ═════════ */
+function skInit(){ return {
+  view:"days", crew:"all", span:3, by:"crew", pick:null, two:false, edit:null, draft:null,
+  crews:[{n:"Hardscape", p:["Marcus Webb","Luis Ortega"]},{n:"Grounds", p:["Tony Ruiz","Sam Pike"]}],
+  people:["Marcus Webb","Luis Ortega","Tony Ruiz","Sam Pike","Jess Moreno"],
+  items:[
+    {k:"job", n:"Backyard patio & drainage", c:"Hendricks family", s:-2, len:5, t:"8:00 AM", crew:"Hardscape"},
+    {k:"job", n:"Entry monument landscape renovation", c:"Oakmont HOA", s:4, len:4, t:"7:30 AM", crew:"Hardscape"},
+    {k:"job", n:"Storm cleanup", c:"Riverbend Church", s:1, len:2, t:"8:00 AM", crew:"Grounds"},
+    {k:"job", n:"Retaining wall cap repair", c:"Summit Ridge Office Park", s:30, len:3, t:"8:00 AM", crew:"Hardscape"},
+    {k:"job", n:"Spring bed install", c:"Riverbend Church", s:52, len:4, t:"8:00 AM", crew:"Grounds"},
+    {k:"mt", c:"Summit Ridge Office Park · Campus Front Turf", s:5, len:1, crew:"Grounds"},
+    {k:"mt", c:"Oakmont HOA · Common Area Turf", s:19, len:1, crew:"Grounds"},
+    {k:"mt", c:"Summit Ridge Office Park · Campus Front Turf", s:35, len:1, crew:"Grounds"},
+    {k:"mt", c:"Summit Ridge Office Park · Campus Front Turf", s:65, len:1, crew:"Grounds"},
+    {k:"off", n:"Luis off", s:11, len:2, crew:"Hardscape"}
+  ],
+  unsched:[{n:"Courtyard re-plant", c:"Lakeview Apartments", len:3},{n:"Gate-area drainage fix", c:"Cedar Creek Storage", len:2}],
+  pastdue:[{n:"Maintenance due", c:"Cedar Creek Storage · Perimeter Strips", d:-8}]
+};}
+function skCrews(){ return S.sk.crews.map(c=>c.n); }
+function skVis(it){ return S.sk.crew==="all"||it.crew===S.sk.crew; }
+/* jobs run on weekdays: a 4-day job that starts Thursday ends Tuesday */
+function skWk(off){ const g=dayAt(off).getDay(); return g!==0&&g!==6; }
+function skStart(it){ let o=it.s; if(it.k==="job") while(!skWk(o)) o++; return o; }
+function skDayN(it,off){ if(it.k!=="job") return off-it.s+1; if(!skWk(off)) return 0; let n=0; for(let o=skStart(it);o<=off;o++) if(skWk(o)) n++; return n; }
+function skEnd(it){ if(it.k!=="job") return it.s+it.len-1; let o=skStart(it), n=1; while(n<it.len){ o++; if(skWk(o)) n++; } return o; }
+function skOn(off){ return S.sk.items.filter(it=>{ if(!skVis(it)||off<skStart(it)||off>skEnd(it)) return false; return it.k!=="job"||skWk(off); }); }
+function skBlock(it,off){
+  const nw=it.fresh?" new":"";
+  if(it.k==="off") return '<div class="sk-blk off'+nw+'"><b>'+esc(it.n)+'</b></div>';
+  if(it.k==="mt") return '<div class="sk-blk mt'+nw+'"><b>Maintenance visit</b><span>'+esc(it.c)+(it.crew?' · '+esc(it.crew):'')+'</span></div>';
+  return '<div class="sk-blk'+nw+'"><b>'+esc(it.n)+'</b><span>'+esc(it.c)+(it.len>1?' · Day '+skDayN(it,off)+' of '+it.len:'')+' · '+it.t+(it.crew?' · '+esc(it.crew):'')+'</span></div>';
+}
+function renderSK(){
+  const sk=S.sk, body=$("#skBody"); if(!sk||!body) return;
+  if(sk.crew!=="all"&&!skCrews().includes(sk.crew)) sk.crew="all";
+  $$("#skView button").forEach(b=>b.classList.toggle("on",b.dataset.v===sk.view));
+  $("#skCrew").innerHTML=["all"].concat(skCrews()).map(c=>'<button data-cr="'+esc(c)+'" class="'+(sk.crew===c?'on':'')+'">'+(c==="all"?'Everyone':'Crew: '+esc(c))+'</button>').join("");
+  const phone=window.innerWidth<760, picking=sk.pick!==null;
+  let h="";
+  if(sk.view==="days"){
+    h+='<div class="sk-wrap">';
+    if(!phone){
+      const t0=day0(), first=new Date(t0.getFullYear(),t0.getMonth(),1), last=new Date(t0.getFullYear(),t0.getMonth()+1,0);
+      const start=new Date(first); start.setDate(1-first.getDay()); const end=new Date(last); end.setDate(last.getDate()+(6-last.getDay()));
+      h+='<div class="sk-month"><div class="sk-mh">'+t0.toLocaleDateString("en-US",{month:"long",year:"numeric"})+'</div><div class="sk-grid">'
+        +["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d=>'<div class="sk-dow">'+d+'</div>').join("");
+      for(const d=new Date(start); d<=end; d.setDate(d.getDate()+1)){
+        const off=Math.round((d-t0)/864e5), on=skOn(off);
+        h+='<div class="sk-day'+(d.getMonth()!==t0.getMonth()?' out':'')+(off===0?' today':'')+(picking?' pick':'')+'" data-off="'+off+'"><span class="n">'+d.getDate()+'</span>'
+          +on.slice(0,3).map(it=>skBlock(it,off)).join("")+(on.length>3?'<div class="sk-more">+ '+(on.length-3)+' more</div>':'')+'</div>';
+      }
+      h+='</div></div>';
+    } else {
+      h+='<div class="card sk-list" style="padding-top:6px">';
+      for(let off=0;off<(sk.two?14:7);off++){
+        const on=skOn(off);
+        h+='<div class="row'+(picking?' pick':'')+'" data-off="'+off+'"><span class="dt">'+(off===0?'Today':dayAt(off).toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"}))+'</span><span style="flex:1;min-width:0">'
+          +(on.length?on.map(it=>skBlock(it,off)).join(""):'<span class="nb">Nothing booked'+(sk.crew!=="all"?': '+esc(sk.crew):'')+'</span>')+'</span></div>';
+      }
+      if(!sk.two) h+='<button class="abtn" id="skTwo" style="margin-top:8px">Show the next two weeks</button>';
+      h+='</div>';
+    }
+    h+='<div class="sk-side"><div class="card"><h4>Not scheduled</h4><p>'+(picking?'Now click a day on the calendar.':'No day yet. Drag one onto a day, or click it.')+'</p>'
+      +(sk.unsched.length?sk.unsched.map((u,i)=>'<div class="sk-un'+(sk.pick===i?' sel':'')+'" draggable="true" data-un="'+i+'"><b>'+esc(u.n)+'</b><span>'+esc(u.c)+' · '+u.len+' days</span><br><button class="abtn" data-put="'+i+'">'+(sk.pick===i?'Cancel':'Put on calendar')+'</button></div>').join(""):'<p style="margin:0">Every signed job has a day.</p>')
+      +'</div><div class="card"><h4>Past due</h4>'+sk.pastdue.map(p=>'<div class="sk-un" style="cursor:default"><b>'+esc(p.n)+'</b><span>'+esc(p.c)+' · was due '+D(p.d)+'</span></div>').join("")+'</div></div></div>';
+  } else if(sk.view==="long"){
+    h+='<div class="sk-bar" style="margin-top:10px"><span class="seg" id="skSpan"><button data-sp="3" class="'+(sk.span===3?'on':'')+'">3 months</button><button data-sp="12" class="'+(sk.span===12?'on':'')+'">1 year</button></span>'
+      +'<span class="seg" id="skBy"><button data-by="job" class="'+(sk.by==="job"?'on':'')+'">By job</button><button data-by="crew" class="'+(sk.by==="crew"?'on':'')+'">By crew</button></span></div>';
+    const t0=day0(), a=new Date(t0.getFullYear(),t0.getMonth(),1), b=new Date(t0.getFullYear(),t0.getMonth()+sk.span,1), tot=(b-a)/864e5;
+    const pos=off=>Math.max(0,Math.min(100,(dayAt(off)-a)/864e5/tot*100));
+    let ms=""; for(let k=0;k<sk.span;k++){ const m=new Date(a.getFullYear(),a.getMonth()+k,1); ms+='<span style="left:'+((m-a)/864e5/tot*100)+'%">'+m.toLocaleDateString("en-US",{month:"short"})+'</span>'; }
+    const lanes=sk.by==="crew"?skCrews().filter(c=>sk.crew==="all"||c===sk.crew).map(c=>({n:c, its:sk.items.filter(it=>it.crew===c)}))
+      :sk.items.filter(it=>it.k==="job"&&skVis(it)).sort((x,y)=>x.s-y.s).map(it=>({n:it.n, its:[it]}));
+    h+='<div class="sk-lanes"><div class="sk-lh"><span></span><div class="ms">'+ms+'</div></div>'
+      +lanes.map(l=>'<div class="sk-lane"><span class="ln" title="'+esc(l.n)+'">'+esc(l.n)+'</span><div class="tr"><i class="now" style="left:'+pos(0)+'%"></i>'
+        +l.its.map(it=>{ const L=pos(skStart(it)), R=pos(skEnd(it)+1); if(R<=0||L>=100) return "";
+          const lbl=it.k==="off"?it.n:it.k==="mt"?"Maintenance visit · "+it.c:it.n+" · "+it.c;
+          return '<div class="tb'+(it.k==="mt"?' mt':it.k==="off"?' off':'')+'" style="left:'+L+'%;width:'+Math.max(R-L,1.4)+'%" title="'+esc(lbl)+'">'+esc(lbl)+'</div>'; }).join("")
+        +'</div></div>').join("")+'</div>';
+  } else {
+    const fut=sk.items.filter(it=>skVis(it)&&skEnd(it)>=0).sort((x,y)=>skStart(x)-skStart(y)), cnt=k=>fut.filter(it=>it.k===k).length;
+    h+='<div class="sk-stats">'+[["job","Jobs & repairs"],["mt","Maintenance"],["off","Time off"]].map(([k,lb])=>'<div class="card kpi"><div class="lb">'+lb+'</div><div class="v">'+cnt(k)+'</div><div class="d">On the calendar</div></div>').join("")+'</div>'
+      +'<div class="card sk-list" style="margin-top:12px;padding-top:6px">'+fut.map(it=>'<div class="row"><span class="dt">'+(skStart(it)<=0?'Today':D(skStart(it)))+(skEnd(it)>skStart(it)?' – '+D(skEnd(it)):'')+'</span><span style="flex:1"><b>'+esc(it.k==="mt"?'Maintenance visit':it.n)+'</b>'+(it.c?' · '+esc(it.c):'')+(it.crew?' · '+esc(it.crew):'')+'</span></div>').join("")+'</div>';
+  }
+  body.innerHTML=h;
+  $$("#skCrew button").forEach(b=>b.onclick=()=>{ sk.crew=b.dataset.cr; renderSK(); });
+  $$("#skSpan button",body).forEach(b=>b.onclick=()=>{ sk.span=+b.dataset.sp; renderSK(); });
+  $$("#skBy button",body).forEach(b=>b.onclick=()=>{ sk.by=b.dataset.by; renderSK(); });
+  const two=$("#skTwo"); if(two) two.onclick=()=>{ sk.two=true; renderSK(); };
+  $$("[data-put]",body).forEach(b=>b.onclick=e=>{ e.stopPropagation(); const i=+b.dataset.put; sk.pick=sk.pick===i?null:i; renderSK(); });
+  $$(".sk-un[data-un]",body).forEach(u=>{ u.ondragstart=e=>{ e.dataTransfer.setData("text/plain",u.dataset.un); }; u.onclick=()=>{ const i=+u.dataset.un; sk.pick=sk.pick===i?null:i; renderSK(); }; });
+  $$("[data-off]",body).forEach(c=>{
+    c.onclick=()=>{ if(sk.pick!==null) skPlace(sk.pick,+c.dataset.off); };
+    c.ondragover=e=>{ e.preventDefault(); c.classList.add("dragover"); };
+    c.ondragleave=()=>c.classList.remove("dragover");
+    c.ondrop=e=>{ e.preventDefault(); const i=parseInt(e.dataTransfer.getData("text/plain"),10); if(!isNaN(i)) skPlace(i,+c.dataset.off); }; });
+  renderCR();
+}
+function skPlace(i,off){
+  const sk=S.sk, u=sk.unsched[i]; if(!u) return;
+  const crew=sk.crew!=="all"?sk.crew:(skCrews()[1]||skCrews()[0]||"");
+  sk.items.forEach(it=>it.fresh=false);
+  sk.items.push({k:"job", n:u.n, c:u.c, s:off, len:u.len, t:"8:00 AM", crew, fresh:true});
+  sk.unsched.splice(i,1); sk.pick=null; renderSK();
+  const nw=sk.items[sk.items.length-1]; toast("On the calendar",u.n+" · "+D(skStart(nw))+(u.len>1?" – "+D(skEnd(nw)):"")+(crew?" · "+crew:""),"info");
+}
+function renderCR(){
+  const sk=S.sk, el=$("#crCard"); if(!el) return;
+  const sheet=()=>{ const d=sk.draft; return '<div class="cr-sheet"><label>Crew name</label><input type="text" id="crName" value="'+esc(d.n)+'" autocomplete="off" />'
+    +'<label>Who\'s on it</label><div>'+sk.people.map(p=>'<button class="chip'+(d.p.includes(p)?' onc':'')+'" data-crp="'+esc(p)+'">'+esc(p)+'</button>').join("")+'</div>'
+    +'<div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap">'+(sk.edit==="new"?'<button class="abtn gold" id="crSave">Make the crew</button>':'<button class="abtn gold" id="crSave">Save</button><button class="abtn" id="crApart">Take this crew apart</button>')
+    +'<button class="abtn" id="crCancel">Cancel</button></div></div>'; };
+  let h='<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><b style="font-size:15px">Crews</b>'+(sk.edit===null?'<button class="abtn solid" id="crNew">+ Make a crew</button>':'')+'</div>'
+    +'<p style="font-size:12px;color:var(--muted);margin:4px 0 6px;line-height:1.45">Group your people into crews. A crew goes on a job\'s days and gets its own line on the calendar.</p>';
+  sk.crews.forEach((c,i)=>{ h+='<div class="cr-row"><span class="nm"><b>'+esc(c.n)+'</b><span>'+(c.p.length?esc(c.p.join(", ")):'Nobody on it yet')+'</span></span>'+(sk.edit===null?'<button class="abtn" data-cre="'+i+'">Edit</button>':'')+'</div>'; if(sk.edit===i) h+=sheet(); });
+  if(sk.edit==="new") h+=sheet();
+  el.innerHTML=h;
+  const nb=$("#crNew"); if(nb) nb.onclick=()=>{ sk.edit="new"; sk.draft={n:"", p:[]}; renderCR(); const x=$("#crName"); if(x) x.focus(); };
+  $$("[data-cre]",el).forEach(b=>b.onclick=()=>{ const c=sk.crews[+b.dataset.cre]; sk.edit=+b.dataset.cre; sk.draft={n:c.n, p:c.p.slice()}; renderCR(); });
+  const nm=$("#crName"); if(nm) nm.oninput=e=>{ sk.draft.n=e.target.value; };
+  $$("[data-crp]",el).forEach(b=>b.onclick=()=>{ const p=b.dataset.crp, a=sk.draft.p, k=a.indexOf(p); if(k>=0) a.splice(k,1); else a.push(p); renderCR(); });
+  const cc=$("#crCancel"); if(cc) cc.onclick=()=>{ sk.edit=null; sk.draft=null; renderCR(); };
+  const sv=$("#crSave"); if(sv) sv.onclick=()=>{
+    const n=sk.draft.n.trim(); if(!n){ $("#crName").focus(); return; }
+    if(sk.crews.some((c,i)=>c.n.toLowerCase()===n.toLowerCase()&&i!==sk.edit)){ toast("That name's taken","Pick a different crew name.","info"); return; }
+    if(sk.edit==="new"){ sk.crews.push({n, p:sk.draft.p.slice()}); toast("Crew made",n+" now has its own line on the calendar."); }
+    else { const c=sk.crews[sk.edit], old=c.n; c.n=n; c.p=sk.draft.p.slice(); sk.items.forEach(it=>{ if(it.crew===old) it.crew=n; }); if(sk.crew===old) sk.crew=n; toast("Crew saved",n+"."); }
+    sk.edit=null; sk.draft=null; renderSK(); };
+  const ap=$("#crApart"); if(ap) ap.onclick=()=>{ const c=sk.crews[sk.edit]; sk.items.forEach(it=>{ if(it.crew===c.n) it.crew=""; }); sk.crews.splice(sk.edit,1); sk.edit=null; sk.draft=null; renderSK(); toast("Crew taken apart","Its days stay on the calendar, just without a crew.","info"); };
+}
+$$("#skView button").forEach(b=>b.onclick=()=>{ S.sk.view=b.dataset.v; S.sk.pick=null; renderSK(); });
+$("#blQ").oninput=e=>{ S.bl.q=e.target.value; renderBL(); };
+let _blW=window.innerWidth<760;
+window.addEventListener("resize",()=>{ const w=window.innerWidth<760; if(w!==_blW){ _blW=w; renderBL(); renderSK(); } });
+
+function renderAll(){ renderKpis(); renderMoney(); renderJobs(); renderProps(); renderDrafts(); renderFunnel(); renderCalc(); renderWL(); renderScore(); renderMaint(); renderTicket(); renderCust(); renderTmpl(); renderTeam(); renderDrive(); renderMap(); renderJM(); renderBL(); renderSK(); renderGuide(); }
 renderAll();
+/* ?scene=bill | sched | pay opens that screen directly (for filming and links) */
+try{ const sc=new URLSearchParams(location.search).get("scene");
+  if(sc==="pay"){ showScene("bill"); S.bl.view="job"; S.bl.tp={i:1, stage:"bill", tok:++blTok}; renderBL(); }
+  else if(sc&&document.getElementById("sc-"+sc)) showScene(sc); }catch(e){}
 })();
 </script>
 <script>
